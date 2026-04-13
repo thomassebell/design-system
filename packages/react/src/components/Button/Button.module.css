@@ -56,10 +56,10 @@
   color: var(--color-text-inverse);
 }
 .primary:hover:not(:disabled) {
-  background: var(--color-action-primary-hover);
+  background: var(--color-action-primaryhover);
 }
 .primary:active:not(:disabled) {
-  background: var(--color-action-primary-active);
+  background: var(--color-action-primaryactive);
 }
 
 .secondary {
