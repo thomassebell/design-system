@@ -60,7 +60,7 @@
     },
     "action": {
       "primary": {
-        "value": "#F97316",
+        "value": "{color.primitive.blue.500}",
         "type": "color"
       },
       "primaryhover": {
