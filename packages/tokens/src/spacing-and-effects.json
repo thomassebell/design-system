@@ -5,89 +5,89 @@
       "type": "spacing"
     },
     "1": {
-      "value": "0.015625rem",
+      "value": "0.25rem",
       "type": "spacing",
       "comment": "4px"
     },
     "2": {
-      "value": "0.03125rem",
+      "value": "0.5rem",
       "type": "spacing",
       "comment": "8px"
     },
     "3": {
-      "value": "0.046875rem",
+      "value": "0.75rem",
       "type": "spacing",
       "comment": "12px"
     },
     "4": {
-      "value": "0.0625rem",
+      "value": "1rem",
       "type": "spacing",
       "comment": "16px"
     },
     "5": {
-      "value": "0.078125rem",
+      "value": "1.25rem",
       "type": "spacing",
       "comment": "20px"
     },
     "6": {
-      "value": "0.09375rem",
+      "value": "1.5rem",
       "type": "spacing",
       "comment": "24px"
     },
     "8": {
-      "value": "0.125rem",
+      "value": "2rem",
       "type": "spacing",
       "comment": "32px"
     },
     "10": {
-      "value": "0.15625rem",
+      "value": "2.5rem",
       "type": "spacing",
       "comment": "40px"
     },
     "12": {
-      "value": "0.1875rem",
+      "value": "3rem",
       "type": "spacing",
       "comment": "48px"
     },
     "16": {
-      "value": "0.25rem",
+      "value": "4rem",
       "type": "spacing",
       "comment": "64px"
     },
     "20": {
-      "value": "0.3125rem",
+      "value": "5rem",
       "type": "spacing",
       "comment": "80px"
     }
   },
   "radius": {
     "none": {
-      "value": "0rem",
+      "value": "0",
       "type": "borderRadius"
     },
     "sm": {
-      "value": "0.015625rem",
+      "value": "0.25rem",
       "type": "borderRadius",
       "comment": "4px"
     },
     "md": {
-      "value": "0.03125rem",
+      "value": "0.5rem",
       "type": "borderRadius",
       "comment": "8px"
     },
     "lg": {
-      "value": "0.046875rem",
+      "value": "0.75rem",
       "type": "borderRadius",
       "comment": "12px"
     },
     "xl": {
-      "value": "0.0625rem",
+      "value": "1rem",
       "type": "borderRadius",
       "comment": "16px"
     },
     "full": {
-      "value": 9999,
-      "type": "number"
+      "value": "624.9375rem",
+      "type": "borderRadius"
     }
   },
   "motion": {

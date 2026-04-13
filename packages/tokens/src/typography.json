@@ -2,7 +2,7 @@
   "font": {
     "family": {
       "sans": {
-        "value": "'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+        "value": "Inter",
         "type": "string"
       },
       "mono": {
@@ -35,81 +35,81 @@
     },
     "size": {
       "xs": {
-        "value": "0.046875rem",
+        "value": "0.75rem",
         "type": "fontSize",
         "comment": "12px"
       },
       "sm": {
-        "value": "0.0546875rem",
+        "value": "0.875rem",
         "type": "fontSize",
         "comment": "14px"
       },
       "base": {
-        "value": 1,
-        "type": "number",
+        "value": "1rem",
+        "type": "fontSize",
         "comment": "16px"
       },
       "lg": {
-        "value": "0.0703125rem",
+        "value": "1.125rem",
         "type": "fontSize",
         "comment": "18px"
       },
       "xl": {
-        "value": "0.078125rem",
+        "value": "1.25rem",
         "type": "fontSize",
         "comment": "20px"
       },
       "2xl": {
-        "value": 1.5,
-        "type": "number",
+        "value": "1.5rem",
+        "type": "fontSize",
         "comment": "24px"
       },
       "3xl": {
-        "value": 1.875,
-        "type": "number",
+        "value": "1.875rem",
+        "type": "fontSize",
         "comment": "30px"
       },
       "4xl": {
-        "value": 2.25,
-        "type": "number",
+        "value": "2.25rem",
+        "type": "fontSize",
         "comment": "36px"
       },
       "5xl": {
-        "value": 3,
-        "type": "number",
+        "value": "3rem",
+        "type": "fontSize",
         "comment": "48px"
       }
     },
     "lineheight": {
       "tight": {
-        "value": 1.25,
+        "value": 20,
         "type": "lineHeight"
       },
       "snug": {
-        "value": 1.375,
+        "value": 22,
         "type": "lineHeight"
       },
       "normal": {
-        "value": 1.5,
+        "value": 24,
         "type": "lineHeight"
       },
       "relaxed": {
-        "value": 1.625,
+        "value": 26,
         "type": "lineHeight"
       }
     },
     "letterspacing": {
       "tight": {
         "value": -0.02500000037252903,
-        "type": "number"
+        "type": "spacing"
       },
       "normal": {
         "value": 0,
-        "type": "number"
+        "type": "spacing"
       },
       "wide": {
-        "value": 0.02500000037252903,
-        "type": "number"
+        "value": "0.0016rem",
+        "type": "spacing"
       }
     }
   }
