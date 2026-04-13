@@ -1,33 +1,94 @@
 {
   "color": {
     "bg": {
-      "primary":   { "value": "{color.primitive.neutral.0}",   "type": "color", "comment": "Default page / card background" },
-      "secondary": { "value": "{color.primitive.neutral.50}",  "type": "color", "comment": "Subtle section background" },
-      "tertiary":  { "value": "{color.primitive.neutral.100}", "type": "color", "comment": "Inset / well background" },
-      "inverse":   { "value": "{color.primitive.neutral.900}", "type": "color", "comment": "Dark background for contrast sections" }
+      "primary": {
+        "value": "{color.primitive.neutral.0}",
+        "type": "color",
+        "comment": "Default page / card background"
+      },
+      "secondary": {
+        "value": "{color.primitive.neutral.50}",
+        "type": "color",
+        "comment": "Subtle section background"
+      },
+      "tertiary": {
+        "value": "{color.primitive.neutral.100}",
+        "type": "color",
+        "comment": "Inset / well background"
+      },
+      "inverse": {
+        "value": "{color.primitive.neutral.900}",
+        "type": "color",
+        "comment": "Dark background for contrast sections"
+      }
     },
     "text": {
-      "primary":   { "value": "{color.primitive.neutral.900}", "type": "color" },
-      "secondary": { "value": "{color.primitive.neutral.600}", "type": "color" },
-      "tertiary":  { "value": "{color.primitive.neutral.400}", "type": "color" },
-      "inverse":   { "value": "{color.primitive.neutral.0}",   "type": "color" },
-      "link":      { "value": "{color.primitive.blue.600}",    "type": "color" }
+      "primary": {
+        "value": "{color.primitive.neutral.900}",
+        "type": "color"
+      },
+      "secondary": {
+        "value": "{color.primitive.neutral.600}",
+        "type": "color"
+      },
+      "tertiary": {
+        "value": "{color.primitive.neutral.400}",
+        "type": "color"
+      },
+      "inverse": {
+        "value": "{color.primitive.neutral.0}",
+        "type": "color"
+      },
+      "link": {
+        "value": "{color.primitive.blue.600}",
+        "type": "color"
+      }
     },
     "border": {
-      "default":  { "value": "{color.primitive.neutral.200}", "type": "color" },
-      "strong":   { "value": "{color.primitive.neutral.300}", "type": "color" },
-      "focus":    { "value": "{color.primitive.blue.500}",    "type": "color" }
+      "default": {
+        "value": "{color.primitive.neutral.200}",
+        "type": "color"
+      },
+      "strong": {
+        "value": "{color.primitive.neutral.300}",
+        "type": "color"
+      },
+      "focus": {
+        "value": "{color.primitive.blue.500}",
+        "type": "color"
+      }
     },
     "action": {
-      "primary":       { "value": "{color.primitive.blue.600}",    "type": "color" },
-      "primaryHover":  { "value": "{color.primitive.blue.700}",    "type": "color" },
-      "primaryActive": { "value": "{color.primitive.blue.800}",    "type": "color" }
+      "primary": {
+        "value": "#F97316",
+        "type": "color"
+      },
+      "primaryhover": {
+        "value": "{color.primitive.blue.700}",
+        "type": "color"
+      },
+      "primaryactive": {
+        "value": "{color.primitive.blue.800}",
+        "type": "color"
+      }
     },
     "feedback": {
-      "error":   { "value": "{color.primitive.red.600}",   "type": "color" },
-      "success": { "value": "{color.primitive.green.600}", "type": "color" },
-      "warning": { "value": "{color.primitive.amber.600}", "type": "color" },
-      "info":    { "value": "{color.primitive.blue.600}",  "type": "color" }
+      "error": {
+        "value": "{color.primitive.red.600}",
+        "type": "color"
+      },
+      "success": {
+        "value": "{color.primitive.green.600}",
+        "type": "color"
+      },
+      "warning": {
+        "value": "{color.primitive.amber.600}",
+        "type": "color"
+      },
+      "info": {
+        "value": "{color.primitive.blue.600}",
+        "type": "color"
+      }
     }
   }
 }
