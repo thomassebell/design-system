@@ -25,7 +25,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "@ds/tokens": "workspace:*"
+    "@ds/tokens": "*"
   },
   "devDependencies": {
     "@storybook/react": "^8.0.0",
