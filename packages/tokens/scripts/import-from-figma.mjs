@@ -38,28 +38,61 @@ function pxToRem(px) {
 }
 
 function shouldBeRem(pathStr) {
-  return pathStr.includes("spacing") ||
-    pathStr.includes("radius") ||
-    (pathStr.includes("font") && pathStr.includes("size"));
+  // Only font sizes get rem
+  return pathStr.includes("font") && pathStr.includes("size");
+}
+
+function shouldBePx(pathStr) {
+  // Spacing, radius stay in px
+  return pathStr.includes("spacing") || pathStr.includes("radius");
+}
+
+function shouldBeMs(pathStr) {
+  return pathStr.includes("duration") || pathStr.includes("motion");
 }
 
 function convertDimension(value, path) {
   const pathStr = path.join(".");
+
+  // Extract numeric value from string like "16px" or "1.5rem"
+  let numericVal = null;
+  let unit = null;
+
   if (typeof value === "string") {
-    const pxMatch = value.match(/^([\d.]+)px$/);
-    if (pxMatch) {
-      const px = parseFloat(pxMatch[1]);
-      if (px === 0) return "0";
-      if (shouldBeRem(pathStr)) return pxToRem(px);
+    const match = value.match(/^([\d.]+)(px|rem|ms|em|%)?$/);
+    if (match) {
+      numericVal = parseFloat(match[1]);
+      unit = match[2] || null;
+    } else {
       return value;
     }
+  } else if (typeof value === "number") {
+    numericVal = value;
+  } else {
     return value;
   }
-  if (typeof value === "number") {
-    if (value === 0) return "0";
-    if (shouldBeRem(pathStr)) return pxToRem(value);
-    return value + "px";
+
+  if (numericVal === 0) return "0";
+
+  // Duration: always ms
+  if (shouldBeMs(pathStr)) {
+    return numericVal + "ms";
   }
+
+  // Font sizes: convert to rem
+  if (shouldBeRem(pathStr)) {
+    if (unit === "rem") return value;
+    // Assume px if no unit or px
+    return pxToRem(numericVal);
+  }
+
+  // Spacing and radius: keep as px
+  if (shouldBePx(pathStr)) {
+    return numericVal + "px";
+  }
+
+  // Default: keep as-is
+  if (unit) return numericVal + unit;
   return value;
 }
 
@@ -71,8 +104,10 @@ function convertValue(value, type, path) {
   if (type === "dimension") return convertDimension(value, path);
 
   if (type === "number") {
-    if (typeof value === "number" && value > 0 && shouldBeRem(pathStr)) {
-      return pxToRem(value);
+    if (typeof value === "number" && value > 0) {
+      if (shouldBeRem(pathStr)) return pxToRem(value);
+      if (shouldBePx(pathStr)) return value + "px";
+      if (shouldBeMs(pathStr)) return value + "ms";
     }
     return value;
   }
@@ -80,6 +115,7 @@ function convertValue(value, type, path) {
   if (type === "duration") {
     if (typeof value === "object" && value !== null && "value" in value) return value.value + (value.unit || "ms");
     if (typeof value === "number") return value + "ms";
+    if (typeof value === "string") return convertDimension(value, path);
     return value;
   }
 
@@ -116,6 +152,7 @@ function mapTypeBack(dtcgType, path) {
     if (pathStr.includes("font") && pathStr.includes("size")) return "fontSize";
     if (pathStr.includes("letterSpacing")) return "letterSpacing";
     if (pathStr.includes("lineHeight") || pathStr.includes("lineheight")) return "lineHeight";
+    if (pathStr.includes("duration") || pathStr.includes("motion")) return "duration";
     if (dtcgType === "number") return "number";
     return "dimension";
   }

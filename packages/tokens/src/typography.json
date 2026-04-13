@@ -34,12 +34,12 @@
       }
     },
     "size": {
-      "xs": {
+      "xsmall": {
         "value": "0.75rem",
         "type": "fontSize",
         "comment": "12px"
       },
-      "sm": {
+      "small": {
         "value": "0.875rem",
         "type": "fontSize",
         "comment": "14px"
@@ -49,67 +49,70 @@
         "type": "fontSize",
         "comment": "16px"
       },
-      "lg": {
-        "value": "1.125rem",
+      "medium": {
+        "value": "1.25rem",
         "type": "fontSize",
         "comment": "18px"
       },
-      "xl": {
-        "value": "1.25rem",
+      "large": {
+        "value": "1.5rem",
         "type": "fontSize",
         "comment": "20px"
       },
-      "2xl": {
-        "value": "1.5rem",
+      "xlarge": {
+        "value": "2rem",
         "type": "fontSize",
         "comment": "24px"
       },
-      "3xl": {
-        "value": "1.875rem",
+      "xxlarge": {
+        "value": "2.5rem",
         "type": "fontSize",
         "comment": "30px"
       },
-      "4xl": {
-        "value": "2.25rem",
-        "type": "fontSize",
-        "comment": "36px"
-      },
-      "5xl": {
+      "3xlarge": {
         "value": "3rem",
         "type": "fontSize",
-        "comment": "48px"
+        "comment": "36px"
       }
     },
     "lineheight": {
-      "tight": {
-        "value": 20,
-        "type": "lineHeight"
+      "xsmall": {
+        "value": "16px",
+        "type": "fontWeight"
       },
-      "snug": {
-        "value": 22,
-        "type": "lineHeight"
+      "small": {
+        "value": "24px",
+        "type": "fontWeight"
       },
-      "normal": {
-        "value": 24,
-        "type": "lineHeight"
+      "medium": {
+        "value": "32px",
+        "type": "fontWeight"
       },
-      "relaxed": {
-        "value": 26,
-        "type": "lineHeight"
+      "large": {
+        "value": "40px",
+        "type": "fontWeight"
+      },
+      "xlarge": {
+        "value": "48px",
+        "type": "fontWeight"
+      },
+      "xxlarge": {
+        "value": "56px",
+        "type": "fontWeight"
       }
     },
     "letterspacing": {
       "tight": {
-        "value": -0.02500000037252903,
-        "type": "spacing"
+        "value": "-0.03px",
+        "type": "fontWeight"
       },
       "normal": {
-        "value": 0,
-        "type": "spacing"
+        "value": "0px",
+        "type": "fontWeight"
       },
       "wide": {
-        "value": "0.0016rem",
-        "type": "spacing"
+        "value": "0.03px",
+        "type": "fontWeight"
       }
     }
   }
