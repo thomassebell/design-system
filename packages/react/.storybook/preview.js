@@ -1,4 +1,6 @@
-module.exports = {
+import "./tokens.css";
+
+export default {
   parameters: {
     controls: {
       matchers: {
