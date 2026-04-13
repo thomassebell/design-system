@@ -1,0 +1,119 @@
+/* ── Base ─────────────────────────────────── */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background var(--motion-duration-fast) var(--motion-easing-default),
+    color var(--motion-duration-fast) var(--motion-easing-default),
+    border-color var(--motion-duration-fast) var(--motion-easing-default),
+    box-shadow var(--motion-duration-fast) var(--motion-easing-default);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Sizes ────────────────────────────────── */
+
+.sm {
+  height: 2rem;           /* 32px */
+  padding: 0 var(--spacing-3);
+  font-size: var(--font-size-sm);
+}
+
+.md {
+  height: 2.5rem;         /* 40px */
+  padding: 0 var(--spacing-4);
+  font-size: var(--font-size-base);
+}
+
+.lg {
+  height: 3rem;           /* 48px */
+  padding: 0 var(--spacing-6);
+  font-size: var(--font-size-lg);
+}
+
+/* ── Variants ─────────────────────────────── */
+
+.primary {
+  background: var(--color-action-primary);
+  color: var(--color-text-inverse);
+}
+.primary:hover:not(:disabled) {
+  background: var(--color-action-primary-hover);
+}
+.primary:active:not(:disabled) {
+  background: var(--color-action-primary-active);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-border-default);
+}
+.secondary:hover:not(:disabled) {
+  background: var(--color-bg-secondary);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+.ghost:hover:not(:disabled) {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.danger {
+  background: var(--color-feedback-error);
+  color: var(--color-text-inverse);
+}
+.danger:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+/* ── Modifiers ────────────────────────────── */
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ── Loading ──────────────────────────────── */
+
+.loading {
+  position: relative;
+}
+
+.spinner {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--radius-full);
+  animation: spin 600ms linear infinite;
+}
+
+.hiddenLabel {
+  visibility: hidden;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

@@ -1,0 +1,37 @@
+{
+  "font": {
+    "family": {
+      "sans":    { "value": "'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif", "type": "fontFamily" },
+      "mono":    { "value": "'JetBrains Mono', 'SF Mono', 'Fira Code', monospace", "type": "fontFamily" },
+      "display": { "value": "'Cabinet Grotesk', 'Inter Variable', sans-serif", "type": "fontFamily", "comment": "Headlines and marketing. Swap for your brand typeface." }
+    },
+    "weight": {
+      "regular":  { "value": "400", "type": "fontWeight" },
+      "medium":   { "value": "500", "type": "fontWeight" },
+      "semibold": { "value": "600", "type": "fontWeight" },
+      "bold":     { "value": "700", "type": "fontWeight" }
+    },
+    "size": {
+      "xs":   { "value": "0.75rem",  "type": "fontSize",  "comment": "12px" },
+      "sm":   { "value": "0.875rem", "type": "fontSize",  "comment": "14px" },
+      "base": { "value": "1rem",     "type": "fontSize",  "comment": "16px" },
+      "lg":   { "value": "1.125rem", "type": "fontSize",  "comment": "18px" },
+      "xl":   { "value": "1.25rem",  "type": "fontSize",  "comment": "20px" },
+      "2xl":  { "value": "1.5rem",   "type": "fontSize",  "comment": "24px" },
+      "3xl":  { "value": "1.875rem", "type": "fontSize",  "comment": "30px" },
+      "4xl":  { "value": "2.25rem",  "type": "fontSize",  "comment": "36px" },
+      "5xl":  { "value": "3rem",     "type": "fontSize",  "comment": "48px" }
+    },
+    "lineHeight": {
+      "tight":   { "value": "1.25",  "type": "lineHeight" },
+      "snug":    { "value": "1.375", "type": "lineHeight" },
+      "normal":  { "value": "1.5",   "type": "lineHeight" },
+      "relaxed": { "value": "1.625", "type": "lineHeight" }
+    },
+    "letterSpacing": {
+      "tight":   { "value": "-0.025em", "type": "letterSpacing" },
+      "normal":  { "value": "0em",      "type": "letterSpacing" },
+      "wide":    { "value": "0.025em",  "type": "letterSpacing" }
+    }
+  }
+}

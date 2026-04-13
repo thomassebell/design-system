@@ -1,0 +1,10 @@
+{
+  "name": "@ds/docs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Design system documentation site.",
+  "scripts": {
+    "dev": "echo 'TODO: docusaurus start'",
+    "build": "echo 'TODO: docusaurus build'"
+  }
+}

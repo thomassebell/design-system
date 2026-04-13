@@ -1,0 +1,19 @@
+{
+  "name": "@ds/tokens",
+  "version": "0.1.0",
+  "description": "Design tokens — the single source of truth for colors, typography, spacing, and more.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "style-dictionary build && node transforms/generate-swift.mjs",
+    "dev": "style-dictionary build --watch",
+    "clean": "rm -rf dist output"
+  },
+  "files": [
+    "dist",
+    "output"
+  ],
+  "devDependencies": {
+    "style-dictionary": "^4.0.0"
+  }
+}
