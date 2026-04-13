@@ -1,17 +1,14 @@
 import { forwardRef, type ButtonHTMLAttributes } from "react";
-import { cx, type Size } from "../utils/shared";
+import { cx } from "../utils/shared";
 import styles from "./Button.module.css";
 
 export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Visual style variant. */
   variant?: ButtonVariant;
-  /** Size of the button. */
-  size?: Size;
-  /** Full-width button. */
+  size?: ButtonSize;
   fullWidth?: boolean;
-  /** Show a loading spinner and disable interaction. */
   loading?: boolean;
 }
 
@@ -35,7 +32,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cx(
           styles.button,
           styles[variant],
-          styles[size],
           fullWidth && styles.fullWidth,
           loading && styles.loading,
           className

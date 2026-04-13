@@ -1,7 +1,7 @@
 {
   "spacing": {
     "0": {
-      "value": "0",
+      "value": "0px",
       "type": "spacing"
     },
     "100": {
@@ -127,7 +127,7 @@
   },
   "radius": {
     "none": {
-      "value": "0",
+      "value": "0px",
       "type": "borderRadius"
     },
     "small": {

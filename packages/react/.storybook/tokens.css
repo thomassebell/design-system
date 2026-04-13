@@ -40,7 +40,7 @@
   --color-primitive-amber-500: #f59e0b;
   --color-primitive-amber-600: #d97706;
   --color-primitive-amber-700: #b45309;
-  --spacing-0: 0;
+  --spacing-0: 0px;
   --spacing-100: 16px; /** 24px */
   --spacing-150: 24px; /** 32px */
   --spacing-200: 32px; /** 40px */
@@ -59,7 +59,7 @@
   --spacing-0375: 6px; /** 12px */
   --spacing-050: 8px; /** 16px */
   --spacing-075: 12px; /** 20px */
-  --radius-none: 0;
+  --radius-none: 0px;
   --radius-small: 4px; /** 4px */
   --radius-medium: 8px; /** 8px */
   --radius-large: 12px; /** 12px */
@@ -69,21 +69,21 @@
   --motion-duration-fast: 150ms;
   --motion-duration-normal: 250ms;
   --motion-duration-slow: 400ms;
-  --font-family-sans: Inter;
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-family-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
   --font-family-display: 'Cabinet Grotesk', 'Inter Variable', sans-serif; /** Headlines and marketing. Swap for your brand typeface. */
-  --font-weight-regular: regular;
-  --font-weight-medium: medium;
-  --font-weight-semibold: bold;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  --font-size-xsmall: 0.75rem; /** 12px */
-  --font-size-small: 0.875rem; /** 14px */
-  --font-size-base: 1rem; /** 16px */
-  --font-size-medium: 1.25rem; /** 18px */
-  --font-size-large: 1.5rem; /** 20px */
-  --font-size-xlarge: 2rem; /** 24px */
-  --font-size-xxlarge: 2.5rem; /** 30px */
-  --font-size-3xlarge: 3rem; /** 36px */
+  --font-size-xsmall: 12px; /** 12px */
+  --font-size-small: 14px; /** 14px */
+  --font-size-base: 16px; /** 16px */
+  --font-size-medium: 20px; /** 18px */
+  --font-size-large: 24px; /** 20px */
+  --font-size-xlarge: 32px; /** 24px */
+  --font-size-xxlarge: 40px; /** 30px */
+  --font-size-3xlarge: 48px; /** 36px */
   --font-lineheight-xsmall: 16px;
   --font-lineheight-small: 24px;
   --font-lineheight-medium: 32px;

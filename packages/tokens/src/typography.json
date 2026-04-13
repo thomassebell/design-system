@@ -2,30 +2,30 @@
   "font": {
     "family": {
       "sans": {
-        "value": "Inter",
-        "type": "string"
+        "value": "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+        "type": "fontFamily"
       },
       "mono": {
         "value": "'JetBrains Mono', 'SF Mono', 'Fira Code', monospace",
-        "type": "string"
+        "type": "fontFamily"
       },
       "display": {
         "value": "'Cabinet Grotesk', 'Inter Variable', sans-serif",
-        "type": "string",
+        "type": "fontFamily",
         "comment": "Headlines and marketing. Swap for your brand typeface."
       }
     },
     "weight": {
       "regular": {
-        "value": "regular",
+        "value": "400",
         "type": "string"
       },
       "medium": {
-        "value": "medium",
+        "value": "500",
         "type": "string"
       },
       "semibold": {
-        "value": "bold",
+        "value": "600",
         "type": "string"
       },
       "bold": {
@@ -35,42 +35,42 @@
     },
     "size": {
       "xsmall": {
-        "value": "0.75rem",
+        "value": "12px",
         "type": "fontSize",
         "comment": "12px"
       },
       "small": {
-        "value": "0.875rem",
+        "value": "14px",
         "type": "fontSize",
         "comment": "14px"
       },
       "base": {
-        "value": "1rem",
+        "value": "16px",
         "type": "fontSize",
         "comment": "16px"
       },
       "medium": {
-        "value": "1.25rem",
+        "value": "20px",
         "type": "fontSize",
         "comment": "18px"
       },
       "large": {
-        "value": "1.5rem",
+        "value": "24px",
         "type": "fontSize",
         "comment": "20px"
       },
       "xlarge": {
-        "value": "2rem",
+        "value": "32px",
         "type": "fontSize",
         "comment": "24px"
       },
       "xxlarge": {
-        "value": "2.5rem",
+        "value": "40px",
         "type": "fontSize",
         "comment": "30px"
       },
       "3xlarge": {
-        "value": "3rem",
+        "value": "48px",
         "type": "fontSize",
         "comment": "36px"
       }

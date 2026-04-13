@@ -101,9 +101,18 @@ function convertValue(value, type, path) {
 
   if (type === "color") return colorToHex(value);
 
+  if (type === "fontFamily" && typeof value === "string") {
+    const fallbacks = {
+      "Inter": "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+      "JetBrains Mono": "'JetBrains Mono', 'SF Mono', 'Fira Code', monospace",
+      "Cabinet Grotesk": "'Cabinet Grotesk', 'Inter', sans-serif",
+    };
+    return fallbacks[value] || value;
+  }
+
   if (type === "dimension") return convertDimension(value, path);
 
-  if (type === "number") {
+  if (type === "number" || type === "borderRadius" || type === "spacing" || type === "fontSize") {
     if (typeof value === "number" && value > 0) {
       if (shouldBeRem(pathStr)) return pxToRem(value);
       if (shouldBePx(pathStr)) return value + "px";
@@ -142,6 +151,7 @@ function mapTypeBack(dtcgType, path) {
   const pathStr = path.join(".");
   if (dtcgType === "color") return "color";
   if (dtcgType === "fontFamily") return "fontFamily";
+  if (dtcgType === "string" && pathStr.includes("font") && pathStr.includes("family")) return "fontFamily";
   if (dtcgType === "fontWeight") return "fontWeight";
   if (dtcgType === "duration") return "duration";
   if (dtcgType === "cubicBezier") return "cubicBezier";
@@ -167,7 +177,7 @@ function fromDTCG(obj, path = []) {
       const currentPath = [...path, key];
       const type = mapTypeBack(val.$type, currentPath);
       const token = {
-        value: convertValue(val.$value, val.$type, currentPath),
+        value: convertValue(val.$value, type, currentPath),
         type: type,
       };
       if (val.$description) token.comment = val.$description;
