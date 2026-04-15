@@ -83,8 +83,6 @@ var fontFallbacks = {
   "JetBrains Mono": "'JetBrains Mono', 'SF Mono', 'Fira Code', monospace",
   "Cabinet Grotesk": "'Cabinet Grotesk', 'Inter', sans-serif",
   "Outfit": "'Outfit', 'DM Sans', sans-serif",
-  "Gabarito": "'Gabarito', -apple-system, BlinkMacSystemFont, sans-serif",
-  "Roboto": "'Roboto', -apple-system, BlinkMacSystemFont, sans-serif",
 };
 
 // ── Font weight conversion ───────────────────────

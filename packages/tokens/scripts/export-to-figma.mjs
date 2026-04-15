@@ -1,56 +1,48 @@
 /**
  * export-to-figma.mjs
  *
- * Reads your Style Dictionary source tokens and outputs a single
- * W3C DTCG-formatted JSON file that can be imported into Figma
- * using the "Variables JSON Import" plugin (by Microsoft) or
- * any DTCG-compatible import tool.
+ * Exports tokens as W3C DTCG-formatted JSON for importing into Figma.
  *
- * Usage:  node scripts/export-to-figma.mjs
- * Output: figma/import-to-figma.json
+ * Usage:
+ *   Brand export:  node scripts/export-to-figma.mjs brand-a
+ *   Shared export: node scripts/export-to-figma.mjs shared
+ *
+ * Output: figma/brand-a.json or figma/shared.json
  */
 
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "fs";
-import { join } from "path";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 
-// ── Load all source token files ──────────────────
+const target = process.argv[2];
 
-const srcDir = "src";
-const files = readdirSync(srcDir).filter((f) => f.endsWith(".json"));
-
-let merged = {};
-for (const file of files) {
-  const data = JSON.parse(readFileSync(join(srcDir, file), "utf-8"));
-  merged = deepMerge(merged, data);
+if (!target) {
+  console.error("Usage:");
+  console.error("  node scripts/export-to-figma.mjs brand-a    (export brand primitives)");
+  console.error("  node scripts/export-to-figma.mjs shared     (export shared DS tokens)");
+  process.exit(1);
 }
 
-// ── Convert to DTCG format ──────────────────────
+function loadJSON(path) {
+  if (!existsSync(path)) return {};
+  return JSON.parse(readFileSync(path, "utf-8"));
+}
 
-function toDTCG(obj, path = []) {
-  const result = {};
-
-  for (const [key, val] of Object.entries(obj)) {
-    if (val && typeof val === "object" && "value" in val) {
-      // This is a token leaf node
-      const dtcgToken = {
-        $value: convertValue(val.value, val.type),
-        $type: mapType(val.type),
-      };
-      if (val.comment) {
-        dtcgToken.$description = val.comment;
-      }
-      result[key] = dtcgToken;
-    } else if (val && typeof val === "object") {
-      // This is a group
-      result[key] = toDTCG(val, [...path, key]);
+function deepMerge(target, source) {
+  const result = Object.assign({}, target);
+  for (var key of Object.keys(source)) {
+    var val = source[key];
+    if (val && typeof val === "object" && !Array.isArray(val) && !("value" in val)) {
+      result[key] = deepMerge(result[key] || {}, val);
+    } else {
+      result[key] = val;
     }
   }
-
   return result;
 }
 
+// ── DTCG type mapping ────────────────────────────
+
 function mapType(type) {
-  const map = {
+  var map = {
     color: "color",
     fontSize: "dimension",
     fontFamily: "fontFamily",
@@ -62,54 +54,79 @@ function mapType(type) {
     boxShadow: "shadow",
     duration: "duration",
     cubicBezier: "cubicBezier",
+    number: "number",
+    string: "string",
   };
   return map[type] || type || "string";
 }
 
 function convertValue(value, type) {
-  // Convert Style Dictionary references {x.y.z} to DTCG format {x.y.z}
+  // Convert Style Dictionary references to DTCG format
   if (typeof value === "string" && value.startsWith("{") && value.endsWith("}")) {
-    return value; // DTCG uses the same {path.to.token} syntax
-  }
-
-  // Colors: Figma DTCG expects hex strings
-  if (type === "color") {
     return value;
   }
 
-  // cubicBezier: DTCG expects an array of 4 numbers
+  // cubicBezier: convert CSS string to array
   if (type === "cubicBezier" && typeof value === "string") {
-    const match = value.match(/cubic-bezier\(([^)]+)\)/);
+    var match = value.match(/cubic-bezier\(([^)]+)\)/);
     if (match) {
-      return match[1].split(",").map((n) => parseFloat(n.trim()));
+      return match[1].split(",").map(function(n) { return parseFloat(n.trim()); });
     }
   }
 
-  // Duration: DTCG expects "150ms" format (already correct)
-  // Dimensions: DTCG expects "0.5rem" format (already correct)
+  // Font family: strip fallbacks, keep just the primary font name
+  if (type === "fontFamily" && typeof value === "string") {
+    // Extract first font from the fallback chain
+    var first = value.split(",")[0].trim().replace(/^'|'$/g, "");
+    return first;
+  }
 
   return value;
 }
 
-function deepMerge(target, source) {
-  const result = { ...target };
-  for (const [key, val] of Object.entries(source)) {
-    if (val && typeof val === "object" && !Array.isArray(val) && !("value" in val)) {
-      result[key] = deepMerge(result[key] || {}, val);
-    } else {
-      result[key] = val;
+function toDTCG(obj) {
+  var result = {};
+  for (var key of Object.keys(obj)) {
+    var val = obj[key];
+    if (val && typeof val === "object" && "value" in val) {
+      var dtcgToken = {
+        "$value": convertValue(val.value, val.type),
+        "$type": mapType(val.type),
+      };
+      if (val.comment) {
+        dtcgToken["$description"] = val.comment;
+      }
+      result[key] = dtcgToken;
+    } else if (val && typeof val === "object") {
+      result[key] = toDTCG(val);
     }
   }
   return result;
 }
 
-// ── Write output ─────────────────────────────────
-
-const dtcg = toDTCG(merged);
+// ── Load and export ──────────────────────────────
 
 mkdirSync("figma", { recursive: true });
-writeFileSync("figma/import-to-figma.json", JSON.stringify(dtcg, null, 2));
 
-console.log("✓ figma/import-to-figma.json generated");
-console.log("  → Install 'Variables JSON Import' plugin in Figma");
-console.log("  → Run the plugin and select this file to create your variables");
+if (target === "shared") {
+  // Export shared tokens: semantic colors, spacing, typography (sizes, line-heights)
+  var shared = {};
+  shared = deepMerge(shared, loadJSON("src/color-semantic.json"));
+  shared = deepMerge(shared, loadJSON("src/typography-shared.json"));
+  shared = deepMerge(shared, loadJSON("src/spacing-shared.json"));
+
+  var dtcg = toDTCG(shared);
+  writeFileSync("figma/shared.json", JSON.stringify(dtcg, null, 2));
+  console.log("✓ figma/shared.json generated");
+  console.log("  → Import into your DS Figma file");
+} else {
+  // Export brand tokens: primitive colors + overrides (fonts, weights, radius, shadows)
+  var brand = {};
+  brand = deepMerge(brand, loadJSON("brands/" + target + "-colors.json"));
+  brand = deepMerge(brand, loadJSON("brands/" + target + "-overrides.json"));
+
+  var dtcg = toDTCG(brand);
+  writeFileSync("figma/" + target + ".json", JSON.stringify(dtcg, null, 2));
+  console.log("✓ figma/" + target + ".json generated");
+  console.log("  → Import into your " + target + " Figma file");
+}
