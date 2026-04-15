@@ -43,10 +43,17 @@
 .secondary {
   background: transparent;
   color: var(--sematic-text-primary);
-  box-shadow: inset 0 0 0 1px var(--sematic-border-default);
+  box-shadow: inset 0 0 0 2px var(--components-button-border-enabled);
 }
 .secondary:hover:not(:disabled) {
-  background: var(--sematic-background-neutral-lighter);
+  box-shadow: inset 0 0 0 2px var(--components-button-border-hover);
+}
+.secondary:active:not(:disabled) {
+  box-shadow: inset 0 0 0 2px var(--components-button-border-pressed);
+}
+.secondary:disabled {
+  color: var(--sematic-text-disabled);
+  box-shadow: inset 0 0 0 2px var(--components-button-border-disabled);
 }
 
 .ghost {
