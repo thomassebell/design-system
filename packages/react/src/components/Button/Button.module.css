@@ -29,29 +29,29 @@
   cursor: not-allowed;
 }
 
-.primary {
+.solid {
   background: var(--components-button-background-enabled);
   color: var(--sematic-text-contrast-text);
 }
-.primary:hover:not(:disabled) {
+.solid:hover:not(:disabled) {
   background: var(--components-button-background-hover);
 }
-.primary:active:not(:disabled) {
+.solid:active:not(:disabled) {
   background: var(--components-button-background-pressed);
 }
 
-.secondary {
+.outline {
   background: transparent;
   color: var(--sematic-text-primary);
   box-shadow: inset 0 0 0 2px var(--components-button-border-enabled);
 }
-.secondary:hover:not(:disabled) {
+.outline:hover:not(:disabled) {
   box-shadow: inset 0 0 0 2px var(--components-button-border-hover);
 }
-.secondary:active:not(:disabled) {
+.outline:active:not(:disabled) {
   box-shadow: inset 0 0 0 2px var(--components-button-border-pressed);
 }
-.secondary:disabled {
+.outline:disabled {
   color: var(--sematic-text-disabled);
   box-shadow: inset 0 0 0 2px var(--components-button-border-disabled);
 }
