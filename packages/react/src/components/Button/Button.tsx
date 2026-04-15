@@ -3,11 +3,10 @@ import { cx } from "../utils/shared";
 import styles from "./Button.module.css";
 
 export type ButtonVariant = "solid" | "outline" | "ghost" | "danger";
-export type ButtonSize = "sm" | "md" | "lg";
+
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
-  size?: ButtonSize;
   fullWidth?: boolean;
   loading?: boolean;
 }
@@ -16,7 +15,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       variant = "solid",
-      size = "md",
       fullWidth = false,
       loading = false,
       disabled,

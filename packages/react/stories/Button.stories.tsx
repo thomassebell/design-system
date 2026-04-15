@@ -9,7 +9,6 @@ const meta: Meta<typeof Button> = {
       control: "select",
       options: ["solid", "outline", "ghost", "danger"],
     },
-    size: { control: "select", options: ["sm", "md", "lg"] },
     fullWidth: { control: "boolean" },
     loading: { control: "boolean" },
     disabled: { control: "boolean" },
@@ -39,12 +38,3 @@ export const Loading: Story = {
   args: { children: "Saving…", loading: true },
 };
 
-export const AllSizes: Story = {
-  render: () => (
-    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-      <Button size="sm">Small</Button>
-      <Button size="md">Medium</Button>
-      <Button size="lg">Large</Button>
-    </div>
-  ),
-};
