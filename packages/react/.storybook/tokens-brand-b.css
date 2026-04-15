@@ -15,16 +15,16 @@
   --color-primitive-neutral-800: #1f2937;
   --color-primitive-neutral-900: #111827;
   --color-primitive-neutral-950: #030712;
-  --color-primitive-blue-50: #eff6ff;
-  --color-primitive-blue-100: #dbeafe;
-  --color-primitive-blue-200: #bfdbfe;
-  --color-primitive-blue-300: #93c5fd;
-  --color-primitive-blue-400: #60a5fa;
-  --color-primitive-blue-500: #3b82f6;
-  --color-primitive-blue-600: #2563eb;
-  --color-primitive-blue-700: #1d4ed8;
-  --color-primitive-blue-800: #1e40af;
-  --color-primitive-blue-900: #1e3a8a;
+  --color-primitive-blue-50: #f0fdfa;
+  --color-primitive-blue-100: #ccfbf1;
+  --color-primitive-blue-200: #99f6e4;
+  --color-primitive-blue-300: #5eead4;
+  --color-primitive-blue-400: #2dd4bf;
+  --color-primitive-blue-500: #14b8a6;
+  --color-primitive-blue-600: #0d9488;
+  --color-primitive-blue-700: #0f766e;
+  --color-primitive-blue-800: #115e59;
+  --color-primitive-blue-900: #134e4a;
   --color-primitive-red-50: #fef2f2;
   --color-primitive-red-100: #fee2e2;
   --color-primitive-red-500: #ef4444;
@@ -40,9 +40,9 @@
   --color-primitive-amber-500: #f59e0b;
   --color-primitive-amber-600: #d97706;
   --color-primitive-amber-700: #b45309;
-  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-family-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-  --font-family-display: 'Cabinet Grotesk', 'Inter Variable', sans-serif; /** Headlines and marketing. Swap for your brand typeface. */
+  --font-family-display: 'Outfit', 'DM Sans', sans-serif; /** Headlines and marketing. Swap for your brand typeface. */
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -65,10 +65,10 @@
   --font-letterspacing-normal: 0px;
   --font-letterspacing-wide: 0.03px;
   --radius-none: 0px;
-  --radius-small: 4px; /** 4px */
-  --radius-medium: 8px; /** 8px */
-  --radius-large: 12px; /** 12px */
-  --radius-xlarge: 16px; /** 16px */
+  --radius-small: 2px; /** 4px */
+  --radius-medium: 4px; /** 8px */
+  --radius-large: 8px; /** 12px */
+  --radius-xlarge: 12px; /** 16px */
   --radius-full: 9999px;
   --spacing-0: 0px;
   --spacing-100: 16px; /** 24px */
