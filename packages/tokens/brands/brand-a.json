@@ -291,15 +291,15 @@
       "type": "borderRadius"
     },
     "small": {
-      "value": "4px",
+      "value": "0",
       "type": "borderRadius"
     },
     "medium": {
-      "value": "8px",
+      "value": "0",
       "type": "borderRadius"
     },
     "large": {
-      "value": "12px",
+      "value": "0",
       "type": "borderRadius"
     }
   },

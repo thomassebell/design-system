@@ -1580,8 +1580,8 @@
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:b39c27c4fff0fb176904940aa058eac08d0db871/8:10",
-          "targetVariableName": "non",
+          "targetVariableId": "VariableID:5d25c7842ebf20353e452052e0f0d19cd62eba38/42:11",
+          "targetVariableName": "square",
           "targetVariableSetId": "VariableCollectionId:c736b12228dc7aec589afc13119740712fb10eeb/1:223",
           "targetVariableSetName": "corner radius"
         },
@@ -1590,15 +1590,15 @@
     },
     "small": {
       "$type": "number",
-      "$value": 4,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:36",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:e1e825ec0838c7b9f162321001a97f349d86e592/8:4",
-          "targetVariableName": "small",
+          "targetVariableId": "VariableID:5d25c7842ebf20353e452052e0f0d19cd62eba38/42:11",
+          "targetVariableName": "square",
           "targetVariableSetId": "VariableCollectionId:c736b12228dc7aec589afc13119740712fb10eeb/1:223",
           "targetVariableSetName": "corner radius"
         },
@@ -1607,15 +1607,15 @@
     },
     "medium": {
       "$type": "number",
-      "$value": 8,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:35",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:17396c6a291daf599faa643dd27d1ec8de6950dc/8:6",
-          "targetVariableName": "meduim",
+          "targetVariableId": "VariableID:5d25c7842ebf20353e452052e0f0d19cd62eba38/42:11",
+          "targetVariableName": "square",
           "targetVariableSetId": "VariableCollectionId:c736b12228dc7aec589afc13119740712fb10eeb/1:223",
           "targetVariableSetName": "corner radius"
         },
@@ -1624,15 +1624,15 @@
     },
     "large": {
       "$type": "number",
-      "$value": 12,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:34",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:4b056ea7dbdaa3100f954402e60fae0d73e5d6a5/23:25",
-          "targetVariableName": "large",
+          "targetVariableId": "VariableID:5d25c7842ebf20353e452052e0f0d19cd62eba38/42:11",
+          "targetVariableName": "square",
           "targetVariableSetId": "VariableCollectionId:c736b12228dc7aec589afc13119740712fb10eeb/1:223",
           "targetVariableSetName": "corner radius"
         },
