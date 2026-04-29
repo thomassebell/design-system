@@ -31,10 +31,12 @@ export function readRootCssVariables(): Token[] {
     if (!rules) continue;
     for (const rule of Array.from(rules)) {
       if (!(rule instanceof CSSStyleRule)) continue;
+      // Match any rule whose selector list includes ":root", "html",
+      // or "*" — covers the common ways tokens get attached.
       const matchesRoot = (rule.selectorText ?? "")
         .split(",")
         .map((s) => s.trim())
-        .some((s) => s === ":root");
+        .some((s) => s === ":root" || s === "html" || s === "*");
       if (!matchesRoot) continue;
       for (let i = 0; i < rule.style.length; i++) {
         const prop = rule.style.item(i);

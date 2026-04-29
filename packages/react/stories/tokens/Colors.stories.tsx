@@ -18,12 +18,27 @@ export default meta;
 type Story = StoryObj;
 
 const css = {
-  swatch: {
+  swatchOuter: {
     width: 64,
     height: 64,
     borderRadius: 8,
-    border: "1px solid rgba(0, 0, 0, 0.08)",
+    border: "1px solid rgba(0, 0, 0, 0.18)",
     flexShrink: 0,
+    overflow: "hidden",
+    // Checkerboard so transparent or pure-white tokens are still
+    // clearly visible against the Storybook canvas.
+    backgroundImage: [
+      "linear-gradient(45deg, rgba(0,0,0,0.08) 25%, transparent 25%)",
+      "linear-gradient(-45deg, rgba(0,0,0,0.08) 25%, transparent 25%)",
+      "linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.08) 75%)",
+      "linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.08) 75%)",
+    ].join(", "),
+    backgroundSize: "12px 12px",
+    backgroundPosition: "0 0, 0 6px, 6px -6px, -6px 0",
+  } as React.CSSProperties,
+  swatchInner: {
+    width: "100%",
+    height: "100%",
   } as React.CSSProperties,
   row: {
     display: "flex",
@@ -43,10 +58,11 @@ const css = {
 function Swatch({ name, value }: Token) {
   return (
     <div style={css.row}>
-      <div
-        style={{ ...css.swatch, background: `var(${name})` }}
-        aria-hidden="true"
-      />
+      <div style={css.swatchOuter} aria-hidden="true">
+        <div
+          style={{ ...css.swatchInner, background: `var(${name})` }}
+        />
+      </div>
       <div style={css.meta}>
         <div>{name}</div>
         <div style={css.value}>{value}</div>
