@@ -87,22 +87,27 @@ function ColorList({ prefixes }: { prefixes: string[] }) {
   );
 }
 
-/** Background, text, border, action, and feedback colors — what components actually consume. */
+/** All semantic colors — what components actually consume. Background,
+    surface, text, border, icon, and feedback (error/success/warning/info). */
 export const Semantic: Story = {
   render: () => (
     <ColorList
       prefixes={[
-        "--color-bg",
+        "--color-background",
+        "--color-surface",
         "--color-text",
         "--color-border",
-        "--color-action",
-        "--color-feedback",
+        "--color-icon",
+        "--color-error",
+        "--color-success",
+        "--color-warning",
+        "--color-info",
       ]}
     />
   ),
 };
 
-/** Raw primitive ramps — building blocks the semantic layer references. */
+/** Raw primitive ramps — the brand foundation's color palette. */
 export const Primitives: Story = {
-  render: () => <ColorList prefixes={["--color-primitive"]} />,
+  render: () => <ColorList prefixes={["--primitive-color-"]} />,
 };
