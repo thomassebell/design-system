@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { filterByPrefix, useCssTokens } from "./helpers";
+import { filterByPrefix, useCssTokens, type Token } from "./helpers";
 
 const meta: Meta = {
   title: "Tokens/Spacing",
@@ -12,7 +12,7 @@ type Story = StoryObj;
 const css = {
   row: {
     display: "grid",
-    gridTemplateColumns: "180px 100px 1fr",
+    gridTemplateColumns: "240px 80px 1fr",
     alignItems: "center",
     gap: 16,
     padding: "8px 0",
@@ -21,6 +21,7 @@ const css = {
   name: {
     fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
     fontSize: 13,
+    wordBreak: "break-all",
   } as React.CSSProperties,
   value: {
     fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
@@ -29,30 +30,38 @@ const css = {
   } as React.CSSProperties,
   bar: {
     height: 16,
-    background: "var(--color-action-primary, #3b82f6)",
+    background: "var(--color-action-primary, var(--color-surface-primary-main, #3b82f6))",
     borderRadius: 2,
   } as React.CSSProperties,
 };
 
-/** Every `--spacing-*` token shown as a horizontal bar of that width. */
-export const Scale: Story = {
-  render: () => {
-    const tokens = filterByPrefix(useCssTokens(), "--spacing-").sort((a, b) => {
-      // Sort by numeric value so smallest comes first.
-      const av = parseFloat(a.value);
-      const bv = parseFloat(b.value);
-      return av - bv;
-    });
-    return (
-      <div style={{ maxWidth: 900 }}>
-        {tokens.map((t) => (
-          <div key={t.name} style={css.row}>
-            <div style={css.name}>{t.name}</div>
-            <div style={css.value}>{t.value}</div>
-            <div style={{ ...css.bar, width: `var(${t.name})` }} />
-          </div>
-        ))}
-      </div>
-    );
-  },
+function Bars({ tokens }: { tokens: Token[] }) {
+  // Sort by numeric value so smallest bar is at the top.
+  const sorted = [...tokens].sort((a, b) => parseFloat(a.value) - parseFloat(b.value));
+  return (
+    <div style={{ maxWidth: 900 }}>
+      {sorted.map((t) => (
+        <div key={t.name} style={css.row}>
+          <div style={css.name}>{t.name}</div>
+          <div style={css.value}>{t.value}</div>
+          <div style={{ ...css.bar, width: `var(${t.name})` }} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Raw size scale that semantic and component tokens reference. */
+export const Primitives: Story = {
+  render: () => <Bars tokens={filterByPrefix(useCssTokens(), "--primitive-size-")} />,
+};
+
+/** Layout-level spacing — page sections, gaps between regions. */
+export const Layout: Story = {
+  render: () => <Bars tokens={filterByPrefix(useCssTokens(), "--semantic-layout-")} />,
+};
+
+/** Component-level spacing — padding inside buttons, gaps between items, etc. */
+export const Components: Story = {
+  render: () => <Bars tokens={filterByPrefix(useCssTokens(), "--semantic-components-")} />,
 };

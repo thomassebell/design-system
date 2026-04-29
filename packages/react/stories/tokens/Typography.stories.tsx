@@ -12,7 +12,7 @@ type Story = StoryObj;
 const css = {
   row: {
     display: "grid",
-    gridTemplateColumns: "200px 1fr",
+    gridTemplateColumns: "260px 1fr",
     gap: 24,
     alignItems: "baseline",
     padding: "16px 0",
@@ -23,6 +23,7 @@ const css = {
     fontSize: 12,
     color: "#666",
     lineHeight: 1.5,
+    wordBreak: "break-all",
   } as React.CSSProperties,
 };
 
@@ -49,7 +50,7 @@ function Sample({
 /** Every font-size token, rendered at its actual size. */
 export const Sizes: Story = {
   render: () => {
-    const tokens = filterByPrefix(useCssTokens(), "--font-size-");
+    const tokens = filterByPrefix(useCssTokens(), "--typography-font-size-");
     return (
       <div style={{ maxWidth: 900 }}>
         {tokens.map((t) => (
@@ -59,7 +60,7 @@ export const Sizes: Story = {
             style={{
               fontSize: `var(${t.name})`,
               lineHeight: 1.4,
-              fontFamily: "var(--font-family-sans)",
+              fontFamily: "var(--typography-font-family-paragraph)",
             }}
           />
         ))}
@@ -71,7 +72,7 @@ export const Sizes: Story = {
 /** Each font-family in the system, shown at a comfortable reading size. */
 export const Families: Story = {
   render: () => {
-    const tokens = filterByPrefix(useCssTokens(), "--font-family-");
+    const tokens = filterByPrefix(useCssTokens(), "--typography-font-family-");
     return (
       <div style={{ maxWidth: 900 }}>
         {tokens.map((t) => (
@@ -90,10 +91,10 @@ export const Families: Story = {
   },
 };
 
-/** Every font-weight token. */
+/** Every font-weight token, rendered at the same size. */
 export const Weights: Story = {
   render: () => {
-    const tokens = filterByPrefix(useCssTokens(), "--font-weight-");
+    const tokens = filterByPrefix(useCssTokens(), "--typography-font-weight-");
     return (
       <div style={{ maxWidth: 900 }}>
         {tokens.map((t) => (
@@ -103,7 +104,7 @@ export const Weights: Story = {
             style={{
               fontWeight: `var(${t.name})`,
               fontSize: 24,
-              fontFamily: "var(--font-family-sans)",
+              fontFamily: "var(--typography-font-family-paragraph)",
             }}
           />
         ))}
@@ -115,7 +116,7 @@ export const Weights: Story = {
 /** Line-height tokens, applied to a multi-line paragraph for visual comparison. */
 export const LineHeights: Story = {
   render: () => {
-    const tokens = filterByPrefix(useCssTokens(), "--font-lineheight-");
+    const tokens = filterByPrefix(useCssTokens(), "--typography-line-height-");
     return (
       <div style={{ maxWidth: 900 }}>
         {tokens.map((t) => (
@@ -128,7 +129,7 @@ export const LineHeights: Story = {
               style={{
                 lineHeight: `var(${t.name})`,
                 fontSize: 16,
-                fontFamily: "var(--font-family-sans)",
+                fontFamily: "var(--typography-font-family-paragraph)",
                 maxWidth: 480,
               }}
             >
