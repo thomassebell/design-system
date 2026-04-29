@@ -1,5 +1,5 @@
 import { forwardRef, type InputHTMLAttributes, type ReactNode } from "react";
-import { cx, type Size } from "../utils/shared";
+import { cx, type Size } from "../../utils/shared";
 import styles from "./Input.module.css";
 
 export interface InputProps

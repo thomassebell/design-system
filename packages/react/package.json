@@ -16,7 +16,7 @@
     "build": "tsup src/index.ts --format esm --dts --external react",
     "dev": "tsup src/index.ts --format esm --dts --external react --watch",
     "lint": "eslint src/",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

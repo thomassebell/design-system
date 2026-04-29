@@ -1,5 +1,5 @@
 import { forwardRef, type ElementType, type HTMLAttributes } from "react";
-import { cx, type Size } from "../utils/shared";
+import { cx } from "../../utils/shared";
 import styles from "./Text.module.css";
 
 export type TextVariant =

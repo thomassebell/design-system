@@ -1,5 +1,5 @@
 import { forwardRef, type SVGAttributes } from "react";
-import { cx, type Size } from "../utils/shared";
+import { cx, type Size } from "../../utils/shared";
 import styles from "./Icon.module.css";
 
 const sizeMap: Record<Size, number> = { sm: 16, md: 20, lg: 24 };

@@ -1,5 +1,5 @@
 import { forwardRef, type ButtonHTMLAttributes } from "react";
-import { cx } from "../utils/shared";
+import { cx } from "../../utils/shared";
 import styles from "./Button.module.css";
 
 export type ButtonVariant = "solid" | "outline" | "ghost" | "danger";

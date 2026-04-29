@@ -108,7 +108,11 @@ if (fontSizes.length) {
 }
 
 // ── Write ────────────────────────────────────────
+// The iOS Swift Package (packages/ios-tokens) expects the generated
+// file at its own ./output/DesignTokens.swift. We're running from
+// packages/tokens, so write up-and-over into the sibling package.
 
-mkdirSync("output", { recursive: true });
-writeFileSync("output/DesignTokens.swift", lines.join("\n"));
-console.log("✓ output/DesignTokens.swift generated");
+const outDir = "../ios-tokens/output";
+mkdirSync(outDir, { recursive: true });
+writeFileSync(`${outDir}/DesignTokens.swift`, lines.join("\n"));
+console.log(`✓ ${outDir}/DesignTokens.swift generated`);

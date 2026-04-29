@@ -1,5 +1,5 @@
 import { forwardRef, type HTMLAttributes } from "react";
-import { cx } from "../utils/shared";
+import { cx } from "../../utils/shared";
 import styles from "./Stack.module.css";
 
 export interface StackProps extends HTMLAttributes<HTMLDivElement> {
