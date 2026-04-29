@@ -67,10 +67,12 @@ export function useCssTokens(): Token[] {
 
   useEffect(() => {
     const update = () => setTokens(readRootCssVariables());
-    // Re-read once on mount, in case stylesheets finished loading
-    // after the initial render.
+    // Re-read once on mount in case stylesheets finished loading after
+    // the initial render.
     update();
 
+    // 1) Re-read whenever <head> mutates — catches a <link> being added
+    //    or its href changing.
     const observer = new MutationObserver(update);
     observer.observe(document.head, {
       childList: true,
@@ -78,7 +80,26 @@ export function useCssTokens(): Token[] {
       attributes: true,
       attributeFilter: ["href"],
     });
-    return () => observer.disconnect();
+
+    // 2) Re-read whenever any stylesheet finishes loading. This is the
+    //    one that matters for brand-switching: the MutationObserver
+    //    fires the instant `link.href` changes, but at that moment the
+    //    new stylesheet hasn't loaded yet, so :root still has the old
+    //    values. The link then fires a `load` event when its new sheet
+    //    is ready — and `load` doesn't bubble, so we attach in the
+    //    capture phase.
+    function onLoad(e: Event) {
+      const t = e.target as HTMLElement | null;
+      if (t && t.tagName === "LINK" && (t as HTMLLinkElement).rel === "stylesheet") {
+        update();
+      }
+    }
+    document.addEventListener("load", onLoad, true);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("load", onLoad, true);
+    };
   }, []);
 
   return tokens;
