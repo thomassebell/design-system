@@ -9,7 +9,7 @@
   font-size: var(--typography-font-size-components-button-label);
   line-height: var(--typography-line-height-xsmall);
   border: none;
-  border-radius: var(--components-button-shape-corner-radius);
+  border-radius: var(--corner-radius-medium);
   cursor: pointer;
   transition:
     background var(--motion-duration-fast, 150ms) ease,

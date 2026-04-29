@@ -64,9 +64,9 @@
   --typography-font-size-header-display-3: 2.75rem;
   --typography-font-size-components-label: 0.875rem;
   --corner-radius-non: 0;
-  --corner-radius-small: 0;
-  --corner-radius-medium: 0;
-  --corner-radius-large: 0;
+  --corner-radius-small: 8px;
+  --corner-radius-medium: 16px;
+  --corner-radius-large: 32px;
   --components-button-background-enabled: #99e052;
   --components-button-background-hover: #b2e87d;
   --components-button-background-pressed: #61a51d;
