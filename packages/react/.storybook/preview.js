@@ -1,8 +1,11 @@
-import "./tokens.css";
+// Default brand × density tokens (loaded at boot — toolbar swaps to
+// other combinations at runtime).
+import "@ds/tokens/dist/brand-a-default.css";
 
+// Web fonts used across the system.
 const fonts = document.createElement("link");
 fonts.rel = "stylesheet";
-fonts.href = "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Gabarito:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;600;700&display=swap";
+fonts.href = "https://fonts.googleapis.com/css2?family=Gabarito:wght@300;400;500;600;700&family=Inter:wght@200;400;500;600;700&family=Roboto:wght@300;400;700&display=swap";
 document.head.appendChild(fonts);
 
 export const globalTypes = {
@@ -32,21 +35,14 @@ export const globalTypes = {
   },
 };
 
-const tokenFiles = {
-  "brand-a/default": "tokens.css",
-  "brand-a/compact": "tokens-brand-a-compact.css",
-  "brand-b/default": "tokens-brand-b.css",
-  "brand-b/compact": "tokens-brand-b-compact.css",
-};
-
 export const decorators = [
   (Story, context) => {
     const brand = context.globals.brand;
     const density = context.globals.density;
-    const key = brand + "/" + density;
-    const file = tokenFiles[key];
+    // The dist files are served at /tokens/ via main.cjs staticDirs.
+    const href = `/tokens/${brand}-${density}.css`;
 
-    const linkId = "brand-density-tokens";
+    const linkId = "ds-active-tokens";
     let link = document.getElementById(linkId);
     if (!link) {
       link = document.createElement("link");
@@ -54,11 +50,8 @@ export const decorators = [
       link.rel = "stylesheet";
       document.head.appendChild(link);
     }
-
-    if (key === "brand-a/default") {
-      link.href = "";
-    } else {
-      link.href = file;
+    if (link.href !== window.location.origin + href) {
+      link.href = href;
     }
 
     return Story();
@@ -73,18 +66,9 @@ export default {
         date: /Date$/i,
       },
     },
-    // Accessibility addon: runs axe-core against every story and
-    // surfaces violations in the Accessibility panel.
     a11y: {
-      // Run automatically on every story (set "manual" to require a click).
       manual: false,
-      // Audit against WCAG 2.1 A and AA, plus axe best practices.
-      config: {
-        rules: [
-          // Add per-rule overrides here when needed, e.g.:
-          // { id: "color-contrast", enabled: false }
-        ],
-      },
+      config: { rules: [] },
       options: {
         runOnly: {
           type: "tag",

@@ -4,7 +4,10 @@
      import "@ds/react/styles.css";
    ───────────────────────────────────────────── */
 
-@import "@ds/tokens/dist/tokens.css";
+/* Default theme: brand-a × default. The brand/density toolbar in
+   Storybook overrides this at runtime by linking a different built
+   stylesheet from packages/tokens/dist/. */
+@import "@ds/tokens/dist/brand-a-default.css";
 
 /* ── Reset baseline ─────────────────────────── */
 

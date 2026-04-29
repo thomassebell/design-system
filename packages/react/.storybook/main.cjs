@@ -5,5 +5,10 @@ module.exports = {
     name: "@storybook/react-vite",
     options: {},
   },
-  staticDirs: [{ from: ".", to: "/" }],
+  staticDirs: [
+    { from: ".", to: "/" },
+    // Serve the built tokens output so the brand/density toggle can
+    // <link rel="stylesheet" href="/tokens/brand-x-density.css"> at runtime.
+    { from: "../../tokens/dist", to: "/tokens" },
+  ],
 };

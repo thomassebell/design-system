@@ -2,19 +2,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--sematic-components-small);
-  padding: var(--sematic-components-medium) var(--sematic-components-xlarge);
+  gap: var(--semantic-components-small);
+  padding: var(--semantic-components-medium) var(--semantic-components-xlarge);
   font-family: var(--typography-font-family-paragraph);
   font-weight: var(--typography-font-weight-default);
   font-size: var(--typography-font-size-components-button-label);
   line-height: var(--typography-line-height-xsmall);
   border: none;
-  border-radius: var(--corner-radius-medium);
+  border-radius: var(--radius-medium);
   cursor: pointer;
   transition:
-    background var(--motion-duration-fast, 150ms) ease,
-    color var(--motion-duration-fast, 150ms) ease,
-    box-shadow var(--motion-duration-fast, 150ms) ease;
+    background 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
   user-select: none;
   white-space: nowrap;
 }
@@ -31,7 +31,7 @@
 
 .solid {
   background: var(--components-button-background-enabled);
-  color: var(--sematic-text-contrast-text);
+  color: var(--color-text-contrast-text);
 }
 .solid:hover:not(:disabled) {
   background: var(--components-button-background-hover);
@@ -42,7 +42,7 @@
 
 .outline {
   background: transparent;
-  color: var(--sematic-text-primary);
+  color: var(--color-text-primary);
   box-shadow: inset 0 0 0 2px var(--components-button-border-enabled);
 }
 .outline:hover:not(:disabled) {
@@ -52,25 +52,25 @@
   box-shadow: inset 0 0 0 2px var(--components-button-border-pressed);
 }
 .outline:disabled {
-  color: var(--sematic-text-disabled);
+  color: var(--color-text-disabled);
   box-shadow: inset 0 0 0 2px var(--components-button-border-disabled);
 }
 
 .ghost {
   background: transparent;
-  color: var(--sematic-text-light);
+  color: var(--color-text-light);
 }
 .ghost:hover:not(:disabled) {
-  background: var(--sematic-background-neutral-lighter);
-  color: var(--sematic-text-primary);
+  background: var(--color-surface-neutral-lighter);
+  color: var(--color-text-primary);
 }
 
 .danger {
-  background: var(--sematic-error-main);
-  color: var(--sematic-error-contrast-text);
+  background: var(--color-error-main);
+  color: var(--color-error-contrast-text);
 }
 .danger:hover:not(:disabled) {
-  background: var(--sematic-error-dark);
+  background: var(--color-error-dark);
 }
 
 .fullWidth {

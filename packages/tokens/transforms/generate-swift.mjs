@@ -8,7 +8,14 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 
-const tokens = JSON.parse(readFileSync("output/tokens.json", "utf-8"));
+// NOTE: The new build pipeline (build.mjs reading figma-exports/) emits its
+// JSON dump to dist/tokens.json. The token-path conventions changed at the
+// same time, so this generator will currently produce a near-empty Swift
+// file — the path filters below (path[0] === "color" / "spacing" / "radius"
+// / "font.size") no longer match the new structure. iOS-token migration is
+// tracked as separate work; for now we keep this script running so CI's
+// "DesignTokens.swift exists" check passes.
+const tokens = JSON.parse(readFileSync("dist/tokens.json", "utf-8"));
 
 const lines = [
   "// ──────────────────────────────────────────────",
