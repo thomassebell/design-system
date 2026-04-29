@@ -73,5 +73,24 @@ export default {
         date: /Date$/i,
       },
     },
+    // Accessibility addon: runs axe-core against every story and
+    // surfaces violations in the Accessibility panel.
+    a11y: {
+      // Run automatically on every story (set "manual" to require a click).
+      manual: false,
+      // Audit against WCAG 2.1 A and AA, plus axe best practices.
+      config: {
+        rules: [
+          // Add per-rule overrides here when needed, e.g.:
+          // { id: "color-contrast", enabled: false }
+        ],
+      },
+      options: {
+        runOnly: {
+          type: "tag",
+          values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"],
+        },
+      },
+    },
   },
 };
