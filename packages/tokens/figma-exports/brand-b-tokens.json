@@ -1573,7 +1573,7 @@
     }
   },
   "radius": {
-    "non": {
+    "none": {
       "$type": "number",
       "$value": 0,
       "$extensions": {
@@ -1825,7 +1825,7 @@
     "text-input": {
       "radius": {
         "$type": "number",
-        "$value": "{radius.non}",
+        "$value": "{radius.none}",
         "$extensions": {
           "com.figma.variableId": "VariableID:41:42",
           "com.figma.hiddenFromPublishing": true,
@@ -1917,7 +1917,7 @@
     "alert-banner": {
       "radius": {
         "$type": "number",
-        "$value": "{radius.non}",
+        "$value": "{radius.none}",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:73",
           "com.figma.hiddenFromPublishing": true,

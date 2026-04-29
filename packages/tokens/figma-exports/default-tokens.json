@@ -368,7 +368,7 @@
             "com.figma.isOverride": true
           }
         },
-        "tabel-header": {
+        "table-header": {
           "$type": "number",
           "$value": "{primitive.size-16}",
           "$extensions": {
