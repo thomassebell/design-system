@@ -19,7 +19,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic --storybook-build-dir=storybook-static"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
@@ -40,6 +41,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.3.0",
     "@vitest/ui": "^2.1.9",
+    "chromatic": "^16.6.3",
     "eslint": "^9.39.4",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",

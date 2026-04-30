@@ -1,0 +1,40 @@
+name: Chromatic
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  visual-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Chromatic needs the full git history to compute baseline diffs.
+          fetch-depth: 0
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Build tokens + Storybook via Turbo so the dependency order
+      # (tokens → storybook) is respected. Chromatic then uploads the
+      # already-built storybook-static instead of rebuilding it itself.
+      - name: Build Storybook
+        run: npx turbo run build-storybook --filter=@ds/react
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: packages/react/storybook-static
+          # Skip the build step — we already built via Turbo above.
+          onlyChanged: true
+          exitOnceUploaded: true
