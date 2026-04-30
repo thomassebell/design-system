@@ -2,75 +2,77 @@
 
 .text {
   margin: 0;
-  font-family: var(--font-family-sans);
+  font-family: var(--typography-font-family-paragraph);
   color: var(--color-text-primary);
 }
 
 .muted {
-  color: var(--color-text-secondary);
+  color: var(--color-text-light);
 }
 
 /* ── Variants ─────────────────────────────── */
 
 .display {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-5xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--font-line-height-tight);
-  letter-spacing: var(--font-letter-spacing-tight);
+  font-family: var(--typography-font-family-header);
+  font-size: var(--typography-font-size-display-1);
+  font-weight: var(--typography-font-weight-emphasized);
+  line-height: var(--typography-line-height-xxlarge);
 }
 
 .h1 {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--font-line-height-tight);
-  letter-spacing: var(--font-letter-spacing-tight);
+  font-family: var(--typography-font-family-header);
+  font-size: var(--typography-font-size-display-2);
+  font-weight: var(--typography-font-weight-emphasized);
+  line-height: var(--typography-line-height-xlarge);
 }
 
 .h2 {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--font-line-height-tight);
+  font-family: var(--typography-font-family-header);
+  font-size: var(--typography-font-size-display-3);
+  font-weight: var(--typography-font-weight-emphasized);
+  line-height: var(--typography-line-height-large);
 }
 
 .h3 {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--font-line-height-snug);
+  font-family: var(--typography-font-family-header);
+  font-size: var(--typography-font-size-display-4);
+  font-weight: var(--typography-font-weight-emphasized);
+  line-height: var(--typography-line-height-medium);
 }
 
 .h4 {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--font-line-height-snug);
+  font-family: var(--typography-font-family-header);
+  font-size: var(--typography-font-size-display-5);
+  font-weight: var(--typography-font-weight-emphasized);
+  line-height: var(--typography-line-height-small);
 }
 
 .body {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-normal);
+  font-size: var(--typography-font-size-paragraph);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xsmall);
 }
 
 .bodySmall {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-normal);
+  font-size: var(--typography-font-size-small);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xxsmall);
 }
 
 .caption {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--font-line-height-normal);
-  color: var(--color-text-secondary);
+  font-size: var(--typography-font-size-small);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xxsmall);
+  color: var(--color-text-light);
 }
 
 .overline {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  line-height: var(--font-line-height-normal);
-  letter-spacing: var(--font-letter-spacing-wide);
+  font-size: var(--typography-font-size-small);
+  font-weight: var(--typography-font-weight-emphasized);
+  line-height: var(--typography-line-height-xxsmall);
   text-transform: uppercase;
-  color: var(--color-text-tertiary);
+  letter-spacing: 0.04em;
+  color: var(--color-text-lighter);
 }
 
 /* ── Alignment ────────────────────────────── */

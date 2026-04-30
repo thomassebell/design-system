@@ -5,8 +5,10 @@ import styles from "./Stack.module.css";
 export interface StackProps extends HTMLAttributes<HTMLDivElement> {
   /** Layout direction. */
   direction?: "row" | "column";
-  /** Gap between children — maps to your spacing tokens (1–20). */
-  gap?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16 | 20;
+  /** Gap between children — maps to a primitive size token in pixels.
+      Allowed values are the values that exist in primitive.size.* in the
+      Figma export (0 / 2 / 4 / 6 / 8 / 12 / 16 / 20 / 24 / 32 / 40 / 48). */
+  gap?: 0 | 2 | 4 | 6 | 8 | 12 | 16 | 20 | 24 | 32 | 40 | 48;
   /** Cross-axis alignment. */
   align?: "start" | "center" | "end" | "stretch" | "baseline";
   /** Main-axis alignment. */
@@ -40,7 +42,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
         style={
           {
             "--stack-direction": direction,
-            "--stack-gap": `var(--spacing-${gap})`,
+            "--stack-gap": `var(--primitive-size-${gap})`,
             "--stack-align": align ?? "stretch",
             "--stack-justify":
               justify === "between"

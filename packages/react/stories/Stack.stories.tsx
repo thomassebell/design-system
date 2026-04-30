@@ -29,7 +29,7 @@ const meta: Meta<typeof Stack> = {
     },
     gap: {
       control: "select",
-      options: [0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20],
+      options: [0, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48],
     },
     align: {
       control: "select",
@@ -93,7 +93,7 @@ export const SpaceBetween: Story = {
 };
 
 export const Wrapping: Story = {
-  args: { direction: "row", gap: 3, wrap: true },
+  args: { direction: "row", gap: 4, wrap: true },
   render: (args) => (
     <div style={{ maxWidth: 320, border: "1px dashed #ccc", padding: 8 }}>
       <Stack {...args}>
@@ -109,7 +109,7 @@ export const Wrapping: Story = {
 export const GapScale: Story = {
   render: () => (
     <Stack direction="column" gap={6}>
-      {[0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20].map((g) => (
+      {[0, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48].map((g) => (
         <div key={g}>
           <div
             style={{
