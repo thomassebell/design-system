@@ -8,9 +8,9 @@
   font-weight: var(--typography-font-weight-default);
   font-size: var(--typography-font-size-components-button-label);
   border: none;
-  /* Use the component-specific radius token so Brand A's
-     rounded-button-on-square-system identity is preserved. */
-  border-radius: var(--components-button-shape-radius);
+  /* Pulls from the semantic radius scale so Brand A is fully square
+     and Brand B is fully rounded across all components. */
+  border-radius: var(--radius-medium);
   cursor: pointer;
   transition:
     background 150ms ease,
