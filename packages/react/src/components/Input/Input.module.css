@@ -23,14 +23,14 @@
 .inputWrap {
   display: flex;
   align-items: center;
-  border: 1px solid var(--color-border-default);
+  /* Inset box-shadow stands in for a border so the rendered height
+     stays equal to Button's (a real border would add 2px). */
+  box-shadow: inset 0 0 0 1px var(--color-border-default);
   border-radius: var(--radius-medium);
   background: var(--color-background-default);
   font-family: var(--typography-font-family-paragraph);
   font-size: var(--typography-font-size-paragraph);
-  transition:
-    border-color 150ms ease,
-    box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
 }
 
 /* ── Sizes ────────────────────────────────── */
@@ -50,19 +50,22 @@
 /* ── States ───────────────────────────────── */
 
 .inputWrap:hover {
-  border-color: var(--color-border-dark);
+  box-shadow: inset 0 0 0 1px var(--color-border-dark);
 }
 
 .inputWrap:focus-within {
-  border-color: var(--color-surface-primary-main);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-surface-primary-main) 25%, transparent);
+  box-shadow:
+    inset 0 0 0 1px var(--color-surface-primary-main),
+    0 0 0 3px color-mix(in srgb, var(--color-surface-primary-main) 25%, transparent);
 }
 
 .hasError {
-  border-color: var(--color-error-main);
+  box-shadow: inset 0 0 0 1px var(--color-error-main);
 }
 .hasError:focus-within {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error-main) 20%, transparent);
+  box-shadow:
+    inset 0 0 0 1px var(--color-error-main),
+    0 0 0 3px color-mix(in srgb, var(--color-error-main) 20%, transparent);
 }
 
 /* ── Native input ─────────────────────────── */
