@@ -3,7 +3,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--primitive-size-4);
+  gap: var(--semantic-components-xsmall);
   width: 100%;
 }
 
@@ -21,7 +21,7 @@
 .inputWrap {
   display: flex;
   align-items: center;
-  gap: var(--primitive-size-8);
+  gap: var(--semantic-components-small);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-medium);
   background: var(--color-background-default);
@@ -48,9 +48,9 @@
 
 /* ── Sizes ────────────────────────────────── */
 
-.sm { height: 2rem;   padding: 0 var(--primitive-size-8);  font-size: var(--typography-font-size-small); }
-.md { height: 2.5rem; padding: 0 var(--primitive-size-12); font-size: var(--typography-font-size-paragraph); }
-.lg { height: 3rem;   padding: 0 var(--primitive-size-16); font-size: var(--typography-font-size-paragraph); }
+.sm { height: 2rem;   padding: 0 var(--semantic-components-small);  font-size: var(--typography-font-size-small); }
+.md { height: 2.5rem; padding: 0 var(--semantic-components-medium); font-size: var(--typography-font-size-paragraph); }
+.lg { height: 3rem;   padding: 0 var(--semantic-components-large); font-size: var(--typography-font-size-paragraph); }
 
 /* ── Native input ─────────────────────────── */
 

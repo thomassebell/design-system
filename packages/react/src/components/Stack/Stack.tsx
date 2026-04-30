@@ -5,10 +5,16 @@ import styles from "./Stack.module.css";
 export interface StackProps extends HTMLAttributes<HTMLDivElement> {
   /** Layout direction. */
   direction?: "row" | "column";
-  /** Gap between children — maps to a primitive size token in pixels.
-      Allowed values are the values that exist in primitive.size.* in the
-      Figma export (0 / 2 / 4 / 6 / 8 / 12 / 16 / 20 / 24 / 32 / 40 / 48). */
-  gap?: 0 | 2 | 4 | 6 | 8 | 12 | 16 | 20 | 24 | 32 | 40 | 48;
+  /** Gap between children — maps to a semantic layout token, so it
+      changes with the active density mode (Default vs Compact). */
+  gap?:
+    | "xxsmall"
+    | "xsmall"
+    | "small"
+    | "medium"
+    | "large"
+    | "xlarge"
+    | "xxlarge";
   /** Cross-axis alignment. */
   align?: "start" | "center" | "end" | "stretch" | "baseline";
   /** Main-axis alignment. */
@@ -23,7 +29,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
   (
     {
       direction = "column",
-      gap = 4,
+      gap = "medium",
       align,
       justify,
       wrap = false,
@@ -42,7 +48,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(
         style={
           {
             "--stack-direction": direction,
-            "--stack-gap": `var(--primitive-size-${gap})`,
+            "--stack-gap": `var(--semantic-layout-${gap})`,
             "--stack-align": align ?? "stretch",
             "--stack-justify":
               justify === "between"

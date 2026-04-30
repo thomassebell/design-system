@@ -29,7 +29,15 @@ const meta: Meta<typeof Stack> = {
     },
     gap: {
       control: "select",
-      options: [0, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48],
+      options: [
+        "xxsmall",
+        "xsmall",
+        "small",
+        "medium",
+        "large",
+        "xlarge",
+        "xxlarge",
+      ],
     },
     align: {
       control: "select",
@@ -47,7 +55,7 @@ export default meta;
 type Story = StoryObj<typeof Stack>;
 
 export const Column: Story = {
-  args: { direction: "column", gap: 4 },
+  args: { direction: "column", gap: "medium" },
   render: (args) => (
     <Stack {...args}>
       <Box>One</Box>
@@ -58,7 +66,7 @@ export const Column: Story = {
 };
 
 export const Row: Story = {
-  args: { direction: "row", gap: 4 },
+  args: { direction: "row", gap: "medium" },
   render: (args) => (
     <Stack {...args}>
       <Box>One</Box>
@@ -69,7 +77,7 @@ export const Row: Story = {
 };
 
 export const RowCentered: Story = {
-  args: { direction: "row", gap: 4, justify: "center", align: "center" },
+  args: { direction: "row", gap: "medium", justify: "center", align: "center" },
   render: (args) => (
     <div style={{ height: 120, border: "1px dashed #ccc" }}>
       <Stack {...args} style={{ height: "100%" }}>
@@ -93,7 +101,7 @@ export const SpaceBetween: Story = {
 };
 
 export const Wrapping: Story = {
-  args: { direction: "row", gap: 4, wrap: true },
+  args: { direction: "row", gap: "medium", wrap: true },
   render: (args) => (
     <div style={{ maxWidth: 320, border: "1px dashed #ccc", padding: 8 }}>
       <Stack {...args}>
@@ -105,29 +113,41 @@ export const Wrapping: Story = {
   ),
 };
 
-/** Showing every gap step on the spacing scale, side-by-side. */
+/** Every gap value on the semantic.layout scale. Toggle the Density
+ *  toolbar between Default and Compact and watch each row tighten. */
 export const GapScale: Story = {
-  render: () => (
-    <Stack direction="column" gap={6}>
-      {[0, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48].map((g) => (
-        <div key={g}>
-          <div
-            style={{
-              fontFamily: "system-ui, sans-serif",
-              fontSize: 12,
-              color: "#666",
-              marginBottom: 4,
-            }}
-          >
-            gap = {g}
+  render: () => {
+    const sizes = [
+      "xxsmall",
+      "xsmall",
+      "small",
+      "medium",
+      "large",
+      "xlarge",
+      "xxlarge",
+    ] as const;
+    return (
+      <Stack direction="column" gap="large">
+        {sizes.map((g) => (
+          <div key={g}>
+            <div
+              style={{
+                fontFamily: "system-ui, sans-serif",
+                fontSize: 12,
+                color: "#666",
+                marginBottom: 4,
+              }}
+            >
+              gap = {g}
+            </div>
+            <Stack direction="row" gap={g}>
+              <Box>A</Box>
+              <Box>B</Box>
+              <Box>C</Box>
+            </Stack>
           </div>
-          <Stack direction="row" gap={g as never}>
-            <Box>A</Box>
-            <Box>B</Box>
-            <Box>C</Box>
-          </Stack>
-        </div>
-      ))}
-    </Stack>
-  ),
+        ))}
+      </Stack>
+    );
+  },
 };
