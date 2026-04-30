@@ -109,7 +109,7 @@
       },
       "xsmall": {
         "$type": "number",
-        "$value": "{primitive.size-4}",
+        "$value": "{primitive.size-2}",
         "$extensions": {
           "com.figma.variableId": "VariableID:24:95",
           "com.figma.hiddenFromPublishing": true,
@@ -122,7 +122,7 @@
       },
       "small": {
         "$type": "number",
-        "$value": "{primitive.size-6}",
+        "$value": "{primitive.size-4}",
         "$extensions": {
           "com.figma.variableId": "VariableID:24:96",
           "com.figma.hiddenFromPublishing": true,
