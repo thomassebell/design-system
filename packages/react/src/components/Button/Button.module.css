@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--typography-font-family-paragraph);
-  font-weight: var(--typography-font-weight-default);
+  font-weight: var(--typography-font-weight-emphasized);
   font-size: var(--typography-font-size-components-button-label);
   border: none;
   /* Border-radius is set per-size below so smaller components get a
