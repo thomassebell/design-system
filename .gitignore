@@ -7,3 +7,6 @@ output/
 .env*.local
 storybook-static/
 coverage/
+
+# Figma export bundles dragged into the repo by accident
+*.zip

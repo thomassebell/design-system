@@ -1784,42 +1784,6 @@
             "com.figma.isOverride": true
           }
         }
-      },
-      "shape": {
-        "radius": {
-          "$type": "number",
-          "$value": 0,
-          "$extensions": {
-            "com.figma.variableId": "VariableID:56:233",
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:3bc507cd2d009d0938b24000e968463b189f8172/2003:3",
-              "targetVariableName": "squar",
-              "targetVariableSetId": "VariableCollectionId:a75fbf27c8e962f6c66f63bc17461ef6d3394c04/1:223",
-              "targetVariableSetName": "corner radius"
-            },
-            "com.figma.isOverride": true
-          }
-        },
-        "focus": {
-          "$type": "number",
-          "$value": 0,
-          "$extensions": {
-            "com.figma.variableId": "VariableID:58:702",
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:3bc507cd2d009d0938b24000e968463b189f8172/2003:3",
-              "targetVariableName": "squar",
-              "targetVariableSetId": "VariableCollectionId:a75fbf27c8e962f6c66f63bc17461ef6d3394c04/1:223",
-              "targetVariableSetName": "corner radius"
-            },
-            "com.figma.isOverride": true
-          }
-        }
       }
     },
     "text-input": {
@@ -1898,20 +1862,6 @@
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
           },
-          "com.figma.isOverride": true
-        }
-      }
-    },
-    "alert-banner": {
-      "radius": {
-        "$type": "number",
-        "$value": "{radius.none}",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:42:73",
-          "com.figma.hiddenFromPublishing": true,
-          "com.figma.scopes": [
-            "CORNER_RADIUS"
-          ],
           "com.figma.isOverride": true
         }
       }

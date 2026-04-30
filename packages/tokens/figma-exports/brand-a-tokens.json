@@ -1784,36 +1784,6 @@
             "com.figma.isOverride": true
           }
         }
-      },
-      "shape": {
-        "radius": {
-          "$type": "number",
-          "$value": 8,
-          "$extensions": {
-            "com.figma.variableId": "VariableID:56:233",
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:17396c6a291daf599faa643dd27d1ec8de6950dc/8:6",
-              "targetVariableName": "meduim",
-              "targetVariableSetId": "VariableCollectionId:c736b12228dc7aec589afc13119740712fb10eeb/1:223",
-              "targetVariableSetName": "corner radius"
-            },
-            "com.figma.isOverride": true
-          }
-        },
-        "focus": {
-          "$type": "number",
-          "$value": "{radius.large}",
-          "$extensions": {
-            "com.figma.variableId": "VariableID:58:702",
-            "com.figma.scopes": [
-              "ALL_SCOPES"
-            ],
-            "com.figma.isOverride": true
-          }
-        }
       }
     },
     "text-input": {
@@ -1892,20 +1862,6 @@
             "targetVariableSetId": "VariableCollectionId:792febaedbfe1faefef3d39d22cb1965fdd75f11/48:93",
             "targetVariableSetName": "brand-a-foundation"
           },
-          "com.figma.isOverride": true
-        }
-      }
-    },
-    "alert-banner": {
-      "radius": {
-        "$type": "number",
-        "$value": "{radius.medium}",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:42:73",
-          "com.figma.hiddenFromPublishing": true,
-          "com.figma.scopes": [
-            "CORNER_RADIUS"
-          ],
           "com.figma.isOverride": true
         }
       }
