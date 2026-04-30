@@ -1,11 +1,9 @@
 import { forwardRef, type InputHTMLAttributes, type ReactNode } from "react";
-import { cx, type Size } from "../../utils/shared";
+import { cx } from "../../utils/shared";
 import styles from "./Input.module.css";
 
 export interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
-  /** Size variant. */
-  size?: Size;
   /** Label rendered above the input. */
   label?: string;
   /** Helper text below the input. */
@@ -21,7 +19,6 @@ export interface InputProps
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      size = "md",
       label,
       hint,
       error,
@@ -47,7 +44,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <div
           className={cx(
             styles.inputWrap,
-            styles[size],
             error && styles.hasError
           )}
         >

@@ -17,14 +17,21 @@
 }
 
 /* ── Input container ─────────────────────── */
+/* Vertical sizing mirrors Button: padding (semantic-components-medium)
+   + line-height (typography-line-height-xsmall) yields the same total
+   height in both density modes. */
 
 .inputWrap {
   display: flex;
   align-items: center;
   gap: var(--semantic-components-small);
+  padding: var(--semantic-components-medium) var(--semantic-components-large);
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-medium);
   background: var(--color-background-default);
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-paragraph);
+  line-height: var(--typography-line-height-xsmall);
   transition:
     border-color 150ms ease,
     box-shadow 150ms ease;
@@ -45,12 +52,6 @@
 .hasError:focus-within {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error-main) 20%, transparent);
 }
-
-/* ── Sizes ────────────────────────────────── */
-
-.sm { height: 2rem;   padding: 0 var(--semantic-components-small);  font-size: var(--typography-font-size-small); }
-.md { height: 2.5rem; padding: 0 var(--semantic-components-medium); font-size: var(--typography-font-size-paragraph); }
-.lg { height: 3rem;   padding: 0 var(--semantic-components-large); font-size: var(--typography-font-size-paragraph); }
 
 /* ── Native input ─────────────────────────── */
 

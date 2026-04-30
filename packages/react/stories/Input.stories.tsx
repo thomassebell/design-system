@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Input } from "../src/components/Input/Input";
+import { Button } from "../src/components/Button/Button";
 import { Icon } from "../src/components/Icon/Icon";
+import { Stack } from "../src/components/Stack/Stack";
 
 /** A small inline search-glass icon used in the example stories. */
 const SearchIcon = () => (
@@ -14,10 +16,6 @@ const meta: Meta<typeof Input> = {
   title: "Components/Input",
   component: Input,
   argTypes: {
-    size: {
-      control: "select",
-      options: ["sm", "md", "lg"],
-    },
     disabled: { control: "boolean" },
     label: { control: "text" },
     hint: { control: "text" },
@@ -54,18 +52,6 @@ export const WithError: Story = {
   },
 };
 
-export const Small: Story = {
-  args: { size: "sm", label: "Small", placeholder: "Small input" },
-};
-
-export const Medium: Story = {
-  args: { size: "md", label: "Medium", placeholder: "Medium input" },
-};
-
-export const Large: Story = {
-  args: { size: "lg", label: "Large", placeholder: "Large input" },
-};
-
 export const WithLeadingIcon: Story = {
   args: {
     label: "Search",
@@ -84,4 +70,17 @@ export const Disabled: Story = {
 
 export const NoLabel: Story = {
   args: { placeholder: "No label, just a placeholder" },
+};
+
+/** Side-by-side with a Button to confirm their heights match. Toggle the
+ *  Density toolbar — both should tighten together. */
+export const HeightMatchesButton: Story = {
+  render: () => (
+    <Stack direction="row" gap="small" align="end">
+      <div style={{ flex: 1 }}>
+        <Input label="Email" placeholder="you@example.com" />
+      </div>
+      <Button>Subscribe</Button>
+    </Stack>
+  ),
 };
