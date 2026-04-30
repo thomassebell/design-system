@@ -1,6 +1,10 @@
 module.exports = {
   stories: ["../stories/**/*.stories.@(ts|tsx)", "../src/**/*.stories.@(ts|tsx)"],
-  addons: ["@storybook/addon-essentials", "@storybook/addon-a11y"],
+  addons: [
+    "@storybook/addon-essentials",
+    "@storybook/addon-a11y",
+    "@chromatic-com/storybook",
+  ],
   framework: {
     name: "@storybook/react-vite",
     options: {},

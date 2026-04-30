@@ -89,5 +89,24 @@ export default {
         },
       },
     },
+    // Snapshot every story in all four brand × density combinations so
+    // brand-specific colours, density-specific spacing, and any
+    // interaction between the two are all covered by visual regression.
+    chromatic: {
+      modes: {
+        "brand-a-default": {
+          globals: { brand: "brand-a", density: "default" },
+        },
+        "brand-a-compact": {
+          globals: { brand: "brand-a", density: "compact" },
+        },
+        "brand-b-default": {
+          globals: { brand: "brand-b", density: "default" },
+        },
+        "brand-b-compact": {
+          globals: { brand: "brand-b", density: "compact" },
+        },
+      },
+    },
   },
 };
