@@ -174,7 +174,7 @@
       },
       "xxlarge": {
         "$type": "number",
-        "$value": "{primitive.size-40}",
+        "$value": "{primitive.size-32}",
         "$extensions": {
           "com.figma.variableId": "VariableID:24:100",
           "com.figma.hiddenFromPublishing": true,

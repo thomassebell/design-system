@@ -16,6 +16,10 @@ const meta: Meta<typeof Input> = {
   title: "Components/Input",
   component: Input,
   argTypes: {
+    size: {
+      control: "select",
+      options: ["regular", "dense"],
+    },
     disabled: { control: "boolean" },
     label: { control: "text" },
     hint: { control: "text" },
@@ -29,6 +33,14 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {
+    label: "Email",
+    placeholder: "you@example.com",
+  },
+};
+
+export const Dense: Story = {
+  args: {
+    size: "dense",
     label: "Email",
     placeholder: "you@example.com",
   },
@@ -72,15 +84,25 @@ export const NoLabel: Story = {
   args: { placeholder: "No label, just a placeholder" },
 };
 
-/** Side-by-side with a Button to confirm their heights match. Toggle the
- *  Density toolbar — both should tighten together. */
+/** Each size paired with a Button at the same size — they should
+ *  line up at exactly the same height. Toggle Density and they
+ *  tighten together. */
 export const HeightMatchesButton: Story = {
   render: () => (
-    <Stack direction="row" gap="small" align="end">
-      <div style={{ flex: 1 }}>
-        <Input label="Email" placeholder="you@example.com" />
-      </div>
-      <Button>Subscribe</Button>
+    <Stack gap="medium">
+      <Stack direction="row" gap="small" align="end">
+        <div style={{ flex: 1 }}>
+          <Input size="regular" label="Regular" placeholder="you@example.com" />
+        </div>
+        <Button size="regular">Subscribe</Button>
+      </Stack>
+
+      <Stack direction="row" gap="small" align="end">
+        <div style={{ flex: 1 }}>
+          <Input size="dense" label="Dense" placeholder="you@example.com" />
+        </div>
+        <Button size="dense">Subscribe</Button>
+      </Stack>
     </Stack>
   ),
 };

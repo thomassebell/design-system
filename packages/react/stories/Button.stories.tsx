@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../src/components/Button/Button";
+import { Stack } from "../src/components/Stack/Stack";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -8,6 +9,10 @@ const meta: Meta<typeof Button> = {
     variant: {
       control: "select",
       options: ["solid", "outline", "ghost", "danger"],
+    },
+    size: {
+      control: "select",
+      options: ["regular", "dense"],
     },
     fullWidth: { control: "boolean" },
     loading: { control: "boolean" },
@@ -38,3 +43,17 @@ export const Loading: Story = {
   args: { children: "Saving…", loading: true },
 };
 
+/** Both sizes side-by-side. Toggle Density to see each tighten further. */
+export const Sizes: Story = {
+  render: () => (
+    <Stack direction="row" gap="small" align="center">
+      <Button size="regular">Regular</Button>
+      <Button size="dense">Dense</Button>
+    </Stack>
+  ),
+};
+
+/** Dense variant on its own — for toolbars, table actions, dense forms. */
+export const Dense: Story = {
+  args: { children: "Dense", size: "dense" },
+};

@@ -1817,18 +1817,6 @@
       }
     },
     "text-input": {
-      "radius": {
-        "$type": "number",
-        "$value": "{radius.medium}",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:41:42",
-          "com.figma.hiddenFromPublishing": true,
-          "com.figma.scopes": [
-            "CORNER_RADIUS"
-          ],
-          "com.figma.isOverride": true
-        }
-      },
       "default": {
         "$type": "color",
         "$value": {

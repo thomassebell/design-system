@@ -4,9 +4,15 @@ import styles from "./Button.module.css";
 
 export type ButtonVariant = "solid" | "outline" | "ghost" | "danger";
 
+/** Component size — design-driven, independent of the system's
+ *  density mode. "regular" is the default; "dense" is tighter for
+ *  toolbars, table rows, and dense forms. Both still respond to
+ *  density (Default ↔ Compact) automatically. */
+export type ButtonSize = "regular" | "dense";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "size"> {
   variant?: ButtonVariant;
+  size?: ButtonSize;
   fullWidth?: boolean;
   loading?: boolean;
 }
@@ -15,6 +21,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       variant = "solid",
+      size = "regular",
       fullWidth = false,
       loading = false,
       disabled,
@@ -29,6 +36,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         className={cx(
           styles.button,
+          styles[size],
           styles[variant],
           fullWidth && styles.fullWidth,
           loading && styles.loading,
