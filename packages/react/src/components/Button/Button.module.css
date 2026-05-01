@@ -129,6 +129,23 @@
   color: currentColor;
 }
 
+/* Optical-alignment trick from the Figma design: the icon's optical
+   center should sit at the button's padding edge, not the icon's
+   bounding-box left edge. We pull a 24px icon 12px toward the
+   adjacent button edge with negative margin — the icon visually
+   bleeds into the padding while the rest of the flex layout is
+   unaffected (gap to the label still applies, label still sits where
+   the flex says it should). The 12px assumes a standard-size 24px
+   icon (Icon size="lg"); if you pass a smaller or larger icon, the
+   bleed will be off-center but still readable. */
+.iconStart {
+  margin-left: -12px;
+}
+
+.iconEnd {
+  margin-right: -12px;
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }

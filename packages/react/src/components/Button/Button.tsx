@@ -55,7 +55,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {loading && <span className={styles.spinner} aria-hidden="true" />}
         {startIcon && (
           <span
-            className={cx(styles.icon, loading && styles.hidden)}
+            className={cx(styles.icon, styles.iconStart, loading && styles.hidden)}
             aria-hidden="true"
           >
             {startIcon}
@@ -64,7 +64,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <span className={cx(loading && styles.hidden)}>{children}</span>
         {endIcon && (
           <span
-            className={cx(styles.icon, loading && styles.hidden)}
+            className={cx(styles.icon, styles.iconEnd, loading && styles.hidden)}
             aria-hidden="true"
           >
             {endIcon}
