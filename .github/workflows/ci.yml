@@ -40,6 +40,15 @@ jobs:
       - name: Build Storybook
         run: npx turbo run build-storybook --filter=@ds/react
 
+      - name: Chromatic
+        uses: chromaui/action@v11
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/react
+          storybookBuildDir: storybook-static
+          exitZeroOnChanges: true
+          autoAcceptChanges: main
+
       # Verify the Swift output was generated
       - name: Check iOS token output
         run: test -f packages/ios-tokens/output/DesignTokens.swift
