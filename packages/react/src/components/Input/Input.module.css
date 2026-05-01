@@ -45,7 +45,7 @@
 .dense {
   gap: var(--semantic-components-xsmall);
   padding: var(--semantic-components-small) var(--semantic-components-medium);
-  line-height: var(--typography-line-height-xxsmall);
+  line-height: var(--typography-line-height-xsmall);
   border-radius: var(--radius-small);
 }
 
