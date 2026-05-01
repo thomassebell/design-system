@@ -27,6 +27,18 @@ export const Solid: Story = {
   args: { children: "Button", variant: "solid" },
 };
 
+/**
+ * Diagnostic story — same as Solid but with story-level globals forcing
+ * brand-b + compact. If this Chromatic snapshot shows green and tighter
+ * than `Solid`, per-story globals are working and we know `chromatic.modes`
+ * isn't the right tool. If it still looks identical to `Solid`, the
+ * globals aren't propagating at all and we need to debug deeper.
+ */
+export const SolidDiagnosticBrandBCompact: Story = {
+  args: { children: "Button (diagnostic)", variant: "solid" },
+  globals: { brand: "brand-b", density: "compact" },
+};
+
 export const Outline: Story = {
   args: { children: "Button", variant: "outline" },
 };
