@@ -1,0 +1,101 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Guides/Adding a Component" />
+
+# Adding a Component
+
+How to add a new component to `@ds/react`.
+
+## Before you start
+
+1. **Check it doesn't already exist.** Search the Components section.
+2. **Sketch the API.** What props, what variants, what states. Match the patterns of existing components — `forwardRef`, named variants, typed prop interface.
+3. **Sketch in Figma if needed.** If the component requires new tokens (e.g. component-specific colors), add them to the Figma DS file's `components.<name>.*` collection first and re-export.
+
+## File structure
+
+Every component follows the same layout:
+
+```
+packages/react/src/components/<Name>/
+  ├── <Name>.tsx           ← the component
+  ├── <Name>.module.css    ← styles, token references only
+  ├── <Name>.test.tsx      ← unit tests
+  └── index.ts             ← barrel export
+```
+
+Plus a story file in a separate location:
+
+```
+packages/react/stories/<Name>.stories.tsx
+```
+
+And remember to add the export from `packages/react/src/index.ts`.
+
+## Component checklist
+
+- [ ] `<Name>.tsx` uses `forwardRef` and sets `displayName`
+- [ ] Props interface (`<Name>Props`) is exported
+- [ ] `<Name>.module.css` references **only token variables** — no hardcoded hex, px, rem
+- [ ] Internal spacing comes from `--semantic-components-*` (density-aware) — never `--primitive-size-*`
+- [ ] If the component has size variants, each size pulls different `--semantic-components-*` and line-height tokens
+- [ ] Borders use inset `box-shadow` rather than `border` — keeps height consistent with other components (Button uses no border at all; Input uses inset shadow to mimic one)
+- [ ] Story file with controls (`argTypes`) for every meaningful prop
+- [ ] Tests in `<Name>.test.tsx` for: rendering, key interactions (clicks, typing), disabled state, ARIA attributes
+- [ ] Component re-exported from `src/index.ts`
+
+## Token usage rules
+
+| ❌ Don't | ✅ Do | Why |
+|---|---|---|
+| `padding: 12px` | `padding: var(--semantic-components-medium)` | Tokens, density-aware |
+| `color: #0d0d0c` | `color: var(--color-text-primary)` | Tokens, brand-aware |
+| `var(--primitive-size-12)` | `var(--semantic-components-medium)` | The semantic layer respects density; primitives don't |
+| `border: 1px solid …` | `box-shadow: inset 0 0 0 1px …` | Borders add 2px to layout height; shadows don't (matters for sibling-component height matching) |
+| Custom motion durations | hardcoded `150ms ease` | We don't have motion tokens yet — hardcode for now, swap to a token when added |
+
+## Storybook story tips
+
+- Add `argTypes` controls for every meaningful prop so designers can play with combinations.
+- Cover the easy-to-forget states: `disabled`, `loading`, `error`.
+- For sizing components, include a story showing the new component next to a Button at the same size — quick height-matching sanity check.
+- For multi-mode behavior, just trust the toolbar; no need to write per-brand variants.
+
+## Testing setup
+
+Tests run via Vitest with `@testing-library/react`. To run:
+
+```bash
+npm test          # one-off run
+npm run test:watch # interactive watch mode (in packages/react)
+```
+
+A test file looks like:
+
+```tsx
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MyComponent } from "./MyComponent";
+
+describe("MyComponent", () => {
+  it("renders its children", () => {
+    render(<MyComponent>Hello</MyComponent>);
+    expect(screen.getByText("Hello")).toBeInTheDocument();
+  });
+});
+```
+
+CSS Modules class names are kept non-hashed in tests (configured in `vitest.config.ts`), so `expect(el).toHaveClass("solid")` works against the source class name.
+
+## Accessibility expectations
+
+- All interactive elements must be keyboard-operable.
+- Focus styles visible (use `:focus-visible`, not just `:focus`).
+- ARIA attributes when meaningful (`aria-busy` on a loading button, `aria-invalid` on errored input, `aria-label` on icon-only buttons).
+- The Storybook **a11y addon** runs axe on every story automatically — check the Accessibility panel before merging.
+
+## What gets deployed
+
+- Storybook on Vercel — the public design-system reference.
+- `@ds/react` package — currently workspace-only; will be published to a registry at some point in the future.

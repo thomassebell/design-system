@@ -2,9 +2,8 @@
   "name": "@ds/docs",
   "version": "0.1.0",
   "private": true,
-  "description": "Design system documentation site.",
+  "description": "Reserved for a future standalone documentation site. Live docs currently live alongside Storybook in @ds/react under stories/docs/*.mdx.",
   "scripts": {
-    "dev": "echo 'TODO: docusaurus start'",
-    "build": "echo 'TODO: docusaurus build'"
+    "build": "echo 'docs are served from Storybook — see packages/react/stories/docs/'"
   }
 }

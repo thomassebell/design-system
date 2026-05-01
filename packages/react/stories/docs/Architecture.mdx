@@ -1,0 +1,95 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introduction/Architecture" />
+
+# Architecture
+
+Sebell DS is **multi-brand** — Brand A and Brand B share the same component shapes but render with different colors and fonts. It's also **density-aware** — the same components tighten or loosen depending on whether you're in `default` or `compact` density.
+
+This page explains how those two axes coexist without the codebase tying itself in knots.
+
+## The three token layers
+
+Each layer owns a different kind of decision:
+
+### 1. Foundation primitives — *per brand, in their own Figma file*
+
+Each brand has its own Foundation file:
+
+- `Brand A Foundation.fig` — Brand A's color ramps and font-family choices.
+- `Brand B Foundation.fig` — same shape, different values.
+
+These are imported as Figma libraries into the main DS file. **Brand identity lives here.**
+
+### 2. Universal primitives — *in the main DS file*
+
+Things that are the same across brands:
+
+- Numeric size scale: `0, 2, 4, 8, 12, 16, 24, 32, 40, 48…`
+- Font sizes & line-heights — strictly multiples of 8, baseline-grid aligned
+- Font weights as numeric values (300, 400, 500, 600, 700)
+- Universal radius scale
+
+### 3. Semantic & component tokens — *in the main DS file*
+
+The names components actually reference:
+
+- `--color-text-primary`, `--color-surface-primary-main`, `--color-error-main`, …
+- `--semantic-components-medium`, `--semantic-layout-large`, …
+- `--typography-font-size-paragraph`, `--typography-line-height-xsmall`, …
+- `--radius-medium`, `--radius-small`, …
+
+Every one of these is an **alias**. The aliases change values when modes change.
+
+## How brand × density actually works
+
+Two **independent** mode axes:
+
+### Brand mode (token-driven)
+
+Each brand's **semantic** color/font tokens alias to that brand's **foundation** primitives. Brand A's `--color-surface-primary-main` aliases to its blue ramp; Brand B's aliases to its grass ramp. Same token name, different brand-specific value.
+
+### Density mode (token-driven)
+
+The **semantic** spacing tokens have density modes. `--semantic-components-medium` is `12px` in default and `8px` in compact. Anything referencing it scales automatically.
+
+### Component size (design-driven, *not* token-driven)
+
+Components like Button and Input expose a `size` prop (`regular` / `dense`). Each size pulls a different *step* on the semantic spacing scale — regular uses `medium`, dense uses `small`. Density modes still apply on top, so a dense button in compact density is smaller than a dense button in default density.
+
+This three-axis composition is intentional: brand controls identity, density controls system tightness, size controls per-instance emphasis.
+
+## How tokens get into code
+
+```
+Figma exports (W3C-DTCG JSON)
+        │
+        ▼
+packages/tokens/build.mjs
+   (resolves aliases, applies px/rem
+    and string-to-numeric transforms)
+        │
+        ▼
+packages/tokens/dist/
+  ├── brand-a-default.css
+  ├── brand-a-compact.css
+  ├── brand-b-default.css
+  └── brand-b-compact.css
+        │
+        ▼
+Storybook bundles all four inline; toolbar swaps the active stylesheet
+        │
+        ▼
+Components render via var(--…) references
+```
+
+The build script reads the JSON exports directly — there's no hand-edited intermediate format to drift out of sync. Whatever's in Figma at export time is exactly what compiles.
+
+## Architectural rules of thumb
+
+- **Components only reference semantic or component tokens.** Never primitives directly. Primitives are for the semantic layer to compose; components consuming primitives bypass density and break the system.
+- **The semantic layer is the contract.** When Figma renames a primitive, the alias updates and components don't notice.
+- **Modes are mutually independent.** Brand and density don't interact at the token layer. A component's size is the only place where they compose.
+- **One source of truth.** Anything visual that's not in a token is a bug.
+
+For the day-to-day Figma → code workflow, see [Updating from Figma](?path=/docs/guides-updating-from-figma--docs).

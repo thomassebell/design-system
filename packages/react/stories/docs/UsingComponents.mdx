@@ -1,0 +1,105 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Guides/Using Components" />
+
+# Using Components in Your App
+
+For engineers consuming `@ds/react`.
+
+## Install
+
+```bash
+npm install @ds/react
+```
+
+(Currently published only inside the Sebell DS workspace; external publishing comes later.)
+
+## Import the global stylesheet once
+
+In your app's entry point:
+
+```ts
+import "@ds/react/styles.css";
+```
+
+This brings in:
+
+- A baseline reset (`box-sizing: border-box`).
+- The default theme — Brand A, Default density.
+
+## Use components
+
+```tsx
+import { Button, Input, Stack, Text, Icon } from "@ds/react";
+
+export function SignupForm() {
+  return (
+    <Stack gap="medium">
+      <Text variant="h2">Sign up</Text>
+      <Input label="Email" placeholder="you@example.com" />
+      <Input label="Password" type="password" />
+      <Button>Create account</Button>
+    </Stack>
+  );
+}
+```
+
+## Components currently available
+
+| Component | Key props |
+|---|---|
+| `Button` | `variant` (`solid` / `outline` / `ghost` / `danger`), `size` (`regular` / `dense`), `fullWidth`, `loading` |
+| `Input` | `label`, `hint`, `error`, `leadingIcon`, `trailingIcon`, `size` |
+| `Text` | `variant` (`display`, `h1`–`h4`, `body`, `bodySmall`, `caption`, `overline`), `truncate`, `align`, `muted` |
+| `Stack` | `direction`, `gap` (t-shirt sizes), `align`, `justify`, `wrap` |
+| `Icon` | `size` (`sm` / `md` / `lg`), `label` (omit for decorative icons) |
+
+Every prop is fully typed — hover any prop in your IDE for documentation.
+
+## Switching brand or density at runtime
+
+By default the app loads Brand A Default. To switch, replace the active stylesheet:
+
+```html
+<link rel="stylesheet" href="/path/to/brand-b-default.css">
+```
+
+The four built CSS files live in `@ds/tokens/dist/`:
+
+- `brand-a-default.css`
+- `brand-a-compact.css`
+- `brand-b-default.css`
+- `brand-b-compact.css`
+
+Your bundler can copy them as static assets. The active stylesheet is whichever one is currently in the DOM — swap it via JavaScript when the user toggles.
+
+## App-specific overrides
+
+Token CSS is set on `:root`. To scope an override (e.g. one section of your app uses a custom color), set the variable on a wrapper:
+
+```css
+.my-special-section {
+  --color-surface-primary-main: #123456;
+}
+```
+
+Anything inside that wrapper (Buttons, Inputs, etc.) picks up the override. CSS cascade does the work.
+
+## Accessibility
+
+All components ship with reasonable accessibility defaults — keyboard navigation, focus management, ARIA attributes. You don't need to add `aria-*` props yourself for standard usage. For unusual cases (e.g. icon-only buttons), check the component's Storybook story for the right props.
+
+## TypeScript
+
+Full type definitions are bundled. Strict mode friendly. Component prop interfaces are exported with the component:
+
+```ts
+import { Button, type ButtonProps, type ButtonVariant } from "@ds/react";
+```
+
+Use these for typed wrappers around components.
+
+## Next steps
+
+- See the **Components** sidebar in this Storybook for a complete reference of every component, its props, and its states.
+- See **Tokens** for the underlying design decisions (colors, typography, spacing, radius) you can reference in your own CSS.

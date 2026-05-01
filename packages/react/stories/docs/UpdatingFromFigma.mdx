@@ -1,0 +1,106 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Guides/Updating from Figma" />
+
+# Updating from Figma
+
+The most common workflow: a token changes in Figma, and the change needs to reach the deployed Storybook (and any consumer app). Here's how that goes end-to-end.
+
+## The high-level loop
+
+1. Edit the variable in the right Figma file
+2. Re-export
+3. Commit & push
+4. CI builds; Vercel deploys; live Storybook updates within ~3 minutes
+
+That's it. Nothing else needs touching unless the change implies new components or new token names.
+
+## Step 1 — Edit in Figma
+
+Where you make the edit depends on what's changing:
+
+| What's changing | Edit in |
+|---|---|
+| A brand's color ramp (e.g. Brand B's primary blue) | The matching Foundation file (`Brand A Foundation` / `Brand B Foundation`) |
+| A brand's font choices | The matching Foundation file |
+| Universal sizes / typography sizes / line-heights | The main DS file |
+| Compact-density spacing values | The main DS file (the `compact` mode of the relevant variable) |
+| A component's color / radius decision | The main DS file's `components.<name>.*` collection |
+| Adding a new variable | Wherever it conceptually belongs (foundation if brand-specific, DS file if universal) |
+
+When in doubt: foundations are for brand identity, the DS file is for everything else.
+
+## Step 2 — Re-export
+
+Use the same export tool you used last time. The four files we consume live in `packages/tokens/figma-exports/`:
+
+```
+brand-a-foundation.json
+brand-a-tokens.json
+brand-b-foundation.json
+brand-b-tokens.json
+default-tokens.json
+compact-tokens.json
+```
+
+Replace the relevant files. **Naming must match exactly** — the build script reads them by name.
+
+## Step 3 — Commit & push
+
+```bash
+cd "/Users/tseb/Documents/Sebell Design System/design-system"
+git status
+git add packages/tokens/figma-exports/
+git commit -m "Update <what you changed>"
+git push
+```
+
+## Step 4 — CI does the rest
+
+GitHub Actions runs:
+
+1. **`npm run tokens:build`** — runs `build.mjs`, which:
+   - Reads all six JSON files
+   - Resolves cross-file aliases (`{primitive.size-16}` → `16`)
+   - Converts color objects to hex strings
+   - Adds units to dimensional values (px, rem) based on path
+   - Maps font-weight strings ("Semi Bold") to CSS numeric weights (600)
+   - Adds font-family fallback chains
+   - Emits four CSS files: `dist/brand-{a,b}-{default,compact}.css`
+
+2. **`npm run build`** — builds all packages and confirms components compile against the new tokens.
+
+3. **`npm run lint`** and **`npm test`** — sanity checks.
+
+4. **Storybook builds**, Vercel deploys.
+
+The whole pipeline takes ~2–3 minutes.
+
+## Verifying after deploy
+
+When Vercel goes green:
+
+- Open the deployed Storybook → **Tokens** → the section you edited (Colors, Typography, Spacing, Radius).
+- Use the toolbar to flip Brand / Density. The catalog re-reads CSS variables live.
+- Open any component story that uses the changed token to make sure it still looks right.
+
+## Common gotchas
+
+| Symptom | Likely cause |
+|---|---|
+| Build deploys but the change isn't visible | Forgot to re-export from Figma after the edit. |
+| Build fails: "no such variable / unresolved reference" | Renamed or deleted a variable that components still reference. Either keep an alias in Figma as a redirect, or update the component CSS. |
+| One brand looks wrong, the other is fine | Edited in only one Foundation file; the other brand still has the old value. |
+| Density toggle has no visible effect on a component | The component's CSS is referencing a primitive (`--primitive-size-X`) instead of a semantic token (`--semantic-components-Y`). Primitives don't vary by density. |
+
+## When you're adding new variables
+
+You can add new variables in Figma freely — components don't break just because new variables exist. Only when you **reference** a new variable in component CSS does it become a runtime requirement. Add the variable, re-export, build runs fine, then update component code to use it when ready.
+
+## When you're renaming or deleting
+
+Coordinate with code:
+
+- **Renaming a primitive**: build still works (semantic aliases still resolve, just to the renamed primitive).
+- **Renaming a semantic token**: components referencing it will break. Update the component CSS in the same commit as the rename.
+- **Deleting a token**: anything referencing it breaks. Use the same commit to either remove the references or repoint them.
