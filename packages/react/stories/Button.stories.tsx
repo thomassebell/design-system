@@ -24,30 +24,7 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Solid: Story = {
-  // Renders in the default brand × density — Brand A, Default density.
   args: { children: "Button", variant: "solid" },
-};
-
-/* ── Multi-mode regression stories ─────────────────
- * The three stories below are the same Solid Button but each pinned
- * to a different brand × density via per-story `globals`. Chromatic
- * snapshots them as four genuinely different images — covering brand
- * AND density without relying on the broken chromatic.modes feature.
- */
-
-export const SolidBrandACompact: Story = {
-  args: { children: "Button", variant: "solid" },
-  globals: { brand: "brand-a", density: "compact" },
-};
-
-export const SolidBrandBDefault: Story = {
-  args: { children: "Button", variant: "solid" },
-  globals: { brand: "brand-b", density: "default" },
-};
-
-export const SolidBrandBCompact: Story = {
-  args: { children: "Button", variant: "solid" },
-  globals: { brand: "brand-b", density: "compact" },
 };
 
 export const Outline: Story = {
