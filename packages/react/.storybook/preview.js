@@ -1,50 +1,41 @@
-// Brand × density token stylesheets are preloaded at module load — all
-// four are inserted into <head> as <link rel="stylesheet"> with the
-// inactive ones gated by media="not all". The browser still fetches
-// (and caches) every stylesheet, but only the active one applies to
-// the document. Switching modes is then a synchronous flip of the
-// `media` attribute — no network wait, no race against Chromatic
-// snapshotting before the stylesheet has loaded.
+// All four brand × density token stylesheets are inlined as <style> tags
+// via Vite's ?inline CSS imports. The CSS is in the JS bundle, so by the
+// time preview.js finishes executing every set of rules is already in
+// the CSSOM. Switching modes is then a synchronous flip of the `media`
+// attribute on each <style> — instant, no network, no race against
+// Chromatic taking a snapshot before the new stylesheet loads.
 
-const TOKEN_LINK_DATA_ATTR = "ds-token-mode";
+import brandADefaultCss from "@ds/tokens/dist/brand-a-default.css?inline";
+import brandACompactCss from "@ds/tokens/dist/brand-a-compact.css?inline";
+import brandBDefaultCss from "@ds/tokens/dist/brand-b-default.css?inline";
+import brandBCompactCss from "@ds/tokens/dist/brand-b-compact.css?inline";
 
-const MODES = [
-  "brand-a-default",
-  "brand-a-compact",
-  "brand-b-default",
-  "brand-b-compact",
-];
+const SHEETS = {
+  "brand-a-default": brandADefaultCss,
+  "brand-a-compact": brandACompactCss,
+  "brand-b-default": brandBDefaultCss,
+  "brand-b-compact": brandBCompactCss,
+};
 
 const DEFAULT_MODE = "brand-a-default";
+const STYLE_DATA_ATTR = "tokenMode"; // dataset key (renders as data-token-mode)
 
-(function preloadAllTokenStylesheets() {
+(function attachAllModeStyles() {
   if (typeof document === "undefined") return;
-  for (const mode of MODES) {
-    if (document.querySelector(`link[data-${TOKEN_LINK_DATA_ATTR}="${mode}"]`)) continue;
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = `/tokens/${mode}.css`;
-    link.dataset[camelDataKey(TOKEN_LINK_DATA_ATTR)] = mode;
-    // Inactive sheets are loaded but don't apply.
-    link.media = mode === DEFAULT_MODE ? "all" : "not all";
-    document.head.appendChild(link);
+  for (const [mode, css] of Object.entries(SHEETS)) {
+    if (document.querySelector(`style[data-token-mode="${mode}"]`)) continue;
+    const style = document.createElement("style");
+    style.dataset[STYLE_DATA_ATTR] = mode;
+    style.textContent = css;
+    style.media = mode === DEFAULT_MODE ? "all" : "not all";
+    document.head.appendChild(style);
   }
 })();
 
-function camelDataKey(attr) {
-  // dataset uses camelCase: data-foo-bar -> dataset.fooBar
-  return attr
-    .split("-")
-    .map((p, i) => (i === 0 ? p : p[0].toUpperCase() + p.slice(1)))
-    .join("");
-}
-
 function activateMode(mode) {
   if (typeof document === "undefined") return;
-  const links = document.querySelectorAll(`link[data-${TOKEN_LINK_DATA_ATTR}]`);
-  links.forEach((link) => {
-    const linkMode = link.dataset[camelDataKey(TOKEN_LINK_DATA_ATTR)];
-    link.media = linkMode === mode ? "all" : "not all";
+  document.querySelectorAll("style[data-token-mode]").forEach((style) => {
+    style.media = style.dataset[STYLE_DATA_ATTR] === mode ? "all" : "not all";
   });
 }
 
@@ -107,9 +98,6 @@ export default {
         },
       },
     },
-    // Snapshot every story in all four brand × density combinations so
-    // brand-specific colours, density-specific spacing, and any
-    // interaction between the two are all covered by visual regression.
     chromatic: {
       modes: {
         "brand-a-default": {
@@ -125,6 +113,10 @@ export default {
           globals: { brand: "brand-b", density: "compact" },
         },
       },
+      // Give Google Fonts (Inter / Roboto / Gabarito) a moment to settle
+      // before snapshotting — token CSS is now synchronous, but font swap
+      // can still cause subtle layout shift right after first paint.
+      delay: 300,
     },
   },
 };
