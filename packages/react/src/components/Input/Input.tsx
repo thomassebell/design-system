@@ -19,9 +19,9 @@ export interface InputProps
   /** Error message — replaces hint when present. */
   error?: string;
   /** Element rendered inside the input, before the text. */
-  leadingIcon?: ReactNode;
+  startIcon?: ReactNode;
   /** Element rendered inside the input, after the text. */
-  trailingIcon?: ReactNode;
+  endIcon?: ReactNode;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -31,8 +31,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       label,
       hint,
       error,
-      leadingIcon,
-      trailingIcon,
+      startIcon,
+      endIcon,
       className,
       id,
       ...rest
@@ -57,9 +57,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             error && styles.hasError
           )}
         >
-          {leadingIcon && (
+          {startIcon && (
             <span className={styles.icon} aria-hidden="true">
-              {leadingIcon}
+              {startIcon}
             </span>
           )}
 
@@ -72,9 +72,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...rest}
           />
 
-          {trailingIcon && (
+          {endIcon && (
             <span className={styles.icon} aria-hidden="true">
-              {trailingIcon}
+              {endIcon}
             </span>
           )}
         </div>

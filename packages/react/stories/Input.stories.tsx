@@ -64,11 +64,11 @@ export const WithError: Story = {
   },
 };
 
-export const WithLeadingIcon: Story = {
+export const WithStartIcon: Story = {
   args: {
     label: "Search",
     placeholder: "Search…",
-    leadingIcon: <SearchIcon />,
+    startIcon: <SearchIcon />,
   },
 };
 
