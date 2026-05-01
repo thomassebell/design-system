@@ -1,27 +1,52 @@
-// The active brand × density tokens are loaded entirely via a single
-// <link> element managed below. We deliberately do NOT import a default
-// brand CSS at module load — if we did, Brand A's primitives would leak
-// into Brand B's view (CSS variables can't be "unset" by a later sheet
-// that doesn't redefine them).
+// Brand × density token stylesheets are preloaded at module load — all
+// four are inserted into <head> as <link rel="stylesheet"> with the
+// inactive ones gated by media="not all". The browser still fetches
+// (and caches) every stylesheet, but only the active one applies to
+// the document. Switching modes is then a synchronous flip of the
+// `media` attribute — no network wait, no race against Chromatic
+// snapshotting before the stylesheet has loaded.
 
-const TOKEN_LINK_ID = "ds-active-tokens";
+const TOKEN_LINK_DATA_ATTR = "ds-token-mode";
 
-function tokenHref(brand, density) {
-  // The dist/ folder is served at /tokens/ via main.cjs staticDirs.
-  return `/tokens/${brand}-${density}.css`;
+const MODES = [
+  "brand-a-default",
+  "brand-a-compact",
+  "brand-b-default",
+  "brand-b-compact",
+];
+
+const DEFAULT_MODE = "brand-a-default";
+
+(function preloadAllTokenStylesheets() {
+  if (typeof document === "undefined") return;
+  for (const mode of MODES) {
+    if (document.querySelector(`link[data-${TOKEN_LINK_DATA_ATTR}="${mode}"]`)) continue;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = `/tokens/${mode}.css`;
+    link.dataset[camelDataKey(TOKEN_LINK_DATA_ATTR)] = mode;
+    // Inactive sheets are loaded but don't apply.
+    link.media = mode === DEFAULT_MODE ? "all" : "not all";
+    document.head.appendChild(link);
+  }
+})();
+
+function camelDataKey(attr) {
+  // dataset uses camelCase: data-foo-bar -> dataset.fooBar
+  return attr
+    .split("-")
+    .map((p, i) => (i === 0 ? p : p[0].toUpperCase() + p.slice(1)))
+    .join("");
 }
 
-// Bootstrap the link synchronously at module load with the default
-// brand × density so the browser starts fetching it as early as possible.
-(function setupTokenLink() {
+function activateMode(mode) {
   if (typeof document === "undefined") return;
-  if (document.getElementById(TOKEN_LINK_ID)) return;
-  const link = document.createElement("link");
-  link.id = TOKEN_LINK_ID;
-  link.rel = "stylesheet";
-  link.href = tokenHref("brand-a", "default");
-  document.head.appendChild(link);
-})();
+  const links = document.querySelectorAll(`link[data-${TOKEN_LINK_DATA_ATTR}]`);
+  links.forEach((link) => {
+    const linkMode = link.dataset[camelDataKey(TOKEN_LINK_DATA_ATTR)];
+    link.media = linkMode === mode ? "all" : "not all";
+  });
+}
 
 // Web fonts used across the system.
 const fonts = document.createElement("link");
@@ -59,14 +84,7 @@ export const globalTypes = {
 export const decorators = [
   (Story, context) => {
     const { brand, density } = context.globals;
-    const link = document.getElementById(TOKEN_LINK_ID);
-    if (link) {
-      const href = tokenHref(brand, density);
-      // getAttribute returns the path; .href returns the absolute URL.
-      if (link.getAttribute("href") !== href) {
-        link.setAttribute("href", href);
-      }
-    }
+    activateMode(`${brand}-${density}`);
     return Story();
   },
 ];
