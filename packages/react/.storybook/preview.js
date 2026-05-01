@@ -99,24 +99,19 @@ export default {
       },
     },
     chromatic: {
-      modes: {
-        "brand-a-default": {
-          globals: { brand: "brand-a", density: "default" },
-        },
-        "brand-a-compact": {
-          globals: { brand: "brand-a", density: "compact" },
-        },
-        "brand-b-default": {
-          globals: { brand: "brand-b", density: "default" },
-        },
-        "brand-b-compact": {
-          globals: { brand: "brand-b", density: "compact" },
-        },
-      },
       // Give Google Fonts (Inter / Roboto / Gabarito) a moment to settle
-      // before snapshotting — token CSS is now synchronous, but font swap
+      // before snapshotting — token CSS is synchronous, but font swap
       // can still cause subtle layout shift right after first paint.
       delay: 300,
+      // The chromatic.modes.<name>.globals feature is unreliable in
+      // @chromatic-com/storybook 3.x — modes captured 4 snapshots per
+      // story, all labeled differently but rendering with the default
+      // (Brand A) globals. We removed it.
+      //
+      // Multi-brand + multi-density visual coverage is instead achieved
+      // by adding sibling stories with per-story `globals` (see
+      // stories/Button.stories.tsx for the pattern). Story-level
+      // globals are a Storybook core feature and apply correctly.
     },
   },
 };

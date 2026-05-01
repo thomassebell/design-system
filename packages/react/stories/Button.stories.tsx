@@ -24,18 +24,29 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Solid: Story = {
+  // Renders in the default brand × density — Brand A, Default density.
   args: { children: "Button", variant: "solid" },
 };
 
-/**
- * Diagnostic story — same as Solid but with story-level globals forcing
- * brand-b + compact. If this Chromatic snapshot shows green and tighter
- * than `Solid`, per-story globals are working and we know `chromatic.modes`
- * isn't the right tool. If it still looks identical to `Solid`, the
- * globals aren't propagating at all and we need to debug deeper.
+/* ── Multi-mode regression stories ─────────────────
+ * The three stories below are the same Solid Button but each pinned
+ * to a different brand × density via per-story `globals`. Chromatic
+ * snapshots them as four genuinely different images — covering brand
+ * AND density without relying on the broken chromatic.modes feature.
  */
-export const SolidDiagnosticBrandBCompact: Story = {
-  args: { children: "Button (diagnostic)", variant: "solid" },
+
+export const SolidBrandACompact: Story = {
+  args: { children: "Button", variant: "solid" },
+  globals: { brand: "brand-a", density: "compact" },
+};
+
+export const SolidBrandBDefault: Story = {
+  args: { children: "Button", variant: "solid" },
+  globals: { brand: "brand-b", density: "default" },
+};
+
+export const SolidBrandBCompact: Story = {
+  args: { children: "Button", variant: "solid" },
   globals: { brand: "brand-b", density: "compact" },
 };
 
