@@ -51,7 +51,7 @@
 
 .solid {
   background: var(--components-button-background-enabled);
-  color: var(--color-text-contrast-text);
+  color: var(--color-text-primary);
 }
 .solid:hover:not(:disabled) {
   background: var(--components-button-background-hover);
@@ -62,10 +62,11 @@
 
 .outline {
   background: transparent;
-  color: var(--color-text-primary);
+  color: var(--color-text-light);
   box-shadow: inset 0 0 0 2px var(--components-button-border-enabled);
 }
 .outline:hover:not(:disabled) {
+  color: var(--color-text-primary);
   box-shadow: inset 0 0 0 2px var(--components-button-border-hover);
 }
 .outline:active:not(:disabled) {
