@@ -114,8 +114,19 @@
   animation: spin 600ms linear infinite;
 }
 
-.hiddenLabel {
+.hidden {
   visibility: hidden;
+}
+
+/* Icons live as flex siblings of the label; gap is on .button. */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  /* Icons inherit the button's text color via SVG currentColor — so a
+     solid button's icons turn dark on light blue, an outline button's
+     turn light gray, etc. */
+  color: currentColor;
 }
 
 @keyframes spin {

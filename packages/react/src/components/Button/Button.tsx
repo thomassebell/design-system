@@ -1,4 +1,4 @@
-import { forwardRef, type ButtonHTMLAttributes } from "react";
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cx } from "../../utils/shared";
 import styles from "./Button.module.css";
 
@@ -13,6 +13,10 @@ export type ButtonSize = "regular" | "dense";
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "size"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  /** Icon rendered before the label. Decorative — pass an `<Icon>` or any ReactNode. */
+  startIcon?: ReactNode;
+  /** Icon rendered after the label. Decorative — pass an `<Icon>` or any ReactNode. */
+  endIcon?: ReactNode;
   fullWidth?: boolean;
   loading?: boolean;
 }
@@ -22,6 +26,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       variant = "solid",
       size = "regular",
+      startIcon,
+      endIcon,
       fullWidth = false,
       loading = false,
       disabled,
@@ -47,7 +53,23 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       >
         {loading && <span className={styles.spinner} aria-hidden="true" />}
-        <span className={cx(loading && styles.hiddenLabel)}>{children}</span>
+        {startIcon && (
+          <span
+            className={cx(styles.icon, loading && styles.hidden)}
+            aria-hidden="true"
+          >
+            {startIcon}
+          </span>
+        )}
+        <span className={cx(loading && styles.hidden)}>{children}</span>
+        {endIcon && (
+          <span
+            className={cx(styles.icon, loading && styles.hidden)}
+            aria-hidden="true"
+          >
+            {endIcon}
+          </span>
+        )}
       </button>
     );
   }
