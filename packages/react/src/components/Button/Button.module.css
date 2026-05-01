@@ -22,15 +22,15 @@
 /* ── Sizes ────────────────────────────────── */
 
 .regular {
-  gap: var(--semantic-components-small);
-  padding: var(--semantic-components-medium) var(--semantic-components-xlarge);
+  gap: var(--semantic-components-xsmall);
+  padding: var(--semantic-components-large) var(--semantic-components-xlarge);
   line-height: var(--typography-line-height-xsmall);
   border-radius: var(--radius-medium);
 }
 
 .dense {
   gap: var(--semantic-components-xsmall);
-  padding: var(--semantic-components-small) var(--semantic-components-large);
+  padding: var(--semantic-components-small) var(--semantic-components-xlarge);
   line-height: var(--typography-line-height-xsmall);
   border-radius: var(--radius-small);
 }
