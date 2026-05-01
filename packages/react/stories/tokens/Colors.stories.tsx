@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { filterByPrefix, useCssTokens, type Token } from "./helpers";
 
 const meta: Meta = {

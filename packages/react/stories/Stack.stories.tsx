@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Stack } from "../src/components/Stack/Stack";
 
 /** Sample tile used inside the stack so layout is visible. */
