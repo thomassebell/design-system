@@ -49,7 +49,6 @@ export const globalTypes = {
   brand: {
     name: "Brand",
     description: "Switch brand theme",
-    defaultValue: "brand-a",
     toolbar: {
       icon: "paintbrush",
       items: [
@@ -61,7 +60,6 @@ export const globalTypes = {
   density: {
     name: "Density",
     description: "Switch layout density",
-    defaultValue: "default",
     toolbar: {
       icon: "grow",
       items: [
@@ -70,6 +68,11 @@ export const globalTypes = {
       ],
     },
   },
+};
+
+export const initialGlobals = {
+  brand: "brand-a",
+  density: "default",
 };
 
 export const decorators = [
@@ -96,6 +99,17 @@ export default {
           type: "tag",
           values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"],
         },
+      },
+    },
+    // Snapshot every story across the 4 brand × density combos. Each
+    // mode is a flat record of globals; Chromatic merges them into the
+    // story's globals before capturing the snapshot.
+    chromatic: {
+      modes: {
+        "brand-a-default": { brand: "brand-a", density: "default" },
+        "brand-a-compact": { brand: "brand-a", density: "compact" },
+        "brand-b-default": { brand: "brand-b", density: "default" },
+        "brand-b-compact": { brand: "brand-b", density: "compact" },
       },
     },
   },
