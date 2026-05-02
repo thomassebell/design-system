@@ -1748,12 +1748,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
+            0.9819999933242798,
             0.9810000061988831,
-            0.9806666970252991,
-            0.9790000319480896
+            0.9780000448226929
           ],
           "alpha": 1,
-          "hex": "#FAFAFA"
+          "hex": "#FAFAF9"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:49:189",
@@ -1761,10 +1761,10 @@
             "FRAME_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:fbbd5910a79c75f27197f5ef75d557c855aedb6e/48:222",
-            "targetVariableName": "primitive/color/grey/grey-98",
-            "targetVariableSetId": "VariableCollectionId:792febaedbfe1faefef3d39d22cb1965fdd75f11/48:93",
-            "targetVariableSetName": "brand-a-foundation"
+            "targetVariableId": "VariableID:747829c27765861ba075d46cb3ae60cb53380488/2033:178",
+            "targetVariableName": "primitive/color/sand/sand-98",
+            "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2033:86",
+            "targetVariableSetName": "brand-b-foundation"
           }
         }
       },
