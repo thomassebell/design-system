@@ -316,7 +316,7 @@ const preflightIssues = { aliasMisalignment: [], missing: [], likelyTypos: [], t
 const brandTokenIndexes = {};
 const brandTokenRawByBrand = {};
 for (const brand of BRANDS) {
-  const filename = `${brand}-tokens.json`;
+  const filename = `${brand}.tokens.json`;
   const raw = JSON.parse(readFileSync(`${EXPORTS_DIR}/${filename}`, "utf-8"));
   brandTokenRawByBrand[brand] = raw;
   brandTokenIndexes[brand] = collectLeafIndex(raw);
@@ -430,9 +430,11 @@ if (
 // removed tokens, greps packages/react/src for stale `var(--…)` references.
 // Strictly informational — never blocks the build.
 
-function loadJSONFromGit(relPath) {
+function loadJSONFromGit(cwdRelativePath) {
+  // Prefix with ./ so git treats the path as cwd-relative (build script runs
+  // from packages/tokens/, not the repo root).
   try {
-    const content = execSync(`git show HEAD:${relPath}`, {
+    const content = execSync(`git show HEAD:./${cwdRelativePath}`, {
       encoding: "utf-8",
       stdio: ["pipe", "pipe", "pipe"],
     });
@@ -471,11 +473,26 @@ const exportNames = readdirSync(EXPORTS_DIR).filter((f) => f.endsWith(".json"));
 const currentExports = exportNames.map((f) =>
   JSON.parse(readFileSync(`${EXPORTS_DIR}/${f}`, "utf-8")),
 );
-const previousExports = exportNames.map((f) =>
-  loadJSONFromGit(`packages/tokens/${EXPORTS_DIR}/${f}`),
-);
 
-if (previousExports.some(Boolean)) {
+// List whatever figma-exports were committed at HEAD (file names may differ
+// from current — e.g. after a rename — so don't look up by current names).
+function listExportsAtHead() {
+  try {
+    const out = execSync(
+      `git ls-tree --name-only HEAD ${EXPORTS_DIR}/`,
+      { encoding: "utf-8", stdio: ["pipe", "pipe", "pipe"] },
+    );
+    return out.trim().split("\n").filter((p) => p.endsWith(".json"));
+  } catch (_) {
+    return [];
+  }
+}
+
+const previousExports = listExportsAtHead()
+  .map((p) => loadJSONFromGit(p))
+  .filter(Boolean);
+
+if (previousExports.length > 0) {
   const currentIndex = indexAllTokens(currentExports);
   const previousIndex = indexAllTokens(previousExports);
   const currentPaths = new Set(currentIndex.keys());
@@ -576,9 +593,9 @@ for (const brand of BRANDS) {
     const label = `${brand} × ${density}`;
     process.stdout.write(`▸ ${label}… `);
 
-    const foundation = loadAndConvert(`${brand}-foundation.json`);
-    const brandTokens = loadAndConvert(`${brand}-tokens.json`);
-    const densityTokens = loadAndConvert(`${density}-tokens.json`);
+    const foundation = loadAndConvert(`${brand}-foundation.tokens.json`);
+    const brandTokens = loadAndConvert(`${brand}.tokens.json`);
+    const densityTokens = loadAndConvert(`${density}.tokens.json`);
 
     // Resolve aliases bottom-up so each layer sees its dependencies as
     // literal values, not as references that point back into themselves.
