@@ -129,7 +129,16 @@ function convertNode(node, path = []) {
       }
     }
 
-    return { value, type };
+    const out = { value, type };
+
+    // Preserve Figma's alias target so we can re-resolve it at build time
+    // against the current brand × density combo. Without this we'd be stuck
+    // with whatever value Figma baked at export time, which is wrong for
+    // any combo other than the one that was active during the export.
+    const aliasTarget = node.$extensions?.["com.figma.aliasData"]?.targetVariableName;
+    if (aliasTarget) out._alias = aliasTarget;
+
+    return out;
   }
 
   // Branch: recurse, dropping all $-prefixed metadata keys.
@@ -163,6 +172,60 @@ function loadAndConvert(filename) {
   return convertNode(raw);
 }
 
+// ── Alias resolution ───────────────────────────────
+// Figma's exporter writes the alias chain (e.g. density.radius.small →
+// brand.radius.small → primitive.radius.round) as metadata, but bakes the
+// resolved value at the moment of export. That value is correct only for
+// whichever brand was active when the user clicked Export, so for any
+// other combo we re-resolve the alias against the *current* combo's tree.
+//
+// Each layer resolves against the trees beneath it in the cascade:
+//   foundation  → resolves against itself (primitives, usually no aliases)
+//   brand       → resolves against (foundation + brand)
+//   density     → resolves against (foundation + brand) — *not* itself,
+//                  otherwise an alias like `radius/small` would self-reference.
+
+function getByPath(tree, slashPath) {
+  let cur = tree;
+  for (const seg of slashPath.split("/")) {
+    if (!cur || typeof cur !== "object") return undefined;
+    cur = cur[seg];
+  }
+  return cur;
+}
+
+function resolveAliases(tree, context) {
+  const MAX_DEPTH = 16;
+
+  function chase(target, depth) {
+    if (depth > MAX_DEPTH) {
+      throw new Error(`Alias chain exceeded depth ${MAX_DEPTH}`);
+    }
+    if (!target || typeof target !== "object" || !("value" in target)) return target;
+    if (!target._alias) return target;
+    const next = getByPath(context, target._alias);
+    return chase(next, depth + 1);
+  }
+
+  function walk(node) {
+    if (!node || typeof node !== "object") return;
+    if ("value" in node) {
+      if (node._alias) {
+        const resolved = chase(getByPath(context, node._alias), 0);
+        if (resolved && "value" in resolved) {
+          node.value = resolved.value;
+        } else {
+          console.warn(`  ⚠ alias "${node._alias}" not found — keeping baked value`);
+        }
+        delete node._alias;
+      }
+      return;
+    }
+    for (const v of Object.values(node)) walk(v);
+  }
+  walk(tree);
+}
+
 // ── Build ──────────────────────────────────────────
 
 if (existsSync(OUT_DIR)) rmSync(OUT_DIR, { recursive: true, force: true });
@@ -175,12 +238,17 @@ for (const brand of BRANDS) {
     const label = `${brand} × ${density}`;
     process.stdout.write(`▸ ${label}… `);
 
-    const tokens = deepMerge(
-      {},
-      loadAndConvert(`${brand}-foundation.json`),
-      loadAndConvert(`${brand}-tokens.json`),
-      loadAndConvert(`${density}-tokens.json`),
-    );
+    const foundation = loadAndConvert(`${brand}-foundation.json`);
+    const brandTokens = loadAndConvert(`${brand}-tokens.json`);
+    const densityTokens = loadAndConvert(`${density}-tokens.json`);
+
+    // Resolve aliases bottom-up so each layer sees its dependencies as
+    // literal values, not as references that point back into themselves.
+    resolveAliases(foundation, foundation);
+    resolveAliases(brandTokens, deepMerge({}, foundation, brandTokens));
+    resolveAliases(densityTokens, deepMerge({}, foundation, brandTokens));
+
+    const tokens = deepMerge({}, foundation, brandTokens, densityTokens);
 
     const platforms = {
       css: {
