@@ -24,8 +24,7 @@
               "targetVariableName": "primitive/color/grass/grass-90",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "light": {
@@ -50,8 +49,7 @@
               "targetVariableName": "primitive/color/grass/grass-70",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "main": {
@@ -76,8 +74,7 @@
               "targetVariableName": "primitive/color/grass/grass-50",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "dark": {
@@ -102,8 +99,7 @@
               "targetVariableName": "primitive/color/grass/grass-40",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "darker": {
@@ -128,8 +124,7 @@
               "targetVariableName": "primitive/color/grass/grass-20",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         }
       },
@@ -156,8 +151,7 @@
               "targetVariableName": "primitive/color/wood/wood-90",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "light": {
@@ -182,8 +176,7 @@
               "targetVariableName": "primitive/color/wood/wood-80",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "main": {
@@ -208,8 +201,7 @@
               "targetVariableName": "primitive/color/wood/wood-50",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "dark": {
@@ -234,8 +226,7 @@
               "targetVariableName": "primitive/color/wood/wood-30",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "darker": {
@@ -260,8 +251,7 @@
               "targetVariableName": "primitive/color/wood/wood-10",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         }
       },
@@ -289,8 +279,7 @@
               "targetVariableName": "primitive/color/sand/sand-98",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "light": {
@@ -316,8 +305,7 @@
               "targetVariableName": "primitive/color/sand/sand-94",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "main": {
@@ -343,8 +331,7 @@
               "targetVariableName": "primitive/color/sand/sand-90",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "dark": {
@@ -370,8 +357,7 @@
               "targetVariableName": "primitive/color/sand/sand-80",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "darker": {
@@ -397,8 +383,7 @@
               "targetVariableName": "primitive/color/sand/sand-70",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         }
       }
@@ -426,8 +411,7 @@
             "targetVariableName": "primitive/color/achromatic/charcoal",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "light": {
@@ -452,8 +436,7 @@
             "targetVariableName": "primitive/color/sand/sand-40",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "lighter": {
@@ -478,8 +461,7 @@
             "targetVariableName": "primitive/color/sand/sand-50",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "disabled": {
@@ -504,8 +486,7 @@
             "targetVariableName": "primitive/color/sand/sand-70",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "contrast-text": {
@@ -530,8 +511,7 @@
             "targetVariableName": "primitive/color/achromatic/snow",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     },
@@ -543,8 +523,7 @@
           "com.figma.variableId": "VariableID:47:83",
           "com.figma.scopes": [
             "SHAPE_FILL"
-          ],
-          "com.figma.isOverride": true
+          ]
         }
       },
       "accent": {
@@ -554,8 +533,7 @@
           "com.figma.variableId": "VariableID:47:84",
           "com.figma.scopes": [
             "SHAPE_FILL"
-          ],
-          "com.figma.isOverride": true
+          ]
         }
       },
       "primary": {
@@ -565,8 +543,7 @@
           "com.figma.variableId": "VariableID:47:92",
           "com.figma.scopes": [
             "SHAPE_FILL"
-          ],
-          "com.figma.isOverride": true
+          ]
         }
       },
       "light": {
@@ -576,8 +553,7 @@
           "com.figma.variableId": "VariableID:63:580",
           "com.figma.scopes": [
             "SHAPE_FILL"
-          ],
-          "com.figma.isOverride": true
+          ]
         }
       },
       "lighter": {
@@ -587,8 +563,7 @@
           "com.figma.variableId": "VariableID:63:581",
           "com.figma.scopes": [
             "SHAPE_FILL"
-          ],
-          "com.figma.isOverride": true
+          ]
         }
       },
       "disabled": {
@@ -613,8 +588,7 @@
             "targetVariableName": "primitive/color/sand/sand-70",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "contrast": {
@@ -639,8 +613,7 @@
             "targetVariableName": "primitive/color/achromatic/snow",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     },
@@ -667,8 +640,7 @@
             "targetVariableName": "primitive/color/rust/rust-90",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "light": {
@@ -693,8 +665,7 @@
             "targetVariableName": "primitive/color/rust/rust-70",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "main": {
@@ -719,8 +690,7 @@
             "targetVariableName": "primitive/color/rust/rust-50",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "dark": {
@@ -745,8 +715,7 @@
             "targetVariableName": "primitive/color/rust/rust-40",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "darker": {
@@ -771,8 +740,7 @@
             "targetVariableName": "primitive/color/rust/rust-30",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "contrast-text": {
@@ -797,8 +765,7 @@
             "targetVariableName": "primitive/color/achromatic/snow",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     },
@@ -825,8 +792,7 @@
             "targetVariableName": "primitive/color/sand/sand-70",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "default": {
@@ -851,8 +817,7 @@
             "targetVariableName": "primitive/color/sand/sand-50",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "dark": {
@@ -877,8 +842,7 @@
             "targetVariableName": "primitive/color/sand/sand-40",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "hover": {
@@ -903,8 +867,7 @@
             "targetVariableName": "primitive/color/sand/sand-40",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "active": {
@@ -914,8 +877,7 @@
           "com.figma.variableId": "VariableID:49:313",
           "com.figma.scopes": [
             "STROKE"
-          ],
-          "com.figma.isOverride": true
+          ]
         }
       },
       "disabled": {
@@ -940,8 +902,7 @@
             "targetVariableName": "primitive/color/sand/sand-80",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     },
@@ -968,8 +929,7 @@
             "targetVariableName": "primitive/color/wood/wood-90",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "light": {
@@ -994,8 +954,7 @@
             "targetVariableName": "primitive/color/wood/wood-80",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "main": {
@@ -1020,8 +979,7 @@
             "targetVariableName": "primitive/color/wood/wood-50",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "dark": {
@@ -1046,8 +1004,7 @@
             "targetVariableName": "primitive/color/wood/wood-30",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "darker": {
@@ -1072,8 +1029,7 @@
             "targetVariableName": "primitive/color/wood/wood-10",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "contrast-text": {
@@ -1098,8 +1054,7 @@
             "targetVariableName": "primitive/color/sand/sand-30",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     },
@@ -1127,8 +1082,7 @@
             "targetVariableName": "primitive/color/achromatic/snow",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "disabled": {
@@ -1154,8 +1108,7 @@
             "targetVariableName": "primitive/color/sand/sand-90",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     },
@@ -1182,8 +1135,7 @@
             "targetVariableName": "primitive/color/grass/grass-90",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "light": {
@@ -1208,8 +1160,7 @@
             "targetVariableName": "primitive/color/grass/grass-70",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "main": {
@@ -1234,8 +1185,7 @@
             "targetVariableName": "primitive/color/grass/grass-50",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "dark": {
@@ -1260,8 +1210,7 @@
             "targetVariableName": "primitive/color/grass/grass-30",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "darker": {
@@ -1286,8 +1235,7 @@
             "targetVariableName": "primitive/color/grass/grass-20",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "contrast-text": {
@@ -1312,8 +1260,7 @@
             "targetVariableName": "primitive/color/sand/sand-30",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     },
@@ -1340,8 +1287,7 @@
             "targetVariableName": "primitive/color/skye/skye-90",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "light": {
@@ -1366,8 +1312,7 @@
             "targetVariableName": "primitive/color/skye/skye-80",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "main": {
@@ -1392,8 +1337,7 @@
             "targetVariableName": "primitive/color/skye/skye-70",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "dark": {
@@ -1418,8 +1362,7 @@
             "targetVariableName": "primitive/color/skye/skye-30",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "darker": {
@@ -1444,8 +1387,7 @@
             "targetVariableName": "primitive/color/skye/skye-20",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "contrast-text": {
@@ -1470,8 +1412,7 @@
             "targetVariableName": "primitive/color/sand/sand-30",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     }
@@ -1492,8 +1433,7 @@
             "targetVariableName": "primitive/font-family/header",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "paragraph": {
@@ -1510,8 +1450,7 @@
             "targetVariableName": "primitive/font-family/paragraph",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     },
@@ -1530,8 +1469,7 @@
             "targetVariableName": "primitive/font-weight/bold",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "default": {
@@ -1548,8 +1486,7 @@
             "targetVariableName": "primitive/font-weight/regular",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "understate": {
@@ -1566,8 +1503,7 @@
             "targetVariableName": "primitive/font-weight/light",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     }
@@ -1582,12 +1518,27 @@
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:a0624ec36778ea167e6c3533feedc42945f452fb/2033:193",
+          "targetVariableId": "VariableID:00f18f92bc69f758e9fdf75d63a66a44c3b07d75/2037:14",
           "targetVariableName": "primitive/radius/none",
-          "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
+          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2033:86",
           "targetVariableSetName": "brand-b-foundation"
-        },
-        "com.figma.isOverride": true
+        }
+      }
+    },
+    "xsmall": {
+      "$type": "number",
+      "$value": 4,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2427:818",
+        "com.figma.scopes": [
+          "CORNER_RADIUS"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:68348f2ac61b10048a92c9186b5bf504777d9b5f/2040:1",
+          "targetVariableName": "primitive/radius/xsmall",
+          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2033:86",
+          "targetVariableSetName": "brand-b-foundation"
+        }
       }
     },
     "small": {
@@ -1599,46 +1550,59 @@
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:68939363fd6d263b138ee56413e18c0baa157ef9/2033:190",
+          "targetVariableId": "VariableID:c0fd25cca8e0b28431cf18e08b7c931f786a12b2/2039:5",
           "targetVariableName": "primitive/radius/small",
-          "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
+          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2033:86",
           "targetVariableSetName": "brand-b-foundation"
-        },
-        "com.figma.isOverride": true
+        }
       }
     },
     "medium": {
       "$type": "number",
-      "$value": 16,
+      "$value": 12,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:35",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:88c98c22c078297b0891c79d4445376fa4979023/2034:217",
+          "targetVariableId": "VariableID:7fcac35fb72671d66f04bf389402bcb46835e251/2041:4",
           "targetVariableName": "primitive/radius/medium",
-          "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
+          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2033:86",
           "targetVariableSetName": "brand-b-foundation"
-        },
-        "com.figma.isOverride": true
+        }
       }
     },
     "large": {
       "$type": "number",
-      "$value": 32,
+      "$value": 16,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:34",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:092bf4c52f7bd587add0c974d8929ee52ba87dfd/2033:191",
+          "targetVariableId": "VariableID:c7b818c1dce52e6ea14f2c3a35882eb2670ea702/2041:5",
           "targetVariableName": "primitive/radius/large",
-          "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
+          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2033:86",
           "targetVariableSetName": "brand-b-foundation"
-        },
-        "com.figma.isOverride": true
+        }
+      }
+    },
+    "xlarge": {
+      "$type": "number",
+      "$value": 24,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2427:829",
+        "com.figma.scopes": [
+          "CORNER_RADIUS"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:881046be7d805321410c7c87247ea5e93c158923/2041:3",
+          "targetVariableName": "primitive/radius/xlarge",
+          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2033:86",
+          "targetVariableSetName": "brand-b-foundation"
+        }
       }
     }
   },
@@ -1668,8 +1632,7 @@
               "targetVariableName": "primitive/color/grass/grass-60",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "hover": {
@@ -1695,8 +1658,7 @@
               "targetVariableName": "primitive/color/grass/grass-70",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "pressed": {
@@ -1722,8 +1684,7 @@
               "targetVariableName": "primitive/color/grass/grass-40",
               "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
               "targetVariableSetName": "brand-b-foundation"
-            },
-            "com.figma.isOverride": true
+            }
           }
         },
         "disabled": {
@@ -1734,8 +1695,7 @@
             "com.figma.scopes": [
               "FRAME_FILL",
               "SHAPE_FILL"
-            ],
-            "com.figma.isOverride": true
+            ]
           }
         }
       },
@@ -1747,8 +1707,7 @@
             "com.figma.variableId": "VariableID:58:671",
             "com.figma.scopes": [
               "STROKE"
-            ],
-            "com.figma.isOverride": true
+            ]
           }
         },
         "hover": {
@@ -1758,8 +1717,7 @@
             "com.figma.variableId": "VariableID:58:672",
             "com.figma.scopes": [
               "STROKE"
-            ],
-            "com.figma.isOverride": true
+            ]
           }
         },
         "pressed": {
@@ -1769,8 +1727,7 @@
             "com.figma.variableId": "VariableID:58:673",
             "com.figma.scopes": [
               "STROKE"
-            ],
-            "com.figma.isOverride": true
+            ]
           }
         },
         "disabled": {
@@ -1780,8 +1737,7 @@
             "com.figma.variableId": "VariableID:58:674",
             "com.figma.scopes": [
               "STROKE"
-            ],
-            "com.figma.isOverride": true
+            ]
           }
         }
       }
@@ -1792,12 +1748,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
+            0.9819999933242798,
             0.9810000061988831,
-            0.9806666970252991,
-            0.9790000319480896
+            0.9780000448226929
           ],
           "alpha": 1,
-          "hex": "#FAFAFA"
+          "hex": "#FAFAF9"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:49:189",
@@ -1805,12 +1761,11 @@
             "FRAME_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:fbbd5910a79c75f27197f5ef75d557c855aedb6e/48:222",
-            "targetVariableName": "primitive/color/grey/grey-98",
-            "targetVariableSetId": "VariableCollectionId:792febaedbfe1faefef3d39d22cb1965fdd75f11/48:93",
-            "targetVariableSetName": "brand-a-foundation"
-          },
-          "com.figma.isOverride": true
+            "targetVariableId": "VariableID:747829c27765861ba075d46cb3ae60cb53380488/2033:178",
+            "targetVariableName": "primitive/color/sand/sand-98",
+            "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2033:86",
+            "targetVariableSetName": "brand-b-foundation"
+          }
         }
       },
       "active": {
@@ -1835,8 +1790,7 @@
             "targetVariableName": "primitive/color/achromatic/snow",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       },
       "disabled": {
@@ -1861,8 +1815,7 @@
             "targetVariableName": "primitive/color/sand/sand-94",
             "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
             "targetVariableSetName": "brand-b-foundation"
-          },
-          "com.figma.isOverride": true
+          }
         }
       }
     }
