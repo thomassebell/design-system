@@ -226,6 +226,58 @@ function resolveAliases(tree, context) {
   walk(tree);
 }
 
+// ── Pre-flight: detect cross-brand alias misalignment ──
+// Brand-X tokens should never alias values from brand-Y's foundation —
+// it silently makes brand X "borrow" brand Y's primitives. We hit this
+// twice when re-pointing greys/sands between brand-a-foundation and
+// brand-b-foundation; this check makes the next occurrence a hard
+// build failure with a pointer to the offending Figma variable.
+
+function findCrossBrandAliases(node, fileBrand) {
+  const wrongBrand = fileBrand === "brand-a" ? "brand-b" : "brand-a";
+  const issues = [];
+
+  function walk(n, path) {
+    if (!n || typeof n !== "object" || Array.isArray(n)) return;
+    const aliasData = n.$extensions?.["com.figma.aliasData"];
+    if (aliasData?.targetVariableSetName === `${wrongBrand}-foundation`) {
+      issues.push({
+        path: path.join("."),
+        targetSet: aliasData.targetVariableSetName,
+        targetVar: aliasData.targetVariableName,
+      });
+    }
+    for (const [k, v] of Object.entries(n)) {
+      if (k.startsWith("$")) continue;
+      walk(v, [...path, k]);
+    }
+  }
+
+  walk(node, []);
+  return issues;
+}
+
+const crossBrandIssues = [];
+for (const brand of BRANDS) {
+  const filename = `${brand}-tokens.json`;
+  const raw = JSON.parse(readFileSync(`${EXPORTS_DIR}/${filename}`, "utf-8"));
+  for (const issue of findCrossBrandAliases(raw, brand)) {
+    crossBrandIssues.push({ file: filename, ...issue });
+  }
+}
+if (crossBrandIssues.length > 0) {
+  console.error(`\n✗ Found ${crossBrandIssues.length} cross-brand alias misalignment(s):\n`);
+  for (const i of crossBrandIssues) {
+    console.error(`  ${i.file} :: ${i.path}`);
+    console.error(`    → ${i.targetSet}::${i.targetVar}`);
+  }
+  console.error(
+    "\nRe-point these aliases in Figma to the matching same-brand " +
+      "foundation, then re-export.\n",
+  );
+  throw new Error("Cross-brand alias misalignment detected");
+}
+
 // ── Build ──────────────────────────────────────────
 
 if (existsSync(OUT_DIR)) rmSync(OUT_DIR, { recursive: true, force: true });
