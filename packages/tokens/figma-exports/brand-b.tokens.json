@@ -872,7 +872,7 @@
       },
       "active": {
         "$type": "color",
-        "$value": "{color.surface.primary.dark}",
+        "$value": "{color.surface.primary.main}",
         "$extensions": {
           "com.figma.variableId": "VariableID:49:313",
           "com.figma.scopes": [
@@ -1607,6 +1607,50 @@
     }
   },
   "components": {
+    "focus-ring": {
+      "width": {
+        "$type": "number",
+        "$value": 2,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2469:867",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:746987aa9898de7451872fae0627c853701ae5af/-1:-1",
+            "targetVariableName": "primitive/size-2",
+            "targetVariableSetId": "VariableCollectionId:73b9e5499348a08be4c68cf73fc761ea8c0e2c87/-1:-1",
+            "targetVariableSetName": "layout"
+          }
+        }
+      },
+      "color": {
+        "$type": "color",
+        "$value": "{color.surface.primary.main}",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2469:869",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "offset": {
+        "$type": "number",
+        "$value": 2,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2469:927",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:746987aa9898de7451872fae0627c853701ae5af/-1:-1",
+            "targetVariableName": "primitive/size-2",
+            "targetVariableSetId": "VariableCollectionId:73b9e5499348a08be4c68cf73fc761ea8c0e2c87/-1:-1",
+            "targetVariableSetName": "layout"
+          }
+        }
+      }
+    },
     "button": {
       "background": {
         "enabled": {
@@ -1706,7 +1750,8 @@
           "$extensions": {
             "com.figma.variableId": "VariableID:58:671",
             "com.figma.scopes": [
-              "STROKE"
+              "STROKE",
+              "EFFECT_COLOR"
             ]
           }
         },
@@ -1716,7 +1761,8 @@
           "$extensions": {
             "com.figma.variableId": "VariableID:58:672",
             "com.figma.scopes": [
-              "STROKE"
+              "STROKE",
+              "EFFECT_COLOR"
             ]
           }
         },
@@ -1726,7 +1772,8 @@
           "$extensions": {
             "com.figma.variableId": "VariableID:58:673",
             "com.figma.scopes": [
-              "STROKE"
+              "STROKE",
+              "EFFECT_COLOR"
             ]
           }
         },
@@ -1736,7 +1783,8 @@
           "$extensions": {
             "com.figma.variableId": "VariableID:58:674",
             "com.figma.scopes": [
-              "STROKE"
+              "STROKE",
+              "EFFECT_COLOR"
             ]
           }
         }

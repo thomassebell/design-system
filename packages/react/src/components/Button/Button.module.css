@@ -38,8 +38,8 @@
 /* ── States ───────────────────────────────── */
 
 .button:focus-visible {
-  outline: 2px solid var(--components-button-background-enabled);
-  outline-offset: 2px;
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-color);
+  outline-offset: var(--components-focus-ring-offset);
 }
 
 .button:disabled {
