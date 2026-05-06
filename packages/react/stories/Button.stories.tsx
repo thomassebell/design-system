@@ -23,7 +23,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["solid", "outline", "danger"],
+      options: ["solid", "outline", "danger", "text"],
     },
     size: {
       control: "select",
@@ -48,6 +48,12 @@ export const Outline: Story = {
 
 export const Danger: Story = {
   args: { children: "Delete", variant: "danger" },
+};
+
+/** Text variant: nav-link aesthetic — transparent background, brand-coloured
+ *  underline, no padding. Use for tertiary actions or contextual nav. */
+export const Text: Story = {
+  args: { children: "Read more", variant: "text" },
 };
 
 export const Loading: Story = {
