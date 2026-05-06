@@ -95,6 +95,27 @@
   background: var(--color-error-dark);
 }
 
+/* Text variant: nav-link aesthetic, transparent background with a 2px
+   brand-coloured underline. The underline tracks the variant family
+   (main → light → dark) so hover / pressed feedback stays in the
+   primary surface palette. inset box-shadow keeps the underline from
+   shifting layout when state changes. Padding and radius are zeroed
+   so the visual is just the label and its underline. */
+.text {
+  background: transparent;
+  color: var(--color-text-light);
+  padding: 0;
+  border-radius: 0;
+  box-shadow: inset 0 -2px 0 0 var(--color-surface-primary-main);
+}
+.text:hover:not(:disabled) {
+  color: var(--color-text-primary);
+  box-shadow: inset 0 -2px 0 0 var(--color-surface-primary-light);
+}
+.text:active:not(:disabled) {
+  box-shadow: inset 0 -2px 0 0 var(--color-surface-primary-dark);
+}
+
 /* ── Modifiers ────────────────────────────── */
 
 .fullWidth {
