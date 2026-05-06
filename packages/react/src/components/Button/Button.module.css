@@ -38,8 +38,15 @@
 /* ── States ───────────────────────────────── */
 
 .button:focus-visible {
-  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-color);
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
   outline-offset: var(--components-focus-ring-offset);
+}
+
+/* Danger uses the error focus-ring so the ring stays in the variant's
+   colour family — red button → red ring, not brand-blue ring on a red
+   destructive action. */
+.danger:focus-visible {
+  outline-color: var(--components-focus-ring-error);
 }
 
 .button:disabled {
@@ -79,7 +86,12 @@
   background: var(--color-error-main);
   color: var(--color-error-contrast-text);
 }
+/* Hover lightens (matches Solid's main → light direction). */
 .danger:hover:not(:disabled) {
+  background: var(--color-error-light);
+}
+/* Pressed darkens (matches Solid's main → dark direction). */
+.danger:active:not(:disabled) {
   background: var(--color-error-dark);
 }
 
