@@ -430,6 +430,8 @@
         "$extensions": {
           "com.figma.variableId": "VariableID:5:3",
           "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
             "TEXT_FILL"
           ],
           "com.figma.aliasData": {
@@ -1521,11 +1523,21 @@
           }
         }
       },
-      "color": {
+      "default": {
         "$type": "color",
         "$value": "{color.border.active}",
         "$extensions": {
           "com.figma.variableId": "VariableID:2469:869",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "error": {
+        "$type": "color",
+        "$value": "{color.error.main}",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2475:1514",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
