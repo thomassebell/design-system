@@ -72,10 +72,8 @@
 .outline:active:not(:disabled) {
   box-shadow: inset 0 0 0 2px var(--components-button-border-pressed);
 }
-.outline:disabled {
-  color: var(--color-text-disabled);
-  box-shadow: inset 0 0 0 2px var(--components-button-border-disabled);
-}
+/* No outline-specific :disabled rule — the universal .button:disabled
+   opacity rule above dims the whole element uniformly (Path A). */
 
 .ghost {
   background: transparent;
