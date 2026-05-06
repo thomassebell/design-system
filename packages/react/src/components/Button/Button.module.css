@@ -75,15 +75,6 @@
 /* No outline-specific :disabled rule — the universal .button:disabled
    opacity rule above dims the whole element uniformly (Path A). */
 
-.ghost {
-  background: transparent;
-  color: var(--color-text-light);
-}
-.ghost:hover:not(:disabled) {
-  background: var(--color-surface-neutral-lighter);
-  color: var(--color-text-primary);
-}
-
 .danger {
   background: var(--color-error-main);
   color: var(--color-error-contrast-text);

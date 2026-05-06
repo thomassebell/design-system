@@ -23,7 +23,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["solid", "outline", "ghost", "danger"],
+      options: ["solid", "outline", "danger"],
     },
     size: {
       control: "select",
@@ -44,10 +44,6 @@ export const Solid: Story = {
 
 export const Outline: Story = {
   args: { children: "Button", variant: "outline" },
-};
-
-export const Ghost: Story = {
-  args: { children: "Button", variant: "ghost" },
 };
 
 export const Danger: Story = {
@@ -107,13 +103,11 @@ export const IconsMatrix: Story = {
       <Stack direction="row" gap="small" align="center">
         <Button variant="solid" startIcon={<PlusIcon />}>Add</Button>
         <Button variant="outline" startIcon={<PlusIcon />}>Add</Button>
-        <Button variant="ghost" startIcon={<PlusIcon />}>Add</Button>
         <Button variant="danger" startIcon={<PlusIcon />}>Delete</Button>
       </Stack>
       <Stack direction="row" gap="small" align="center">
         <Button size="dense" variant="solid" startIcon={<PlusIcon />}>Add</Button>
         <Button size="dense" variant="outline" startIcon={<PlusIcon />}>Add</Button>
-        <Button size="dense" variant="ghost" startIcon={<PlusIcon />}>Add</Button>
         <Button size="dense" variant="danger" startIcon={<PlusIcon />}>Delete</Button>
       </Stack>
     </Stack>

@@ -2,7 +2,7 @@ import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cx } from "../../utils/shared";
 import styles from "./Button.module.css";
 
-export type ButtonVariant = "solid" | "outline" | "ghost" | "danger";
+export type ButtonVariant = "solid" | "outline" | "danger";
 
 /** Component size — design-driven, independent of the system's
  *  density mode. "regular" is the default; "dense" is tighter for
