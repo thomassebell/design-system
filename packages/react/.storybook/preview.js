@@ -93,7 +93,14 @@ export default {
     },
     a11y: {
       manual: false,
-      config: { rules: [] },
+      config: {
+        rules: [
+          // Stories render components in isolation, so axe sees content
+          // outside any landmark and warns. Landmarks (<main>, <nav>,
+          // etc.) belong to the consuming app, not individual components.
+          { id: "region", enabled: false },
+        ],
+      },
       options: {
         runOnly: {
           type: "tag",
