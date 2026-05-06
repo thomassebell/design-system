@@ -89,6 +89,14 @@
   outline-offset: var(--components-focus-ring-offset);
 }
 
+/* Path A disabled: dim the whole field uniformly, mirror Button's
+   approach. The :has selector picks up the wrapper when the inner
+   <input> carries the disabled attribute. */
+.wrapper:has(input:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* ── Native input ─────────────────────────── */
 
 .input {
