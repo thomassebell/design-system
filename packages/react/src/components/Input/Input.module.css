@@ -3,17 +3,31 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--semantic-components-xsmall);
+  gap: var(--semantic-layout-xsmall);
   width: 100%;
 }
 
 /* ── Label ────────────────────────────────── */
+/* Resting label is intentionally lighter than the value; matches Figma's
+   "label fades back when not interacting" pattern. The label promotes to
+   the primary text colour on hover or focus, and to error red when the
+   input has an error. */
 
 .label {
   font-family: var(--typography-font-family-paragraph);
-  font-size: var(--typography-font-size-small);
-  font-weight: var(--typography-font-weight-emphasized);
+  font-size: var(--typography-font-size-components-label);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xxsmall);
+  color: var(--color-text-light);
+}
+
+.wrapper:hover .label,
+.wrapper:focus-within .label {
   color: var(--color-text-primary);
+}
+
+.wrapper:has(.hasError) .label {
+  color: var(--color-error-main);
 }
 
 /* ── Input container (size-neutral base) ──── */
@@ -26,7 +40,7 @@
   /* Inset box-shadow stands in for a border so the rendered height
      stays equal to Button's (a real border would add 2px). */
   box-shadow: inset 0 0 0 1px var(--color-border-default);
-  background: var(--color-background-default);
+  background: var(--components-text-input-default);
   font-family: var(--typography-font-family-paragraph);
   font-size: var(--typography-font-size-paragraph);
   transition: box-shadow 150ms ease;
@@ -39,14 +53,14 @@
   gap: var(--semantic-components-small);
   padding: var(--semantic-components-large) var(--semantic-components-large);
   line-height: var(--typography-line-height-xsmall);
-  border-radius: var(--radius-medium);
+  border-radius: var(--radius-large);
 }
 
 .dense {
-  gap: var(--semantic-components-xsmall);
+  gap: var(--semantic-components-medium);
   padding: var(--semantic-components-small) var(--semantic-components-medium);
   line-height: var(--typography-line-height-xsmall);
-  border-radius: var(--radius-small);
+  border-radius: var(--radius-medium);
 }
 
 /* ── States ───────────────────────────────── */
@@ -106,7 +120,7 @@
   margin: 0;
   font-family: var(--typography-font-family-paragraph);
   font-size: var(--typography-font-size-small);
-  color: var(--color-text-light);
+  color: var(--color-text-primary);
 }
 
 .hintError {
