@@ -1626,7 +1626,7 @@
       },
       "color": {
         "$type": "color",
-        "$value": "{color.surface.primary.main}",
+        "$value": "{color.border.active}",
         "$extensions": {
           "com.figma.variableId": "VariableID:2469:869",
           "com.figma.scopes": [
@@ -1655,80 +1655,35 @@
       "background": {
         "enabled": {
           "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0.6000000238418579,
-              0.8799999952316284,
-              0.320000022649765
-            ],
-            "alpha": 1,
-            "hex": "#99E052"
-          },
+          "$value": "{color.surface.primary.main}",
           "$extensions": {
             "com.figma.variableId": "VariableID:56:228",
             "com.figma.scopes": [
               "FRAME_FILL",
               "SHAPE_FILL"
-            ],
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:606ed819d9baaa7087b1ce982afe86b8107e05d2/2033:142",
-              "targetVariableName": "primitive/color/grass/grass-60",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
-            }
+            ]
           }
         },
         "hover": {
           "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0.699999988079071,
-              0.9100000262260437,
-              0.49000000953674316
-            ],
-            "alpha": 1,
-            "hex": "#B2E87D"
-          },
+          "$value": "{color.surface.primary.light}",
           "$extensions": {
             "com.figma.variableId": "VariableID:56:231",
             "com.figma.scopes": [
               "FRAME_FILL",
               "SHAPE_FILL"
-            ],
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:840b093144fba32955a3ff31387cd4ddffe551d6/2033:141",
-              "targetVariableName": "primitive/color/grass/grass-70",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
-            }
+            ]
           }
         },
         "pressed": {
           "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0.3799999952316284,
-              0.6459999680519104,
-              0.11400000751018524
-            ],
-            "alpha": 1,
-            "hex": "#61A51D"
-          },
+          "$value": "{color.surface.primary.dark}",
           "$extensions": {
             "com.figma.variableId": "VariableID:56:232",
             "com.figma.scopes": [
               "FRAME_FILL",
               "SHAPE_FILL"
-            ],
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:1cc8816076296861423a8d7d9ef9dc1f524e6701/2033:144",
-              "targetVariableName": "primitive/color/grass/grass-40",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
-            }
+            ]
           }
         },
         "disabled": {
