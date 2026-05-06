@@ -3,17 +3,31 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--semantic-components-xsmall);
+  gap: var(--semantic-layout-xsmall);
   width: 100%;
 }
 
 /* ── Label ────────────────────────────────── */
+/* Resting label is intentionally lighter than the value; matches Figma's
+   "label fades back when not interacting" pattern. The label promotes to
+   the primary text colour on hover or focus, and to error red when the
+   input has an error. */
 
 .label {
   font-family: var(--typography-font-family-paragraph);
-  font-size: var(--typography-font-size-small);
-  font-weight: var(--typography-font-weight-emphasized);
+  font-size: var(--typography-font-size-components-label);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xxsmall);
+  color: var(--color-text-light);
+}
+
+.wrapper:hover .label,
+.wrapper:focus-within .label {
   color: var(--color-text-primary);
+}
+
+.wrapper:has(.hasError) .label {
+  color: var(--color-error-main);
 }
 
 /* ── Input container (size-neutral base) ──── */
@@ -26,7 +40,7 @@
   /* Inset box-shadow stands in for a border so the rendered height
      stays equal to Button's (a real border would add 2px). */
   box-shadow: inset 0 0 0 1px var(--color-border-default);
-  background: var(--color-background-default);
+  background: var(--components-text-input-default);
   font-family: var(--typography-font-family-paragraph);
   font-size: var(--typography-font-size-paragraph);
   transition: box-shadow 150ms ease;
@@ -39,35 +53,48 @@
   gap: var(--semantic-components-small);
   padding: var(--semantic-components-large) var(--semantic-components-large);
   line-height: var(--typography-line-height-xsmall);
-  border-radius: var(--radius-medium);
+  border-radius: var(--radius-large);
 }
 
 .dense {
-  gap: var(--semantic-components-xsmall);
+  gap: var(--semantic-components-medium);
   padding: var(--semantic-components-small) var(--semantic-components-medium);
   line-height: var(--typography-line-height-xsmall);
-  border-radius: var(--radius-small);
+  border-radius: var(--radius-medium);
 }
 
 /* ── States ───────────────────────────────── */
 
 .inputWrap:hover {
-  box-shadow: inset 0 0 0 1px var(--color-border-dark);
+  box-shadow: inset 0 0 0 1px var(--color-border-hover);
 }
 
+/* Focus indicator: a solid ring sitting outside the box edge with a
+   transparent gap between, so it works on any background. Width, color,
+   and offset all driven by the components/focus-ring/* tokens — same
+   source of truth as Button's focus ring. The inner edge also thickens
+   to the focus-ring width to match Figma's `border-2` at focus. */
 .inputWrap:focus-within {
-  box-shadow:
-    inset 0 0 0 1px var(--color-surface-primary-main),
-    0 0 0 3px color-mix(in srgb, var(--color-surface-primary-main) 25%, transparent);
+  box-shadow: inset 0 0 0 var(--components-focus-ring-width) var(--components-focus-ring-color);
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-color);
+  outline-offset: var(--components-focus-ring-offset);
 }
 
 .hasError {
-  box-shadow: inset 0 0 0 1px var(--color-error-main);
+  box-shadow: inset 0 0 0 var(--components-focus-ring-width) var(--color-error-main);
 }
 .hasError:focus-within {
-  box-shadow:
-    inset 0 0 0 1px var(--color-error-main),
-    0 0 0 3px color-mix(in srgb, var(--color-error-main) 20%, transparent);
+  box-shadow: inset 0 0 0 var(--components-focus-ring-width) var(--color-error-main);
+  outline: var(--components-focus-ring-width) solid var(--color-error-main);
+  outline-offset: var(--components-focus-ring-offset);
+}
+
+/* Path A disabled: dim the whole field uniformly, mirror Button's
+   approach. The :has selector picks up the wrapper when the inner
+   <input> carries the disabled attribute. */
+.wrapper:has(input:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 /* ── Native input ─────────────────────────── */
@@ -80,6 +107,9 @@
   font: inherit;
   color: var(--color-text-primary);
   min-width: 0;
+  /* Browsers add 1px top/bottom user-agent padding to <input>; zero it
+     so the rendered height matches the wrap's padding + line-height. */
+  padding: 0;
 }
 
 .input::placeholder {
@@ -101,7 +131,7 @@
   margin: 0;
   font-family: var(--typography-font-family-paragraph);
   font-size: var(--typography-font-size-small);
-  color: var(--color-text-light);
+  color: var(--color-text-primary);
 }
 
 .hintError {

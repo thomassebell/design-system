@@ -599,8 +599,13 @@ for (const brand of BRANDS) {
 
     // Resolve aliases bottom-up so each layer sees its dependencies as
     // literal values, not as references that point back into themselves.
+    // Brand's context includes density too — brand semantic tokens
+    // sometimes reference layout primitives (e.g. focus-ring/width →
+    // primitive/size-2), and those primitives live in the density tree.
+    // No cycle risk: density's intra-tree aliases use Style Dictionary
+    // {…} syntax, not the aliasData extension this resolver follows.
     resolveAliases(foundation, foundation);
-    resolveAliases(brandTokens, deepMerge({}, foundation, brandTokens));
+    resolveAliases(brandTokens, deepMerge({}, foundation, densityTokens, brandTokens));
     resolveAliases(densityTokens, deepMerge({}, foundation, brandTokens));
 
     const tokens = deepMerge({}, foundation, brandTokens, densityTokens);

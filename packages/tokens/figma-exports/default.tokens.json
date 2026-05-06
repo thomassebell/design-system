@@ -330,7 +330,7 @@
       "components": {
         "label": {
           "$type": "number",
-          "$value": 14,
+          "$value": "{primitive.size-14}",
           "$extensions": {
             "com.figma.variableId": "VariableID:54:1464",
             "com.figma.scopes": [
@@ -417,6 +417,16 @@
       "$value": 12,
       "$extensions": {
         "com.figma.variableId": "VariableID:4:1018",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "size-14": {
+      "$type": "number",
+      "$value": 14,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:2438:885",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ]
