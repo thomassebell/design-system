@@ -1,0 +1,58 @@
+/* ── Group container ──────────────────────── */
+/* Strip the browser's default <fieldset> chrome (border, padding,
+   min-width quirk) so it renders as a plain flex column. The semantic
+   value of <fieldset> + <legend> is what we want — the visuals are
+   ours. */
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--semantic-layout-small);
+  border: none;
+  margin: 0;
+  padding: 0;
+  /* Browsers default <fieldset> to min-width: min-content, which can
+     stop the group from shrinking inside flex parents. Reset it. */
+  min-width: 0;
+}
+
+/* ── Legend ───────────────────────────────── */
+/* Full-strength text colour so the heading reads stronger than the
+   per-field labels (which are intentionally lighter). Paragraph size
+   gives the group an extra step of hierarchy without needing a
+   separate weight token. */
+
+.legend {
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-paragraph);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xsmall);
+  color: var(--color-text-primary);
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Items wrapper ────────────────────────── */
+/* Tighter gap than the section-level group gap. The fields are
+   related — they shouldn't read as independent sections. */
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--semantic-layout-xsmall);
+}
+
+/* ── Message (hint / error) ───────────────── */
+/* Same visual treatment as the per-field hint so a group-level
+   message reads as the same kind of supporting copy. */
+
+.message {
+  margin: 0;
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-small);
+  color: var(--color-text-primary);
+}
+
+.messageError {
+  color: var(--color-error-main);
+}

@@ -1,0 +1,92 @@
+/* ── Box (size-neutral base) ──────────────── */
+/* `appearance: none` strips the browser's native checkbox so we paint
+   our own, while keeping the underlying <input type="checkbox"> for
+   keyboard, form, and screen-reader behaviour. Background sits on the
+   text-input default so resting checkboxes match the look of resting
+   inputs in the same form. */
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  background-color: var(--components-text-input-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+/* ── Sizes ────────────────────────────────── */
+
+.regular {
+  width: 20px;
+  height: 20px;
+}
+
+.dense {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── States ───────────────────────────────── */
+
+.checkbox:hover {
+  border-color: var(--color-border-hover);
+}
+
+/* Focus ring matches Input + Button (same tokens, same offset). */
+.checkbox:focus-visible {
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
+  outline-offset: var(--components-focus-ring-offset);
+}
+
+/* Checked + Indeterminate share the brand-coloured fill. The glyph is
+   embedded as a background-image data URI with `stroke="white"` baked
+   in — `--color-text-contrast-text` is white in both brands so the
+   hardcode stays accurate while keeping this a single-element
+   component (no pseudo-elements, no mask plumbing). */
+.checkbox:checked,
+.checkbox:indeterminate {
+  background-color: var(--color-surface-primary-main);
+  border-color: var(--color-surface-primary-main);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%;
+}
+
+.checkbox:checked {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="%23FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 7 12 13 4"/></svg>');
+}
+
+.checkbox:indeterminate {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="%23FFFFFF" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="8" x2="13" y2="8"/></svg>');
+}
+
+/* ── Error ────────────────────────────────── */
+/* Triggered by aria-invalid="true" on the input, which the wrapping
+   Field sets when an error message is passed in. No extra prop on the
+   bare component — the ARIA attribute is the source of truth. */
+
+.checkbox[aria-invalid="true"] {
+  border-color: var(--color-error-main);
+}
+
+.checkbox[aria-invalid="true"]:focus-visible {
+  outline-color: var(--components-focus-ring-error);
+}
+
+/* ── Disabled ─────────────────────────────── */
+/* Path A: opacity dim + not-allowed cursor. Field's matching `:has()`
+   rule dims only the surrounding label + hint so this opacity doesn't
+   compound when the checkbox lives inside a Field. */
+
+.checkbox:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

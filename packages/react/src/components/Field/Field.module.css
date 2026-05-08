@@ -1,0 +1,74 @@
+/* ── Layout ───────────────────────────────── */
+/* 2-column grid: control on the left, label + hint stacked on the right.
+   The hint sits in column 2 even when there's no label, so helper/error
+   text always indents past the control. */
+
+.field {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--semantic-components-medium);
+  row-gap: var(--semantic-layout-xsmall);
+  width: 100%;
+}
+
+.control {
+  grid-column: 1;
+  grid-row: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Label ────────────────────────────────── */
+/* Same colour pattern as Input: lighter at rest, promotes to primary on
+   hover/focus, switches to error red when the field has an error. */
+
+.label {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-components-label);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xxsmall);
+  color: var(--color-text-light);
+  cursor: pointer;
+}
+
+.field:hover .label,
+.field:focus-within .label {
+  color: var(--color-text-primary);
+}
+
+.field.hasError .label {
+  color: var(--color-error-main);
+}
+
+/* ── Hint / Error ─────────────────────────── */
+
+.hint {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0;
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-small);
+  color: var(--color-text-primary);
+}
+
+.hintError {
+  color: var(--color-error-main);
+}
+
+/* ── Disabled ─────────────────────────────── */
+/* Path A applied per-element: the control owns its own opacity rule,
+   so we dim only the label + hint here. Dimming the whole field would
+   double-stack with the control's own 0.5 and crush the contrast. */
+
+.field:has(input:disabled) {
+  cursor: not-allowed;
+}
+
+.field:has(input:disabled) .label,
+.field:has(input:disabled) .hint {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

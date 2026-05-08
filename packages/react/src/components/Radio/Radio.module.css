@@ -1,0 +1,94 @@
+/* ── Circle (size-neutral base) ───────────── */
+/* Same `appearance: none` strategy as Checkbox — strip the browser's
+   native styling, paint our own, and let the underlying <input
+   type="radio"> handle keyboard/form/screen-reader behaviour. */
+
+.radio {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  background-color: var(--components-text-input-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+  transition:
+    border-color 150ms ease;
+}
+
+/* ── Sizes ────────────────────────────────── */
+
+.regular {
+  width: 20px;
+  height: 20px;
+}
+
+.dense {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Inner dot ────────────────────────────── */
+/* The dot lives as a pseudo-element so it can scale 0 → 1 between
+   states without affecting layout. Sized at 50% of the outer circle.
+   Uses --color-surface-primary-main so the dot tracks the active
+   brand (blue on Brand A, green on Brand B). */
+
+.radio::before {
+  content: "";
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background-color: var(--color-surface-primary-main);
+  transform: scale(0);
+}
+
+.radio:checked::before {
+  transform: scale(1);
+}
+
+/* ── States ───────────────────────────────── */
+
+.radio:hover {
+  border-color: var(--color-border-hover);
+}
+
+.radio:checked {
+  border-color: var(--color-surface-primary-main);
+}
+
+/* Focus ring matches Checkbox + Input + Button — same tokens, same
+   offset, so the entire form has one consistent focus visual. */
+.radio:focus-visible {
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
+  outline-offset: var(--components-focus-ring-offset);
+}
+
+/* ── Error ────────────────────────────────── */
+/* Triggered by aria-invalid="true" on the input. The wrapping
+   RadioField (or RadioGroup at group level) sets it when an error
+   message is passed in. */
+
+.radio[aria-invalid="true"] {
+  border-color: var(--color-error-main);
+}
+
+.radio[aria-invalid="true"]::before {
+  background-color: var(--color-error-main);
+}
+
+.radio[aria-invalid="true"]:focus-visible {
+  outline-color: var(--components-focus-ring-error);
+}
+
+/* ── Disabled ─────────────────────────────── */
+/* Matches Checkbox: dim itself, Field's :has() rule dims the
+   surrounding label + hint separately so opacity doesn't compound. */
+
+.radio:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,111 @@
+/* ── Track (size-neutral base) ────────────── */
+/* `appearance: none` strips the native checkbox so we can paint the
+   track ourselves. Width/height come from per-size classes via CSS
+   variables, which also drive the thumb position calculation. */
+
+.switchEl {
+  --thumb-inset: 2px;
+  --thumb-size: 16px;
+
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  background-color: var(--color-border-hover);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 150ms ease;
+}
+
+/* ── Sizes ────────────────────────────────── */
+/* Track height matches the Checkbox/Radio box height at the same size,
+   so a row of mixed controls sits at a consistent eyeline. */
+
+.regular {
+  --track-width: 36px;
+  --track-height: 20px;
+  --thumb-size: 16px;
+  width: var(--track-width);
+  height: var(--track-height);
+}
+
+.dense {
+  --track-width: 28px;
+  --track-height: 16px;
+  --thumb-size: 12px;
+  width: var(--track-width);
+  height: var(--track-height);
+}
+
+/* ── Thumb ────────────────────────────────── */
+/* Pseudo-element thumb slides via translateX so the animation is
+   GPU-friendly and doesn't trigger layout. The "off" position is
+   2px from the left; "on" position is calculated from track width
+   minus thumb size minus both insets. */
+
+.switchEl::before {
+  content: "";
+  position: absolute;
+  top: var(--thumb-inset);
+  left: var(--thumb-inset);
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border-radius: 50%;
+  background-color: #ffffff;
+  transform: translateX(0);
+  transition: transform 150ms ease;
+  /* Subtle shadow so the thumb reads as a separate object on top
+     of the track. Same elevation language we'd give a popover. */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.switchEl:checked::before {
+  transform: translateX(
+    calc(var(--track-width) - var(--thumb-size) - 2 * var(--thumb-inset))
+  );
+}
+
+/* ── States ───────────────────────────────── */
+
+.switchEl:hover {
+  background-color: var(--color-border-strong, var(--color-border-hover));
+}
+
+.switchEl:checked {
+  background-color: var(--color-surface-primary-main);
+}
+
+.switchEl:checked:hover {
+  background-color: var(--color-surface-primary-dark);
+}
+
+/* Focus ring matches Checkbox + Radio + Input + Button — same tokens,
+   same offset, so the entire form has one consistent focus visual. */
+.switchEl:focus-visible {
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
+  outline-offset: var(--components-focus-ring-offset);
+}
+
+/* ── Error ────────────────────────────────── */
+/* Inset shadow because the track has no border to colour. Reads as
+   a red ring around the track regardless of on/off state. */
+
+.switchEl[aria-invalid="true"] {
+  box-shadow: inset 0 0 0 2px var(--color-error-main);
+}
+
+.switchEl[aria-invalid="true"]:focus-visible {
+  outline-color: var(--components-focus-ring-error);
+}
+
+/* ── Disabled ─────────────────────────────── */
+/* Same Path A as Checkbox + Radio: the control dims itself, Field's
+   :has() rule dims the surrounding label + hint separately. */
+
+.switchEl:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
