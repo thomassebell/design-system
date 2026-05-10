@@ -156,18 +156,21 @@
   outline-color: var(--components-focus-ring-error);
 }
 
-/* Read-only: gray border, no opacity dim. Same default background,
-   just a different gray to indicate non-editable. The :read-only
+/* Read-only: subdued grey border, no opacity dim. Same default
+   background, just a different border to indicate non-editable.
+   Shares the `--components-forms-border-subdued` token with the
+   disabled state for consistency — the opacity dim is what
+   distinguishes disabled from read-only visually. The :read-only
    pseudo-class also matches disabled inputs, so we exclude that
    case to keep the two states distinct. */
 
 .wrapper:has(input:read-only:not(:disabled)) .inputWrap {
-  box-shadow: inset 0 0 0 1px var(--color-border-disabled);
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
 }
 .wrapper:has(input:read-only:not(:disabled)) .inputWrap:hover,
 .wrapper:has(input:read-only:not(:disabled)) .inputWrap:focus-within {
   background: var(--components-forms-background-default);
-  box-shadow: inset 0 0 0 1px var(--color-border-disabled);
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
   outline: none;
 }
 
