@@ -52,6 +52,10 @@
   color: var(--color-text-primary);
 }
 
+.wrapper.hasError .hint {
+  color: var(--color-text-primary);
+}
+
 /* ── Error banner ─────────────────────────── */
 /* Pink-tinted callout above the input — replaces the small inline
    error message of the previous design. The icon flags the banner
