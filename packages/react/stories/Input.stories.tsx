@@ -21,9 +21,12 @@ const meta: Meta<typeof Input> = {
       options: ["regular", "dense"],
     },
     disabled: { control: "boolean" },
+    readOnly: { control: "boolean" },
     label: { control: "text" },
     hint: { control: "text" },
     error: { control: "text" },
+    prefix: { control: "text" },
+    suffix: { control: "text" },
     placeholder: { control: "text" },
   },
 };
@@ -46,6 +49,8 @@ export const Dense: Story = {
   },
 };
 
+/** Hint sits between the label and the input, lighter at rest and
+ *  promoting to primary text colour on hover/focus. */
 export const WithHint: Story = {
   args: {
     label: "Password",
@@ -55,12 +60,16 @@ export const WithHint: Story = {
   },
 };
 
+/** Error renders as a pink banner above the input with an inline
+ *  error icon. The label turns red and the input border thickens to
+ *  2px in error red. Hint is hidden in this state. */
 export const WithError: Story = {
   args: {
     label: "Email",
     placeholder: "you@example.com",
     defaultValue: "not-an-email",
-    error: "Please enter a valid email address.",
+    error:
+      "Error messages should not only inform your users about the problem, but also guide them towards a solution. Please use plainspoken and readable text.",
   },
 };
 
@@ -69,6 +78,49 @@ export const WithStartIcon: Story = {
     label: "Search",
     placeholder: "Search…",
     startIcon: <SearchIcon />,
+  },
+};
+
+/** Prefix shows a static text snippet before the value — useful for
+ *  fixed protocol or unit indicators. */
+export const WithPrefix: Story = {
+  args: {
+    label: "Website",
+    prefix: "https://",
+    placeholder: "your-domain.com",
+  },
+};
+
+/** Suffix shows a static text snippet after the value — useful for
+ *  units (kg, %, ms) or fixed extensions. */
+export const WithSuffix: Story = {
+  args: {
+    label: "Weight",
+    suffix: "kg",
+    placeholder: "0",
+    type: "number",
+  },
+};
+
+/** Both prefix and suffix together — e.g. a price field with currency
+ *  on the left and unit on the right. */
+export const WithPrefixAndSuffix: Story = {
+  args: {
+    label: "Price per item",
+    prefix: "$",
+    suffix: "/ unit",
+    placeholder: "0.00",
+  },
+};
+
+/** Read-only — the value is visible but not editable. Distinct from
+ *  disabled: no opacity dim, just a subdued grey border. */
+export const ReadOnly: Story = {
+  args: {
+    label: "Account ID",
+    defaultValue: "acc_8f2nq31q",
+    hint: "Generated automatically — cannot be changed.",
+    readOnly: true,
   },
 };
 
@@ -103,6 +155,32 @@ export const HeightMatchesButton: Story = {
         </div>
         <Button size="dense">Subscribe</Button>
       </Stack>
+    </Stack>
+  ),
+};
+
+/** All states stacked side-by-side — a quick reference for designers
+ *  comparing Storybook against Figma. */
+export const AllStates: Story = {
+  render: () => (
+    <Stack gap="medium">
+      <Input label="Default" placeholder="Type here…" />
+      <Input
+        label="With hint"
+        placeholder="Type here…"
+        hint="A short helper sentence."
+      />
+      <Input
+        label="Read-only"
+        defaultValue="Read-only value"
+        readOnly
+      />
+      <Input label="Disabled" placeholder="Cannot interact" disabled />
+      <Input
+        label="Error"
+        defaultValue="bad@@"
+        error="Please enter a valid email address."
+      />
     </Stack>
   ),
 };
