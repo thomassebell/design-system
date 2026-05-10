@@ -156,32 +156,39 @@
   outline-color: var(--components-focus-ring-error);
 }
 
-/* Read-only: keeps the default resting border — read-only fields
-   should look like a regular field that simply can't be edited, not
-   a separately-styled state. We only need to suppress the hover and
-   focus-within reactions so they don't visually pretend to be
-   interactive. The :read-only pseudo-class also matches disabled
+/* Read-only: subdued border, no opacity dim. Same default background,
+   the lighter border signals the field isn't editable without making
+   it look broken or errored. Shares the
+   `--components-forms-border-subdued` token with the disabled state —
+   the opacity dim is what visually distinguishes disabled from
+   read-only. The :read-only pseudo-class also matches disabled
    inputs, so we exclude that case to keep the two states distinct. */
 
+.wrapper:has(input:read-only:not(:disabled)) .inputWrap {
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
+}
 .wrapper:has(input:read-only:not(:disabled)) .inputWrap:hover,
 .wrapper:has(input:read-only:not(:disabled)) .inputWrap:focus-within {
   background: var(--components-forms-background-default);
-  box-shadow: inset 0 0 0 1px var(--components-forms-border-enabled);
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
   outline: none;
 }
 
-/* Disabled: Path A — opacity 50% on the wrapper plus a not-allowed
-   cursor. No special disabled border or background; the default
-   resting visuals just get dimmed. Hover would still try to lift the
-   field, so we suppress those changes back to the resting state. */
+/* Disabled: 50% opacity over the whole wrapper plus the subdued
+   border. Path A still holds — the dim is the dominant disabled
+   signal — but the border keeps the field from looking enabled
+   underneath the dim, which would read as a contradiction. */
 
 .wrapper:has(input:disabled) {
   opacity: 0.5;
   cursor: not-allowed;
 }
+.wrapper:has(input:disabled) .inputWrap {
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
+}
 .wrapper:has(input:disabled) .inputWrap:hover {
   background: var(--components-forms-background-default);
-  box-shadow: inset 0 0 0 1px var(--components-forms-border-enabled);
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
 }
 
 /* ── Native input ─────────────────────────── */
