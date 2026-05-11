@@ -1,0 +1,91 @@
+/* ── Ring ─────────────────────────────────── */
+/* `appearance: none` strips the browser's native radio so we paint
+   our own. The underlying <input type="radio"> keeps native keyboard,
+   form (single-selection grouping via name), and screen-reader
+   behaviour for free.
+
+   Single size: 18×18 visual circle with a 2px border. Classic radio
+   pattern — hollow ring + inner brand-coloured dot, instead of the
+   "filled shape with white indicator" used by Checkbox. The visual
+   contrast helps users instantly recognise "pick one" vs
+   "toggle on/off". */
+
+.radio {
+  --dot-color: var(--color-surface-primary-main);
+
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  background-color: var(--components-forms-background-default);
+  border: 2px solid var(--components-forms-border-enabled);
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    background-color 100ms ease,
+    border-color 100ms ease,
+    background-image 100ms ease;
+}
+
+/* ── Unchecked states ─────────────────────── */
+
+.radio:hover {
+  background-color: var(--components-forms-background-active);
+  border-color: var(--components-forms-border-hover);
+  --dot-color: var(--components-forms-surface-hover);
+}
+
+.radio:active {
+  background-color: var(--components-forms-background-pressed);
+  border-color: var(--components-forms-border-pressed);
+  --dot-color: var(--components-forms-surface-pressed);
+}
+
+.radio:focus-visible {
+  background-color: var(--components-forms-background-active);
+  border-color: var(--components-forms-border-focused);
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
+  outline-offset: var(--components-focus-ring-offset);
+}
+
+/* ── Checked ──────────────────────────────── */
+/* The dot is rendered as a radial-gradient background — single
+   element, no pseudo plumbing. The `--dot-color` custom property
+   cascades per state so each interaction state colours the dot to
+   match the ring without re-declaring the gradient. */
+
+.radio:checked {
+  background-image: radial-gradient(
+    circle,
+    var(--dot-color) 0,
+    var(--dot-color) 3.5px,
+    transparent 4px,
+    transparent 100%
+  );
+}
+
+/* ── Error ────────────────────────────────── */
+/* Triggered by aria-invalid="true" on the input, which the wrapping
+   Field sets when an error message is passed in. */
+
+.radio[aria-invalid="true"] {
+  border-color: var(--components-forms-border-error);
+  --dot-color: var(--components-forms-surface-error);
+}
+
+.radio[aria-invalid="true"]:focus-visible {
+  outline-color: var(--components-focus-ring-error);
+}
+
+/* ── Disabled ─────────────────────────────── */
+/* Path A: opacity dim + not-allowed cursor. Field's matching `:has()`
+   rule dims the surrounding label + hint via its own opacity on the
+   `.text` element so this opacity doesn't compound. */
+
+.radio:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

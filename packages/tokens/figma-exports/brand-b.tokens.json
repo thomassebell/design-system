@@ -107,12 +107,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.20000000298023224,
-              0.3400000035762787,
-              0.06000000238418579
+              0.30000001192092896,
+              0.5100000500679016,
+              0.09000000357627869
             ],
             "alpha": 1,
-            "hex": "#33570F"
+            "hex": "#4D8217"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:37:15",
@@ -120,8 +120,8 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:5afffce51ba6fc6f7751c54c24e3cda817cb16d2/2044:115",
-              "targetVariableName": "primitive/color/grass/grass-20",
+              "targetVariableId": "VariableID:ce8148dcf7bd5a310a6e0f2d6a1688c5946cf9f7/2044:114",
+              "targetVariableName": "primitive/color/grass/grass-30",
               "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
               "targetVariableSetName": "brand-b-foundation"
             }
