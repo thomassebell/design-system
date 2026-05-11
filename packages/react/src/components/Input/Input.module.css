@@ -1,4 +1,9 @@
 /* ── Wrapper ──────────────────────────────── */
+/* Vertical stack: label → hint → (error banner) → inputWrap.
+   The wrapper governs the whole field's hover/focus context — the
+   label and hint colours promote based on :hover / :focus-within of
+   the wrapper, so interaction anywhere in the row is reflected in
+   the surrounding text. */
 
 .wrapper {
   display: flex;
@@ -8,10 +13,8 @@
 }
 
 /* ── Label ────────────────────────────────── */
-/* Resting label is intentionally lighter than the value; matches Figma's
-   "label fades back when not interacting" pattern. The label promotes to
-   the primary text colour on hover or focus, and to error red when the
-   input has an error. */
+/* Lighter at rest, promotes to primary on hover/focus, switches to
+   error red when the wrapper carries the error class. */
 
 .label {
   font-family: var(--typography-font-family-paragraph);
@@ -26,77 +29,170 @@
   color: var(--color-text-primary);
 }
 
-.wrapper:has(.hasError) .label {
+.wrapper.hasError .label {
   color: var(--color-error-main);
 }
 
-/* ── Input container (size-neutral base) ──── */
-/* Vertical sizing comes from the .regular / .dense classes — the
-   same semantic tokens as Button, so heights match per size. */
+/* ── Hint ─────────────────────────────────── */
+/* Sits between label and input. Same promotion pattern as label —
+   lighter at rest, primary on hover/focus. Hidden by the React layer
+   when the input is disabled or read-only. */
+
+.hint {
+  margin: 0;
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-small);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xxsmall);
+  color: var(--color-text-light);
+}
+
+.wrapper:hover .hint,
+.wrapper:focus-within .hint {
+  color: var(--color-text-primary);
+}
+
+.wrapper.hasError .hint {
+  color: var(--color-text-primary);
+}
+
+/* ── Error banner ─────────────────────────── */
+/* Pink-tinted callout above the input — replaces the small inline
+   error message of the previous design. The icon flags the banner
+   visually; the message is plain paragraph text so longer guidance
+   reads comfortably. Padding tightens at dense size. */
+
+.errorBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--semantic-components-large);
+  background: var(--color-error-lighter);
+  border-radius: var(--radius-large);
+  padding: var(--semantic-components-small) var(--semantic-components-large);
+}
+
+.wrapper.dense .errorBanner {
+  gap: var(--semantic-components-medium);
+  padding: var(--semantic-components-xsmall) var(--semantic-components-medium);
+}
+
+.errorBannerText {
+  flex: 1;
+  margin: 0;
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-paragraph);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xsmall);
+  color: var(--color-text-primary);
+}
+
+.errorBannerIcon {
+  flex-shrink: 0;
+  color: var(--color-error-main);
+}
+
+/* ── Input wrap (size-neutral base) ──────── */
+/* Border is rendered as an inset box-shadow so 1px → 2px on
+   hover/focus/error doesn't cause a layout shift. Size classes set
+   border-radius and padding; state rules adjust background and
+   shadow without touching geometry. */
 
 .inputWrap {
   display: flex;
   align-items: center;
-  /* Inset box-shadow stands in for a border so the rendered height
-     stays equal to Button's (a real border would add 2px). */
-  box-shadow: inset 0 0 0 1px var(--color-border-default);
-  background: var(--components-text-input-default);
+  background: var(--components-forms-background-default);
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-enabled);
   font-family: var(--typography-font-family-paragraph);
   font-size: var(--typography-font-size-paragraph);
-  transition: box-shadow 150ms ease;
-  /* Border-radius set per-size below — matches Button's pattern. */
+  transition:
+    background 150ms ease,
+    box-shadow 150ms ease;
 }
 
 /* ── Sizes ────────────────────────────────── */
 
-.regular {
+.regularWrap {
   gap: var(--semantic-components-small);
-  padding: var(--semantic-components-large) var(--semantic-components-large);
+  padding: var(--semantic-components-large);
   line-height: var(--typography-line-height-xsmall);
   border-radius: var(--radius-large);
 }
 
-.dense {
-  gap: var(--semantic-components-medium);
+.denseWrap {
+  gap: var(--semantic-components-small);
   padding: var(--semantic-components-small) var(--semantic-components-medium);
   line-height: var(--typography-line-height-xsmall);
   border-radius: var(--radius-medium);
 }
 
 /* ── States ───────────────────────────────── */
+/* Hover: background brightens to active (white), border thickens to
+   2px in the hover token. */
 
 .inputWrap:hover {
-  box-shadow: inset 0 0 0 1px var(--color-border-hover);
+  background: var(--components-forms-background-active);
+  box-shadow: inset 0 0 0 2px var(--color-border-hover);
 }
 
-/* Focus indicator: a solid ring sitting outside the box edge with a
-   transparent gap between, so it works on any background. Width, color,
-   and offset all driven by the components/focus-ring/* tokens — same
-   source of truth as Button's focus ring. The inner edge also thickens
-   to the focus-ring width to match Figma's `border-2` at focus. */
+/* Focus: same active background as hover, border switches to the
+   brand-coloured surface, plus an outline ring with a 2px transparent
+   offset (same focus-ring tokens as Button + Checkbox). */
+
 .inputWrap:focus-within {
-  box-shadow: inset 0 0 0 var(--components-focus-ring-width) var(--components-focus-ring-default);
+  background: var(--components-forms-background-active);
+  box-shadow: inset 0 0 0 2px var(--components-forms-surface-active);
   outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
   outline-offset: var(--components-focus-ring-offset);
 }
 
-.hasError {
-  box-shadow: inset 0 0 0 var(--components-focus-ring-width) var(--color-error-main);
-}
-/* Error + focus uses the error focus-ring token so the ring is semantically
-   tied to the error state, not just "happens to be red". */
-.hasError:focus-within {
-  box-shadow: inset 0 0 0 var(--components-focus-ring-width) var(--components-focus-ring-error);
-  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-error);
-  outline-offset: var(--components-focus-ring-offset);
+/* Error: 2px red border, default (gray) background — overrides
+   hover/focus background changes via specificity (.wrapper.hasError
+   is more specific than .inputWrap:hover). The outline ring on focus
+   switches to the error-coloured ring so the entire focus indicator
+   stays in the error palette. */
+
+.wrapper.hasError .inputWrap {
+  background: var(--components-forms-background-default);
+  box-shadow: inset 0 0 0 2px var(--components-forms-border-error);
 }
 
-/* Path A disabled: dim the whole field uniformly, mirror Button's
-   approach. The :has selector picks up the wrapper when the inner
-   <input> carries the disabled attribute. */
+.wrapper.hasError .inputWrap:focus-within {
+  outline-color: var(--components-focus-ring-error);
+}
+
+/* Read-only: subdued border, no opacity dim. Same default background,
+   the lighter border signals the field isn't editable without making
+   it look broken or errored. Shares the
+   `--components-forms-border-subdued` token with the disabled state —
+   the opacity dim is what visually distinguishes disabled from
+   read-only. The :read-only pseudo-class also matches disabled
+   inputs, so we exclude that case to keep the two states distinct. */
+
+.wrapper:has(input:read-only:not(:disabled)) .inputWrap {
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
+}
+.wrapper:has(input:read-only:not(:disabled)) .inputWrap:hover,
+.wrapper:has(input:read-only:not(:disabled)) .inputWrap:focus-within {
+  background: var(--components-forms-background-default);
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
+  outline: none;
+}
+
+/* Disabled: 50% opacity over the whole wrapper plus the subdued
+   border. Path A still holds — the dim is the dominant disabled
+   signal — but the border keeps the field from looking enabled
+   underneath the dim, which would read as a contradiction. */
+
 .wrapper:has(input:disabled) {
   opacity: 0.5;
   cursor: not-allowed;
+}
+.wrapper:has(input:disabled) .inputWrap {
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
+}
+.wrapper:has(input:disabled) .inputWrap:hover {
+  background: var(--components-forms-background-default);
+  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
 }
 
 /* ── Native input ─────────────────────────── */
@@ -109,8 +205,8 @@
   font: inherit;
   color: var(--color-text-primary);
   min-width: 0;
-  /* Browsers add 1px top/bottom user-agent padding to <input>; zero it
-     so the rendered height matches the wrap's padding + line-height. */
+  /* UA stylesheets add 1px top/bottom to <input>; zero it so the
+     rendered height matches the wrap's padding + line-height. */
   padding: 0;
 }
 
@@ -127,15 +223,14 @@
   flex-shrink: 0;
 }
 
-/* ── Hint / Error ─────────────────────────── */
+/* ── Prefix / suffix ──────────────────────── */
+/* Static text snippets shown inside the input on either side of the
+   value. Same typography as the value, primary text colour. */
 
-.hint {
-  margin: 0;
+.affix {
+  flex-shrink: 0;
   font-family: var(--typography-font-family-paragraph);
-  font-size: var(--typography-font-size-small);
+  font-size: var(--typography-font-size-paragraph);
+  line-height: var(--typography-line-height-xsmall);
   color: var(--color-text-primary);
-}
-
-.hintError {
-  color: var(--color-error-main);
 }
