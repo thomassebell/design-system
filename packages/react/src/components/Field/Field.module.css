@@ -1,0 +1,80 @@
+/* ── Layout ───────────────────────────────── */
+/* Horizontal flex: control on the left, label + hint stacked on the
+   right. The control is fixed-size; the text fills the remaining
+   width. items-start aligns the control with the first line of the
+   label, which reads correctly for both single- and multi-line
+   labels. */
+
+.field {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--semantic-components-small);
+  width: 100%;
+}
+
+.control {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  /* Match the control's 24px visual hit-area to the label's 24px
+     line-height so they sit on the same baseline. */
+  height: 24px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Label ────────────────────────────────── */
+/* Paragraph size + primary text colour at rest. No hover/focus
+   promotion — the control itself carries state communication. */
+
+.label {
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-paragraph);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xsmall);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.field.hasError .label {
+  color: var(--color-error-main);
+}
+
+/* ── Hint / Error message ─────────────────── */
+/* Small size, sits below the label. Error red when the field has an
+   error. */
+
+.hint {
+  margin: 0;
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-small);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xxsmall);
+  color: var(--color-text-primary);
+}
+
+.field.hasError .hint {
+  color: var(--color-error-main);
+}
+
+/* ── Disabled ─────────────────────────────── */
+/* The control owns its own opacity rule, so we dim only the label +
+   hint here. Dimming the whole field would double-stack with the
+   control's own 0.5 and crush the contrast. */
+
+.field:has(input:disabled) {
+  cursor: not-allowed;
+}
+
+.field:has(input:disabled) .text {
+  opacity: 0.5;
+}
+
+.field:has(input:disabled) .label {
+  cursor: not-allowed;
+}

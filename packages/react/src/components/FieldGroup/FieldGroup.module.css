@@ -1,0 +1,97 @@
+/* ── Group container ──────────────────────── */
+/* Strip the browser's default <fieldset> chrome (border, padding,
+   min-width quirk) so it renders as a plain block. Layout is built
+   from explicit margins on each section so legend + description can
+   sit tight while errorBanner and items get a real gap above them. */
+
+.group {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  margin: 0;
+  padding: 0;
+  /* Browsers default <fieldset> to min-width: min-content, which can
+     stop the group from shrinking inside flex parents. Reset it. */
+  min-width: 0;
+}
+
+/* ── Legend ───────────────────────────────── */
+/* Strong heading: header font family, semibold weight, display-6
+   size. Strips the browser's default <legend> padding which would
+   otherwise push it into the fieldset's border. */
+
+.legend {
+  margin: 0;
+  padding: 0;
+  font-family: var(--typography-font-family-header);
+  font-size: var(--typography-font-size-display-6);
+  font-weight: var(--typography-font-weight-emphasized);
+  line-height: var(--typography-line-height-xsmall);
+  color: var(--color-text-primary);
+}
+
+/* ── Description ──────────────────────────── */
+/* Sits tight under the legend — no margin-top, since legend and
+   description form a "header" pair. Paragraph size, default weight. */
+
+.description {
+  margin: 0;
+  padding: 0;
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-paragraph);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xsmall);
+  color: var(--color-text-primary);
+}
+
+/* ── Error banner ─────────────────────────── */
+/* Pink-tinted callout above the items — replaces the inline error
+   message of the previous design. The icon flags the banner
+   visually; the message is plain paragraph text so longer guidance
+   reads comfortably. */
+
+.errorBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--semantic-components-large);
+  background: var(--color-error-lighter);
+  border-radius: var(--radius-large);
+  padding: var(--semantic-components-small) var(--semantic-components-large);
+}
+
+.errorBannerText {
+  flex: 1;
+  margin: 0;
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-paragraph);
+  font-weight: var(--typography-font-weight-default);
+  line-height: var(--typography-line-height-xsmall);
+  color: var(--color-text-primary);
+}
+
+.errorBannerIcon {
+  flex-shrink: 0;
+  color: var(--color-error-main);
+}
+
+/* ── Items ────────────────────────────────── */
+/* The actual fields in the group, stacked vertically. */
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--semantic-components-small);
+}
+
+/* ── Section spacing ──────────────────────── */
+/* Built from sibling margins instead of a flex gap, so legend +
+   description stay tight while everything else gets a real gap above
+   it. */
+
+.legend + .errorBanner,
+.legend + .items,
+.description + .errorBanner,
+.description + .items,
+.errorBanner + .items {
+  margin-top: var(--semantic-components-small);
+}
