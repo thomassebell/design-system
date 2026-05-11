@@ -348,6 +348,25 @@
         }
       },
       "red": {
+        "red-95": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.8999999761581421,
+              0.9333333373069763
+            ],
+            "alpha": 1,
+            "hex": "#FFE5EE"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:64:16",
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          }
+        },
         "red-90": {
           "$type": "color",
           "$value": {
