@@ -75,23 +75,27 @@
 }
 
 /* ── Items ────────────────────────────────── */
-/* The actual fields in the group, stacked vertically. */
+/* The actual fields in the group, stacked vertically. Fixed 8px gap
+   (primitive, not density-aware) — sibling-field spacing should
+   stay constant across densities, same rationale as Field's
+   control-to-label gap. */
 
 .items {
   display: flex;
   flex-direction: column;
-  gap: var(--semantic-components-small);
+  gap: var(--primitive-size-8);
 }
 
 /* ── Section spacing ──────────────────────── */
 /* Built from sibling margins instead of a flex gap, so legend +
    description stay tight while everything else gets a real gap above
-   it. */
+   it. Fixed 8px (primitive) so the relationship between header,
+   error banner, and items stays constant across densities. */
 
 .legend + .errorBanner,
 .legend + .items,
 .description + .errorBanner,
 .description + .items,
 .errorBanner + .items {
-  margin-top: var(--semantic-components-small);
+  margin-top: var(--primitive-size-8);
 }
