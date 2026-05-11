@@ -105,8 +105,8 @@
 
 .checkbox[aria-invalid="true"]:checked,
 .checkbox[aria-invalid="true"]:indeterminate {
-  background-color: var(--color-error-main);
-  border-color: var(--color-error-main);
+  background-color: var(--components-forms-surface-error);
+  border-color: var(--components-forms-border-error);
 }
 
 .checkbox[aria-invalid="true"]:focus-visible {
