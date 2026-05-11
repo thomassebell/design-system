@@ -8,7 +8,10 @@
 .field {
   display: flex;
   align-items: flex-start;
-  gap: var(--semantic-components-small);
+  /* Fixed 8px gap (primitive, not density-aware) — the control-to-
+     label distance should stay constant whether the form is rendered
+     in default or compact density. */
+  gap: var(--primitive-size-8);
   width: 100%;
 }
 
