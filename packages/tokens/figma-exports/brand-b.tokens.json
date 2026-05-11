@@ -1666,6 +1666,16 @@
               "ALL_SCOPES"
             ]
           }
+        },
+        "error": {
+          "$type": "color",
+          "$value": "{color.error.main}",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2563:1212",
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          }
         }
       },
       "border": {
