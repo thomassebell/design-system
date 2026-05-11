@@ -1,0 +1,124 @@
+/* ── Box ──────────────────────────────────── */
+/* `appearance: none` strips the browser's native checkbox so we paint
+   our own. The underlying <input type="checkbox"> keeps native
+   keyboard, form, and screen-reader behaviour for free.
+
+   Single size: 18×18 visual box with a 2px border. The 24×24 hit
+   area from the Figma design lives on the surrounding Field (which
+   adds 3px of padding around the control). */
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  background-color: var(--components-forms-background-default);
+  border: 2px solid var(--components-forms-border-enabled);
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+  transition:
+    background-color 100ms ease,
+    border-color 100ms ease;
+}
+
+/* ── Unchecked states ─────────────────────── */
+
+.checkbox:hover {
+  background-color: var(--components-forms-background-active);
+  border-color: var(--components-forms-border-hover);
+}
+
+.checkbox:active {
+  background-color: var(--components-forms-background-pressed);
+  border-color: var(--components-forms-border-pressed);
+}
+
+/* Focus indicator: brand-coloured 2px border on the box + an outer
+   2px ring with a 2px transparent gap. Uses the same focus-ring
+   tokens as Button / Input so the entire system has one focus
+   indicator language. */
+.checkbox:focus-visible {
+  background-color: var(--components-forms-background-active);
+  border-color: var(--components-forms-border-focused);
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
+  outline-offset: var(--components-focus-ring-offset);
+}
+
+/* ── Checked + indeterminate ──────────────── */
+/* Both share the brand-coloured fill at rest and a white glyph (check
+   or dash) embedded as a background-image data URI. `--color-text-
+   contrast-text` is white in both brands, so the hardcoded white in
+   the SVG stays accurate while keeping this a single element. */
+
+.checkbox:checked,
+.checkbox:indeterminate {
+  background-color: var(--color-surface-primary-main);
+  border-color: var(--color-surface-primary-main);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
+
+.checkbox:checked {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,8 7,12 13,4"/></svg>');
+}
+
+.checkbox:indeterminate {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="8" x2="13" y2="8"/></svg>');
+}
+
+/* Checked + hover/pressed/focus: only colour shifts, the glyph stays
+   in place via the earlier rule (we don't redeclare background-image
+   here). */
+
+.checkbox:checked:hover,
+.checkbox:indeterminate:hover {
+  background-color: var(--components-forms-border-hover);
+  border-color: var(--components-forms-border-hover);
+}
+
+.checkbox:checked:active,
+.checkbox:indeterminate:active {
+  background-color: var(--components-forms-border-pressed);
+  border-color: var(--components-forms-border-pressed);
+}
+
+.checkbox:checked:focus-visible,
+.checkbox:indeterminate:focus-visible {
+  background-color: var(--color-surface-primary-main);
+  border-color: var(--components-forms-border-focused);
+}
+
+/* ── Error ────────────────────────────────── */
+/* Triggered by aria-invalid="true" on the input, which the wrapping
+   Field sets when an error message is passed in. Red border in all
+   variants; checked also gets a red fill. */
+
+.checkbox[aria-invalid="true"] {
+  border-color: var(--components-forms-border-error);
+}
+
+.checkbox[aria-invalid="true"]:checked,
+.checkbox[aria-invalid="true"]:indeterminate {
+  background-color: var(--components-forms-surface-error);
+  border-color: var(--components-forms-border-error);
+}
+
+.checkbox[aria-invalid="true"]:focus-visible {
+  outline-color: var(--components-focus-ring-error);
+}
+
+/* ── Disabled ─────────────────────────────── */
+/* Path A: opacity dim + not-allowed cursor. Field's matching `:has()`
+   rule dims the surrounding label + hint via its own opacity on the
+   `.text` element so this opacity doesn't compound. */
+
+.checkbox:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
