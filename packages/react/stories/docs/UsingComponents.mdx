@@ -25,12 +25,22 @@ import "@ds/react/styles.css";
 This brings in:
 
 - A baseline reset (`box-sizing: border-box`).
-- The default theme — Brand A, Default density.
+- The default theme — **Sebell, Default density**.
+
+For a single-brand production app (the most common case), this is all you need — pick the brand CSS once at build time and you're done.
 
 ## Use components
 
 ```tsx
-import { Button, Input, Stack, Text, Icon } from "@ds/react";
+import {
+  Button,
+  Input,
+  Checkbox,
+  Radio,
+  Stack,
+  Text,
+  Icon,
+} from "@ds/react";
 
 export function SignupForm() {
   return (
@@ -38,6 +48,7 @@ export function SignupForm() {
       <Text variant="h2">Sign up</Text>
       <Input label="Email" placeholder="you@example.com" />
       <Input label="Password" type="password" />
+      <Checkbox label="I agree to the terms" />
       <Button>Create account</Button>
     </Stack>
   );
@@ -48,8 +59,14 @@ export function SignupForm() {
 
 | Component | Key props |
 |---|---|
-| `Button` | `variant` (`solid` / `outline` / `danger` / `text`), `size` (`regular` / `dense`), `fullWidth`, `loading` |
-| `Input` | `label`, `hint`, `error`, `leadingIcon`, `trailingIcon`, `size` |
+| `Button` | `variant` (`solid` / `outline` / `danger` / `text`), `size` (`regular` / `dense`), `startIcon`, `endIcon`, `fullWidth`, `loading` |
+| `Input` | `label`, `hint`, `error`, `startIcon`, `endIcon`, `size` |
+| `Checkbox` | `checked`, `indeterminate`, `onChange`, `disabled` |
+| `CheckboxField` | `label`, `hint`, `error`, plus all `Checkbox` props |
+| `CheckboxGroup` | `legend`, `value`, `onChange`, list of `Checkbox` children |
+| `Radio` | `checked`, `value`, `name`, `onChange`, `disabled` |
+| `RadioField` | `label`, `hint`, `error`, plus all `Radio` props |
+| `RadioGroup` | `legend`, `value`, `onChange`, `options` (array of `RadioOption`) |
 | `Text` | `variant` (`display`, `h1`–`h4`, `body`, `bodySmall`, `caption`, `overline`), `truncate`, `align`, `muted` |
 | `Stack` | `direction`, `gap` (t-shirt sizes), `align`, `justify`, `wrap` |
 | `Icon` | `size` (`sm` / `md` / `lg`), `label` (omit for decorative icons) |
@@ -58,18 +75,22 @@ Every prop is fully typed — hover any prop in your IDE for documentation.
 
 ## Switching brand or density at runtime
 
-By default the app loads Brand A Default. To switch, replace the active stylesheet:
+By default the app loads Sebell Default. To switch, replace the active stylesheet:
 
 ```html
-<link rel="stylesheet" href="/path/to/brand-b-default.css">
+<link rel="stylesheet" href="/path/to/brand-a-default.css">
 ```
 
-The four built CSS files live in `@ds/tokens/dist/`:
+The six built CSS files live in `@ds/tokens/dist/`:
 
+- `sebell-default.css`
+- `sebell-compact.css`
 - `brand-a-default.css`
 - `brand-a-compact.css`
 - `brand-b-default.css`
 - `brand-b-compact.css`
+
+For a real product, you'll normally pick **one** of these at build time and never swap. Brand A and Brand B exist in the system as multi-brand pipeline test fixtures; they're not intended to ship in a Sebell-branded app. Multi-brand swapping is for engineers building products that intentionally render in different brands at runtime (white-label apps, etc.).
 
 Your bundler can copy them as static assets. The active stylesheet is whichever one is currently in the DOM — swap it via JavaScript when the user toggles.
 

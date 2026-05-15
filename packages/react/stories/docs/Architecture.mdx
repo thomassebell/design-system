@@ -4,7 +4,7 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # Architecture
 
-Sebell DS is **multi-brand** — Brand A and Brand B share the same component shapes but render with different colors and fonts. It's also **density-aware** — the same components tighten or loosen depending on whether you're in `default` or `compact` density.
+Sebell DS is **multi-brand** — Sebell, Brand A and Brand B share the same component shapes but render with different colours and fonts. It's also **density-aware** — the same components tighten or loosen depending on whether you're in `default` or `compact` density.
 
 This page explains how those two axes coexist without the codebase tying itself in knots.
 
@@ -14,12 +14,13 @@ Each layer owns a different kind of decision:
 
 ### 1. Foundation primitives — *per brand, in their own Figma file*
 
-Each brand has its own Foundation file:
+Each brand has its own Foundation file or collection:
 
-- `Brand A Foundation.fig` — Brand A's color ramps and font-family choices.
-- `Brand B Foundation.fig` — same shape, different values.
+- `sebell-foundation` — Sebell's wood-species colour ramps (pine, walnut, cedar, ash), Noto type families, square/full radius primitives.
+- `brand-a-foundation` — Brand A's primary-blue ramps and Inter typeface.
+- `brand-b-foundation` — Brand B's green/rust ramps and Gabarito + Roboto typefaces.
 
-These are imported as Figma libraries into the main DS file. **Brand identity lives here.**
+These are imported as Figma libraries (or live as collections) referenced by the main DS file. **Brand identity lives here.**
 
 ### 2. Universal primitives — *in the main DS file*
 
@@ -38,6 +39,7 @@ The names components actually reference:
 - `--semantic-components-medium`, `--semantic-layout-large`, …
 - `--typography-font-size-paragraph`, `--typography-line-height-xsmall`, …
 - `--radius-medium`, `--radius-small`, …
+- `--components-button-text-enabled`, `--components-button-text-hover`, … (per-state component tokens, used for fine-grained a11y control)
 
 Every one of these is an **alias**. The aliases change values when modes change.
 
@@ -47,7 +49,7 @@ Two **independent** mode axes:
 
 ### Brand mode (token-driven)
 
-Each brand's **semantic** color/font tokens alias to that brand's **foundation** primitives. Brand A's `--color-surface-primary-main` aliases to its blue ramp; Brand B's aliases to its grass ramp. Same token name, different brand-specific value.
+Each brand's **semantic** colour/font tokens alias to that brand's **foundation** primitives. Sebell's `--color-surface-primary-main` aliases to its pine ramp; Brand A's aliases to its sky-blue ramp; Brand B's aliases to its grass-green ramp. Same token name, different brand-specific value.
 
 ### Density mode (token-driven)
 
@@ -66,18 +68,22 @@ Figma exports (W3C-DTCG JSON)
         │
         ▼
 packages/tokens/build.mjs
-   (resolves aliases, applies px/rem
-    and string-to-numeric transforms)
+   (pre-flight cross-brand checks → resolves aliases →
+    applies px/rem and string-to-numeric transforms)
         │
         ▼
 packages/tokens/dist/
+  ├── sebell-default.css
+  ├── sebell-compact.css
   ├── brand-a-default.css
   ├── brand-a-compact.css
   ├── brand-b-default.css
   └── brand-b-compact.css
         │
         ▼
-Storybook bundles all four inline; toolbar swaps the active stylesheet
+Storybook bundles all six inline; toolbar swaps the active stylesheet.
+The first combo (sebell × default) also feeds dist/tokens.json, which
+generate-swift.mjs turns into DesignTokens.swift for iOS.
         │
         ▼
 Components render via var(--…) references
@@ -85,9 +91,24 @@ Components render via var(--…) references
 
 The build script reads the JSON exports directly — there's no hand-edited intermediate format to drift out of sync. Whatever's in Figma at export time is exactly what compiles.
 
+### Pre-flight cross-brand checks
+
+Before Style Dictionary runs, `build.mjs` validates every brand against the others:
+
+- **Alias misalignment** — every alias in `<brand>.tokens.json` must target `<brand>-foundation`, not another brand's foundation. Fatal if not.
+- **Cross-brand consistency** — every brand must define the same set of semantic token keys. Levenshtein-close names get flagged as likely typos. Type mismatches across brands are fatal.
+- **Structural diff vs git HEAD** — informational. Reports added / removed / renamed / retyped tokens and surfaces stale `var(--…)` references in component CSS, so a Figma rename's downstream impact lands in build output instead of waiting for Chromatic.
+
+This is the system's safety net for the multi-brand contract.
+
+## The canonical brand spec
+
+The values you see in Storybook are the *result* of design decisions. The *decisions themselves* — token shape, component contracts, brand voice, "adding a brand" runbook — live in [`brand/`](https://github.com/sebellDS/design-system/tree/main/brand) at the repo root, written in Google's [DESIGN.md](https://github.com/google-labs-code/design.md) format (alpha, April 2026). Start with `brand/core.design.md` for the system-level spec; then read `brand/brands/<name>.design.md` for a specific brand's values and voice.
+
 ## Architectural rules of thumb
 
 - **Components only reference semantic or component tokens.** Never primitives directly. Primitives are for the semantic layer to compose; components consuming primitives bypass density and break the system.
+- **Per-state component tokens for a11y.** Slots like `components.button.text.{enabled, hover, pressed}` exist so each brand can pick its own foreground per state. Use them when a component might land on backgrounds whose luminance varies across brands.
 - **The semantic layer is the contract.** When Figma renames a primitive, the alias updates and components don't notice.
 - **Modes are mutually independent.** Brand and density don't interact at the token layer. A component's size is the only place where they compose.
 - **One source of truth.** Anything visual that's not in a token is a bug.

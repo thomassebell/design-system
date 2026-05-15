@@ -21,26 +21,29 @@ Where you make the edit depends on what's changing:
 
 | What's changing | Edit in |
 |---|---|
-| A brand's color ramp (e.g. Brand B's primary blue) | The matching Foundation file (`Brand A Foundation` / `Brand B Foundation`) |
-| A brand's font choices | The matching Foundation file |
+| A brand's colour ramp (e.g. Sebell's pine green, Brand B's grass green) | The matching foundation (`sebell-foundation`, `brand-a-foundation`, or `brand-b-foundation`) |
+| A brand's font choices | The matching foundation |
 | Universal sizes / typography sizes / line-heights | The main DS file |
 | Compact-density spacing values | The main DS file (the `compact` mode of the relevant variable) |
-| A component's color / radius decision | The main DS file's `components.<name>.*` collection |
-| Adding a new variable | Wherever it conceptually belongs (foundation if brand-specific, DS file if universal) |
+| A component's colour / radius / per-state decision | The main DS file's `components.<name>.*` collection |
+| A brand's semantic value (e.g. which palette feeds `color.warning.*`) | The main DS file's brand variable collection, under the relevant brand mode |
+| Adding a new variable | Wherever it conceptually belongs (foundation if brand-specific primitive, DS file if semantic or universal) |
 
-When in doubt: foundations are for brand identity, the DS file is for everything else.
+When in doubt: foundations are for brand identity; the DS file is for everything else. If you add a new semantic slot, **you must add it to every brand mode** — the build's cross-brand consistency check will fail otherwise (see "Step 4" below).
 
 ## Step 2 — Re-export
 
-Use the same export tool you used last time. The four files we consume live in `packages/tokens/figma-exports/`:
+Use the same export tool you used last time. The eight files we consume live in `packages/tokens/figma-exports/` and follow the `.tokens.json` naming convention (Figma plugin's default):
 
 ```
-brand-a-foundation.json
-brand-a-tokens.json
-brand-b-foundation.json
-brand-b-tokens.json
-default-tokens.json
-compact-tokens.json
+sebell-foundation.tokens.json
+sebell.tokens.json
+brand-a-foundation.tokens.json
+brand-a.tokens.json
+brand-b-foundation.tokens.json
+brand-b.tokens.json
+default.tokens.json
+compact.tokens.json
 ```
 
 Replace the relevant files. **Naming must match exactly** — the build script reads them by name.
@@ -60,19 +63,25 @@ git push
 GitHub Actions runs:
 
 1. **`npm run tokens:build`** — runs `build.mjs`, which:
-   - Reads all six JSON files
+   - Reads all eight JSON files (3 foundations + 3 brand semantic + 2 density)
+   - Runs the pre-flight cross-brand health checks:
+     - **Alias misalignment** — every alias in `<brand>.tokens.json` must target `<brand>-foundation`, not another brand's foundation. Fatal.
+     - **Structural parity** — every brand must define the same set of semantic keys. Mismatches fail or warn; Levenshtein-close names get flagged as likely typos.
+     - **Type mismatches** across brands — fatal.
+     - **Structural diff vs git HEAD** — informational; shows added/removed/renamed/retyped tokens and surfaces stale `var(--…)` references in component CSS.
    - Resolves cross-file aliases (`{primitive.size-16}` → `16`)
-   - Converts color objects to hex strings
+   - Converts colour objects to hex strings
    - Adds units to dimensional values (px, rem) based on path
    - Maps font-weight strings ("Semi Bold") to CSS numeric weights (600)
    - Adds font-family fallback chains
-   - Emits four CSS files: `dist/brand-{a,b}-{default,compact}.css`
+   - Emits six CSS files: `dist/{sebell,brand-a,brand-b}-{default,compact}.css`
+   - Emits `dist/tokens.json` from the first combo (`sebell × default`) for `generate-swift.mjs` → iOS
 
 2. **`npm run build`** — builds all packages and confirms components compile against the new tokens.
 
 3. **`npm run lint`** and **`npm test`** — sanity checks.
 
-4. **Storybook builds**, Vercel deploys.
+4. **Storybook builds**, Vercel deploys; Chromatic captures visual snapshots for every story across every brand × density combination.
 
 The whole pipeline takes ~2–3 minutes.
 
@@ -89,8 +98,11 @@ When Vercel goes green:
 | Symptom | Likely cause |
 |---|---|
 | Build deploys but the change isn't visible | Forgot to re-export from Figma after the edit. |
-| Build fails: "no such variable / unresolved reference" | Renamed or deleted a variable that components still reference. Either keep an alias in Figma as a redirect, or update the component CSS. |
-| One brand looks wrong, the other is fine | Edited in only one Foundation file; the other brand still has the old value. |
+| Build fails: "cross-brand alias misalignment" | An alias in your brand's tokens still points at another brand's foundation. Typically happens when a brand mode was duplicated from another brand and aliases didn't get re-pointed. Fix in Figma and re-export. |
+| Build fails: "$type mismatch across brands" | Same semantic token path has a different `$type` across brands (e.g. one is `color`, another `string`). Fix in Figma so they match. |
+| Build warns: "likely typo" or "defined in only one brand" | A semantic key exists in some brands but not others. Either rename in Figma so the names match, or add the missing key to the brand that's lacking it. |
+| Build fails: "no such variable / unresolved reference" | Renamed or deleted a variable that components still reference. The build's structural-diff section will list each `file:line` of the stale `var(--…)`. |
+| One brand looks wrong, the others are fine | Edited in only one brand mode or foundation; the others still have the old value. |
 | Density toggle has no visible effect on a component | The component's CSS is referencing a primitive (`--primitive-size-X`) instead of a semantic token (`--semantic-components-Y`). Primitives don't vary by density. |
 
 ## When you're adding new variables

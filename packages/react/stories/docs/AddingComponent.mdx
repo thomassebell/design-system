@@ -10,7 +10,7 @@ How to add a new component to `@ds/react`.
 
 1. **Check it doesn't already exist.** Search the Components section.
 2. **Sketch the API.** What props, what variants, what states. Match the patterns of existing components — `forwardRef`, named variants, typed prop interface.
-3. **Sketch in Figma if needed.** If the component requires new tokens (e.g. component-specific colors), add them to the Figma DS file's `components.<name>.*` collection first and re-export.
+3. **Sketch in Figma if needed.** If the component requires new tokens (e.g. component-specific colours), add them to the Figma DS file's `components.<name>.*` collection first — **for every brand mode** — and re-export. Adding the slot to only one brand will fail the build's cross-brand consistency check.
 
 ## File structure
 
@@ -51,6 +51,8 @@ And remember to add the export from `packages/react/src/index.ts`.
 | `padding: 12px` | `padding: var(--semantic-components-medium)` | Tokens, density-aware |
 | `color: #0d0d0c` | `color: var(--color-text-primary)` | Tokens, brand-aware |
 | `var(--primitive-size-12)` | `var(--semantic-components-medium)` | The semantic layer respects density; primitives don't |
+| `var(--primitive-color-pine-30)` | `var(--color-surface-primary-main)` | Components never reference primitives directly — always go through the semantic layer |
+| Hardcoded text colour on a coloured surface | A per-state component token like `var(--components-button-text-enabled)` | Each brand picks its own foreground per state so contrast holds. See Button for the precedent — Sebell needs light text on its dark pine surface, Brand A keeps dark text on its sky-blue surface. |
 | `border: 1px solid …` | `box-shadow: inset 0 0 0 1px …` | Borders add 2px to layout height; shadows don't (matters for sibling-component height matching) |
 | Custom motion durations | hardcoded `150ms ease` | We don't have motion tokens yet — hardcode for now, swap to a token when added |
 
@@ -94,6 +96,15 @@ CSS Modules class names are kept non-hashed in tests (configured in `vitest.conf
 - Focus styles visible (use `:focus-visible`, not just `:focus`).
 - ARIA attributes when meaningful (`aria-busy` on a loading button, `aria-invalid` on errored input, `aria-label` on icon-only buttons).
 - The Storybook **a11y addon** runs axe on every story automatically — check the Accessibility panel before merging.
+- **Verify contrast in every brand.** Switch the toolbar across all three brands before merging — a state that passes AA in Sebell may fail in Brand A or Brand B because each brand's primary surface has different luminance. If the component lands on a coloured surface that varies brand-to-brand, use per-state component tokens (see Token usage rules above) rather than a static `color.text.*` slot.
+
+## Cross-brand contract
+
+The build's pre-flight check (`packages/tokens/build.mjs`) requires every semantic / component token slot to exist in every brand. Practically:
+
+- If your component reads a new token (e.g. `components.banner.background`), that slot must be defined in `sebell.tokens.json`, `brand-a.tokens.json`, **and** `brand-b.tokens.json`.
+- Add the slot in Figma to every brand mode in the same PR. The build will fail "defined in only one brand" otherwise.
+- For test fixtures (Brand A / Brand B), the value can be a reasonable default — they're calibration brands, not real product designs.
 
 ## What gets deployed
 

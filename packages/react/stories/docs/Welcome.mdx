@@ -8,8 +8,8 @@ A multi-brand design system that turns Figma decisions into a living UI library.
 
 ## What's in here
 
-- **Components** — React building blocks (Button, Input, Stack, Text, Icon). Browse the **Components** section in the sidebar.
-- **Tokens** — the design decisions (colors, typography, spacing, radius) that flow from Figma into code. The **Tokens** section is a live catalog — what you see is exactly what's currently built.
+- **Components** — React building blocks. Today: Button, Input, Checkbox (+ Field, Group), Radio (+ Field, Group), Text, Stack, Icon. Browse the **Components** section in the sidebar.
+- **Tokens** — the design decisions (colours, typography, spacing, radius) that flow from Figma into code. The **Tokens** section is a live catalog — what you see is exactly what's currently built.
 - **Guides** — how to update tokens from Figma, how to add components, how to consume the system in an app.
 
 ## Who it's for
@@ -17,14 +17,22 @@ A multi-brand design system that turns Figma decisions into a living UI library.
 - **Designers** working in a Sebell DS brand — to see what's available, how each component behaves under different brands and densities, and what changes when a token moves.
 - **Engineers** building UIs — to install `@ds/react`, drop in components, and have brand/density theming and accessibility handled automatically.
 
+## The three brands
+
+- **Sebell** — the production brand. Tseb's own brand, used for real apps and websites. Wood-species palette (pine green primary, walnut, cedar, ash), Noto Serif headers + Noto Sans body, square-or-full radius identity.
+- **Brand A** — a test fixture. Generic primary-blue exemplar, Inter typeface. Exists to exercise the multi-brand pipeline.
+- **Brand B** — a test fixture. Diverges from Brand A on every axis (green primary, Gabarito + Roboto type pair, soft rounded radii) so cross-brand consistency checks have something to compare.
+
+Brand A and Brand B are kept deliberately. Don't mine them for design inspiration — they're calibration tools, not real brands. The canonical brand spec lives in [`brand/core.design.md`](https://github.com/sebellDS/design-system/tree/main/brand) at the repo root, written in Google's DESIGN.md format.
+
 ## Two things to know about the toolbar
 
 Every story has two switchers at the top — **Brand** (paintbrush icon) and **Density** (grow icon).
 
-- **Brand** flips colors, fonts, and brand-specific component decisions (like Brand A's blue button vs Brand B's green one).
+- **Brand** flips colours, fonts, and brand-specific component decisions (Sebell's pine-green solid button vs Brand A's sky-blue one vs Brand B's lime-green one).
 - **Density** flips spacing — components tighten in `compact`, breathe in `default`.
 
-These two are independent. You can be in Brand A + Compact, or Brand B + Default, or any combination. The page re-renders instantly when you change either.
+These two are independent. You can be in Sebell + Compact, Brand A + Default, or any combination. The page re-renders instantly when you change either. **Sebell is the default**; the toolbar opens on Sebell every time.
 
 That toolbar is the heart of the system. Anything that visually changes between brands or densities should be doing so through tokens — never hardcoded values.
 
