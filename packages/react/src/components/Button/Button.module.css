@@ -56,15 +56,21 @@
 
 /* ── Variants ─────────────────────────────── */
 
+/* Solid variant — text colour follows per-state semantic tokens so each
+   brand picks a foreground that meets contrast against its own primary
+   surface. Sebell's pine-30 background needs light text; Brand A's sky
+   blue keeps dark text. Don't reintroduce a hardcoded color here. */
 .solid {
   background: var(--components-button-background-enabled);
-  color: var(--color-text-primary);
+  color: var(--components-button-text-enabled);
 }
 .solid:hover:not(:disabled) {
   background: var(--components-button-background-hover);
+  color: var(--components-button-text-hover);
 }
 .solid:active:not(:disabled) {
   background: var(--components-button-background-pressed);
+  color: var(--components-button-text-pressed);
 }
 
 .outline {
@@ -76,23 +82,40 @@
   color: var(--color-text-primary);
   box-shadow: inset 0 0 0 2px var(--components-button-border-hover);
 }
+/* Pressed resets text back to text.light. Without an explicit color here,
+   :active inherits :hover's text.primary when the user clicks while hovering
+   (which is always the case for mouse interaction) — diverging from Figma. */
 .outline:active:not(:disabled) {
+  color: var(--color-text-light);
   box-shadow: inset 0 0 0 2px var(--components-button-border-pressed);
 }
 /* No outline-specific :disabled rule — the universal .button:disabled
    opacity rule above dims the whole element uniformly (Path A). */
 
+/* Danger variant — darken-on-interaction pattern. Destructive actions
+   deepen the surface as the user engages, which: (a) reinforces "this is
+   irreversible" affordance, and (b) keeps white text readable. Solid's
+   main→light→dark lightening direction would push hover backgrounds too
+   pale for `color.error.contrast-text` to maintain AA. See
+   brand/core.design.md → Do's and Don'ts for the rationale. */
+/* Danger variant — soft-hover pattern.
+   - enabled:  saturated red surface, white text (alarming)
+   - hover:    pale red surface, dark text (a "soft" beat before commit)
+   - pressed:  deep red surface, white text (re-assert severity on commit)
+   The hover is a deliberate visual de-escalation that asks "are you sure?"
+   while still tinting red. Dark text on the pale background keeps AA at all
+   states. See brand/core.design.md → Do's and Don'ts for the rationale. */
 .danger {
   background: var(--color-error-main);
   color: var(--color-error-contrast-text);
 }
-/* Hover lightens (matches Solid's main → light direction). */
 .danger:hover:not(:disabled) {
   background: var(--color-error-light);
+  color: var(--color-text-primary);
 }
-/* Pressed darkens (matches Solid's main → dark direction). */
 .danger:active:not(:disabled) {
   background: var(--color-error-dark);
+  color: var(--color-error-contrast-text);
 }
 
 /* Text variant: nav-link aesthetic, transparent background with a 2px
@@ -112,7 +135,9 @@
   color: var(--color-text-primary);
   box-shadow: inset 0 -2px 0 0 var(--color-surface-primary-light);
 }
+/* Same pressed-text-reset reasoning as .outline:active. */
 .text:active:not(:disabled) {
+  color: var(--color-text-light);
   box-shadow: inset 0 -2px 0 0 var(--color-surface-primary-dark);
 }
 
