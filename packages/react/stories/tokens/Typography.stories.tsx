@@ -47,10 +47,20 @@ function Sample({
   );
 }
 
-/** Every font-size token, rendered at its actual size. */
+/**
+ * Every font-size token, rendered at its actual size.
+ *
+ * System rule: `display-*` sizes pair with the header family; every other
+ * size (paragraph, small, components-*) pairs with paragraph. See
+ * brand/core.design.md → Typography.
+ */
 export const Sizes: Story = {
   render: () => {
     const tokens = filterByPrefix(useCssTokens(), "--typography-font-size-");
+    const familyFor = (tokenName: string) =>
+      tokenName.includes("display")
+        ? "var(--typography-font-family-header)"
+        : "var(--typography-font-family-paragraph)";
     return (
       <div style={{ maxWidth: 900 }}>
         {tokens.map((t) => (
@@ -60,7 +70,7 @@ export const Sizes: Story = {
             style={{
               fontSize: `var(${t.name})`,
               lineHeight: 1.4,
-              fontFamily: "var(--typography-font-family-paragraph)",
+              fontFamily: familyFor(t.name),
             }}
           />
         ))}
