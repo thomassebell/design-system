@@ -39,6 +39,12 @@ npm run build
 | `ios-tokens` | Swift Package that exposes `DesignTokens.swift` for iOS / SwiftUI. |
 | `@ds/docs` | Documentation site (token reference, component guidelines, contribution guide). |
 
+## Brand structure
+
+This is a multi-brand design system. The active brands are **Sebell** (production) and **Brand A / Brand B** (test fixtures that exercise the multi-brand pipeline). The brand spec — token shape, component contracts, and the runbook for adding a new brand — lives in [`brand/`](./brand/), written in the [DESIGN.md](https://github.com/google-labs-code/design.md) format.
+
+Start with [`brand/core.design.md`](./brand/core.design.md) for the system-level contract, then read [`brand/brands/sebell.design.md`](./brand/brands/sebell.design.md) for the Sebell brand specifics.
+
 ## How tokens flow
 
 ```
