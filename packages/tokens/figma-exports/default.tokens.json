@@ -606,7 +606,7 @@
   "radius": {
     "small": {
       "$type": "number",
-      "$value": 2,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:2427:814",
         "com.figma.scopes": [
@@ -622,7 +622,7 @@
     },
     "medium": {
       "$type": "number",
-      "$value": 4,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:2427:815",
         "com.figma.scopes": [
@@ -638,7 +638,7 @@
     },
     "large": {
       "$type": "number",
-      "$value": 4,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:2427:816",
         "com.figma.scopes": [

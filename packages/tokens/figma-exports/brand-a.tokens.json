@@ -32,12 +32,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.4000000059604645,
-              0.7999999523162842,
+              0.20000000298023224,
+              0.7333332896232605,
               1
             ],
             "alpha": 1,
-            "hex": "#66CCFF"
+            "hex": "#33BBFF"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:37:13",
@@ -45,9 +45,9 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:5b170de61ee4a8177215741b93eebb8e09334e08/48:172",
-              "targetVariableName": "primitive/color/blue/blue-70",
-              "targetVariableSetId": "VariableCollectionId:792febaedbfe1faefef3d39d22cb1965fdd75f11/48:93",
+              "targetVariableId": "VariableID:922031bec93f17fec306749a3d190c8adbd99337/60:9",
+              "targetVariableName": "primitive/color/blue/blue-60",
+              "targetVariableSetId": "VariableCollectionId:62e45423801e54413b09984900972861f258622f/60:5",
               "targetVariableSetName": "brand-a-foundation"
             }
           }
@@ -1493,15 +1493,15 @@
     },
     "xlarge": {
       "$type": "number",
-      "$value": 4,
+      "$value": 9999,
       "$extensions": {
         "com.figma.variableId": "VariableID:2427:829",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:edc364878432fe0d62cf18e5bac3fdca82cfbf48/60:64",
-          "targetVariableName": "primitive/radius/round",
+          "targetVariableId": "VariableID:cdb5169022588a18c401d133e347eacc443d2899/74:1",
+          "targetVariableName": "primitive/radius/full",
           "targetVariableSetId": "VariableCollectionId:62e45423801e54413b09984900972861f258622f/60:5",
           "targetVariableSetName": "brand-a-foundation"
         }
@@ -1633,6 +1633,44 @@
             ]
           }
         }
+      },
+      "text": {
+        "enabled": {
+          "$type": "color",
+          "$value": "{color.text.primary}",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2607:1285",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL",
+              "STROKE"
+            ]
+          }
+        },
+        "hover": {
+          "$type": "color",
+          "$value": "{color.text.primary}",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2607:1286",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL",
+              "STROKE"
+            ]
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{color.text.primary}",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2607:1287",
+            "com.figma.scopes": [
+              "SHAPE_FILL",
+              "TEXT_FILL",
+              "STROKE"
+            ]
+          }
+        }
       }
     },
     "forms": {
@@ -1642,6 +1680,16 @@
           "$value": "{color.surface.primary.main}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2561:496",
+            "com.figma.scopes": [
+              "ALL_SCOPES"
+            ]
+          }
+        },
+        "enabled": {
+          "$type": "color",
+          "$value": "{color.surface.neutral.darker}",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2592:1917",
             "com.figma.scopes": [
               "ALL_SCOPES"
             ]
@@ -1801,6 +1849,16 @@
             "com.figma.scopes": [
               "FRAME_FILL",
               "SHAPE_FILL"
+            ]
+          }
+        },
+        "off": {
+          "$type": "color",
+          "$value": "{color.surface.neutral.light}",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2591:1916",
+            "com.figma.scopes": [
+              "ALL_SCOPES"
             ]
           }
         }

@@ -1170,6 +1170,17 @@
             "CORNER_RADIUS"
           ]
         }
+      },
+      "full": {
+        "$type": "number",
+        "$value": 9999,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:74:10",
+          "com.figma.scopes": [
+            "TEXT_CONTENT",
+            "CORNER_RADIUS"
+          ]
+        }
       }
     },
     "font-family": {

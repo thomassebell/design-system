@@ -5,19 +5,23 @@
 // attribute on each <style> — instant, no network, no race against
 // Chromatic taking a snapshot before the new stylesheet loads.
 
+import sebellDefaultCss from "@ds/tokens/dist/sebell-default.css?inline";
+import sebellCompactCss from "@ds/tokens/dist/sebell-compact.css?inline";
 import brandADefaultCss from "@ds/tokens/dist/brand-a-default.css?inline";
 import brandACompactCss from "@ds/tokens/dist/brand-a-compact.css?inline";
 import brandBDefaultCss from "@ds/tokens/dist/brand-b-default.css?inline";
 import brandBCompactCss from "@ds/tokens/dist/brand-b-compact.css?inline";
 
 const SHEETS = {
+  "sebell-default": sebellDefaultCss,
+  "sebell-compact": sebellCompactCss,
   "brand-a-default": brandADefaultCss,
   "brand-a-compact": brandACompactCss,
   "brand-b-default": brandBDefaultCss,
   "brand-b-compact": brandBCompactCss,
 };
 
-const DEFAULT_MODE = "brand-a-default";
+const DEFAULT_MODE = "sebell-default";
 const STYLE_DATA_ATTR = "tokenMode"; // dataset key (renders as data-token-mode)
 
 (function attachAllModeStyles() {
@@ -42,7 +46,7 @@ function activateMode(mode) {
 // Web fonts used across the system.
 const fonts = document.createElement("link");
 fonts.rel = "stylesheet";
-fonts.href = "https://fonts.googleapis.com/css2?family=Gabarito:wght@300;400;500;600;700&family=Inter:wght@200;400;500;600;700&family=Roboto:wght@300;400;700&display=swap";
+fonts.href = "https://fonts.googleapis.com/css2?family=Gabarito:wght@300;400;500;600;700&family=Inter:wght@200;400;500;600;700&family=Roboto:wght@300;400;700&family=Noto+Sans:wght@300;400;500;700&family=Noto+Serif:wght@300;400;500;700&display=swap";
 document.head.appendChild(fonts);
 
 export const globalTypes = {
@@ -52,6 +56,7 @@ export const globalTypes = {
     toolbar: {
       icon: "paintbrush",
       items: [
+        { value: "sebell", title: "Sebell" },
         { value: "brand-a", title: "Brand A" },
         { value: "brand-b", title: "Brand B" },
       ],
@@ -70,8 +75,12 @@ export const globalTypes = {
   },
 };
 
+// IMPORTANT: do not move these globals onto globalTypes as `defaultValue`.
+// Storybook 10+ silently breaks Chromatic per-snapshot mode globals if
+// defaultValue is set. `initialGlobals` at module level is the supported
+// pattern. See memory/feedback_storybook_initial_globals.md.
 export const initialGlobals = {
-  brand: "brand-a",
+  brand: "sebell",
   density: "default",
 };
 
@@ -113,6 +122,8 @@ export default {
     // story's globals before capturing the snapshot.
     chromatic: {
       modes: {
+        "sebell-default": { brand: "sebell", density: "default" },
+        "sebell-compact": { brand: "sebell", density: "compact" },
         "brand-a-default": { brand: "brand-a", density: "default" },
         "brand-a-compact": { brand: "brand-a", density: "compact" },
         "brand-b-default": { brand: "brand-b", density: "default" },

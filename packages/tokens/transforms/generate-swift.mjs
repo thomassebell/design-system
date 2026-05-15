@@ -1,9 +1,10 @@
 /**
  * Generate Swift design tokens from the merged token JSON.
  *
- * Reads packages/tokens/dist/tokens.json (currently the brand-a × default
- * combination produced by build.mjs) and emits a SwiftUI-friendly
- * DesignTokens.swift into the ios-tokens package.
+ * Reads packages/tokens/dist/tokens.json (currently the sebell × default
+ * combination produced by build.mjs — controlled by BRANDS[0] in build.mjs)
+ * and emits a SwiftUI-friendly DesignTokens.swift into the ios-tokens
+ * package.
  *
  * Output layout:
  *   extension Color { ... semantic + component colors }

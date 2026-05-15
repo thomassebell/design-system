@@ -7,12 +7,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.8999999761581421,
-              0.9700000286102295,
-              0.8299999833106995
+              0.4000000059604645,
+              0.6000000238418579,
+              0.4166666567325592
             ],
             "alpha": 1,
-            "hex": "#E5F7D4"
+            "hex": "#66996A"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:37:12",
@@ -20,10 +20,10 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:7685aedaa1c3f61b73313dcef83120d7c1c0805e/2044:108",
-              "targetVariableName": "primitive/color/grass/grass-90",
-              "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:0161dec67a2c6b21bc00d69feaca2a74b35cf8a4/2084:9",
+              "targetVariableName": "primitive/color/pine/pine-50",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -32,12 +32,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.6000000238418579,
-              0.8799999952316284,
-              0.320000022649765
+              0.3199999928474426,
+              0.47999998927116394,
+              0.3333333432674408
             ],
             "alpha": 1,
-            "hex": "#99E052"
+            "hex": "#527A55"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:37:13",
@@ -45,10 +45,10 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:245b35663efc9f8d5612f7352535d91d66412995/2044:111",
-              "targetVariableName": "primitive/color/grass/grass-60",
-              "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:5cd17afded9fbf122e619fa014d7ade01dd1b5fa/2084:1",
+              "targetVariableName": "primitive/color/pine/pine-40",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -57,12 +57,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.4699999690055847,
-              0.7990000247955322,
-              0.1409999579191208
+              0.23999999463558197,
+              0.36000001430511475,
+              0.25
             ],
             "alpha": 1,
-            "hex": "#78CC24"
+            "hex": "#3D5C40"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:29:647",
@@ -70,10 +70,10 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:ff220183ca7fe01a8f1c15083096928aad39f3a8/2044:112",
-              "targetVariableName": "primitive/color/grass/grass-50",
-              "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:cc9c011c22618937a65ea458f3c905fb129989f7/2084:3",
+              "targetVariableName": "primitive/color/pine/pine-30",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -82,12 +82,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.3799999952316284,
-              0.6459999680519104,
-              0.11400000751018524
+              0.1599999964237213,
+              0.23999999463558197,
+              0.1666666716337204
             ],
             "alpha": 1,
-            "hex": "#61A51D"
+            "hex": "#293D2B"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:37:14",
@@ -95,10 +95,10 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:f54cf9e3021c165cf1b059ec75c51f187f6ce241/2044:113",
-              "targetVariableName": "primitive/color/grass/grass-40",
-              "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:81b3eaaf1912b1f4e8f1d9174db41ec49c92f4c3/2084:5",
+              "targetVariableName": "primitive/color/pine/pine-20",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -107,12 +107,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.30000001192092896,
-              0.5100000500679016,
-              0.09000000357627869
+              0.07999999821186066,
+              0.11999999731779099,
+              0.0833333358168602
             ],
             "alpha": 1,
-            "hex": "#4D8217"
+            "hex": "#141F15"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:37:15",
@@ -120,10 +120,10 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:ce8148dcf7bd5a310a6e0f2d6a1688c5946cf9f7/2044:114",
-              "targetVariableName": "primitive/color/grass/grass-30",
-              "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:f20406a01fefdeb6bff988c8310a187f19251813/2084:7",
+              "targetVariableName": "primitive/color/pine/pine-10",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         }
@@ -134,12 +134,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.9599999785423279,
-              0.9300000071525574,
-              0.8400000333786011
+              0.7450000047683716,
+              0.699999988079071,
+              0.6549999713897705
             ],
             "alpha": 1,
-            "hex": "#F5EDD6"
+            "hex": "#BEB2A7"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:47:85",
@@ -147,10 +147,10 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:c089abe92c306a469d4e8d05f72e88c14ecf8fd4/2033:169",
-              "targetVariableName": "primitive/color/wood/wood-90",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:707bbebeb1d8afabd1858e1f0cfc28a5542ae7ed/2089:1",
+              "targetVariableName": "primitive/color/walnut/walnut-70",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -159,12 +159,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.9399999976158142,
-              0.8950000405311584,
-              0.7599999904632568
+              0.7024999856948853,
+              0.6499999761581421,
+              0.5975000262260437
             ],
             "alpha": 1,
-            "hex": "#F0E4C2"
+            "hex": "#B3A698"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:47:86",
@@ -172,10 +172,10 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:c72aa1bc60ca3fc4865871a3f9be913e35dd2d70/2033:172",
-              "targetVariableName": "primitive/color/wood/wood-80",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:191a683a5616df2ed684ec7a39c38de69df3fb69/2089:2",
+              "targetVariableName": "primitive/color/walnut/walnut-65",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -184,12 +184,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.8799999952316284,
-              0.7900000214576721,
-              0.5199999809265137
+              0.574999988079071,
+              0.5,
+              0.42500001192092896
             ],
             "alpha": 1,
-            "hex": "#E0C985"
+            "hex": "#93806C"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:47:87",
@@ -197,10 +197,10 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:3c0ffda1ea8ff5ed8699e54f52338dbe41fa929a/2033:167",
-              "targetVariableName": "primitive/color/wood/wood-50",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:be45b024bd7ed3cfd6be2f2ad2a769fd914f11d1/2089:5",
+              "targetVariableName": "primitive/color/walnut/walnut-50",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -209,12 +209,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.8399999737739563,
-              0.7199999690055847,
-              0.36000001430511475
+              0.46000000834465027,
+              0.4000000059604645,
+              0.3400000035762787
             ],
             "alpha": 1,
-            "hex": "#D6B85C"
+            "hex": "#756657"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:47:88",
@@ -222,10 +222,10 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:e5b888aef760ac709d68e2ce1cb747bdac2d7673/2033:165",
-              "targetVariableName": "primitive/color/wood/wood-30",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:7029d91624b89ae6ba99ed88936963e20c4fbce1/2089:7",
+              "targetVariableName": "primitive/color/walnut/walnut-40",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -234,12 +234,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.8000000715255737,
-              0.6500000953674316,
-              0.20000019669532776
+              0.3449999988079071,
+              0.30000001192092896,
+              0.2549999952316284
             ],
             "alpha": 1,
-            "hex": "#CCA633"
+            "hex": "#584D41"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:47:89",
@@ -247,10 +247,10 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:c0d716a090155931a9a39711ed185ae63419c77b/2033:171",
-              "targetVariableName": "primitive/color/wood/wood-10",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:1cd4d8bd4bd698245ba0b8fd94a0710d7d8260cf/2089:9",
+              "targetVariableName": "primitive/color/walnut/walnut-30",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         }
@@ -261,12 +261,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              1,
-              1,
-              1
+              0.9850000143051147,
+              0.9825000166893005,
+              0.9750000238418579
             ],
             "alpha": 1,
-            "hex": "#FFFFFF"
+            "hex": "#FBFBF9"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:2471:1043",
@@ -275,10 +275,10 @@
               "SHAPE_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:2a5b8c8b6885c30738d45040778cfbb6e967464e/2044:105",
-              "targetVariableName": "primitive/color/achromatic/snow",
-              "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:b5491431293f89a53afee56c884a8efc1f987a01/2093:4",
+              "targetVariableName": "primitive/color/achromatic/white",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -287,12 +287,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.9819999933242798,
-              0.9810000061988831,
-              0.9780000448226929
+              0.9629999995231628,
+              0.9556333422660828,
+              0.9369999766349792
             ],
             "alpha": 1,
-            "hex": "#FAFAF9"
+            "hex": "#F6F4EF"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:49:186",
@@ -301,10 +301,10 @@
               "SHAPE_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:6a48bace4a825cfa70e9c66e8619a758bf1bffc6/2033:178",
-              "targetVariableName": "primitive/color/sand/sand-98",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:d64bddbed150739aa7910c1f4e60384dea2405b9/2089:10",
+              "targetVariableName": "primitive/color/ash/ash-95",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -313,12 +313,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.9459999799728394,
-              0.9429999589920044,
-              0.9340000152587891
+              0.9259999990463257,
+              0.9112666845321655,
+              0.8740000128746033
             ],
             "alpha": 1,
-            "hex": "#F1F0EE"
+            "hex": "#ECE8DF"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:49:327",
@@ -327,10 +327,10 @@
               "SHAPE_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:5b139aaf1fc744e223c474b2e0fa2829b6c0f8f0/2033:186",
-              "targetVariableName": "primitive/color/sand/sand-94",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:bf1f0a265119195dade68bd75e726f26f8955ec6/2089:11",
+              "targetVariableName": "primitive/color/ash/ash-90",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -339,12 +339,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.9099999666213989,
-              0.9049999713897705,
-              0.8899999856948853
+              0.8519999980926514,
+              0.8225333094596863,
+              0.7480000257492065
             ],
             "alpha": 1,
-            "hex": "#E8E7E3"
+            "hex": "#D9D2BF"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:49:328",
@@ -353,10 +353,10 @@
               "SHAPE_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:15d4b405e1d1308a2e64286e7337cfcda29419ca/2033:179",
-              "targetVariableName": "primitive/color/sand/sand-90",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:c318e3e3884abcd5fc79cab1861521c869065aa1/2089:13",
+              "targetVariableName": "primitive/color/ash/ash-80",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -365,12 +365,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.8199999928474426,
-              0.8100000023841858,
-              0.7800000309944153
+              0.7409999966621399,
+              0.6894333362579346,
+              0.5590000152587891
             ],
             "alpha": 1,
-            "hex": "#D1CFC7"
+            "hex": "#BDB08F"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:49:329",
@@ -379,10 +379,10 @@
               "SHAPE_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:7ffda6f35fc448939d13d78c93e677b9eafd415b/2033:181",
-              "targetVariableName": "primitive/color/sand/sand-80",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:81ced3143a8dfbbf8399e53f4f7105c6f9942dbf/2089:16",
+              "targetVariableName": "primitive/color/ash/ash-65",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -391,12 +391,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.7300000190734863,
-              0.7149999737739563,
-              0.6699999570846558
+              0.6299999952316284,
+              0.5563333630561829,
+              0.3700000047683716
             ],
             "alpha": 1,
-            "hex": "#BAB6AB"
+            "hex": "#A18E5E"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:49:330",
@@ -405,10 +405,10 @@
               "SHAPE_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:e2f0e878781a943aa13a033414e892a3f6cad617/2033:180",
-              "targetVariableName": "primitive/color/sand/sand-70",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:fc09fa64562bb353626a61211b1494925ae7c9b9/2089:19",
+              "targetVariableName": "primitive/color/ash/ash-50",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         }
@@ -420,12 +420,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.07699999958276749,
-            0.07350000739097595,
-            0.06300000101327896
+            0.03999999910593033,
+            0.05999999865889549,
+            0.0416666679084301
           ],
           "alpha": 1,
-          "hex": "#141310"
+          "hex": "#0A0F0B"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:5:3",
@@ -435,10 +435,10 @@
             "TEXT_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:6ca0b9125895da82be2aed9d66244292aa28304e/2033:183",
-            "targetVariableName": "primitive/color/achromatic/charcoal",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:d0a0a588099ffa198c08e2e49220a25b76725a30/2094:0",
+            "targetVariableName": "primitive/color/achromatic/black",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -447,12 +447,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.4399999976158142,
-            0.42000001668930054,
-            0.36000001430511475
+            0.23999999463558197,
+            0.36000001430511475,
+            0.25
           ],
           "alpha": 1,
-          "hex": "#706B5C"
+          "hex": "#3D5C40"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:5:4",
@@ -461,10 +461,10 @@
             "TEXT_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:0f7875cece290d3e337c327770d6a7ef06857299/2033:175",
-            "targetVariableName": "primitive/color/sand/sand-40",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:cc9c011c22618937a65ea458f3c905fb129989f7/2084:3",
+            "targetVariableName": "primitive/color/pine/pine-30",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -473,12 +473,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.550000011920929,
-            0.5249999761581421,
-            0.44999998807907104
+            0.3199999928474426,
+            0.47999998927116394,
+            0.3333333432674408
           ],
           "alpha": 1,
-          "hex": "#8C8673"
+          "hex": "#527A55"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:63:574",
@@ -487,10 +487,10 @@
             "TEXT_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:7ea35ad7fcee2fc74833e376318e36646c3b2fb1/2033:176",
-            "targetVariableName": "primitive/color/sand/sand-50",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:5cd17afded9fbf122e619fa014d7ade01dd1b5fa/2084:1",
+            "targetVariableName": "primitive/color/pine/pine-40",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -499,12 +499,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            1,
-            1,
-            1
+            0.9850000143051147,
+            0.9825000166893005,
+            0.9750000238418579
           ],
           "alpha": 1,
-          "hex": "#FFFFFF"
+          "hex": "#FBFBF9"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:67",
@@ -513,10 +513,10 @@
             "TEXT_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:32685e49adec7e40b3e096f364baef6ab149c9e7/2033:184",
-            "targetVariableName": "primitive/color/achromatic/snow",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:b5491431293f89a53afee56c884a8efc1f987a01/2093:4",
+            "targetVariableName": "primitive/color/achromatic/white",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       }
@@ -577,12 +577,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            1,
-            1,
-            1
+            0.9850000143051147,
+            0.9825000166893005,
+            0.9750000238418579
           ],
           "alpha": 1,
-          "hex": "#FFFFFF"
+          "hex": "#FBFBF9"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:58:262",
@@ -590,10 +590,10 @@
             "SHAPE_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:32685e49adec7e40b3e096f364baef6ab149c9e7/2033:184",
-            "targetVariableName": "primitive/color/achromatic/snow",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:b5491431293f89a53afee56c884a8efc1f987a01/2093:4",
+            "targetVariableName": "primitive/color/achromatic/white",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       }
@@ -604,12 +604,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9700000286102295,
-            0.8533333539962769,
-            0.8299999833106995
+            0.9850000143051147,
+            0.9359999895095825,
+            0.9150000214576721
           ],
           "alpha": 1,
-          "hex": "#F7DAD4"
+          "hex": "#FBEFE9"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:31:18",
@@ -617,10 +617,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:36a245ae35525fa895f84c96d9b2cec6abc05abc/2056:0",
-            "targetVariableName": "primitive/color/rust/rust-90",
-            "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:6b24ef590b7a86b1643daa80196fdba16207c7c3/2084:20",
+            "targetVariableName": "primitive/color/cedar/cedar-95",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -630,11 +630,11 @@
           "colorSpace": "srgb",
           "components": [
             0.9100000262260437,
-            0.5600000619888306,
-            0.49000003933906555
+            0.6159999966621399,
+            0.49000000953674316
           ],
           "alpha": 1,
-          "hex": "#E88F7D"
+          "hex": "#E89D7D"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:31:19",
@@ -642,10 +642,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:b49abc9813bb82b41798b80eb34377aef7a69317/2056:3",
-            "targetVariableName": "primitive/color/rust/rust-70",
-            "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:6325be4a1360e189a1110b28eed668be69bdc789/2084:23",
+            "targetVariableName": "primitive/color/cedar/cedar-70",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -654,12 +654,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.6800000667572021,
-            0.2133333384990692,
-            0.12000000476837158
+            0.6800000071525574,
+            0.2879999876022339,
+            0.11999999731779099
           ],
           "alpha": 1,
-          "hex": "#AD361F"
+          "hex": "#AD491F"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:31:17",
@@ -667,10 +667,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:355e55728914f01417a3b18de3d81f4d0af6dab0/2056:4",
-            "targetVariableName": "primitive/color/rust/rust-40",
-            "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:eca33dd0a42a356e72d9dcce30a11459a751c607/2084:26",
+            "targetVariableName": "primitive/color/cedar/cedar-40",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -680,11 +680,11 @@
           "colorSpace": "srgb",
           "components": [
             0.5099999904632568,
-            0.1600000113248825,
+            0.2160000056028366,
             0.09000000357627869
           ],
           "alpha": 1,
-          "hex": "#822917"
+          "hex": "#823717"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:31:20",
@@ -692,10 +692,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:6cd3291059903bf9b24283ee953ebe507ed43381/2056:2",
-            "targetVariableName": "primitive/color/rust/rust-30",
-            "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:a4b9b762d768d3386265d9bc07e31c5eb29a3076/2084:27",
+            "targetVariableName": "primitive/color/cedar/cedar-30",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -704,12 +704,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.3400000333786011,
-            0.1066666692495346,
-            0.06000000238418579
+            0.3400000035762787,
+            0.14399999380111694,
+            0.05999999865889549
           ],
           "alpha": 1,
-          "hex": "#571B0F"
+          "hex": "#57250F"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:31:21",
@@ -717,10 +717,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:06e59d1b6808a0f4e777fcb50366c7231bd248ae/2056:1",
-            "targetVariableName": "primitive/color/rust/rust-20",
-            "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:01cd54af422b73fa1e8eef093bdb57acfb5c1f7d/2084:28",
+            "targetVariableName": "primitive/color/cedar/cedar-20",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -729,12 +729,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            1,
-            1,
-            1
+            0.9850000143051147,
+            0.9825000166893005,
+            0.9750000238418579
           ],
           "alpha": 1,
-          "hex": "#FFFFFF"
+          "hex": "#FBFBF9"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:200",
@@ -742,10 +742,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:32685e49adec7e40b3e096f364baef6ab149c9e7/2033:184",
-            "targetVariableName": "primitive/color/achromatic/snow",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:b5491431293f89a53afee56c884a8efc1f987a01/2093:4",
+            "targetVariableName": "primitive/color/achromatic/white",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       }
@@ -756,12 +756,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.7300000190734863,
-            0.7149999737739563,
-            0.6699999570846558
+            0.8889999985694885,
+            0.8669000267982483,
+            0.8109999895095825
           ],
           "alpha": 1,
-          "hex": "#BAB6AB"
+          "hex": "#E3DDCF"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:51:136",
@@ -769,10 +769,10 @@
             "STROKE"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:e2f0e878781a943aa13a033414e892a3f6cad617/2033:180",
-            "targetVariableName": "primitive/color/sand/sand-70",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:f4683fb1b2ac65b623670b946557df6d47c12929/2089:12",
+            "targetVariableName": "primitive/color/ash/ash-85",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -781,12 +781,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.550000011920929,
-            0.5249999761581421,
-            0.44999998807907104
+            0.777999997138977,
+            0.7337999939918518,
+            0.621999979019165
           ],
           "alpha": 1,
-          "hex": "#8C8673"
+          "hex": "#C6BB9F"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:49:474",
@@ -794,10 +794,10 @@
             "STROKE"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:7ea35ad7fcee2fc74833e376318e36646c3b2fb1/2033:176",
-            "targetVariableName": "primitive/color/sand/sand-50",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:773027dce8c894249bf3f0a0c3f1bf1fbc112a95/2089:15",
+            "targetVariableName": "primitive/color/ash/ash-70",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -806,12 +806,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.4399999976158142,
-            0.42000001668930054,
-            0.36000001430511475
+            0.7039999961853027,
+            0.6450666785240173,
+            0.4959999918937683
           ],
           "alpha": 1,
-          "hex": "#706B5C"
+          "hex": "#B4A47E"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:51:137",
@@ -819,10 +819,10 @@
             "STROKE"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:0f7875cece290d3e337c327770d6a7ef06857299/2033:175",
-            "targetVariableName": "primitive/color/sand/sand-40",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:a7a130173995901552d0e1b99d8d2976624bef58/2089:17",
+            "targetVariableName": "primitive/color/ash/ash-60",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -831,12 +831,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.4399999976158142,
-            0.42000001668930054,
-            0.36000001430511475
+            0.6299999952316284,
+            0.5563333630561829,
+            0.3700000047683716
           ],
           "alpha": 1,
-          "hex": "#706B5C"
+          "hex": "#A18E5E"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:49:438",
@@ -844,10 +844,10 @@
             "STROKE"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:0f7875cece290d3e337c327770d6a7ef06857299/2033:175",
-            "targetVariableName": "primitive/color/sand/sand-40",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:fc09fa64562bb353626a61211b1494925ae7c9b9/2089:19",
+            "targetVariableName": "primitive/color/ash/ash-50",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -868,12 +868,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9599999785423279,
-            0.9300000071525574,
-            0.8400000333786011
+            0.9259999990463257,
+            0.9112666845321655,
+            0.8740000128746033
           ],
           "alpha": 1,
-          "hex": "#F5EDD6"
+          "hex": "#ECE8DF"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:37:21",
@@ -881,10 +881,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:c089abe92c306a469d4e8d05f72e88c14ecf8fd4/2033:169",
-            "targetVariableName": "primitive/color/wood/wood-90",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:bf1f0a265119195dade68bd75e726f26f8955ec6/2089:11",
+            "targetVariableName": "primitive/color/ash/ash-90",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -893,12 +893,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.9399999976158142,
-            0.8950000405311584,
-            0.7599999904632568
+            0.8519999980926514,
+            0.8225333094596863,
+            0.7480000257492065
           ],
           "alpha": 1,
-          "hex": "#F0E4C2"
+          "hex": "#D9D2BF"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:37:22",
@@ -906,10 +906,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:c72aa1bc60ca3fc4865871a3f9be913e35dd2d70/2033:172",
-            "targetVariableName": "primitive/color/wood/wood-80",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:c318e3e3884abcd5fc79cab1861521c869065aa1/2089:13",
+            "targetVariableName": "primitive/color/ash/ash-80",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -918,12 +918,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8799999952316284,
-            0.7900000214576721,
-            0.5199999809265137
+            0.777999997138977,
+            0.7337999939918518,
+            0.621999979019165
           ],
           "alpha": 1,
-          "hex": "#E0C985"
+          "hex": "#C6BB9F"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:37:23",
@@ -931,10 +931,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:3c0ffda1ea8ff5ed8699e54f52338dbe41fa929a/2033:167",
-            "targetVariableName": "primitive/color/wood/wood-50",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:773027dce8c894249bf3f0a0c3f1bf1fbc112a95/2089:15",
+            "targetVariableName": "primitive/color/ash/ash-70",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -943,12 +943,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8399999737739563,
-            0.7199999690055847,
-            0.36000001430511475
+            0.7039999961853027,
+            0.6450666785240173,
+            0.4959999918937683
           ],
           "alpha": 1,
-          "hex": "#D6B85C"
+          "hex": "#B4A47E"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:37:24",
@@ -956,10 +956,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:e5b888aef760ac709d68e2ce1cb747bdac2d7673/2033:165",
-            "targetVariableName": "primitive/color/wood/wood-30",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:a7a130173995901552d0e1b99d8d2976624bef58/2089:17",
+            "targetVariableName": "primitive/color/ash/ash-60",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -968,12 +968,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8000000715255737,
-            0.6500000953674316,
-            0.20000019669532776
+            0.6299999952316284,
+            0.5563333630561829,
+            0.3700000047683716
           ],
           "alpha": 1,
-          "hex": "#CCA633"
+          "hex": "#A18E5E"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:37:25",
@@ -981,36 +981,21 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:c0d716a090155931a9a39711ed185ae63419c77b/2033:171",
-            "targetVariableName": "primitive/color/wood/wood-10",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:fc09fa64562bb353626a61211b1494925ae7c9b9/2089:19",
+            "targetVariableName": "primitive/color/ash/ash-50",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
       "contrast-text": {
         "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.32999998331069946,
-            0.3149999976158142,
-            0.27000001072883606
-          ],
-          "alpha": 1,
-          "hex": "#545045"
-        },
+        "$value": "{color.text.primary}",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:204",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ],
-          "com.figma.aliasData": {
-            "targetVariableId": "VariableID:67ad55b9846ccb1ff1fe109038621ee6e08629e6/2033:174",
-            "targetVariableName": "primitive/color/sand/sand-30",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
-          }
+          ]
         }
       }
     },
@@ -1020,12 +1005,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.8999999761581421,
-            0.9700000286102295,
-            0.8299999833106995
+            0.8889999985694885,
+            0.8669000267982483,
+            0.8109999895095825
           ],
           "alpha": 1,
-          "hex": "#E5F7D4"
+          "hex": "#E3DDCF"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:30",
@@ -1033,10 +1018,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:921dded8de0e9473bfdc37bdfcde3fd8622f6840/2033:139",
-            "targetVariableName": "primitive/color/grass/grass-90",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:f4683fb1b2ac65b623670b946557df6d47c12929/2089:12",
+            "targetVariableName": "primitive/color/ash/ash-85",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -1045,12 +1030,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.699999988079071,
-            0.9100000262260437,
-            0.49000000953674316
+            0.8149999976158142,
+            0.778166651725769,
+            0.6850000023841858
           ],
           "alpha": 1,
-          "hex": "#B2E87D"
+          "hex": "#D0C6AF"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:31",
@@ -1058,10 +1043,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:840b093144fba32955a3ff31387cd4ddffe551d6/2033:141",
-            "targetVariableName": "primitive/color/grass/grass-70",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:2df3ce36d57e6f0631d676508fb5c8d6126a55a3/2089:14",
+            "targetVariableName": "primitive/color/ash/ash-75",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -1070,12 +1055,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.4699999690055847,
-            0.7990000247955322,
-            0.1409999579191208
+            0.3199999928474426,
+            0.47999998927116394,
+            0.3333333432674408
           ],
           "alpha": 1,
-          "hex": "#78CC24"
+          "hex": "#527A55"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:32",
@@ -1083,10 +1068,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:284f3f44005b1397c68641d4171984260463016d/2033:143",
-            "targetVariableName": "primitive/color/grass/grass-50",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:5cd17afded9fbf122e619fa014d7ade01dd1b5fa/2084:1",
+            "targetVariableName": "primitive/color/pine/pine-40",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -1095,12 +1080,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.30000001192092896,
-            0.5100000500679016,
-            0.09000000357627869
+            0.23999999463558197,
+            0.36000001430511475,
+            0.25
           ],
           "alpha": 1,
-          "hex": "#4D8217"
+          "hex": "#3D5C40"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:33",
@@ -1108,10 +1093,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:9d2117aa83f35ab9903c49ffe77b679470a888f4/2033:145",
-            "targetVariableName": "primitive/color/grass/grass-30",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:cc9c011c22618937a65ea458f3c905fb129989f7/2084:3",
+            "targetVariableName": "primitive/color/pine/pine-30",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -1120,12 +1105,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.20000000298023224,
-            0.3400000035762787,
-            0.06000000238418579
+            0.07999999821186066,
+            0.11999999731779099,
+            0.0833333358168602
           ],
           "alpha": 1,
-          "hex": "#33570F"
+          "hex": "#141F15"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:34",
@@ -1133,10 +1118,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:e93244d65519bb88988d3f20b6e20ded7b67ee88/2033:146",
-            "targetVariableName": "primitive/color/grass/grass-20",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:f20406a01fefdeb6bff988c8310a187f19251813/2084:7",
+            "targetVariableName": "primitive/color/pine/pine-10",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -1145,12 +1130,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.32999998331069946,
-            0.3149999976158142,
-            0.27000001072883606
+            0.9850000143051147,
+            0.9825000166893005,
+            0.9750000238418579
           ],
           "alpha": 1,
-          "hex": "#545045"
+          "hex": "#FBFBF9"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:195",
@@ -1158,10 +1143,10 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:67ad55b9846ccb1ff1fe109038621ee6e08629e6/2033:174",
-            "targetVariableName": "primitive/color/sand/sand-30",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:b5491431293f89a53afee56c884a8efc1f987a01/2093:4",
+            "targetVariableName": "primitive/color/achromatic/white",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       }
@@ -1169,152 +1154,62 @@
     "info": {
       "lighter": {
         "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.8500000238418579,
-            0.8999999761581421,
-            0.949999988079071
-          ],
-          "alpha": 1,
-          "hex": "#D9E5F2"
-        },
+        "$value": "{color.surface.secondary.lighter}",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:43",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ],
-          "com.figma.aliasData": {
-            "targetVariableId": "VariableID:1fb8d1ee98652808e9a813c47d8b1eef78de020b/2033:147",
-            "targetVariableName": "primitive/color/skye/skye-90",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
-          }
+          ]
         }
       },
       "light": {
         "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.7000000476837158,
-            0.800000011920929,
-            0.8999999761581421
-          ],
-          "alpha": 1,
-          "hex": "#B3CCE5"
-        },
+        "$value": "{color.surface.secondary.light}",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:44",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ],
-          "com.figma.aliasData": {
-            "targetVariableId": "VariableID:c4d240f4fd5deec1ab060f4d2561b33290c141f5/2033:148",
-            "targetVariableName": "primitive/color/skye/skye-80",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
-          }
+          ]
         }
       },
       "main": {
         "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.550000011920929,
-            0.699999988079071,
-            0.8500000238418579
-          ],
-          "alpha": 1,
-          "hex": "#8CB2D9"
-        },
+        "$value": "{color.surface.secondary.main}",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:45",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ],
-          "com.figma.aliasData": {
-            "targetVariableId": "VariableID:dfe73275906399bc9b97a283242003e2474c542b/2033:149",
-            "targetVariableName": "primitive/color/skye/skye-70",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
-          }
+          ]
         }
       },
       "dark": {
         "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.15000000596046448,
-            0.30000001192092896,
-            0.45000001788139343
-          ],
-          "alpha": 1,
-          "hex": "#264D73"
-        },
+        "$value": "{color.surface.secondary.dark}",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:46",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ],
-          "com.figma.aliasData": {
-            "targetVariableId": "VariableID:8805749cca9936ef0effa1937e9fece4bfaf0512/2033:153",
-            "targetVariableName": "primitive/color/skye/skye-30",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
-          }
+          ]
         }
       },
       "darker": {
         "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.10000000149011612,
-            0.20000000298023224,
-            0.30000001192092896
-          ],
-          "alpha": 1,
-          "hex": "#1A334D"
-        },
+        "$value": "{color.surface.secondary.darker}",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:47",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ],
-          "com.figma.aliasData": {
-            "targetVariableId": "VariableID:23319268a9bef4590b0f6d6fa245727f081fc2c5/2033:154",
-            "targetVariableName": "primitive/color/skye/skye-20",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
-          }
+          ]
         }
       },
       "contrast-text": {
         "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.32999998331069946,
-            0.3149999976158142,
-            0.27000001072883606
-          ],
-          "alpha": 1,
-          "hex": "#545045"
-        },
+        "$value": "{color.text.primary}",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:207",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ],
-          "com.figma.aliasData": {
-            "targetVariableId": "VariableID:67ad55b9846ccb1ff1fe109038621ee6e08629e6/2033:174",
-            "targetVariableName": "primitive/color/sand/sand-30",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
-          }
+          ]
         }
       }
     }
@@ -1323,7 +1218,7 @@
     "font-family": {
       "header": {
         "$type": "string",
-        "$value": "Gabarito",
+        "$value": "Noto Serif",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:6",
           "com.figma.scopes": [
@@ -1331,16 +1226,16 @@
           ],
           "com.figma.type": "string",
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:d67f887c108cbb3f707abcde3142c04c4fa5798c/2033:205",
+            "targetVariableId": "VariableID:ef6c88a3f9d989225b8ba9b8bf83eece4746bdd8/2067:0",
             "targetVariableName": "primitive/font-family/header",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
       "paragraph": {
         "$type": "string",
-        "$value": "Roboto",
+        "$value": "Noto Sans",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:25",
           "com.figma.scopes": [
@@ -1348,10 +1243,10 @@
           ],
           "com.figma.type": "string",
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2508c5b71d5a730e7dd8688433fc76fbe4b2d57f/2033:204",
+            "targetVariableId": "VariableID:54652939bc0659b600a4af1809e7e472608329ff/2067:1",
             "targetVariableName": "primitive/font-family/paragraph",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       }
@@ -1359,7 +1254,7 @@
     "font-weight": {
       "emphasized": {
         "$type": "string",
-        "$value": "700",
+        "$value": "Bold",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:27",
           "com.figma.scopes": [
@@ -1367,16 +1262,16 @@
           ],
           "com.figma.type": "string",
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:32a6d28c978bfde889723cb0d584a3a8cf827435/2034:218",
+            "targetVariableId": "VariableID:333a02b2a307ff986b7d72c5228c97ec099fc389/2062:3",
             "targetVariableName": "primitive/font-weight/bold",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
       "default": {
         "$type": "string",
-        "$value": "Regular",
+        "$value": "Light",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:17",
           "com.figma.scopes": [
@@ -1384,10 +1279,10 @@
           ],
           "com.figma.type": "string",
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:bedc252b449ad5df6812830b38d1ae7c6818b4d0/2033:208",
-            "targetVariableName": "primitive/font-weight/regular",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableId": "VariableID:2734326f922970cdbd094ae2d816b849af835da6/2062:2",
+            "targetVariableName": "primitive/font-weight/light",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       },
@@ -1401,10 +1296,10 @@
           ],
           "com.figma.type": "string",
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:661bfa222eb44b1d6cf496b6eb022a52a9d72918/2033:209",
+            "targetVariableId": "VariableID:2734326f922970cdbd094ae2d816b849af835da6/2062:2",
             "targetVariableName": "primitive/font-weight/light",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
           }
         }
       }
@@ -1420,90 +1315,90 @@
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:00f18f92bc69f758e9fdf75d63a66a44c3b07d75/2044:120",
-          "targetVariableName": "primitive/radius/none",
-          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-          "targetVariableSetName": "brand-b-foundation"
+          "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
+          "targetVariableName": "primitive/radius/square",
+          "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+          "targetVariableSetName": "sebell-foundation"
         }
       }
     },
     "xsmall": {
       "$type": "number",
-      "$value": 4,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:2427:818",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:68348f2ac61b10048a92c9186b5bf504777d9b5f/2044:126",
-          "targetVariableName": "primitive/radius/xsmall",
-          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-          "targetVariableSetName": "brand-b-foundation"
+          "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
+          "targetVariableName": "primitive/radius/square",
+          "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+          "targetVariableSetName": "sebell-foundation"
         }
       }
     },
     "small": {
       "$type": "number",
-      "$value": 8,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:36",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:c0fd25cca8e0b28431cf18e08b7c931f786a12b2/2044:117",
-          "targetVariableName": "primitive/radius/small",
-          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-          "targetVariableSetName": "brand-b-foundation"
+          "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
+          "targetVariableName": "primitive/radius/square",
+          "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+          "targetVariableSetName": "sebell-foundation"
         }
       }
     },
     "medium": {
       "$type": "number",
-      "$value": 12,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:35",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:7fcac35fb72671d66f04bf389402bcb46835e251/2044:119",
-          "targetVariableName": "primitive/radius/medium",
-          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-          "targetVariableSetName": "brand-b-foundation"
+          "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
+          "targetVariableName": "primitive/radius/square",
+          "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+          "targetVariableSetName": "sebell-foundation"
         }
       }
     },
     "large": {
       "$type": "number",
-      "$value": 16,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:34",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:c7b818c1dce52e6ea14f2c3a35882eb2670ea702/2044:118",
-          "targetVariableName": "primitive/radius/large",
-          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-          "targetVariableSetName": "brand-b-foundation"
+          "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
+          "targetVariableName": "primitive/radius/square",
+          "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+          "targetVariableSetName": "sebell-foundation"
         }
       }
     },
     "xlarge": {
       "$type": "number",
-      "$value": 24,
+      "$value": 9999,
       "$extensions": {
         "com.figma.variableId": "VariableID:2427:829",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:881046be7d805321410c7c87247ea5e93c158923/2044:127",
-          "targetVariableName": "primitive/radius/xlarge",
-          "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-          "targetVariableSetName": "brand-b-foundation"
+          "targetVariableId": "VariableID:c9969a13badc8f063fa0be48739272c6fc18733a/2069:2",
+          "targetVariableName": "primitive/radius/full",
+          "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+          "targetVariableSetName": "sebell-foundation"
         }
       }
     }
@@ -1637,7 +1532,7 @@
       "text": {
         "enabled": {
           "$type": "color",
-          "$value": "{color.text.primary}",
+          "$value": "{color.text.contrast-text}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2607:1285",
             "com.figma.scopes": [
@@ -1649,7 +1544,7 @@
         },
         "hover": {
           "$type": "color",
-          "$value": "{color.text.primary}",
+          "$value": "{color.text.contrast-text}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2607:1286",
             "com.figma.scopes": [
@@ -1661,7 +1556,7 @@
         },
         "pressed": {
           "$type": "color",
-          "$value": "{color.text.primary}",
+          "$value": "{color.text.contrast-text}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2607:1287",
             "com.figma.scopes": [
@@ -1729,7 +1624,7 @@
       "border": {
         "enabled": {
           "$type": "color",
-          "$value": "{color.text.light}",
+          "$value": "{color.border.default}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2561:483",
             "com.figma.scopes": [
@@ -1794,12 +1689,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.9819999933242798,
-              0.9810000061988831,
-              0.9780000448226929
+              0.9629999995231628,
+              0.9556333422660828,
+              0.9369999766349792
             ],
             "alpha": 1,
-            "hex": "#FAFAF9"
+            "hex": "#F6F4EF"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:49:189",
@@ -1808,10 +1703,10 @@
               "SHAPE_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:747829c27765861ba075d46cb3ae60cb53380488/2044:99",
-              "targetVariableName": "primitive/color/sand/sand-98",
-              "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:d64bddbed150739aa7910c1f4e60384dea2405b9/2089:10",
+              "targetVariableName": "primitive/color/ash/ash-95",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
@@ -1820,12 +1715,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              1,
-              1,
-              1
+              0.9850000143051147,
+              0.9825000166893005,
+              0.9750000238418579
             ],
             "alpha": 1,
-            "hex": "#FFFFFF"
+            "hex": "#FBFBF9"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:49:190",
@@ -1834,16 +1729,16 @@
               "SHAPE_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:32685e49adec7e40b3e096f364baef6ab149c9e7/2033:184",
-              "targetVariableName": "primitive/color/achromatic/snow",
-              "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-              "targetVariableSetName": "brand-b-foundation"
+              "targetVariableId": "VariableID:b5491431293f89a53afee56c884a8efc1f987a01/2093:4",
+              "targetVariableName": "primitive/color/achromatic/white",
+              "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+              "targetVariableSetName": "sebell-foundation"
             }
           }
         },
         "pressed": {
           "$type": "color",
-          "$value": "{color.surface.neutral.main}",
+          "$value": "{color.surface.neutral.light}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2561:1655",
             "com.figma.scopes": [
@@ -1854,7 +1749,7 @@
         },
         "off": {
           "$type": "color",
-          "$value": "{color.surface.neutral.light}",
+          "$value": "{color.surface.neutral.lighter}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2591:1916",
             "com.figma.scopes": [
@@ -1866,6 +1761,6 @@
     }
   },
   "$extensions": {
-    "com.figma.modeName": "brand-b"
+    "com.figma.modeName": "sebell"
   }
 }

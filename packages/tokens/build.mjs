@@ -6,11 +6,13 @@
  * combination, and emits one CSS file per combination via Style Dictionary.
  *
  * Output:
+ *   dist/sebell-default.css
+ *   dist/sebell-compact.css
  *   dist/brand-a-default.css
  *   dist/brand-a-compact.css
  *   dist/brand-b-default.css
  *   dist/brand-b-compact.css
- *   dist/tokens.json     (combined brand-a × default, kept for the Swift generator)
+ *   dist/tokens.json     (combined sebell × default, kept for the Swift generator)
  */
 
 import StyleDictionary from "style-dictionary";
@@ -19,7 +21,11 @@ import { execSync } from "child_process";
 
 const EXPORTS_DIR = "figma-exports";
 const OUT_DIR = "dist";
-const BRANDS = ["brand-a", "brand-b"];
+// Order matters: BRANDS[0] is the brand used for `firstCombo`, which feeds
+// dist/tokens.json → DesignTokens.swift. Sebell is the production brand;
+// brand-a and brand-b stay as test fixtures that exercise the multi-brand
+// pipeline (cross-brand consistency, alias misalignment, structural diff).
+const BRANDS = ["sebell", "brand-a", "brand-b"];
 const DENSITIES = ["default", "compact"];
 
 // ── Font-weight string → numeric transform ─────────
@@ -63,6 +69,8 @@ const FONT_FALLBACKS = {
   Gabarito: ", 'Inter', system-ui, sans-serif",
   "DM Sans": ", system-ui, sans-serif",
   "JetBrains Mono": ", 'SF Mono', Menlo, Consolas, monospace",
+  "Noto Serif": ", Georgia, 'Times New Roman', serif",
+  "Noto Sans": ", -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
 };
 
 StyleDictionary.registerTransform({
