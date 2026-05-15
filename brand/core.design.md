@@ -1,0 +1,188 @@
+---
+# DESIGN.md — core (brand-agnostic system spec)
+# Format reference: https://github.com/google-labs-code/design.md (alpha, Apr 2026)
+#
+# This file declares the SHAPE of the design system: which token namespaces
+# every brand must provide, how the build pipeline merges them, and what
+# component contracts the React library exposes. Values live in brand files
+# under ./brands/, not here.
+#
+# Convention: each brand file is self-contained for token VALUES. The alpha
+# DESIGN.md spec does not define multi-file token merging, so we do NOT use
+# cross-file {ref} resolution. When the spec stabilises, revisit this.
+
+system:
+  name: "Sebell Design System"
+  packages:
+    - "@ds/tokens"        # Style Dictionary build, Figma exports → CSS + Swift
+    - "@ds/react"         # React component library + Storybook
+    - "@ds/ios-tokens"    # Swift Package consumed by iOS apps
+    - "@ds/docs"          # Documentation site (placeholder)
+
+  brands:
+    primary: "sebell"
+    test-fixtures: ["brand-a", "brand-b"]
+  densities: ["default", "compact"]
+
+# Token shape every brand must provide. Values are "per-brand".
+token-shape:
+  color:
+    surface:    { primary: "per-brand", secondary: "per-brand" }
+    text:       { primary: "per-brand", secondary: "per-brand", disabled: "per-brand" }
+    icon:       { primary: "per-brand", secondary: "per-brand", contrast: "per-brand" }
+    border:     { default: "per-brand", strong: "per-brand", subtle: "per-brand" }
+    error:      { lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", "contrast-text": "per-brand" }
+    warning:    { lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", "contrast-text": "per-brand" }
+    success:    { lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", "contrast-text": "per-brand" }
+    info:       { lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", "contrast-text": "per-brand" }
+  radius:
+    keys: [none, xsmall, small, medium, large, xlarge]
+    note: "Each brand specifies values. A brand may collapse multiple slots onto the same primitive (e.g. Sebell's 'square or full' identity)."
+  typography:
+    font-family: { header: "per-brand", paragraph: "per-brand" }
+    font-weight: { understate: "per-brand", default: "per-brand", emphasized: "per-brand" }
+  components:
+    focus-ring: "per-brand"   # default + error variants
+    button:     "per-brand"   # background/border tokens per variant × state
+    forms:      "per-brand"   # input/checkbox/radio tokens
+---
+
+# Sebell Design System — Core
+
+> **What this file is.** The brand-agnostic spec for the Sebell DS. Every brand file under `./brands/` specialises this contract with concrete values and brand-specific guidance. Read this first; then read the brand file you care about.
+
+## Overview
+
+Three packages do the work:
+
+- **`packages/tokens`** is the source of truth pipeline. Figma exports land in `figma-exports/*.tokens.json` (DTCG schema). `build.mjs` reads them, merges per `(brand × density)`, resolves aliases, and emits `dist/<brand>-<density>.css` plus a single `dist/tokens.json` for the iOS generator. Position 0 of the `BRANDS` array drives the iOS default.
+- **`packages/react`** is the component library. Components consume CSS custom properties only — no component is brand-aware. Storybook inlines all stylesheets and flips one active via `media` attribute.
+- **`packages/ios-tokens`** is a Swift Package. `transforms/generate-swift.mjs` reads `dist/tokens.json` and writes `output/DesignTokens.swift`. Multi-brand iOS is parked.
+
+### Token cascade
+
+For every `(brand × density)` combination, three trees merge in this order:
+
+```
+foundation (primitives)  →  brand (semantic + components)  →  density (layout + type ramp)
+```
+
+Aliases declared in any layer (Figma's `$extensions.com.figma.aliasData`) are resolved against the merged tree, so a brand semantic value like `color.surface.primary.main` correctly resolves to the brand's own foundation primitive even though the resolution happens at build time.
+
+### What lives where
+
+| Layer | Source | Owns |
+|-------|--------|------|
+| Primitives | `figma-exports/<brand>-foundation.tokens.json` | Colour palettes, radius primitives, font families, font weights |
+| Semantic + components | `figma-exports/<brand>.tokens.json` | `color.<role>.*`, `radius.<size>`, `typography.*`, `components.{focus-ring,button,forms}` |
+| Density | `figma-exports/<density>.tokens.json` | Shared spacing scale, type size ramp, line-height ramp |
+
+## Colors
+
+Naming: `color.<role>.<weight>` where `<role>` ∈ `{surface, text, icon, border, error, warning, success, info}` and `<weight>` ∈ `{lighter, light, main, dark, darker, contrast-text}` for status colours, or role-specific keys (e.g. `text.primary`, `border.subtle`) otherwise.
+
+Rules:
+
+- Components must consume **semantic** tokens (`var(--color-surface-primary-main)`), never **primitive** tokens (no `var(--primitive-color-pine-30)` in component CSS).
+- Every brand must define every key in the shape above — the cross-brand consistency check fails the build if a brand is missing a slot another brand provides.
+- Contrast: surface vs text pairs must meet WCAG AA (4.5:1 for body text, 3:1 for ≥18pt or bold).
+- Focus visibility: every interactive component must render a 2px focus ring using `components.focus-ring.default` (or `.error` when invalid).
+
+## Typography
+
+Two family slots only: `font-family.header` and `font-family.paragraph`. Three weight slots: `understate`, `default`, `emphasized`. Sizes come from the density file, not the brand file — the size ramp is shared across brands by design.
+
+### Size-to-family pairing (system rule)
+
+Every size token is paired with one family slot. This is invariant across brands:
+
+| Size tokens | Pairs with |
+|------------|-----------|
+| `font-size.display-1` … `display-6` | `font-family.header` |
+| `font-size.paragraph`, `font-size.small`, `font-size.components-*` | `font-family.paragraph` |
+
+Display sizes (which exist for headlines and hero content) always render in the header family — that's the whole point of having two families. Body, small, and component sizes always render in the paragraph family. Stories and documentation that show the type ramp must respect this pairing; consuming apps should too.
+
+### Other rules
+
+- Brand files set the family and weight values; they do not override sizes.
+- No third family slot — if a brand wants a third family (e.g. mono), add a new slot to `core.design.md` first so the contract changes for everyone.
+
+## Layout
+
+Spacing is on an 8-point grid (with 4px micro-step available). The semantic spacing ramp (`xxsmall`, `xsmall`, `small`, `medium`, `large`, `xlarge`, `xxlarge`) lives in the density file and is shared across brands. Layout and component spacing are split into two scopes (`semantic.layout.*` and `semantic.components.*`).
+
+## Elevation & Depth
+
+The system is intentionally flat — there are no shadow tokens today. A brand that needs elevation must add `effects.shadow.*` tokens to its brand file AND document the addition in this core spec (so the contract grows symmetrically across all brands).
+
+## Shapes
+
+Radius slot convention: `radius.{none, xsmall, small, medium, large, xlarge}`. Values are brand-specific. A brand may collapse multiple slots onto the same primitive (e.g. Sebell currently collapses everything onto `square (0)` or `full (9999)` until its foundation grows intermediate primitives) — that is a brand-level decision, not a system regression.
+
+## Components
+
+The React library exposes the following components, each consuming a specific slice of the token tree. The component contract is brand-agnostic; only token values change per brand.
+
+| Component | Token slots consumed | Notes |
+|-----------|---------------------|-------|
+| `Button` | `components.button.*`, `typography.font-family.paragraph`, `radius.medium`, `components.focus-ring.*` | Variants: `solid`, `outline`, `text`. States: `default`, `hover`, `active`, `focus`, `disabled` |
+| `Input` | `components.forms.*`, `color.text.*`, `color.border.*`, `radius.small`, `components.focus-ring.*` | Supports `startIcon`, `endIcon`, hint above, error banner below |
+| `Checkbox` (+ `CheckboxField`, `CheckboxGroup`) | `components.forms.*`, `color.border.*`, `components.focus-ring.*` | Indeterminate state supported |
+| `Radio` (+ `RadioField`, `RadioGroup`) | `components.forms.*`, `color.border.*`, `components.focus-ring.*` | |
+| `Field`, `FieldGroup` | `typography.*`, `color.text.*` | Form-field layout primitives |
+| `Text` | `typography.*`, `color.text.*` | Variants follow the type ramp from density |
+| `Icon` | `color.icon.*` | Sized via spacing tokens |
+| `Stack` | `semantic.layout.*` | Spacing primitive |
+
+Live visuals: run `npm run storybook` and browse by brand.
+
+## Do's and Don'ts
+
+**Do**
+- Reference semantic tokens from component CSS; let the cascade resolve to primitives.
+- Add a new component's token slots to *all* brand files in the same PR as the component.
+- Run `npm run tokens:build` locally before pushing — the cross-brand consistency check catches authoring drift early.
+- Treat each brand file as self-contained for token values.
+
+**Don't**
+- Reference primitive tokens (`var(--primitive-color-pine-30)`) from component CSS. Always go through semantics.
+- Use `defaultValue` on Storybook `globalTypes`. Use top-level `initialGlobals` instead — `defaultValue` silently breaks Chromatic per-snapshot modes in Storybook 10+.
+- Put brand-specific opinions in this core file. Brand voice, palette names, and identity belong in `./brands/<brand>.design.md`.
+- Bake values into JSON by hand. Token sources are Figma exports — edit in Figma, then re-export.
+
+---
+
+## Adding a brand — runbook
+
+Expected effort: ~30 minutes end-to-end once the brand exists in Figma. If any step required more than a single-file edit, the system has regressed — open an issue.
+
+**Prerequisites in Figma:**
+1. A foundation file with a variable collection named `<brand>-foundation` (palettes, radius primitives, font families, font weights).
+2. A brand mode in the main DS file's brand variable collection with the same semantic shape as Brand A — duplicate Brand A's mode and re-point every alias to `<brand>-foundation`. **This is the most common source of bugs** — the cross-brand consistency check will catch missed aliases.
+
+**Steps:**
+
+1. **Export foundation** via the Figma MCP → `packages/tokens/figma-exports/<brand>-foundation.tokens.json`.
+2. **Export brand semantics** (the `<brand>` mode of the main DS file's brand collection) → `packages/tokens/figma-exports/<brand>.tokens.json`.
+3. **Copy the DESIGN.md template**: `cp brand/_template.brand.design.md brand/brands/<brand>.design.md`. Resolve every `<TODO>` — pull values directly from the JSON exports so the docs and the build can't drift.
+4. **New fonts only:** if the brand uses a font not already in `packages/tokens/build.mjs`'s `FONT_FALLBACKS` map, add an entry. Append the family to the Google Fonts `<link>` href in `packages/react/.storybook/preview.js`.
+5. **Append to `BRANDS`** in `packages/tokens/build.mjs`. Position matters — `BRANDS[0]` is the iOS + Storybook default. Normally new brands go at the end.
+6. **Wire Storybook** in `packages/react/.storybook/preview.js`:
+   - Add two `?inline` CSS imports for `<brand>-default.css` and `<brand>-compact.css`
+   - Add two `SHEETS` entries
+   - Add one `globalTypes.brand.toolbar.items` entry
+   - Add two `chromatic.modes` entries
+7. **Build:** `npm run tokens:build`. The pre-flight prints `✓ Figma export health: all brands consistent, no alias misalignment` when correct. Common failures:
+   - **"cross-brand alias misalignment"** → some aliases in `<brand>.tokens.json` still point at another brand's foundation. Fix in Figma and re-export.
+   - **"likely typo"** → a token name in your brand file is one or two characters off from the same token in another brand. Rename in Figma.
+   - **"defined in only one brand"** → structural mismatch. Add the missing keys in Figma (or in the other brand if your new brand is the canonical one).
+8. **Storybook smoke:** `npm run storybook`. The new brand appears in the toolbar; switching re-renders every story.
+9. **Chromatic baseline:** push the branch; Chromatic flags the new mode combos as needing baseline acceptance. Accept on first run.
+10. **Done.** Update `CLAUDE.md`'s brand table at the repo root if the brand is anything other than a test fixture.
+
+## Spec notes
+
+- DESIGN.md is alpha (Apr 2026, Google Labs). The YAML token schema and CLI are likely to change. Conventions in this file marked as deliberate-but-revisitable:
+  - **Multi-file merge** — the alpha spec doesn't define how `core.design.md` and `brands/X.design.md` combine. We treat brand files as self-contained for token values, with `core.design.md` declaring shape only. Revisit when the spec stabilises.
+  - **`token-shape` block** — using `"per-brand"` placeholders to declare a slot exists without committing to a value is our convention, not the spec's.
