@@ -1,0 +1,103 @@
+/* ── Track ────────────────────────────────── */
+/* `appearance: none` strips the browser's native checkbox so we paint
+   our own. The underlying <input type="checkbox" role="switch"> keeps
+   keyboard, form, and screen-reader behaviour — and the `switch` role
+   makes screen readers announce "switch, on/off" instead of
+   "checkbox, checked".
+
+   Track is 32×20 with a 1px border. The handle is a ::before pseudo-
+   element that slides between left and right padded positions when
+   the input toggles. */
+
+.switchEl {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  position: relative;
+  width: 32px;
+  height: 20px;
+  background-color: var(--components-forms-background-off);
+  border: 1px solid var(--components-forms-border-subdued);
+  border-radius: var(--radius-medium);
+  cursor: pointer;
+  transition:
+    background-color 100ms ease,
+    border-color 100ms ease;
+}
+
+/* ── Handle ───────────────────────────────── */
+/* 12×12 square (slightly rounded via radius/small) positioned via
+   absolute `left`. Slides from 4px-from-left (off) to 4px-from-right
+   (on) — same padded positions as the Figma source. Colour shifts
+   from neutral (surface/enabled) to brand (surface/active) when on. */
+
+.switchEl::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-color: var(--components-forms-surface-enabled);
+  border-radius: var(--radius-small);
+  transition:
+    left 150ms ease,
+    background-color 100ms ease;
+}
+
+.switchEl:checked::before {
+  left: calc(100% - 12px - 4px); /* = 4px from right edge */
+  background-color: var(--components-forms-surface-active);
+}
+
+/* ── States (track only — handle colour is driven by :checked) ─── */
+
+.switchEl:hover {
+  background-color: var(--components-forms-background-active);
+  border-color: var(--components-forms-border-hover);
+}
+
+.switchEl:active {
+  background-color: var(--components-forms-background-pressed);
+  border-color: var(--components-forms-border-pressed);
+}
+
+.switchEl:focus-visible {
+  background-color: var(--components-forms-background-active);
+  border-color: var(--components-forms-border-focused);
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
+  outline-offset: var(--components-focus-ring-offset);
+}
+
+/* ── Error ────────────────────────────────── */
+/* Triggered by aria-invalid="true" on the input, which the wrapping
+   SwitchField sets when an error message is passed in. In error the
+   handle turns red regardless of on/off — the error colour is what
+   the user needs to notice. */
+
+.switchEl[aria-invalid="true"] {
+  background-color: var(--components-forms-background-default);
+  border-color: var(--components-forms-border-error);
+}
+
+.switchEl[aria-invalid="true"]::before {
+  background-color: var(--components-forms-surface-error);
+}
+
+.switchEl[aria-invalid="true"]:focus-visible {
+  outline-color: var(--components-focus-ring-error);
+}
+
+/* ── Disabled ─────────────────────────────── */
+/* 56% opacity (matching Figma exactly) — slightly different from the
+   50% opacity used by Checkbox/Radio because the switch carries more
+   visual weight when disabled and a deeper dim reads as "off limits"
+   rather than just "muted". */
+
+.switchEl:disabled {
+  opacity: 0.56;
+  cursor: not-allowed;
+}
