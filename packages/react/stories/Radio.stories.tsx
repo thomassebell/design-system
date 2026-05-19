@@ -5,6 +5,14 @@ import { Stack } from "../src/components/Stack/Stack";
 const meta: Meta<typeof Radio> = {
   title: "Components/Radio",
   component: Radio,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "**Heads up — radios can't be deselected by clicking once active.** That's standard HTML radio behaviour: a radio can only be replaced by selecting a *different* option in the same group (same `name`). The stories below show isolated visual states for design review. To see selection swap in action, open **Components → RadioGroup**.",
+      },
+    },
+  },
   argTypes: {
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
@@ -14,6 +22,10 @@ const meta: Meta<typeof Radio> = {
 export default meta;
 type Story = StoryObj<typeof Radio>;
 
+/** Resting unchecked radio. Click to select — but note you won't be
+ *  able to deselect it by clicking again (single radio, no other
+ *  option in the same group to swap to). To test selection swap,
+ *  see the RadioGroup stories. */
 export const Default: Story = {
   args: { name: "demo" },
 };

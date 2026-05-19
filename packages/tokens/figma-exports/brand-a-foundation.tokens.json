@@ -1171,6 +1171,17 @@
           ]
         }
       },
+      "large-round": {
+        "$type": "number",
+        "$value": 8,
+        "$extensions": {
+          "com.figma.variableId": "VariableID:75:10",
+          "com.figma.scopes": [
+            "TEXT_CONTENT",
+            "CORNER_RADIUS"
+          ]
+        }
+      },
       "full": {
         "$type": "number",
         "$value": 9999,
