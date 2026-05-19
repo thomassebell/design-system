@@ -122,7 +122,7 @@
   gap: var(--semantic-components-small);
   padding: var(--semantic-components-small) var(--semantic-components-medium);
   line-height: var(--typography-line-height-xsmall);
-  border-radius: var(--radius-medium);
+  border-radius: var(--radius-small);
 }
 
 /* ── States ───────────────────────────────── */
