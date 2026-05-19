@@ -4,7 +4,7 @@
    form (single-selection grouping via name), and screen-reader
    behaviour for free.
 
-   Single size: 18×18 visual circle with a 2px border. Classic radio
+   Single size: 18×18 visual circle with a 1px border. Classic radio
    pattern — hollow ring + inner brand-coloured dot, instead of the
    "filled shape with white indicator" used by Checkbox. The visual
    contrast helps users instantly recognise "pick one" vs
@@ -21,7 +21,7 @@
   width: 18px;
   height: 18px;
   background-color: var(--components-forms-background-default);
-  border: 2px solid var(--components-forms-border-enabled);
+  border: 1px solid var(--components-forms-border-enabled);
   border-radius: 50%;
   cursor: pointer;
   transition:
@@ -61,8 +61,8 @@
   background-image: radial-gradient(
     circle,
     var(--dot-color) 0,
-    var(--dot-color) 3.5px,
-    transparent 4px,
+    var(--dot-color) 4px,
+    transparent 4.5px,
     transparent 100%
   );
 }

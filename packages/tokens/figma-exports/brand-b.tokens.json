@@ -1749,7 +1749,7 @@
         },
         "focused": {
           "$type": "color",
-          "$value": "{color.surface.primary.dark}",
+          "$value": "{color.surface.primary.main}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2561:1597",
             "com.figma.scopes": [

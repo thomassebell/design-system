@@ -1477,15 +1477,15 @@
     },
     "large": {
       "$type": "number",
-      "$value": 4,
+      "$value": 8,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:34",
         "com.figma.scopes": [
           "CORNER_RADIUS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:edc364878432fe0d62cf18e5bac3fdca82cfbf48/60:64",
-          "targetVariableName": "primitive/radius/round",
+          "targetVariableId": "VariableID:674de3fe8bc46d412742ea522a94dfe5c3d7bb97/75:2",
+          "targetVariableName": "primitive/radius/large-round",
           "targetVariableSetId": "VariableCollectionId:62e45423801e54413b09984900972861f258622f/60:5",
           "targetVariableSetName": "brand-a-foundation"
         }
