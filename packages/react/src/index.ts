@@ -35,6 +35,12 @@ export type { RadioFieldProps } from "./components/RadioField";
 export { RadioGroup } from "./components/RadioGroup";
 export type { RadioGroupProps, RadioOption } from "./components/RadioGroup";
 
+export { Switch } from "./components/Switch";
+export type { SwitchProps } from "./components/Switch";
+
+export { SwitchField } from "./components/SwitchField";
+export type { SwitchFieldProps } from "./components/SwitchField";
+
 export { Icon } from "./components/Icon";
 export type { IconProps } from "./components/Icon";
 
