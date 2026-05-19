@@ -67,7 +67,7 @@
   align-items: flex-start;
   gap: var(--semantic-components-large);
   background: var(--color-error-lighter);
-  border-radius: var(--radius-large);
+  border-radius: var(--radius-medium);
   padding: var(--semantic-components-small) var(--semantic-components-large);
 }
 
@@ -115,7 +115,7 @@
   gap: var(--semantic-components-small);
   padding: var(--semantic-components-large);
   line-height: var(--typography-line-height-xsmall);
-  border-radius: var(--radius-large);
+  border-radius: var(--radius-medium);
 }
 
 .denseWrap {
