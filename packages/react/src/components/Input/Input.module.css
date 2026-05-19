@@ -74,6 +74,7 @@
 .wrapper.dense .errorBanner {
   gap: var(--semantic-components-medium);
   padding: var(--semantic-components-xsmall) var(--semantic-components-medium);
+  border-radius: var(--radius-small);
 }
 
 .errorBannerText {
