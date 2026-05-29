@@ -49,13 +49,11 @@ When you make a change to the Phase 1 / Phase 2 workflow (the build, Storybook w
 
 The current `packages/react/.storybook/preview.js` correctly uses top-level `initialGlobals` for brand and density. **Do not move these onto `globalTypes` as `defaultValue`** — Storybook 10+ silently breaks Chromatic per-snapshot mode globals when `defaultValue` is set. The breakage is silent (Chromatic just doesn't render the mode), which is why this is documented prominently. Source: user memory `feedback_storybook_initial_globals.md`.
 
-### Components consume semantic COLOR tokens, never primitive colors
+### Components consume semantic tokens, never primitives
 
-Component CSS reads `var(--color-surface-primary-main)`, never `var(--primitive-color-pine-30)`. The semantic layer is what makes brand-switching work at the component level.
+Component CSS reads `var(--color-surface-primary-main)`, never `var(--primitive-color-pine-30)`; and `var(--semantic-components-small)`, never `var(--primitive-size-8)`. The semantic layer is what makes both brand-switching **and** density-switching work at the component level — Sebell runs a true density setup, so all spacing scales via semantics with no fixed-primitive exceptions.
 
-**This is now machine-enforced.** A stylelint rule (`packages/react/.stylelintrc.json`, run as part of `npm run lint`) fails the build on any raw color (hex / named / `rgb()` / `hsl()` …) or any `var(--primitive-color-…)` reference in `packages/react/src/components/**/*.module.css`. Don't rely on memory or grep — the linter catches it.
-
-Scope note: the rule covers **colors only**. A few non-color primitives exist on purpose for now (`var(--primitive-size-8)` in `Field` / `FieldGroup`) — whether those should become semantic spacing tokens is a separate open question in the work list, deliberately *not* enforced by this rule. (Earlier wording here claimed "zero `var(--primitive-` matches"; that was only ever true for colors.)
+**This is machine-enforced.** A stylelint rule (`packages/react/.stylelintrc.json`, run as part of `npm run lint`) fails the build on any raw color (hex / named / `rgb()` / `hsl()` …) or **any** `var(--primitive-…)` reference (color or size) in `packages/react/src/components/**/*.module.css`. Grep for `var(--primitive-` in components — there should be zero matches, and the linter keeps it that way.
 
 ### Cross-brand structural parity is enforced
 
