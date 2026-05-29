@@ -55,7 +55,7 @@ token-shape:
 
 Three packages do the work:
 
-- **`packages/tokens`** is the source of truth pipeline. Figma exports land in `figma-exports/*.tokens.json` (DTCG schema). `build.mjs` reads them, merges per `(brand × density)`, resolves aliases, and emits `dist/<brand>-<density>.css` plus a single `dist/tokens.json` for the iOS generator. Position 0 of the `BRANDS` array drives the iOS default.
+- **`packages/tokens`** is the source of truth pipeline. Figma exports land in `figma-exports/*.tokens.json` (DTCG schema). `build.mjs` reads them, merges per `(brand × density)`, resolves aliases, and emits `dist/<brand>-<density>.css` plus a single `dist/tokens.json` for the iOS generator. The brand × density matrix is declared once in `packages/tokens/brands.config.js` (shared with Storybook); the first entry of its `BRANDS` array drives the iOS + Storybook default.
 - **`packages/react`** is the component library. Components consume CSS custom properties only — no component is brand-aware. Storybook inlines all stylesheets and flips one active via `media` attribute.
 - **`packages/ios-tokens`** is a Swift Package. `transforms/generate-swift.mjs` reads `dist/tokens.json` and writes `output/DesignTokens.swift`. Multi-brand iOS is parked.
 
@@ -167,19 +167,18 @@ Expected effort: ~30 minutes end-to-end once the brand exists in Figma. If any s
 2. **Export brand semantics** (the `<brand>` mode of the main DS file's brand collection) → `packages/tokens/figma-exports/<brand>.tokens.json`.
 3. **Copy the DESIGN.md template**: `cp brand/_template.brand.design.md brand/brands/<brand>.design.md`. Resolve every `<TODO>` — pull values directly from the JSON exports so the docs and the build can't drift.
 4. **New fonts only:** if the brand uses a font not already in `packages/tokens/build.mjs`'s `FONT_FALLBACKS` map, add an entry. Append the family to the Google Fonts `<link>` href in `packages/react/.storybook/preview.js`.
-5. **Append to `BRANDS`** in `packages/tokens/build.mjs`. Position matters — `BRANDS[0]` is the iOS + Storybook default. Normally new brands go at the end.
-6. **Wire Storybook** in `packages/react/.storybook/preview.js`:
-   - Add two `?inline` CSS imports for `<brand>-default.css` and `<brand>-compact.css`
-   - Add two `SHEETS` entries
-   - Add one `globalTypes.brand.toolbar.items` entry
-   - Add two `chromatic.modes` entries
-7. **Build:** `npm run tokens:build`. The pre-flight prints `✓ Figma export health: all brands consistent, no alias misalignment` when correct. Common failures:
+5. **Register the brand — ONE edit.** Add a single entry to the `BRANDS` array in `packages/tokens/brands.config.js`:
+   ```js
+   { id: "<brand>", title: "<Brand Name>" }
+   ```
+   That one line is the single source of truth. It automatically drives the token build (which CSS files get emitted), the Storybook brand toolbar, the per-mode `?inline` stylesheets, the Chromatic snapshot modes, and the defaults — no edits to `build.mjs` or `preview.js` are needed or wanted. Position matters: the **first** entry is the iOS + Storybook default, so new brands normally go at the end. (Adding a new *density* is the same: one entry in the `DENSITIES` array.)
+6. **Build:** `npm run tokens:build`. The pre-flight prints `✓ Figma export health: all brands consistent, no alias misalignment` when correct. Common failures:
    - **"cross-brand alias misalignment"** → some aliases in `<brand>.tokens.json` still point at another brand's foundation. Fix in Figma and re-export.
    - **"likely typo"** → a token name in your brand file is one or two characters off from the same token in another brand. Rename in Figma.
    - **"defined in only one brand"** → structural mismatch. Add the missing keys in Figma (or in the other brand if your new brand is the canonical one).
-8. **Storybook smoke:** `npm run storybook`. The new brand appears in the toolbar; switching re-renders every story.
-9. **Chromatic baseline:** push the branch; Chromatic flags the new mode combos as needing baseline acceptance. Accept on first run.
-10. **Done.** Update `CLAUDE.md`'s brand table at the repo root if the brand is anything other than a test fixture.
+7. **Storybook smoke:** `npm run storybook`. The new brand appears in the toolbar; switching re-renders every story.
+8. **Chromatic baseline:** push the branch; Chromatic flags the new mode combos as needing baseline acceptance. Accept on first run.
+9. **Done.** Update `CLAUDE.md`'s brand table at the repo root if the brand is anything other than a test fixture.
 
 ## Spec notes
 

@@ -8,6 +8,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "storybook": "turbo run storybook --filter=@ds/react",
     "tokens:build": "turbo run build --filter=@ds/tokens"

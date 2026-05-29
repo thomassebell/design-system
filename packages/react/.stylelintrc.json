@@ -1,0 +1,22 @@
+{
+  "//": "Enforces the design system's core invariant: component CSS consumes COLOUR only through semantic token variables (var(--color-…) / var(--components-…)), never as raw hex / named / rgb-hsl values, and never via a primitive colour variable (var(--primitive-color-…)). This is what makes brand-switching work at the component level. Scoped to component module CSS via the lint script. Non-colour primitives (e.g. var(--primitive-size-8)) are intentionally NOT covered here — see the CLAUDE.md note about that being a separate question.",
+  "rules": {
+    "color-no-hex": true,
+    "color-named": "never",
+    "function-disallowed-list": [
+      "rgb",
+      "rgba",
+      "hsl",
+      "hsla",
+      "hwb",
+      "lab",
+      "lch",
+      "oklab",
+      "oklch",
+      "color"
+    ],
+    "declaration-property-value-disallowed-list": {
+      "/.*/": ["/var\\(\\s*--primitive-color-/"]
+    }
+  }
+}

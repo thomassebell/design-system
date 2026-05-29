@@ -23,8 +23,9 @@ Active brands:
 - **`brand/_template.brand.design.md`** — copy-paste skeleton for new brands.
 - **`packages/tokens/figma-exports/*.tokens.json`** — Figma source-of-truth exports (DTCG schema). Foundation + brand semantic layers for each brand.
 - **`packages/tokens/dist/*.css`** — generated CSS, one file per (brand × density). Do not hand-edit.
-- **`packages/tokens/build.mjs`** — the build pipeline. `BRANDS[0]` controls the iOS default.
-- **`packages/react/.storybook/preview.js`** — Storybook brand-switching wiring.
+- **`packages/tokens/brands.config.js`** — single source of truth for the brand × density matrix. Adding a brand/density is one edit here; both `build.mjs` and `preview.js` read from it. The first `BRANDS` entry is the iOS + Storybook default.
+- **`packages/tokens/build.mjs`** — the build pipeline. Reads `brands.config.js` for the matrix.
+- **`packages/react/.storybook/preview.js`** — Storybook brand-switching wiring. Toolbar, per-mode stylesheets, and Chromatic modes are all generated from `brands.config.js`.
 
 ## Token cascade
 
@@ -48,9 +49,13 @@ When you make a change to the Phase 1 / Phase 2 workflow (the build, Storybook w
 
 The current `packages/react/.storybook/preview.js` correctly uses top-level `initialGlobals` for brand and density. **Do not move these onto `globalTypes` as `defaultValue`** — Storybook 10+ silently breaks Chromatic per-snapshot mode globals when `defaultValue` is set. The breakage is silent (Chromatic just doesn't render the mode), which is why this is documented prominently. Source: user memory `feedback_storybook_initial_globals.md`.
 
-### Components consume semantic tokens, never primitives
+### Components consume semantic COLOR tokens, never primitive colors
 
-Component CSS reads `var(--color-surface-primary-main)`, never `var(--primitive-color-pine-30)`. The semantic layer is what makes brand-switching work at the component level. Grep for `var(--primitive-` in `packages/react/src/components/` — there should be zero matches.
+Component CSS reads `var(--color-surface-primary-main)`, never `var(--primitive-color-pine-30)`. The semantic layer is what makes brand-switching work at the component level.
+
+**This is now machine-enforced.** A stylelint rule (`packages/react/.stylelintrc.json`, run as part of `npm run lint`) fails the build on any raw color (hex / named / `rgb()` / `hsl()` …) or any `var(--primitive-color-…)` reference in `packages/react/src/components/**/*.module.css`. Don't rely on memory or grep — the linter catches it.
+
+Scope note: the rule covers **colors only**. A few non-color primitives exist on purpose for now (`var(--primitive-size-8)` in `Field` / `FieldGroup`) — whether those should become semantic spacing tokens is a separate open question in the work list, deliberately *not* enforced by this rule. (Earlier wording here claimed "zero `var(--primitive-` matches"; that was only ever true for colors.)
 
 ### Cross-brand structural parity is enforced
 
@@ -72,8 +77,9 @@ Sebell's brand mode in Figma was duplicated from Brand B and not every alias got
 | Refresh Sebell tokens from Figma | Re-export → `npm run tokens:build` → spot-check `dist/sebell-default.css` → update `brand/brands/sebell.design.md` YAML if values changed |
 | Add a new brand | Follow the runbook in `brand/core.design.md` |
 | Add a new component | Add token slots to ALL brand-tokens files in the same PR (cross-brand consistency check will otherwise fail) |
-| Switch the iOS default brand | Re-order `BRANDS` in `packages/tokens/build.mjs` — `BRANDS[0]` feeds `dist/tokens.json` → `DesignTokens.swift` |
-| Debug a Chromatic snapshot diff | Check `chromatic.modes` in `preview.js`; switch the toolbar brand locally to reproduce |
+| Switch the iOS default brand | Re-order the `BRANDS` array in `packages/tokens/brands.config.js` — the first entry feeds `dist/tokens.json` → `DesignTokens.swift` (and is the Storybook default) |
+| Add/remove a brand or density | One edit to `packages/tokens/brands.config.js` — build, Storybook toolbar, sheets, and Chromatic modes all follow |
+| Debug a Chromatic snapshot diff | Chromatic modes are generated from `brands.config.js`; switch the toolbar brand locally to reproduce |
 
 ## Spec / tooling notes
 

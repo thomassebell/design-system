@@ -15,7 +15,8 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --external react",
     "dev": "tsup src/index.ts --format esm --dts --external react --watch",
-    "lint": "eslint src stories",
+    "lint": "eslint src stories && stylelint \"src/components/**/*.module.css\"",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "storybook": "storybook dev -p 6006",
@@ -46,6 +47,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-storybook": "^10.3.6",
     "globals": "^17.5.0",
+    "stylelint": "^16.10.0",
     "jsdom": "^29.1.1",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",

@@ -1,27 +1,55 @@
-// All four brand × density token stylesheets are inlined as <style> tags
-// via Vite's ?inline CSS imports. The CSS is in the JS bundle, so by the
-// time preview.js finishes executing every set of rules is already in
-// the CSSOM. Switching modes is then a synchronous flip of the `media`
-// attribute on each <style> — instant, no network, no race against
-// Chromatic taking a snapshot before the new stylesheet loads.
+// Every brand × density token stylesheet is inlined as a <style> tag via
+// Vite's ?inline CSS imports. The CSS lives in the JS bundle, so by the time
+// preview.js finishes executing every set of rules is already in the CSSOM.
+// Switching modes is then a synchronous flip of the `media` attribute on each
+// <style> — instant, no network, no race against Chromatic taking a snapshot
+// before the new stylesheet loads.
+//
+// The brand × density matrix is NOT hardcoded here — it comes from the single
+// source of truth in ../../tokens/brands.config.js. Add a brand or density
+// there and the toolbar, the per-mode stylesheets, the Chromatic modes, and
+// the defaults all update automatically.
 
-import sebellDefaultCss from "@ds/tokens/dist/sebell-default.css?inline";
-import sebellCompactCss from "@ds/tokens/dist/sebell-compact.css?inline";
-import brandADefaultCss from "@ds/tokens/dist/brand-a-default.css?inline";
-import brandACompactCss from "@ds/tokens/dist/brand-a-compact.css?inline";
-import brandBDefaultCss from "@ds/tokens/dist/brand-b-default.css?inline";
-import brandBCompactCss from "@ds/tokens/dist/brand-b-compact.css?inline";
+import {
+  BRANDS,
+  DENSITIES,
+  DEFAULT_BRAND,
+  DEFAULT_DENSITY,
+} from "../../tokens/brands.config.js";
 
-const SHEETS = {
-  "sebell-default": sebellDefaultCss,
-  "sebell-compact": sebellCompactCss,
-  "brand-a-default": brandADefaultCss,
-  "brand-a-compact": brandACompactCss,
-  "brand-b-default": brandBDefaultCss,
-  "brand-b-compact": brandBCompactCss,
-};
+// Eagerly inline every built token stylesheet. Keyed by file path; we reduce
+// the path down to its mode name ("sebell-default") below. This is just the
+// loading mechanism — brands.config.js stays authoritative for which modes we
+// actually expose.
+const cssModules = import.meta.glob("../../tokens/dist/*.css", {
+  query: "?inline",
+  import: "default",
+  eager: true,
+});
 
-const DEFAULT_MODE = "sebell-default";
+const cssByMode = {};
+for (const [path, css] of Object.entries(cssModules)) {
+  const mode = path.split("/").pop().replace(/\.css$/, "");
+  cssByMode[mode] = css;
+}
+
+// The modes we expose = the cartesian product of brands × densities, in config
+// order. SHEETS maps each "brand-density" mode to its inlined CSS string.
+const MODES = BRANDS.flatMap((b) => DENSITIES.map((d) => `${b.id}-${d.id}`));
+
+const SHEETS = {};
+for (const mode of MODES) {
+  if (!cssByMode[mode]) {
+    console.warn(
+      `[preview] No built stylesheet for mode "${mode}". ` +
+        `Run \`npm run tokens:build\` — expected dist/${mode}.css.`,
+    );
+    continue;
+  }
+  SHEETS[mode] = cssByMode[mode];
+}
+
+const DEFAULT_MODE = `${DEFAULT_BRAND}-${DEFAULT_DENSITY}`;
 const STYLE_DATA_ATTR = "tokenMode"; // dataset key (renders as data-token-mode)
 
 (function attachAllModeStyles() {
@@ -55,11 +83,7 @@ export const globalTypes = {
     description: "Switch brand theme",
     toolbar: {
       icon: "paintbrush",
-      items: [
-        { value: "sebell", title: "Sebell" },
-        { value: "brand-a", title: "Brand A" },
-        { value: "brand-b", title: "Brand B" },
-      ],
+      items: BRANDS.map((b) => ({ value: b.id, title: b.title })),
     },
   },
   density: {
@@ -67,10 +91,7 @@ export const globalTypes = {
     description: "Switch layout density",
     toolbar: {
       icon: "grow",
-      items: [
-        { value: "default", title: "Default" },
-        { value: "compact", title: "Compact" },
-      ],
+      items: DENSITIES.map((d) => ({ value: d.id, title: d.title })),
     },
   },
 };
@@ -80,8 +101,8 @@ export const globalTypes = {
 // defaultValue is set. `initialGlobals` at module level is the supported
 // pattern. See memory/feedback_storybook_initial_globals.md.
 export const initialGlobals = {
-  brand: "sebell",
-  density: "default",
+  brand: DEFAULT_BRAND,
+  density: DEFAULT_DENSITY,
 };
 
 export const decorators = [
@@ -117,18 +138,19 @@ export default {
         },
       },
     },
-    // Snapshot every story across the 4 brand × density combos. Each
-    // mode is a flat record of globals; Chromatic merges them into the
-    // story's globals before capturing the snapshot.
+    // Snapshot every story across the full brand × density matrix. Each mode
+    // is a flat record of globals; Chromatic merges them into the story's
+    // globals before capturing the snapshot. Built from the same config as
+    // the toolbar, so modes can never drift from the brands we ship.
     chromatic: {
-      modes: {
-        "sebell-default": { brand: "sebell", density: "default" },
-        "sebell-compact": { brand: "sebell", density: "compact" },
-        "brand-a-default": { brand: "brand-a", density: "default" },
-        "brand-a-compact": { brand: "brand-a", density: "compact" },
-        "brand-b-default": { brand: "brand-b", density: "default" },
-        "brand-b-compact": { brand: "brand-b", density: "compact" },
-      },
+      modes: Object.fromEntries(
+        BRANDS.flatMap((b) =>
+          DENSITIES.map((d) => [
+            `${b.id}-${d.id}`,
+            { brand: b.id, density: d.id },
+          ]),
+        ),
+      ),
     },
   },
 };
