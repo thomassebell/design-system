@@ -110,7 +110,28 @@ Display sizes (which exist for headlines and hero content) always render in the 
 
 ## Layout
 
-Spacing is on an 8-point grid (with 4px micro-step available). The semantic spacing ramp (`xxsmall`, `xsmall`, `small`, `medium`, `large`, `xlarge`, `xxlarge`) lives in the density file and is shared across brands. Layout and component spacing are split into two scopes (`semantic.layout.*` and `semantic.components.*`).
+Spacing is on an 8-point grid (with a 4px micro-step). The semantic spacing ramp (`xxsmall`, `xsmall`, `small`, `medium`, `large`, `xlarge`, `xxlarge`) lives in the density file and is shared across brands. It's split into two scopes — and which one you reach for is a **system rule**, not a free choice.
+
+### Component vs. layout spacing (system rule)
+
+| Scope | Use for | Examples |
+|-------|---------|----------|
+| `semantic.components.*` | Spacing **inside a single atomic component** — its own padding and internal gaps | Button padding, Input padding, the error-banner callout's padding + icon gap |
+| `semantic.layout.*` | Spacing **between composed elements** — when a component's job is to arrange other standalone widgets | `Field` (control ↔ label), `FieldGroup` (field ↔ field, section ↔ section) |
+
+The test: *is this spacing within one widget, or between widgets being arranged?* A `Field` places a standalone control (Checkbox/Radio/Switch) next to its label → that's composition → `layout.*`. A `FieldGroup` arranges fields → composition → `layout.*`. A Button's own padding is internal → `components.*`.
+
+### Density behaviour differs by scope (important)
+
+- **`components.*` fully scales** with density — every step shrinks in compact (e.g. `components.medium` = 12px default → 8px compact).
+- **`layout.*` scales only at the large end.** The small steps are **density-invariant**: `layout.xxsmall` / `xsmall` / `small` / `medium` = 4 / 8 / 16 / 24px in *both* densities; only `large` and up compress in compact.
+
+This matters in two ways:
+
+1. Composition spacing stays steady — tightening compact density is about the big structural gaps, not the small ones.
+2. It interacts with the **focus ring**, which is fixed at 4px reach (`offset 2 + width 2`) and is itself density-invariant. **Any gap adjacent to a focusable control must clear that ring in *both* densities.** `layout.xsmall` (8px, fixed) clears it; `components.small` (4px in compact) does not — which is exactly why control-adjacent gaps use `layout.xsmall`, not `components.small`.
+
+Note there is no density-*invariant* `components.*` step and no `semantic.fixed.*` scope — and that's deliberate. If you need a gap that doesn't scale, the answer is a `layout.*` small step (which already doesn't), not a primitive and not a new fixed category. Component CSS may never reach for a raw primitive (`var(--primitive-…)`) for spacing or colour — enforced by stylelint; see the invariants in `CLAUDE.md`.
 
 ## Elevation & Depth
 
