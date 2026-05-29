@@ -1154,52 +1154,127 @@
     "info": {
       "lighter": {
         "$type": "color",
-        "$value": "{color.surface.secondary.lighter}",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.925000011920929,
+            0.9708333611488342,
+            0.9750000238418579
+          ],
+          "alpha": 1,
+          "hex": "#ECF8F9"
+        },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:43",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ]
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:c9185ada43aca4f57f89b46666fd46539cffd8d1/2113:0",
+            "targetVariableName": "primitive/color/juniper/juniper-95",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
+          }
         }
       },
       "light": {
         "$type": "color",
-        "$value": "{color.surface.secondary.light}",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.550000011920929,
+            0.824999988079071,
+            0.8500000238418579
+          ],
+          "alpha": 1,
+          "hex": "#8CD2D9"
+        },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:44",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ]
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:11ce6d28e83c8586d1f4c1a70981bb06c207bc5c/2113:3",
+            "targetVariableName": "primitive/color/juniper/juniper-70",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
+          }
         }
       },
       "main": {
         "$type": "color",
-        "$value": "{color.surface.secondary.main}",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.25,
+            0.7083333134651184,
+            0.75
+          ],
+          "alpha": 1,
+          "hex": "#40B5BF"
+        },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:45",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ]
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:f47e33fbbc3c3c4eb1bd1923e3c2b52d1352bc41/2113:5",
+            "targetVariableName": "primitive/color/juniper/juniper-50",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
+          }
         }
       },
       "dark": {
         "$type": "color",
-        "$value": "{color.surface.secondary.dark}",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.20000000298023224,
+            0.5666666626930237,
+            0.6000000238418579
+          ],
+          "alpha": 1,
+          "hex": "#339099"
+        },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:46",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ]
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:c2458d9f27b0552c3054f3ab9278233cb6eb8e74/2113:6",
+            "targetVariableName": "primitive/color/juniper/juniper-40",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
+          }
         }
       },
       "darker": {
         "$type": "color",
-        "$value": "{color.surface.secondary.darker}",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.10000000149011612,
+            0.28333333134651184,
+            0.30000001192092896
+          ],
+          "alpha": 1,
+          "hex": "#1A484D"
+        },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:47",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ]
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:05c90c66ccbdf0166d85e8dd67787c8c81264664/2113:8",
+            "targetVariableName": "primitive/color/juniper/juniper-20",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
+          }
         }
       },
       "contrast-text": {
@@ -1644,7 +1719,7 @@
         },
         "focused": {
           "$type": "color",
-          "$value": "{color.surface.primary.dark}",
+          "$value": "{color.border.active}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2561:1597",
             "com.figma.scopes": [
