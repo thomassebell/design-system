@@ -53,6 +53,8 @@ token-shape:
 
 ## Overview
 
+> 📐 **Diagram:** [`docs/architecture.svg`](../docs/architecture.svg) shows the whole picture at a glance — the build pipeline (Figma + `brands.config.js` → `build.mjs` with its pre-flight checks → CSS / Swift artifacts → consumers) and the CI pipeline (every check and test that gates a change).
+
 Three packages do the work:
 
 - **`packages/tokens`** is the source of truth pipeline. Figma exports land in `figma-exports/*.tokens.json` (DTCG schema). `build.mjs` reads them, merges per `(brand × density)`, resolves aliases, and emits `dist/<brand>-<density>.css` plus a single `dist/tokens.json` for the iOS generator. The brand × density matrix is declared once in `packages/tokens/brands.config.js` (shared with Storybook); the first entry of its `BRANDS` array drives the iOS + Storybook default.

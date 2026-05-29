@@ -2,6 +2,8 @@
 
 A cross-platform design system powering **React** (web) and **iOS** (SwiftUI) from a single source of truth.
 
+📐 **Architecture & CI at a glance:** [`docs/architecture.svg`](docs/architecture.svg) — the build pipeline plus every check and test that gates a change.
+
 ```
 design-system/
 ├── packages/
@@ -9,6 +11,7 @@ design-system/
 │   ├── react/           ← React component library + Storybook
 │   ├── ios-tokens/      ← Swift Package consuming generated tokens
 │   └── docs/            ← Documentation site
+├── docs/                ← Repo-level docs (architecture diagram)
 ├── .github/workflows/   ← CI pipeline
 ├── turbo.json           ← Turborepo pipeline config
 └── package.json         ← Workspace root
