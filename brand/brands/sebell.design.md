@@ -26,10 +26,11 @@ color:
     default: "#c6bb9f"
     dark:    "#b4a47e"
     hover:   "#a18e5e"
+    active:  "#3d5c40"   # pine (surface.primary.main) — focus/active border; shared with focus ring
   error:   { lighter: "#fbefe9", light: "#e89d7d", main: "#d95c26", dark: "#ad491f", darker: "#823717", contrast-text: "#fbfbf9" }   # cedar
   warning: { lighter: "#ece8df", light: "#d9d2bf", main: "#c6bb9f", dark: "#b4a47e", darker: "#a18e5e", contrast-text: "#0a0f0b" }   # ash, with dark text
   success: { lighter: "#e3ddcf", light: "#d0c6af", main: "#66996a", dark: "#3d5c40", darker: "#141f15", contrast-text: "#0a0f0b" }   # pine + warm
-  info:    { lighter: "#beb2a7", light: "#b3a698", main: "#93806c", dark: "#756657", darker: "#584d41", contrast-text: "#0a0f0b" }   # walnut, via surface.secondary
+  info:    { lighter: "#eef5f6", light: "#9cc4c9", main: "#599da6", dark: "#477d85", darker: "#243f42", contrast-text: "#0a0f0b" }   # juniper (muted cool teal) — the system's one cool signal
 
 radius:
   none:   "0px"
@@ -57,9 +58,9 @@ components: {}
 
 ## Overview
 
-Sebell is warm, grounded, and quietly confident. The palette is built around wood species — **pine** for the primary green that anchors most surfaces, **walnut** for warm secondary and informational tones, **cedar** as the single urgency colour (error only), and **ash** for neutrals, including non-urgent warnings. The serif/sans pairing (Noto Serif headers over Noto Sans body) reinforces an earnest, editorial voice without being formal.
+Sebell is warm, grounded, and quietly confident. The palette is built around wood species — **pine** for the primary green that anchors most surfaces, **walnut** for warm secondary tones, **cedar** as the warm urgency colour (error only), **ash** for neutrals (including non-urgent warnings), and **juniper** — the one deliberately *cool* note, a teal drawn from juniper's blue berries, reserved for informational signalling. The serif/sans pairing (Noto Serif headers over Noto Sans body) reinforces an earnest, editorial voice without being formal.
 
-Status colours are deliberately muted: only `error` uses cedar's red-orange. `warning` is ash (neutral cream — a caution, not an alarm), `info` is walnut (warm, helpful), and `success` is pine (the brand's own green). The result is a status palette that whispers rather than shouts.
+Status colours are mostly muted and warm: `error` uses cedar's red-orange, `warning` is ash (neutral cream — a caution, not an alarm), and `success` is pine (the brand's own green). The deliberate exception is `info`, now **juniper** (cool teal) — info is the one place a cool, slightly more vivid tone earns its keep, because "informational" reads most clearly when it's tonally distinct from the warm urgency/success colours. So the status palette mostly whispers, with info as the single cool, clear voice.
 
 Shape language is binary by intent: corners are either **square (0px)** or **full (9999px)** — no soft intermediate radii. This is a deliberate identity choice; the visual rhythm depends on the contrast between sharp panels and fully-rounded badges/pills.
 
@@ -77,12 +78,12 @@ Shape language is binary by intent: corners are either **square (0px)** or **ful
 | `color.error.*` | `cedar` | Warm red-orange. The only "loud" status colour — cedar is reserved for true error. |
 | `color.warning.*` | `ash` | Neutral cream tones. Warning is a caution, not an alarm — pairs with dark text. |
 | `color.success.*` | `pine` + warm tones | `pine-50` for the main accent (echoes brand primary). |
-| `color.info.*` | `walnut` (via `surface.secondary`) | Warm brown — info is helpful, friendly, not a status klaxon. Aliased intra-brand to `surface.secondary` so info and secondary always read identically. |
+| `color.info.*` | `juniper` | Cool teal — the single cool note in a warm palette. Now its own juniper scale (no longer aliased to `surface.secondary`), so info reads as tonally distinct "this is information," not as a second secondary. |
 | `color.border.*` | `ash` mid-tones | Subtle, warm borders that disappear into neutral surfaces. |
 
 Status colours all pair with **dark text** on their backgrounds (contrast-text = `color.text.primary`), because every status background is a mid-light tone in the wood-species palette. This is the opposite of the "white text on saturated colour" convention you'd see in a louder brand.
 
-Contrast: `text.primary` (#0a0f0b) on `surface.neutral.lighter` (#f6f4ef) is ~19:1 — well past AA. `surface.primary.main` (#3d5c40) on white is ~7.3:1 — passes AA Large and AA Body. `text.primary` on `warning.main` (#c6bb9f) is ~9.5:1 — comfortably AA.
+Contrast: `text.primary` (#0a0f0b) on `surface.neutral.lighter` (#f6f4ef) is ~19:1 — well past AA. `surface.primary.main` (#3d5c40) on white is ~7.3:1 — passes AA Large and AA Body. `text.primary` on `warning.main` (#c6bb9f) is ~9.5:1 — comfortably AA. `text.primary` on `info.main` (#599da6, muted juniper) is ~6.3:1 (AA Body); white text on the same teal fails (~3.0:1), which is why info pairs with dark text like the other statuses. The dark end of the juniper scale (`info.dark` ~4.2:1 with dark text — AA Large; `info.darker` ~1.7:1 — used as a border/accent shade, never a text surface) follows the same rule as cedar/pine: `contrast-text` pairs with `main`, not with the deep shades.
 
 ## Typography
 
@@ -117,7 +118,7 @@ Most components inherit cleanly via semantic tokens. Sebell-specific notes:
 
 - **Button (solid)**: surface is `pine-30`, text is `text.contrast-text` (off-white). At 300 weight the label feels light against the deep green — that's correct for Sebell's voice.
 - **Button (text)**: uses the brand underline aesthetic. The underline colour follows `color.text.primary`, not `surface.primary.main`, to avoid green-on-green when the text sits on a primary surface.
-- **Input**: square radius reinforces Sebell's strict edge identity. Focus ring uses `surface.primary.main` so it reads as "pine-on-cream."
+- **Input** (and all form controls): square radius reinforces Sebell's strict edge identity. The focused state now routes both the focus ring and the focused border through the shared `color.border.active` token (= `surface.primary.main`, pine), so the ring and the border always match and read as "pine-on-cream."
 - **Badges / Pills**: this is where `radius.xlarge` (9999px) earns its keep — they are the only fully-round elements in the system.
 
 ## Do's and Don'ts

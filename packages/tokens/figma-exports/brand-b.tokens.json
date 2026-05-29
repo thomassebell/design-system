@@ -590,9 +590,9 @@
             "SHAPE_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:32685e49adec7e40b3e096f364baef6ab149c9e7/2033:184",
+            "targetVariableId": "VariableID:2a5b8c8b6885c30738d45040778cfbb6e967464e/2044:105",
             "targetVariableName": "primitive/color/achromatic/snow",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
+            "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
             "targetVariableSetName": "brand-b-foundation"
           }
         }
@@ -1294,27 +1294,12 @@
       },
       "contrast-text": {
         "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.32999998331069946,
-            0.3149999976158142,
-            0.27000001072883606
-          ],
-          "alpha": 1,
-          "hex": "#545045"
-        },
+        "$value": "{color.text.primary}",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:207",
           "com.figma.scopes": [
             "ALL_SCOPES"
-          ],
-          "com.figma.aliasData": {
-            "targetVariableId": "VariableID:67ad55b9846ccb1ff1fe109038621ee6e08629e6/2033:174",
-            "targetVariableName": "primitive/color/sand/sand-30",
-            "targetVariableSetId": "VariableCollectionId:e81ae875d39fc8c4e77a6f4857f60a88303c9a6b/2033:86",
-            "targetVariableSetName": "brand-b-foundation"
-          }
+          ]
         }
       }
     }
@@ -1749,7 +1734,7 @@
         },
         "focused": {
           "$type": "color",
-          "$value": "{color.surface.primary.main}",
+          "$value": "{color.border.active}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2561:1597",
             "com.figma.scopes": [
