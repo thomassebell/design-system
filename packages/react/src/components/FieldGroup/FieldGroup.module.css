@@ -75,27 +75,29 @@
 }
 
 /* ── Items ────────────────────────────────── */
-/* The actual fields in the group, stacked vertically. Fixed 8px gap
-   (primitive, not density-aware) — sibling-field spacing should
-   stay constant across densities, same rationale as Field's
-   control-to-label gap. */
+/* The actual fields in the group, stacked vertically. FieldGroup composes
+   separate field widgets, so this is LAYOUT spacing, not component-internal
+   spacing — hence `layout-xsmall` (8px). The layout scale's small end is
+   density-invariant, so 8px holds in both densities, which also keeps the
+   gap clear of each control's fixed 4px focus ring. */
 
 .items {
   display: flex;
   flex-direction: column;
-  gap: var(--primitive-size-8);
+  gap: var(--semantic-layout-xsmall);
 }
 
 /* ── Section spacing ──────────────────────── */
 /* Built from sibling margins instead of a flex gap, so legend +
    description stay tight while everything else gets a real gap above
-   it. Fixed 8px (primitive) so the relationship between header,
-   error banner, and items stays constant across densities. */
+   it. Layout spacing (composition between sections) — `layout-xsmall`
+   (8px, density-invariant), matching the inter-field gap so the group's
+   spacing stays uniform. */
 
 .legend + .errorBanner,
 .legend + .items,
 .description + .errorBanner,
 .description + .items,
 .errorBanner + .items {
-  margin-top: var(--primitive-size-8);
+  margin-top: var(--semantic-layout-xsmall);
 }

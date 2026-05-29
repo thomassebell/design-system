@@ -8,10 +8,13 @@
 .field {
   display: flex;
   align-items: flex-start;
-  /* Fixed 8px gap (primitive, not density-aware) — the control-to-
-     label distance should stay constant whether the form is rendered
-     in default or compact density. */
-  gap: var(--primitive-size-8);
+  /* Control↔label gap. A field composes a standalone control
+     (Checkbox/Radio/Switch) with its label, so this is layout
+     (composition) spacing, not component-internal — `layout-xsmall`
+     (8px). The layout scale's small end is density-invariant, so 8px
+     holds in both densities, which reads right and clears the
+     control's fixed 4px focus ring. */
+  gap: var(--semantic-layout-xsmall);
   width: 100%;
 }
 

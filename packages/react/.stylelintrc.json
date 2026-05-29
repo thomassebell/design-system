@@ -1,5 +1,5 @@
 {
-  "//": "Enforces the design system's core invariant: component CSS consumes COLOUR only through semantic token variables (var(--color-…) / var(--components-…)), never as raw hex / named / rgb-hsl values, and never via a primitive colour variable (var(--primitive-color-…)). This is what makes brand-switching work at the component level. Scoped to component module CSS via the lint script. Non-colour primitives (e.g. var(--primitive-size-8)) are intentionally NOT covered here — see the CLAUDE.md note about that being a separate question.",
+  "//": "Enforces the design system's core invariant: component CSS consumes tokens through the SEMANTIC layer only — never a raw hex / named / rgb-hsl colour, and never ANY primitive variable (var(--primitive-…), colour OR size). The semantic layer is what makes brand-switching and density-switching work at the component level. Scoped to component module CSS via the lint script. Sebell runs a true density setup: every spacing value scales via semantic tokens, with no fixed-primitive exceptions.",
   "rules": {
     "color-no-hex": true,
     "color-named": "never",
@@ -16,7 +16,7 @@
       "color"
     ],
     "declaration-property-value-disallowed-list": {
-      "/.*/": ["/var\\(\\s*--primitive-color-/"]
+      "/.*/": ["/var\\(\\s*--primitive-/"]
     }
   }
 }
