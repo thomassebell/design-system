@@ -18,15 +18,20 @@
 import StyleDictionary from "style-dictionary";
 import { readFileSync, mkdirSync, existsSync, rmSync, readdirSync } from "fs";
 import { execSync } from "child_process";
+import { BRANDS as BRAND_DEFS, DENSITIES as DENSITY_DEFS } from "./brands.config.js";
 
 const EXPORTS_DIR = "figma-exports";
 const OUT_DIR = "dist";
-// Order matters: BRANDS[0] is the brand used for `firstCombo`, which feeds
+// Brands and densities come from the single source of truth shared with
+// Storybook — see ./brands.config.js. build.mjs only needs the id strings, so
+// we map the rich {id,title} defs down to ids here; every loop below keeps
+// working with plain string arrays exactly as before.
+// Order matters: BRANDS[0] × DENSITIES[0] is `firstCombo`, which feeds
 // dist/tokens.json → DesignTokens.swift. Sebell is the production brand;
 // brand-a and brand-b stay as test fixtures that exercise the multi-brand
 // pipeline (cross-brand consistency, alias misalignment, structural diff).
-const BRANDS = ["sebell", "brand-a", "brand-b"];
-const DENSITIES = ["default", "compact"];
+const BRANDS = BRAND_DEFS.map((b) => b.id);
+const DENSITIES = DENSITY_DEFS.map((d) => d.id);
 
 // ── Font-weight string → numeric transform ─────────
 // Figma needs the human weight name ("Semi Bold") to render text on its
