@@ -11,7 +11,8 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "storybook": "turbo run storybook --filter=@ds/react",
-    "tokens:build": "turbo run build --filter=@ds/tokens"
+    "tokens:build": "turbo run build --filter=@ds/tokens",
+    "smoke": "node scripts/consumer-smoke-test.mjs"
   },
   "devDependencies": {
     "turbo": "^2.0.0",

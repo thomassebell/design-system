@@ -14,20 +14,22 @@ npm install @ds/react
 
 (Currently published only inside the Sebell DS workspace; external publishing comes later.)
 
-## Import the global stylesheet once
+## Import the stylesheets once
 
-In your app's entry point:
+In your app's entry point, import **two** stylesheets – your brand's token
+variables, then the component styles:
 
 ```ts
-import "@ds/react/styles.css";
+import "@ds/tokens/dist/sebell-default.css"; // token variables (pick your brand × density)
+import "@ds/react/styles.css"; // reset + component styles
 ```
 
-This brings in:
+- The token stylesheet defines every `--color-…` / `--semantic-…` CSS variable.
+  Components render unstyled without it.
+- `@ds/react/styles.css` brings the baseline reset (`box-sizing: border-box`),
+  shared utilities, and all component styles.
 
-- A baseline reset (`box-sizing: border-box`).
-- The default theme — **Sebell, Default density**.
-
-For a single-brand production app (the most common case), this is all you need — pick the brand CSS once at build time and you're done.
+For a single-brand production app (the most common case), this is all you need – pick the brand CSS once at build time and you're done.
 
 ## Use components
 

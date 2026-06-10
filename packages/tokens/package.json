@@ -1,17 +1,21 @@
 {
   "name": "@ds/tokens",
   "version": "0.1.0",
-  "description": "Design tokens — the single source of truth for colors, typography, spacing, and more.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "Design tokens – the single source of truth for colors, typography, spacing, and more.",
+  "type": "module",
+  "exports": {
+    "./brands.config.js": "./brands.config.js",
+    "./dist/*.css": "./dist/*.css",
+    "./dist/tokens.json": "./dist/tokens.json"
+  },
   "scripts": {
     "build": "node build.mjs && node transforms/generate-swift.mjs",
     "dev": "node build.mjs && node transforms/generate-swift.mjs",
-    "clean": "rm -rf dist output"
+    "clean": "rm -rf dist"
   },
   "files": [
     "dist",
-    "output"
+    "brands.config.js"
   ],
   "devDependencies": {
     "style-dictionary": "^4.0.0"

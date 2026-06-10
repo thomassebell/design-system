@@ -7,14 +7,17 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/index.css"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts --external react",
-    "dev": "tsup src/index.ts --format esm --dts --external react --watch",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "eslint src stories && stylelint \"src/components/**/*.module.css\"",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -47,11 +50,13 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-storybook": "^10.3.6",
     "globals": "^17.5.0",
-    "stylelint": "^16.10.0",
     "jsdom": "^29.1.1",
+    "postcss": "^8.5.15",
+    "postcss-modules": "^6.0.1",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "storybook": "^10.3.6",
+    "stylelint": "^16.10.0",
     "tsup": "^8.0.0",
     "typescript": "^5.5.0",
     "typescript-eslint": "^8.59.1",

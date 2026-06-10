@@ -2,7 +2,11 @@
    @ds/react — Design System Components
    ───────────────────────────────────────────── */
 
-// Styles (consumers import "@ds/react/styles.css" separately)
+// Global styles (reset + utilities). tsup extracts all CSS – this file plus
+// every component's CSS Module – into dist/index.css, which consumers load
+// via the "@ds/react/styles.css" export alongside a token stylesheet from
+// @ds/tokens/dist/.
+import "./styles/globals.css";
 
 // Components
 export { Button } from "./components/Button";

@@ -1,9 +1,0 @@
-{
-  "name": "@ds/docs",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Reserved for a future standalone documentation site. Live docs currently live alongside Storybook in @ds/react under stories/docs/*.mdx.",
-  "scripts": {
-    "build": "echo 'docs are served from Storybook — see packages/react/stories/docs/'"
-  }
-}

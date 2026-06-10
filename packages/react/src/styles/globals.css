@@ -1,13 +1,11 @@
 /* ─────────────────────────────────────────────
-   @ds/react — global styles
-   Import this once in your app entry point:
-     import "@ds/react/styles.css";
-   ───────────────────────────────────────────── */
+   @ds/react – global styles (reset + utilities).
+   Bundled into dist/index.css via src/index.ts.
 
-/* Default theme: brand-a × default. The brand/density toolbar in
-   Storybook overrides this at runtime by linking a different built
-   stylesheet from packages/tokens/dist/. */
-@import "@ds/tokens/dist/brand-a-default.css";
+   Token variables are NOT included here: the consuming app picks its
+   brand × density stylesheet from @ds/tokens/dist/ and imports it
+   alongside "@ds/react/styles.css".
+   ───────────────────────────────────────────── */
 
 /* ── Reset baseline ─────────────────────────── */
 
@@ -19,7 +17,9 @@
 
 /* ── Utility classes (optional) ─────────────── */
 
-.ds-visually-hidden {
+/* :global keeps the class name literal – this file is compiled with the
+   local-css loader (see tsup.config.ts), which would otherwise hash it. */
+:global(.ds-visually-hidden) {
   position: absolute;
   width: 1px;
   height: 1px;
