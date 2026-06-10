@@ -7,11 +7,12 @@ A cross-platform design system powering **React** (web) and **iOS** (SwiftUI) fr
 ```
 design-system/
 ├── packages/
-│   ├── tokens/          ← Design tokens (JSON → CSS + Swift)
+│   ├── tokens/          ← Design tokens (Figma DTCG exports → CSS + Swift)
 │   ├── react/           ← React component library + Storybook
-│   ├── ios-tokens/      ← Swift Package consuming generated tokens
-│   └── docs/            ← Documentation site
+│   └── ios-tokens/      ← Swift Package exposing the generated tokens
+├── brand/               ← DESIGN.md specs (system contract + per-brand)
 ├── docs/                ← Repo-level docs (architecture diagram)
+├── scripts/             ← Repo tooling (consumer smoke test)
 ├── .github/workflows/   ← CI pipeline
 ├── turbo.json           ← Turborepo pipeline config
 └── package.json         ← Workspace root
@@ -37,10 +38,9 @@ npm run build
 
 | Package | Description |
 |---------|-------------|
-| `@ds/tokens` | Design tokens defined in JSON, transformed via Style Dictionary into CSS custom properties and Swift constants. |
-| `@ds/react` | React component library (Button, Text, Stack, Input, Icon) with CSS Modules consuming token variables. |
-| `ios-tokens` | Swift Package that exposes `DesignTokens.swift` for iOS / SwiftUI. |
-| `@ds/docs` | Documentation site (token reference, component guidelines, contribution guide). |
+| `@ds/tokens` | Design tokens exported from Figma (DTCG JSON), transformed via Style Dictionary into CSS custom properties and Swift constants. |
+| `@ds/react` | React component library (buttons, form fields, layout primitives, typography) with CSS Modules consuming token variables. |
+| `ios-tokens` | Swift Package exposing `DesignTokens.swift` for iOS / SwiftUI. The generated file is committed – SwiftPM consumes it straight from this repo. |
 
 ## Brand structure
 
@@ -51,26 +51,27 @@ Start with [`brand/core.design.md`](./brand/core.design.md) for the system-level
 ## How tokens flow
 
 ```
-JSON source files (packages/tokens/src/)
+Figma exports (packages/tokens/figma-exports/*.tokens.json)
         │
         ▼
-   Style Dictionary
+build.mjs (merge per brand × density, resolve aliases, pre-flight checks)
         │
-   ┌────┴─────┐
-   ▼          ▼
-tokens.css   tokens.json
-(web)           │
-                ▼
-         generate-swift.mjs
-                │
-                ▼
-        DesignTokens.swift
-             (iOS)
+   ┌────┴──────────────┐
+   ▼                   ▼
+dist/<brand>-<density>.css   dist/tokens.json
+        (web)                      │
+                                   ▼
+                          generate-swift.mjs
+                                   │
+                                   ▼
+              packages/ios-tokens/Sources/DSTokens/DesignTokens.swift
+                          (iOS, committed)
 ```
 
 ## Adding a component
 
-See [Contributing Guide](packages/docs/src/contributing.md).
+See the **Guides → Adding a Component** page in Storybook
+([source](packages/react/stories/docs/AddingComponent.mdx)).
 
 ## Architecture decisions
 

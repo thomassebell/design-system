@@ -8,5 +8,8 @@ output/
 storybook-static/
 coverage/
 
+# Claude Code session-local files (settings.local.json, scratch worktrees)
+.claude/
+
 # Figma export bundles dragged into the repo by accident
 *.zip
