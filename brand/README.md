@@ -37,6 +37,6 @@ This folder is the **specification**, not the source. Token values originate in 
 | Foundation primitives | Figma `<brand>-foundation` collection | `packages/tokens/figma-exports/<brand>-foundation.tokens.json` |
 | Brand semantics | Figma main DS file, brand mode | `packages/tokens/figma-exports/<brand>.tokens.json` |
 | Resolved values | `npm run tokens:build` | `packages/tokens/dist/<brand>-<density>.css` |
-| iOS values | `packages/tokens/transforms/generate-swift.mjs` | `packages/ios-tokens/output/DesignTokens.swift` |
+| iOS values | `packages/tokens/transforms/generate-swift.mjs` | `packages/ios-tokens/Sources/DSTokens/DesignTokens.swift` (committed) |
 
 Edit in Figma → re-export → `npm run tokens:build` → update the relevant brand DESIGN.md file.

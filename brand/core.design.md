@@ -59,7 +59,7 @@ Three packages do the work:
 
 - **`packages/tokens`** is the source of truth pipeline. Figma exports land in `figma-exports/*.tokens.json` (DTCG schema). `build.mjs` reads them, merges per `(brand × density)`, resolves aliases, and emits `dist/<brand>-<density>.css` plus a single `dist/tokens.json` for the iOS generator. The brand × density matrix is declared once in `packages/tokens/brands.config.js` (shared with Storybook); the first entry of its `BRANDS` array drives the iOS + Storybook default.
 - **`packages/react`** is the component library. Components consume CSS custom properties only — no component is brand-aware. Storybook inlines all stylesheets and flips one active via `media` attribute.
-- **`packages/ios-tokens`** is a Swift Package. `transforms/generate-swift.mjs` reads `dist/tokens.json` and writes `output/DesignTokens.swift`. Multi-brand iOS is parked.
+- **`packages/ios-tokens`** is a Swift Package. `transforms/generate-swift.mjs` reads `dist/tokens.json` and writes `Sources/DSTokens/DesignTokens.swift`, which is **committed to git** – SwiftPM consumes packages straight from the repo, so the generated file must be checked in. CI regenerates it and fails if the committed copy is stale. Multi-brand iOS is parked.
 
 ### Token cascade
 

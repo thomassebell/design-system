@@ -9,9 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20]
 
     steps:
       - uses: actions/checkout@v4
@@ -19,10 +16,10 @@ jobs:
           # Chromatic needs the full git history to detect baselines.
           fetch-depth: 0
 
-      - name: Setup Node ${{ matrix.node-version }}
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
           cache: npm
 
       - name: Install dependencies
@@ -33,6 +30,13 @@ jobs:
 
       - name: Build all packages
         run: npm run build
+
+      # Consume @ds/tokens + @ds/react the way an external app would:
+      # npm pack → install into a scratch project → import and verify the
+      # documented entry points. Catches broken exports maps and lost CSS
+      # Modules scoping that Storybook (which builds from src/) never sees.
+      - name: Consumer smoke test
+        run: npm run smoke
 
       - name: Lint
         run: npm run lint
@@ -55,6 +59,10 @@ jobs:
           exitZeroOnChanges: true
           autoAcceptChanges: main
 
-      # Verify the Swift output was generated
-      - name: Check iOS token output
-        run: test -f packages/ios-tokens/output/DesignTokens.swift
+      # The Swift file is committed (SwiftPM consumes it from git). The token
+      # build above regenerated it, so any diff means the committed copy is
+      # stale – fail and ask for a rebuild + commit.
+      - name: Check committed iOS tokens are up to date
+        run: |
+          git diff --exit-code -- packages/ios-tokens/Sources \
+            || (echo "::error::DesignTokens.swift is out of date. Run 'npm run tokens:build' and commit the result." && exit 1)
