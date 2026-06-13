@@ -12,6 +12,9 @@ import "./styles/globals.css";
 export { Button } from "./components/Button";
 export type { ButtonProps, ButtonVariant } from "./components/Button";
 
+export { IconButton } from "./components/IconButton";
+export type { IconButtonProps, IconButtonVariant } from "./components/IconButton";
+
 export { Text } from "./components/Text";
 export type { TextProps, TextVariant } from "./components/Text";
 
