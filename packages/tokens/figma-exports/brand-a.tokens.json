@@ -126,6 +126,46 @@
               "targetVariableSetName": "brand-a-foundation"
             }
           }
+        },
+        "subtle": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8784314,
+              0.9607843,
+              1.0
+            ],
+            "alpha": 1,
+            "hex": "#E0F5FF"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2740:4",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ]
+          }
+        },
+        "subtle-strong": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7607843,
+              0.9215686,
+              1.0
+            ],
+            "alpha": 1,
+            "hex": "#C2EBFF"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2740:5",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ]
+          }
         }
       },
       "secondary": {
@@ -1653,6 +1693,30 @@
               "SHAPE_FILL",
               "TEXT_FILL",
               "STROKE"
+            ]
+          }
+        }
+      },
+      "outline-background": {
+        "hover": {
+          "$type": "color",
+          "$value": "{color.surface.primary.subtle}",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2740:6",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ]
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{color.surface.primary.subtle-strong}",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2740:7",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
             ]
           }
         }

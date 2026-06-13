@@ -80,7 +80,12 @@
   color: var(--color-text-light);
   box-shadow: inset 0 0 0 2px var(--components-button-border-enabled);
 }
+/* Hover/pressed add a faint brand-tinted fill. Without it the outline only
+   shifted its border + icon colour, which is almost invisible feedback on an
+   icon-only button. The tint is a pale surface token so the dark icon stays
+   readable. Mirrors Button. */
 .outline:hover:not(:disabled) {
+  background: var(--components-button-outline-background-hover);
   color: var(--color-text-primary);
   box-shadow: inset 0 0 0 2px var(--components-button-border-hover);
 }
@@ -88,6 +93,7 @@
    here, :active inherits :hover's text.primary when the user clicks while
    hovering (which is always the case for mouse interaction). Mirrors Button. */
 .outline:active:not(:disabled) {
+  background: var(--components-button-outline-background-pressed);
   color: var(--color-text-light);
   box-shadow: inset 0 0 0 2px var(--components-button-border-pressed);
 }
