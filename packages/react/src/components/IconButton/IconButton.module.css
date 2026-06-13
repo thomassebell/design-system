@@ -1,0 +1,147 @@
+/* IconButton — the icon-only sibling of Button. It shares Button's surface
+   treatments (solid / outline / danger) and the same semantic tokens, but
+   the layout is a square: equal padding on all sides around a single
+   centred icon, with no label, gap, or icon-bleed margins. */
+
+/* ── Base (size-neutral) ──────────────────── */
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  /* Border-radius is set per-size below so smaller components get a
+     proportionally smaller corner radius (regular → medium, dense → small).
+     Note: for Sebell, radius/medium resolves to 0 — the square corners in
+     the design are the token's value, not a missing radius. */
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
+  user-select: none;
+}
+
+/* ── Sizes ────────────────────────────────── */
+
+/* Padding is uniform on all four sides so the button is square around its
+   icon. Matches the Figma: regular pads with components/large (16px), dense
+   with components/small (8px). */
+.regular {
+  padding: var(--semantic-components-large);
+  border-radius: var(--radius-medium);
+}
+
+.dense {
+  padding: var(--semantic-components-small);
+  border-radius: var(--radius-small);
+}
+
+/* ── States ───────────────────────────────── */
+
+.iconButton:focus-visible {
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
+  outline-offset: var(--components-focus-ring-offset);
+}
+
+/* Danger uses the error focus-ring so the ring stays in the variant's
+   colour family — red button → red ring, not brand-blue ring on a red
+   destructive action. Mirrors Button. */
+.danger:focus-visible {
+  outline-color: var(--components-focus-ring-error);
+}
+
+.iconButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Variants ─────────────────────────────── */
+
+/* Solid variant — this is the variant designed in Figma. Background and icon
+   colour follow the same per-state button tokens Button uses, so each brand
+   picks a foreground that meets contrast against its own primary surface.
+   The icon inherits this colour via SVG currentColor. */
+.solid {
+  background: var(--components-button-background-enabled);
+  color: var(--components-button-text-enabled);
+}
+.solid:hover:not(:disabled) {
+  background: var(--components-button-background-hover);
+  color: var(--components-button-text-hover);
+}
+.solid:active:not(:disabled) {
+  background: var(--components-button-background-pressed);
+  color: var(--components-button-text-pressed);
+}
+
+.outline {
+  background: transparent;
+  color: var(--color-text-light);
+  box-shadow: inset 0 0 0 2px var(--components-button-border-enabled);
+}
+.outline:hover:not(:disabled) {
+  color: var(--color-text-primary);
+  box-shadow: inset 0 0 0 2px var(--components-button-border-hover);
+}
+/* Pressed resets icon colour back to text.light. Without an explicit colour
+   here, :active inherits :hover's text.primary when the user clicks while
+   hovering (which is always the case for mouse interaction). Mirrors Button. */
+.outline:active:not(:disabled) {
+  color: var(--color-text-light);
+  box-shadow: inset 0 0 0 2px var(--components-button-border-pressed);
+}
+
+/* Danger variant — soft-hover pattern, identical to Button's danger:
+   - enabled:  saturated red surface, light icon (alarming)
+   - hover:    pale red surface, dark icon (a "soft" beat before commit)
+   - pressed:  deep red surface, light icon (re-assert severity on commit)
+   See brand/core.design.md → Do's and Don'ts for the rationale. */
+.danger {
+  background: var(--color-error-main);
+  color: var(--color-error-contrast-text);
+}
+.danger:hover:not(:disabled) {
+  background: var(--color-error-light);
+  color: var(--color-text-primary);
+}
+.danger:active:not(:disabled) {
+  background: var(--color-error-dark);
+  color: var(--color-error-contrast-text);
+}
+
+/* ── Modifiers ────────────────────────────── */
+
+.loading {
+  position: relative;
+}
+
+/* Spinner replaces the icon while loading — same treatment as Button. */
+.spinner {
+  position: absolute;
+  width: 1.5em;
+  height: 1.5em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 9999px;
+  animation: spin 600ms linear infinite;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+/* The icon sits centred with no surrounding gap. It inherits the button's
+   colour via SVG currentColor, so a solid button's icon turns light on the
+   green surface, an outline button's turns dark-on-transparent, etc. */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
