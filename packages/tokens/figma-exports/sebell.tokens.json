@@ -7,12 +7,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.4000000059604645,
-              0.6000000238418579,
-              0.4166666567325592
+              0.46000000834465027,
+              0.6399999856948853,
+              0.4749999940395355
             ],
             "alpha": 1,
-            "hex": "#66996A"
+            "hex": "#75A379"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:37:12",
@@ -20,8 +20,8 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:0161dec67a2c6b21bc00d69feaca2a74b35cf8a4/2084:9",
-              "targetVariableName": "primitive/color/pine/pine-50",
+              "targetVariableId": "VariableID:0161dec67a2c6b21bc00d69feaca2a74b35cf8a4/2137:1",
+              "targetVariableName": "primitive/color/pine/pine-55",
               "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
               "targetVariableSetName": "sebell-foundation"
             }
@@ -32,12 +32,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.3199999928474426,
-              0.47999998927116394,
-              0.3333333432674408
+              0.36000001430511475,
+              0.5400000214576721,
+              0.375
             ],
             "alpha": 1,
-            "hex": "#527A55"
+            "hex": "#5C8A60"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:37:13",
@@ -45,8 +45,8 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:5cd17afded9fbf122e619fa014d7ade01dd1b5fa/2084:1",
-              "targetVariableName": "primitive/color/pine/pine-40",
+              "targetVariableId": "VariableID:5cd17afded9fbf122e619fa014d7ade01dd1b5fa/2137:5",
+              "targetVariableName": "primitive/color/pine/pine-45",
               "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
               "targetVariableSetName": "sebell-foundation"
             }
@@ -57,12 +57,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.23999999463558197,
-              0.36000001430511475,
-              0.25
+              0.2800000011920929,
+              0.41999998688697815,
+              0.2916666567325592
             ],
             "alpha": 1,
-            "hex": "#3D5C40"
+            "hex": "#476B4A"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:29:647",
@@ -70,8 +70,8 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:cc9c011c22618937a65ea458f3c905fb129989f7/2084:3",
-              "targetVariableName": "primitive/color/pine/pine-30",
+              "targetVariableId": "VariableID:cc9c011c22618937a65ea458f3c905fb129989f7/2137:9",
+              "targetVariableName": "primitive/color/pine/pine-35",
               "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
               "targetVariableSetName": "sebell-foundation"
             }
@@ -82,12 +82,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.1599999964237213,
-              0.23999999463558197,
-              0.1666666716337204
+              0.20000000298023224,
+              0.30000001192092896,
+              0.2083333283662796
             ],
             "alpha": 1,
-            "hex": "#293D2B"
+            "hex": "#334D35"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:37:14",
@@ -95,8 +95,8 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:81b3eaaf1912b1f4e8f1d9174db41ec49c92f4c3/2084:5",
-              "targetVariableName": "primitive/color/pine/pine-20",
+              "targetVariableId": "VariableID:81b3eaaf1912b1f4e8f1d9174db41ec49c92f4c3/2137:13",
+              "targetVariableName": "primitive/color/pine/pine-25",
               "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
               "targetVariableSetName": "sebell-foundation"
             }
@@ -107,12 +107,12 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.07999999821186066,
               0.11999999731779099,
-              0.0833333358168602
+              0.18000000715255737,
+              0.125
             ],
             "alpha": 1,
-            "hex": "#141F15"
+            "hex": "#1F2E20"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:37:15",
@@ -120,8 +120,8 @@
               "ALL_SCOPES"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:f20406a01fefdeb6bff988c8310a187f19251813/2084:7",
-              "targetVariableName": "primitive/color/pine/pine-10",
+              "targetVariableId": "VariableID:f20406a01fefdeb6bff988c8310a187f19251813/2137:17",
+              "targetVariableName": "primitive/color/pine/pine-15",
               "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
               "targetVariableSetName": "sebell-foundation"
             }
@@ -447,12 +447,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.23999999463558197,
-            0.36000001430511475,
-            0.25
+            0.2800000011920929,
+            0.41999998688697815,
+            0.2916666567325592
           ],
           "alpha": 1,
-          "hex": "#3D5C40"
+          "hex": "#476B4A"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:5:4",
@@ -461,8 +461,8 @@
             "TEXT_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:cc9c011c22618937a65ea458f3c905fb129989f7/2084:3",
-            "targetVariableName": "primitive/color/pine/pine-30",
+            "targetVariableId": "VariableID:cc9c011c22618937a65ea458f3c905fb129989f7/2137:9",
+            "targetVariableName": "primitive/color/pine/pine-35",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
           }
@@ -473,12 +473,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.3199999928474426,
-            0.47999998927116394,
-            0.3333333432674408
+            0.36000001430511475,
+            0.5400000214576721,
+            0.375
           ],
           "alpha": 1,
-          "hex": "#527A55"
+          "hex": "#5C8A60"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:63:574",
@@ -487,8 +487,8 @@
             "TEXT_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:5cd17afded9fbf122e619fa014d7ade01dd1b5fa/2084:1",
-            "targetVariableName": "primitive/color/pine/pine-40",
+            "targetVariableId": "VariableID:5cd17afded9fbf122e619fa014d7ade01dd1b5fa/2137:5",
+            "targetVariableName": "primitive/color/pine/pine-45",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
           }
@@ -1055,12 +1055,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.3199999928474426,
-            0.47999998927116394,
-            0.3333333432674408
+            0.36000001430511475,
+            0.5400000214576721,
+            0.375
           ],
           "alpha": 1,
-          "hex": "#527A55"
+          "hex": "#5C8A60"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:32",
@@ -1068,8 +1068,8 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:5cd17afded9fbf122e619fa014d7ade01dd1b5fa/2084:1",
-            "targetVariableName": "primitive/color/pine/pine-40",
+            "targetVariableId": "VariableID:5cd17afded9fbf122e619fa014d7ade01dd1b5fa/2137:5",
+            "targetVariableName": "primitive/color/pine/pine-45",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
           }
@@ -1080,12 +1080,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.23999999463558197,
-            0.36000001430511475,
-            0.25
+            0.2800000011920929,
+            0.41999998688697815,
+            0.2916666567325592
           ],
           "alpha": 1,
-          "hex": "#3D5C40"
+          "hex": "#476B4A"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:33",
@@ -1093,8 +1093,8 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:cc9c011c22618937a65ea458f3c905fb129989f7/2084:3",
-            "targetVariableName": "primitive/color/pine/pine-30",
+            "targetVariableId": "VariableID:cc9c011c22618937a65ea458f3c905fb129989f7/2137:9",
+            "targetVariableName": "primitive/color/pine/pine-35",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
           }
@@ -1105,12 +1105,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.07999999821186066,
             0.11999999731779099,
-            0.0833333358168602
+            0.18000000715255737,
+            0.125
           ],
           "alpha": 1,
-          "hex": "#141F15"
+          "hex": "#1F2E20"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:34",
@@ -1118,8 +1118,8 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:f20406a01fefdeb6bff988c8310a187f19251813/2084:7",
-            "targetVariableName": "primitive/color/pine/pine-10",
+            "targetVariableId": "VariableID:f20406a01fefdeb6bff988c8310a187f19251813/2137:17",
+            "targetVariableName": "primitive/color/pine/pine-15",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
           }
@@ -1157,12 +1157,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.925000011920929,
-            0.9708333611488342,
-            0.9750000238418579
+            0.9350000023841858,
+            0.9614999890327454,
+            0.9649999737739563
           ],
           "alpha": 1,
-          "hex": "#ECF8F9"
+          "hex": "#EEF5F6"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:43",
@@ -1170,7 +1170,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:c9185ada43aca4f57f89b46666fd46539cffd8d1/2113:0",
+            "targetVariableId": "VariableID:c9185ada43aca4f57f89b46666fd46539cffd8d1/2120:0",
             "targetVariableName": "primitive/color/juniper/juniper-95",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
@@ -1182,12 +1182,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.550000011920929,
-            0.824999988079071,
-            0.8500000238418579
+            0.6100000143051147,
+            0.7689999938011169,
+            0.7900000214576721
           ],
           "alpha": 1,
-          "hex": "#8CD2D9"
+          "hex": "#9CC4C9"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:44",
@@ -1195,7 +1195,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:11ce6d28e83c8586d1f4c1a70981bb06c207bc5c/2113:3",
+            "targetVariableId": "VariableID:11ce6d28e83c8586d1f4c1a70981bb06c207bc5c/2120:3",
             "targetVariableName": "primitive/color/juniper/juniper-70",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
@@ -1207,12 +1207,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.25,
-            0.7083333134651184,
-            0.75
+            0.3499999940395355,
+            0.6150000095367432,
+            0.6499999761581421
           ],
           "alpha": 1,
-          "hex": "#40B5BF"
+          "hex": "#599DA6"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:45",
@@ -1220,7 +1220,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:f47e33fbbc3c3c4eb1bd1923e3c2b52d1352bc41/2113:5",
+            "targetVariableId": "VariableID:f47e33fbbc3c3c4eb1bd1923e3c2b52d1352bc41/2120:5",
             "targetVariableName": "primitive/color/juniper/juniper-50",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
@@ -1232,12 +1232,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.20000000298023224,
-            0.5666666626930237,
-            0.6000000238418579
+            0.2800000011920929,
+            0.492000013589859,
+            0.5199999809265137
           ],
           "alpha": 1,
-          "hex": "#339099"
+          "hex": "#477D85"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:46",
@@ -1245,7 +1245,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:c2458d9f27b0552c3054f3ab9278233cb6eb8e74/2113:6",
+            "targetVariableId": "VariableID:c2458d9f27b0552c3054f3ab9278233cb6eb8e74/2120:6",
             "targetVariableName": "primitive/color/juniper/juniper-40",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
@@ -1257,12 +1257,12 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.10000000149011612,
-            0.28333333134651184,
-            0.30000001192092896
+            0.14000000059604645,
+            0.2460000067949295,
+            0.25999999046325684
           ],
           "alpha": 1,
-          "hex": "#1A484D"
+          "hex": "#243F42"
         },
         "$extensions": {
           "com.figma.variableId": "VariableID:42:47",
@@ -1270,7 +1270,7 @@
             "ALL_SCOPES"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:05c90c66ccbdf0166d85e8dd67787c8c81264664/2113:8",
+            "targetVariableId": "VariableID:05c90c66ccbdf0166d85e8dd67787c8c81264664/2120:8",
             "targetVariableName": "primitive/color/juniper/juniper-20",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
