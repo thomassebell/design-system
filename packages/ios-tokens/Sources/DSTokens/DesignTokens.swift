@@ -26,6 +26,7 @@ extension Color {
     static let surfaceNeutralDark = Color(red: 0.741, green: 0.690, blue: 0.561)
     static let surfaceNeutralDarker = Color(red: 0.631, green: 0.557, blue: 0.369)
     static let textPrimary = Color(red: 0.039, green: 0.059, blue: 0.043)
+    static let textBrand = Color(red: 0.239, green: 0.361, blue: 0.251)
     static let textLight = Color(red: 0.278, green: 0.420, blue: 0.290)
     static let textLighter = Color(red: 0.361, green: 0.541, blue: 0.376)
     static let textContrastText = Color(red: 0.984, green: 0.984, blue: 0.976)

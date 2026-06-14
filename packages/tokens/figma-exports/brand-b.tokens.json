@@ -442,6 +442,33 @@
           }
         }
       },
+      "brand": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4699999690055847,
+            0.7990000247955322,
+            0.1409999579191208
+          ],
+          "alpha": 1,
+          "hex": "#78CC24"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2754:2423",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:ff220183ca7fe01a8f1c15083096928aad39f3a8/2044:112",
+            "targetVariableName": "primitive/color/grass/grass-50",
+            "targetVariableSetId": "VariableCollectionId:c0569f0a66ab09f9aa5f4bbebea93a567f98b296/2044:67",
+            "targetVariableSetName": "brand-b-foundation"
+          }
+        }
+      },
       "light": {
         "$type": "color",
         "$value": {

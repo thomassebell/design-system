@@ -78,21 +78,21 @@
   color: var(--color-text-light);
   box-shadow: inset 0 0 0 2px var(--components-button-border-enabled);
 }
-/* Hover and pressed add a brand-tinted fill – hover uses
-   surface.primary.lighter, pressed steps one shade darker to
-   surface.primary.light. Without a fill the outline only shifted its border +
-   text colour, which is almost invisible feedback. */
+/* Hover/pressed add the brand-tinted fill; the label colour shifts for
+   contrast. Hover uses text.brand (brand colour on the pale fill); pressed
+   jumps to text.primary (near-black) so the label stays legible on the
+   stronger pressed fill – text.light was too faint there. */
 .outline:hover:not(:disabled) {
   background: var(--components-button-outline-background-hover);
-  color: var(--color-text-primary);
+  color: var(--color-text-brand);
   box-shadow: inset 0 0 0 2px var(--components-button-border-hover);
 }
-/* Pressed resets text back to text.light. Without an explicit color here,
-   :active inherits :hover's text.primary when the user clicks while hovering
-   (which is always the case for mouse interaction) — diverging from Figma. */
+/* Explicit pressed colour: without it, :active inherits :hover's text.brand
+   when clicking while hovering (always true for mouse). text.primary keeps the
+   label high-contrast on the pressed fill. */
 .outline:active:not(:disabled) {
   background: var(--components-button-outline-background-pressed);
-  color: var(--color-text-light);
+  color: var(--color-text-primary);
   box-shadow: inset 0 0 0 2px var(--components-button-border-pressed);
 }
 /* No outline-specific :disabled rule — the universal .button:disabled

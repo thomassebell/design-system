@@ -442,6 +442,33 @@
           }
         }
       },
+      "brand": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.6666666865348816,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#00AAFF"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2754:2423",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:5435d5c7c6696f97d7fa08734726a174e2740eca/60:10",
+            "targetVariableName": "primitive/color/blue/blue-50",
+            "targetVariableSetId": "VariableCollectionId:62e45423801e54413b09984900972861f258622f/60:5",
+            "targetVariableSetName": "brand-a-foundation"
+          }
+        }
+      },
       "light": {
         "$type": "color",
         "$value": {

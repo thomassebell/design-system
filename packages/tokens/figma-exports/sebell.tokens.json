@@ -442,6 +442,33 @@
           }
         }
       },
+      "brand": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.23999999463558197,
+            0.36000001430511475,
+            0.25
+          ],
+          "alpha": 1,
+          "hex": "#3D5C40"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2754:2423",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:34301497938c7cb650155214f6fc8726c4f8231b/2137:11",
+            "targetVariableName": "primitive/color/pine/pine-30",
+            "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
+            "targetVariableSetName": "sebell-foundation"
+          }
+        }
+      },
       "light": {
         "$type": "color",
         "$value": {
