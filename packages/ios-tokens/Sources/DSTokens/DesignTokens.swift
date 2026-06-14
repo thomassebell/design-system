@@ -156,7 +156,7 @@ enum DSLineHeight {
 // MARK: - Font Weights
 enum DSFontWeight {
     static let emphasized: Font.Weight = .bold
-    static let `default`: Font.Weight = .light
+    static let `default`: Font.Weight = .regular
     static let understate: Font.Weight = .light
 }
 

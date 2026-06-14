@@ -80,18 +80,14 @@
   color: var(--color-icon-light);
   box-shadow: inset 0 0 0 2px var(--components-button-border-enabled);
 }
-/* Hover/pressed add the brand-tinted fill; the icon colour shifts for contrast.
-   Hover uses icon.brand (brand colour on the pale fill); pressed jumps to
-   icon.primary (near-black) so the icon stays legible on the stronger pressed
-   fill – icon.light was too faint there. Mirrors Button. */
+/* Hover/pressed add the brand-tinted fill and switch the icon to icon.primary
+   (near-black), keeping it high-contrast on the fill. Hover and pressed differ
+   by fill + border. Mirrors Button. */
 .outline:hover:not(:disabled) {
   background: var(--components-button-outline-background-hover);
-  color: var(--color-icon-brand);
+  color: var(--color-icon-primary);
   box-shadow: inset 0 0 0 2px var(--components-button-border-hover);
 }
-/* Explicit pressed colour: without it, :active inherits :hover's icon.brand
-   when clicking while hovering (always true for mouse). icon.primary keeps the
-   icon high-contrast on the pressed fill. Mirrors Button. */
 .outline:active:not(:disabled) {
   background: var(--components-button-outline-background-pressed);
   color: var(--color-icon-primary);

@@ -1373,7 +1373,7 @@
       },
       "default": {
         "$type": "string",
-        "$value": "Light",
+        "$value": "Regular",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:17",
           "com.figma.scopes": [
@@ -1381,8 +1381,8 @@
           ],
           "com.figma.type": "string",
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:2734326f922970cdbd094ae2d816b849af835da6/2062:2",
-            "targetVariableName": "primitive/font-weight/light",
+            "targetVariableId": "VariableID:a3a4b52c481cc3a07fd3636d5bfe41b90c7863c2/2065:12",
+            "targetVariableName": "primitive/font-weight/regular",
             "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
             "targetVariableSetName": "sebell-foundation"
           }
