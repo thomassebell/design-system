@@ -78,12 +78,12 @@
   color: var(--color-text-light);
   box-shadow: inset 0 0 0 2px var(--components-button-border-enabled);
 }
-/* Hover and pressed share one brand-tinted fill (surface.primary.lighter).
-   Without it the outline only shifted its border + text colour, which is
-   almost invisible feedback – the border and text colour still distinguish
-   hover from pressed. */
+/* Hover and pressed add a brand-tinted fill – hover uses
+   surface.primary.lighter, pressed steps one shade darker to
+   surface.primary.light. Without a fill the outline only shifted its border +
+   text colour, which is almost invisible feedback. */
 .outline:hover:not(:disabled) {
-  background: var(--components-button-outline-background);
+  background: var(--components-button-outline-background-hover);
   color: var(--color-text-primary);
   box-shadow: inset 0 0 0 2px var(--components-button-border-hover);
 }
@@ -91,7 +91,7 @@
    :active inherits :hover's text.primary when the user clicks while hovering
    (which is always the case for mouse interaction) — diverging from Figma. */
 .outline:active:not(:disabled) {
-  background: var(--components-button-outline-background);
+  background: var(--components-button-outline-background-pressed);
   color: var(--color-text-light);
   box-shadow: inset 0 0 0 2px var(--components-button-border-pressed);
 }
