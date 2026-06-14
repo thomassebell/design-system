@@ -1584,6 +1584,30 @@
           }
         }
       },
+      "outline-background": {
+        "hover": {
+          "$type": "color",
+          "$value": "{color.surface.primary.lighter}",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2750:198",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ]
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": "{color.surface.primary.light}",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2750:199",
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ]
+          }
+        }
+      },
       "border": {
         "enabled": {
           "$type": "color",
@@ -1655,17 +1679,6 @@
               "STROKE"
             ]
           }
-        }
-      },
-      "outline-background": {
-        "$type": "color",
-        "$value": "{color.surface.primary.lighter}",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:2747:4",
-          "com.figma.scopes": [
-            "FRAME_FILL",
-            "SHAPE_FILL"
-          ]
         }
       }
     },
