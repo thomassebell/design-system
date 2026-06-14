@@ -126,46 +126,6 @@
               "targetVariableSetName": "sebell-foundation"
             }
           }
-        },
-        "subtle": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0.9098039,
-              0.9215686,
-              0.9098039
-            ],
-            "alpha": 1,
-            "hex": "#E8EBE8"
-          },
-          "$extensions": {
-            "com.figma.variableId": "VariableID:2740:4",
-            "com.figma.scopes": [
-              "FRAME_FILL",
-              "SHAPE_FILL"
-            ]
-          }
-        },
-        "subtle-strong": {
-          "$type": "color",
-          "$value": {
-            "colorSpace": "srgb",
-            "components": [
-              0.8156863,
-              0.8470588,
-              0.8196078
-            ],
-            "alpha": 1,
-            "hex": "#D0D8D1"
-          },
-          "$extensions": {
-            "com.figma.variableId": "VariableID:2740:5",
-            "com.figma.scopes": [
-              "FRAME_FILL",
-              "SHAPE_FILL"
-            ]
-          }
         }
       },
       "secondary": {
@@ -1683,27 +1643,14 @@
         }
       },
       "outline-background": {
-        "hover": {
-          "$type": "color",
-          "$value": "{color.surface.primary.subtle}",
-          "$extensions": {
-            "com.figma.variableId": "VariableID:2740:6",
-            "com.figma.scopes": [
-              "FRAME_FILL",
-              "SHAPE_FILL"
-            ]
-          }
-        },
-        "pressed": {
-          "$type": "color",
-          "$value": "{color.surface.primary.subtle-strong}",
-          "$extensions": {
-            "com.figma.variableId": "VariableID:2740:7",
-            "com.figma.scopes": [
-              "FRAME_FILL",
-              "SHAPE_FILL"
-            ]
-          }
+        "$type": "color",
+        "$value": "{color.surface.primary.lighter}",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:2747:4",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ]
         }
       }
     },
