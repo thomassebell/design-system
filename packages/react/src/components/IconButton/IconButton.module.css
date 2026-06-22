@@ -51,35 +51,35 @@
    picks a foreground that meets contrast against its own primary surface.
    The icon inherits this colour via SVG currentColor. */
 .solid {
-  background: var(--components-button-background-enabled);
-  color: var(--components-button-text-enabled);
+  background: var(--button-solid-fill-enabled);
+  color: var(--button-solid-label-enabled);
 }
 .solid:hover:not(:disabled) {
-  background: var(--components-button-background-hover);
-  color: var(--components-button-text-hover);
+  background: var(--button-solid-fill-hover);
+  color: var(--button-solid-label-hover);
 }
 .solid:active:not(:disabled) {
-  background: var(--components-button-background-pressed);
-  color: var(--components-button-text-pressed);
+  background: var(--button-solid-fill-pressed);
+  color: var(--button-solid-label-pressed);
 }
 
 .outline {
   background: transparent;
-  color: var(--color-icon-light);
-  box-shadow: inset 0 0 0 2px var(--components-button-border-enabled);
+  color: var(--button-outline-label-enabled);
+  box-shadow: inset 0 0 0 2px var(--button-outline-border-enabled);
 }
-/* Hover/pressed add the brand-tinted fill and switch the icon to icon.primary
-   (near-black), keeping it high-contrast on the fill. Hover and pressed differ
+/* Hover/pressed add the brand-tinted fill and switch the icon to the outline
+   label colour, keeping it high-contrast on the fill. Hover and pressed differ
    by fill + border. Mirrors Button. */
 .outline:hover:not(:disabled) {
-  background: var(--components-button-outline-background-hover);
-  color: var(--color-icon-primary);
-  box-shadow: inset 0 0 0 2px var(--components-button-border-hover);
+  background: var(--button-outline-fill-hover);
+  color: var(--button-outline-label-hover);
+  box-shadow: inset 0 0 0 2px var(--button-outline-border-hover);
 }
 .outline:active:not(:disabled) {
-  background: var(--components-button-outline-background-pressed);
-  color: var(--color-icon-primary);
-  box-shadow: inset 0 0 0 2px var(--components-button-border-pressed);
+  background: var(--button-outline-fill-pressed);
+  color: var(--button-outline-label-pressed);
+  box-shadow: inset 0 0 0 2px var(--button-outline-border-pressed);
 }
 
 /* Danger variant — soft-hover pattern, identical to Button's danger:
@@ -88,16 +88,16 @@
    - pressed:  deep red surface, light icon (re-assert severity on commit)
    See brand/core.design.md → Do's and Don'ts for the rationale. */
 .danger {
-  background: var(--color-error-main);
-  color: var(--color-error-contrast-text);
+  background: var(--button-danger-fill-enabled);
+  color: var(--button-danger-label-enabled);
 }
 .danger:hover:not(:disabled) {
-  background: var(--color-error-light);
-  color: var(--color-text-primary);
+  background: var(--button-danger-fill-hover);
+  color: var(--button-danger-label-hover);
 }
 .danger:active:not(:disabled) {
-  background: var(--color-error-dark);
-  color: var(--color-error-contrast-text);
+  background: var(--button-danger-fill-pressed);
+  color: var(--button-danger-label-pressed);
 }
 
 /* ── Modifiers ────────────────────────────── */

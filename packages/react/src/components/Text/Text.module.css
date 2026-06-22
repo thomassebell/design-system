@@ -3,11 +3,11 @@
 .text {
   margin: 0;
   font-family: var(--typography-font-family-paragraph);
-  color: var(--color-text-primary);
+  color: var(--text-default);
 }
 
 .muted {
-  color: var(--color-text-light);
+  color: var(--text-subtle);
 }
 
 /* ── Variants ─────────────────────────────── */
@@ -63,7 +63,7 @@
   font-size: var(--typography-font-size-small);
   font-weight: var(--typography-font-weight-default);
   line-height: var(--typography-line-height-xxsmall);
-  color: var(--color-text-light);
+  color: var(--text-subtle);
 }
 
 .overline {
@@ -72,7 +72,7 @@
   line-height: var(--typography-line-height-xxsmall);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--color-text-lighter);
+  color: var(--text-disabled);
 }
 
 /* ── Alignment ────────────────────────────── */

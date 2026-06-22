@@ -10,6 +10,7 @@
 // there and the toolbar, the per-mode stylesheets, the Chromatic modes, and
 // the defaults all update automatically.
 
+import React from "react";
 import {
   BRANDS,
   DENSITIES,
@@ -94,6 +95,17 @@ export const globalTypes = {
       items: DENSITIES.map((d) => ({ value: d.id, title: d.title })),
     },
   },
+  surface: {
+    name: "Surface",
+    description: "Switch appearance mode (light / dark)",
+    toolbar: {
+      icon: "contrast",
+      items: [
+        { value: "light", title: "Light" },
+        { value: "dark", title: "Dark" },
+      ],
+    },
+  },
 };
 
 // IMPORTANT: do not move these globals onto globalTypes as `defaultValue`.
@@ -103,13 +115,31 @@ export const globalTypes = {
 export const initialGlobals = {
   brand: DEFAULT_BRAND,
   density: DEFAULT_DENSITY,
+  surface: "light",
 };
 
 export const decorators = [
   (Story, context) => {
-    const { brand, density } = context.globals;
+    const { brand, density, surface } = context.globals;
     activateMode(`${brand}-${density}`);
-    return Story();
+    // Backgrounds are a free brand-colour choice, not owned by the appearance
+    // mode — but for the preview we paint a representative page so dark mode is
+    // actually visible. data-surface scopes the foreground token flip; the
+    // components inside adapt automatically.
+    const pageBg = surface === "dark" ? "#1f2e20" : "#fbfbf9";
+    return React.createElement(
+      "div",
+      {
+        "data-surface": surface,
+        style: {
+          background: pageBg,
+          color: "var(--text-default)",
+          padding: "2rem",
+          minHeight: "100vh",
+        },
+      },
+      Story(),
+    );
   },
 ];
 

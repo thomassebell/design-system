@@ -43,12 +43,12 @@
   font-size: var(--typography-font-size-paragraph);
   font-weight: var(--typography-font-weight-default);
   line-height: var(--typography-line-height-xsmall);
-  color: var(--color-text-primary);
+  color: var(--text-default);
   cursor: pointer;
 }
 
 .field.hasError .label {
-  color: var(--color-error-main);
+  color: var(--text-danger);
 }
 
 /* ── Hint / Error message ─────────────────── */
@@ -61,11 +61,11 @@
   font-size: var(--typography-font-size-small);
   font-weight: var(--typography-font-weight-default);
   line-height: var(--typography-line-height-xxsmall);
-  color: var(--color-text-primary);
+  color: var(--text-default);
 }
 
 .field.hasError .hint {
-  color: var(--color-error-main);
+  color: var(--text-danger);
 }
 
 /* ── Disabled ─────────────────────────────── */

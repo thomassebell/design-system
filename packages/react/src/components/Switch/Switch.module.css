@@ -18,8 +18,8 @@
   position: relative;
   width: 32px;
   height: 20px;
-  background-color: var(--components-forms-background-off);
-  border: 1px solid var(--components-forms-border-subdued);
+  background-color: var(--forms-background-off);
+  border: 1px solid var(--forms-border-subdued);
   border-radius: var(--radius-medium);
   cursor: pointer;
   transition:
@@ -41,7 +41,7 @@
   transform: translateY(-50%);
   width: 12px;
   height: 12px;
-  background-color: var(--components-forms-surface-enabled);
+  background-color: var(--forms-surface-enabled);
   border-radius: var(--radius-small);
   transition:
     left 150ms ease,
@@ -50,24 +50,24 @@
 
 .switchEl:checked::before {
   left: calc(100% - 12px - 4px); /* = 4px from right edge */
-  background-color: var(--components-forms-surface-active);
+  background-color: var(--forms-surface-active);
 }
 
 /* ── States (track only — handle colour is driven by :checked) ─── */
 
 .switchEl:hover {
-  background-color: var(--components-forms-background-active);
-  border-color: var(--components-forms-border-hover);
+  background-color: var(--forms-background-active);
+  border-color: var(--forms-border-hover);
 }
 
 .switchEl:active {
-  background-color: var(--components-forms-background-pressed);
-  border-color: var(--components-forms-border-pressed);
+  background-color: var(--forms-background-pressed);
+  border-color: var(--forms-border-pressed);
 }
 
 .switchEl:focus-visible {
-  background-color: var(--components-forms-background-active);
-  border-color: var(--components-forms-border-focused);
+  background-color: var(--forms-background-active);
+  border-color: var(--forms-border-focused);
   outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
   outline-offset: var(--components-focus-ring-offset);
 }
@@ -79,12 +79,12 @@
    the user needs to notice. */
 
 .switchEl[aria-invalid="true"] {
-  background-color: var(--components-forms-background-default);
-  border-color: var(--components-forms-border-error);
+  background-color: var(--forms-background-default);
+  border-color: var(--forms-border-error);
 }
 
 .switchEl[aria-invalid="true"]::before {
-  background-color: var(--components-forms-surface-error);
+  background-color: var(--forms-surface-error);
 }
 
 .switchEl[aria-invalid="true"]:focus-visible {
