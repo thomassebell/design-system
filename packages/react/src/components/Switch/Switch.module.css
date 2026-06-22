@@ -19,12 +19,15 @@
   width: 32px;
   height: 20px;
   background-color: var(--forms-background-off);
-  border: 1px solid var(--forms-border-enabled);
+  /* Border via inset box-shadow (like Input), not `border` — so thickening it
+     1px→2px on interaction never changes the box model, and the absolutely-
+     positioned handle below doesn't shift. */
+  box-shadow: inset 0 0 0 1px var(--forms-border-enabled);
   border-radius: var(--radius-medium);
   cursor: pointer;
   transition:
     background-color 100ms ease,
-    border-color 100ms ease;
+    box-shadow 100ms ease;
 }
 
 /* ── Handle ───────────────────────────────── */
@@ -56,24 +59,21 @@
 /* ── States (track only — handle colour is driven by :checked) ─── */
 
 /* Border thickens 1px → 2px on interaction (matches Input/Select) so the state
-   change is more noticeable, including for low-vision users. box-sizing:
-   border-box (global reset) means the extra px grows inward — no layout shift. */
+   change is more noticeable, including for low-vision users. It's an inset
+   box-shadow, not a real border, so the box model never changes. */
 .switchEl:hover {
   background-color: var(--forms-background-active);
-  border-color: var(--forms-border-hover);
-  border-width: 2px;
+  box-shadow: inset 0 0 0 2px var(--forms-border-hover);
 }
 
 .switchEl:active {
   background-color: var(--forms-background-pressed);
-  border-color: var(--forms-border-pressed);
-  border-width: 2px;
+  box-shadow: inset 0 0 0 2px var(--forms-border-pressed);
 }
 
 .switchEl:focus-visible {
   background-color: var(--forms-background-active);
-  border-color: var(--forms-border-focused);
-  border-width: 2px;
+  box-shadow: inset 0 0 0 2px var(--forms-border-focused);
   outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
   outline-offset: var(--components-focus-ring-offset);
 }
@@ -86,7 +86,7 @@
 
 .switchEl[aria-invalid="true"] {
   background-color: var(--forms-background-default);
-  border-color: var(--forms-border-error);
+  box-shadow: inset 0 0 0 1px var(--forms-border-error);
 }
 
 .switchEl[aria-invalid="true"]::before {
