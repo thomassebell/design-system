@@ -60,7 +60,7 @@
 /* Pink-tinted callout above the input — replaces the small inline
    error message of the previous design. The icon flags the banner
    visually; the message is plain paragraph text so longer guidance
-   reads comfortably. Padding tightens at dense size. */
+   reads comfortably. */
 
 .errorBanner {
   display: flex;
@@ -69,12 +69,6 @@
   background: var(--color-error-lighter);
   border-radius: var(--radius-medium);
   padding: var(--semantic-components-small) var(--semantic-components-large);
-}
-
-.wrapper.dense .errorBanner {
-  gap: var(--semantic-components-medium);
-  padding: var(--semantic-components-xsmall) var(--semantic-components-medium);
-  border-radius: var(--radius-small);
 }
 
 .errorBannerText {
@@ -92,38 +86,26 @@
   color: var(--color-error-main);
 }
 
-/* ── Input wrap (size-neutral base) ──────── */
-/* Border is rendered as an inset box-shadow so 1px → 2px on
-   hover/focus/error doesn't cause a layout shift. Size classes set
-   border-radius and padding; state rules adjust background and
-   shadow without touching geometry. */
+/* ── Input wrap ───────────────────────────── */
+/* Single size. Border is rendered as an inset box-shadow so 1px → 2px on
+   hover/focus/error doesn't cause a layout shift; state rules adjust
+   background and shadow without touching geometry. Density (Default ↔
+   Compact) still scales the padding via the semantic token. */
 
 .inputWrap {
   display: flex;
   align-items: center;
+  gap: var(--semantic-components-small);
+  padding: var(--semantic-components-large);
   background: var(--components-forms-background-default);
   box-shadow: inset 0 0 0 1px var(--components-forms-border-enabled);
   font-family: var(--typography-font-family-paragraph);
   font-size: var(--typography-font-size-paragraph);
+  line-height: var(--typography-line-height-xsmall);
+  border-radius: var(--radius-medium);
   transition:
     background 150ms ease,
     box-shadow 150ms ease;
-}
-
-/* ── Sizes ────────────────────────────────── */
-
-.regularWrap {
-  gap: var(--semantic-components-small);
-  padding: var(--semantic-components-large);
-  line-height: var(--typography-line-height-xsmall);
-  border-radius: var(--radius-medium);
-}
-
-.denseWrap {
-  gap: var(--semantic-components-small);
-  padding: var(--semantic-components-small) var(--semantic-components-medium);
-  line-height: var(--typography-line-height-xsmall);
-  border-radius: var(--radius-small);
 }
 
 /* ── States ───────────────────────────────── */

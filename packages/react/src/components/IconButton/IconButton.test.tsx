@@ -58,14 +58,6 @@ describe("IconButton", () => {
     expect(screen.getByRole("button")).toHaveClass("danger");
   });
 
-  it("applies the size class — regular by default, dense when set", () => {
-    const { rerender } = render(<IconButton icon={<PlusIcon />} label="Add" />);
-    expect(screen.getByRole("button")).toHaveClass("regular");
-
-    rerender(<IconButton icon={<PlusIcon />} label="Add" size="dense" />);
-    expect(screen.getByRole("button")).toHaveClass("dense");
-  });
-
   it("forwards additional props to the underlying <button>", () => {
     render(
       <IconButton icon={<PlusIcon />} label="Submit" data-testid="my-button" type="submit" />,

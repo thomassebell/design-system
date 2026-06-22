@@ -1,15 +1,19 @@
-/* ── Base (size-neutral) ──────────────────── */
+/* ── Base ─────────────────────────────────── */
+/* Single size. Density (Default ↔ Compact) still scales the padding via
+   the semantic tokens; there is no per-instance size variant any more. */
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--semantic-components-xsmall);
+  padding: var(--semantic-components-large) var(--semantic-components-xlarge);
   font-family: var(--typography-font-family-paragraph);
   font-weight: var(--typography-font-weight-default);
   font-size: var(--typography-font-size-components-button-label);
+  line-height: var(--typography-line-height-xsmall);
   border: none;
-  /* Border-radius is set per-size below so smaller components get a
-     proportionally smaller corner radius (regular → medium, dense → small). */
+  border-radius: var(--radius-medium);
   cursor: pointer;
   transition:
     background 150ms ease,
@@ -17,22 +21,6 @@
     box-shadow 150ms ease;
   user-select: none;
   white-space: nowrap;
-}
-
-/* ── Sizes ────────────────────────────────── */
-
-.regular {
-  gap: var(--semantic-components-xsmall);
-  padding: var(--semantic-components-large) var(--semantic-components-xlarge);
-  line-height: var(--typography-line-height-xsmall);
-  border-radius: var(--radius-medium);
-}
-
-.dense {
-  gap: var(--semantic-components-xsmall);
-  padding: var(--semantic-components-small) var(--semantic-components-xlarge);
-  line-height: var(--typography-line-height-xsmall);
-  border-radius: var(--radius-small);
 }
 
 /* ── States ───────────────────────────────── */

@@ -3,38 +3,26 @@
    the layout is a square: equal padding on all sides around a single
    centred icon, with no label, gap, or icon-bleed margins. */
 
-/* ── Base (size-neutral) ──────────────────── */
+/* ── Base ─────────────────────────────────── */
+/* Single size. Padding is uniform on all four sides so the button is square
+   around its icon (components/large = 16px). Density (Default ↔ Compact)
+   still scales it via the semantic token; there is no per-instance size
+   variant any more. Note: for Sebell, radius/medium resolves to 0 — the
+   square corners in the design are the token's value, not a missing radius. */
 
 .iconButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: var(--semantic-components-large);
   border: none;
-  /* Border-radius is set per-size below so smaller components get a
-     proportionally smaller corner radius (regular → medium, dense → small).
-     Note: for Sebell, radius/medium resolves to 0 — the square corners in
-     the design are the token's value, not a missing radius. */
+  border-radius: var(--radius-medium);
   cursor: pointer;
   transition:
     background 150ms ease,
     color 150ms ease,
     box-shadow 150ms ease;
   user-select: none;
-}
-
-/* ── Sizes ────────────────────────────────── */
-
-/* Padding is uniform on all four sides so the button is square around its
-   icon. Matches the Figma: regular pads with components/large (16px), dense
-   with components/small (8px). */
-.regular {
-  padding: var(--semantic-components-large);
-  border-radius: var(--radius-medium);
-}
-
-.dense {
-  padding: var(--semantic-components-small);
-  border-radius: var(--radius-small);
 }
 
 /* ── States ───────────────────────────────── */

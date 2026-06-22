@@ -25,10 +25,6 @@ const meta: Meta<typeof Button> = {
       control: "select",
       options: ["solid", "outline", "danger", "text"],
     },
-    size: {
-      control: "select",
-      options: ["regular", "dense"],
-    },
     fullWidth: { control: "boolean" },
     loading: { control: "boolean" },
     disabled: { control: "boolean" },
@@ -60,21 +56,6 @@ export const Loading: Story = {
   args: { children: "Saving…", loading: true },
 };
 
-/** Both sizes side-by-side. Toggle Density to see each tighten further. */
-export const Sizes: Story = {
-  render: () => (
-    <Stack direction="row" gap="small" align="center">
-      <Button size="regular">Regular</Button>
-      <Button size="dense">Dense</Button>
-    </Stack>
-  ),
-};
-
-/** Dense variant on its own — for toolbars, table actions, dense forms. */
-export const Dense: Story = {
-  args: { children: "Dense", size: "dense" },
-};
-
 /* ── Icons ──────────────────────────────────── */
 
 export const WithStartIcon: Story = {
@@ -102,20 +83,13 @@ export const WithBothIcons: Story = {
   },
 };
 
-/** Icons across all variants × sizes — visual reference. */
+/** Icons across all variants — visual reference. */
 export const IconsMatrix: Story = {
   render: () => (
-    <Stack direction="column" gap="small">
-      <Stack direction="row" gap="small" align="center">
-        <Button variant="solid" startIcon={<PlusIcon />}>Add</Button>
-        <Button variant="outline" startIcon={<PlusIcon />}>Add</Button>
-        <Button variant="danger" startIcon={<PlusIcon />}>Delete</Button>
-      </Stack>
-      <Stack direction="row" gap="small" align="center">
-        <Button size="dense" variant="solid" startIcon={<PlusIcon />}>Add</Button>
-        <Button size="dense" variant="outline" startIcon={<PlusIcon />}>Add</Button>
-        <Button size="dense" variant="danger" startIcon={<PlusIcon />}>Delete</Button>
-      </Stack>
+    <Stack direction="row" gap="small" align="center">
+      <Button variant="solid" startIcon={<PlusIcon />}>Add</Button>
+      <Button variant="outline" startIcon={<PlusIcon />}>Add</Button>
+      <Button variant="danger" startIcon={<PlusIcon />}>Delete</Button>
     </Stack>
   ),
 };

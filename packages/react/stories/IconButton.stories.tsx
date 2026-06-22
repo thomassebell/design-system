@@ -29,10 +29,6 @@ const meta: Meta<typeof IconButton> = {
       control: "select",
       options: ["solid", "outline", "danger"],
     },
-    size: {
-      control: "select",
-      options: ["regular", "dense"],
-    },
     loading: { control: "boolean" },
     disabled: { control: "boolean" },
     // icon / label are set via args above; hide the raw controls.
@@ -59,35 +55,13 @@ export const Loading: Story = {
   args: { loading: true, label: "Saving" },
 };
 
-/** Both sizes side-by-side. Toggle Density to see each tighten further. */
-export const Sizes: Story = {
-  render: (args) => (
-    <Stack direction="row" gap="small" align="center">
-      <IconButton {...args} size="regular" />
-      <IconButton {...args} size="dense" />
-    </Stack>
-  ),
-};
-
-/** Dense variant on its own — for toolbars, table actions, dense forms. */
-export const Dense: Story = {
-  args: { size: "dense" },
-};
-
-/** All variants × sizes — visual reference. */
+/** All variants — visual reference. */
 export const Matrix: Story = {
   render: () => (
-    <Stack direction="column" gap="small">
-      <Stack direction="row" gap="small" align="center">
-        <IconButton icon={<PlusIcon />} label="Add" variant="solid" />
-        <IconButton icon={<PlusIcon />} label="Add" variant="outline" />
-        <IconButton icon={<TrashIcon />} label="Delete" variant="danger" />
-      </Stack>
-      <Stack direction="row" gap="small" align="center">
-        <IconButton icon={<PlusIcon />} label="Add" variant="solid" size="dense" />
-        <IconButton icon={<PlusIcon />} label="Add" variant="outline" size="dense" />
-        <IconButton icon={<TrashIcon />} label="Delete" variant="danger" size="dense" />
-      </Stack>
+    <Stack direction="row" gap="small" align="center">
+      <IconButton icon={<PlusIcon />} label="Add" variant="solid" />
+      <IconButton icon={<PlusIcon />} label="Add" variant="outline" />
+      <IconButton icon={<TrashIcon />} label="Delete" variant="danger" />
     </Stack>
   ),
 };

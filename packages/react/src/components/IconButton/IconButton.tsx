@@ -7,20 +7,14 @@ import styles from "./IconButton.module.css";
  *  icon with no label. */
 export type IconButtonVariant = "solid" | "outline" | "danger";
 
-/** Component size — design-driven, independent of the system's density
- *  mode. "regular" is the default; "dense" is tighter for toolbars, table
- *  rows, and dense forms. Both still respond to density automatically. */
-export type IconButtonSize = "regular" | "dense";
-
 export interface IconButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "size" | "children"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   /** The icon to render, centered. Pass an `<Icon>` or any ReactNode. */
   icon: ReactNode;
   /** Accessible name for the button. Required — an icon-only control has no
    *  visible text, so screen readers rely on this. Becomes `aria-label`. */
   label: string;
   variant?: IconButtonVariant;
-  size?: IconButtonSize;
   loading?: boolean;
 }
 
@@ -30,7 +24,6 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       icon,
       label,
       variant = "solid",
-      size = "regular",
       loading = false,
       disabled,
       className,
@@ -43,7 +36,6 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         className={cx(
           styles.iconButton,
-          styles[size],
           styles[variant],
           loading && styles.loading,
           className
