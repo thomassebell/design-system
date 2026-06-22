@@ -16,7 +16,9 @@
   width: 18px;
   height: 18px;
   background-color: var(--forms-background-default);
-  border: 2px solid var(--forms-border-enabled);
+  /* 1px at rest, thickening to 2px on interaction below (matches Input/Select
+     + Radio/Switch). box-sizing: border-box (global) keeps it shift-free. */
+  border: 1px solid var(--forms-border-enabled);
   border-radius: 2px;
   cursor: pointer;
   display: inline-grid;
@@ -31,11 +33,13 @@
 .checkbox:hover {
   background-color: var(--forms-background-active);
   border-color: var(--forms-border-hover);
+  border-width: 2px;
 }
 
 .checkbox:active {
   background-color: var(--forms-background-pressed);
   border-color: var(--forms-border-pressed);
+  border-width: 2px;
 }
 
 /* Focus indicator: brand-coloured 2px border on the box + an outer
@@ -45,6 +49,7 @@
 .checkbox:focus-visible {
   background-color: var(--forms-background-active);
   border-color: var(--forms-border-focused);
+  border-width: 2px;
   outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
   outline-offset: var(--components-focus-ring-offset);
 }

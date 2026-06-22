@@ -32,21 +32,27 @@
 
 /* ── Unchecked states ─────────────────────── */
 
+/* Border thickens 1px → 2px on interaction (matches Input/Select) so the
+   state change is more noticeable, including for low-vision users. box-sizing:
+   border-box (global reset) means the extra px grows inward — no layout shift. */
 .radio:hover {
   background-color: var(--forms-background-active);
   border-color: var(--forms-border-hover);
+  border-width: 2px;
   --dot-color: var(--forms-surface-hover);
 }
 
 .radio:active {
   background-color: var(--forms-background-pressed);
   border-color: var(--forms-border-pressed);
+  border-width: 2px;
   --dot-color: var(--forms-surface-pressed);
 }
 
 .radio:focus-visible {
   background-color: var(--forms-background-active);
   border-color: var(--forms-border-focused);
+  border-width: 2px;
   outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
   outline-offset: var(--components-focus-ring-offset);
 }
