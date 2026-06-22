@@ -16,7 +16,7 @@
  */
 
 import StyleDictionary from "style-dictionary";
-import { readFileSync, mkdirSync, existsSync, rmSync, readdirSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, readdirSync } from "fs";
 import { execSync } from "child_process";
 import { BRANDS as BRAND_DEFS, DENSITIES as DENSITY_DEFS } from "./brands.config.js";
 
@@ -599,7 +599,66 @@ if (previousExports.length > 0) {
 if (existsSync(OUT_DIR)) rmSync(OUT_DIR, { recursive: true, force: true });
 mkdirSync(OUT_DIR, { recursive: true });
 
+// ── Pre-flight: appearance light/dark parity ───────
+// The dark override only works if every light appearance token has a dark
+// counterpart (and vice-versa) — a mismatch would silently drop or add a var
+// in one surface. Compare the two trees' leaf paths before building.
+{
+  const leafPaths = (tree, prefix = [], acc = []) => {
+    for (const [k, v] of Object.entries(tree)) {
+      if (v && typeof v === "object" && "value" in v) acc.push([...prefix, k].join("."));
+      else if (v && typeof v === "object") leafPaths(v, [...prefix, k], acc);
+    }
+    return acc;
+  };
+  const lp = new Set(leafPaths(loadAndConvert("light.tokens.json")));
+  const dp = new Set(leafPaths(loadAndConvert("dark.tokens.json")));
+  const onlyLight = [...lp].filter((p) => !dp.has(p));
+  const onlyDark = [...dp].filter((p) => !lp.has(p));
+  if (onlyLight.length || onlyDark.length) {
+    console.error("✗ appearance light/dark mismatch:");
+    if (onlyLight.length) console.error(`  only in light: ${onlyLight.join(", ")}`);
+    if (onlyDark.length) console.error(`  only in dark: ${onlyDark.join(", ")}`);
+    process.exit(1);
+  }
+  console.log(`✓ appearance: ${lp.size} tokens, light/dark in parity`);
+}
+
 let firstCombo = null;
+
+// Appearance tokens live under these unique top-level groups (no overlap with
+// brand `color`/`components` or foundation `primitive`), so we can build a pass
+// over the FULL merged tree — so cross-references into brand resolve — yet emit
+// only the appearance vars via this filter.
+const APPEARANCE_ROOTS = new Set(["text", "border", "icon", "button"]);
+
+// Build a CSS selector block containing only the appearance tokens (resolved
+// against the full tree) and append it to an existing file. One Style
+// Dictionary pass with the same transformGroup → identical var names.
+async function appendSelectorBlock(mainFile, fullTree, selector, tag) {
+  const tmp = `${OUT_DIR}/_${tag}.css`;
+  const sd = new StyleDictionary({
+    tokens: fullTree,
+    platforms: {
+      css: {
+        transformGroup: "css/sebell",
+        buildPath: `${OUT_DIR}/`,
+        files: [
+          {
+            destination: `_${tag}.css`,
+            format: "css/variables",
+            filter: (token) => APPEARANCE_ROOTS.has(token.path[0]),
+            options: { selector, outputReferences: false },
+          },
+        ],
+      },
+    },
+    log: { warnings: "disabled", verbosity: "default" },
+  });
+  await sd.buildAllPlatforms();
+  writeFileSync(mainFile, `${readFileSync(mainFile, "utf-8")}\n${readFileSync(tmp, "utf-8")}`);
+  rmSync(tmp);
+}
 
 for (const brand of BRANDS) {
   for (const density of DENSITIES) {
@@ -620,6 +679,17 @@ for (const brand of BRANDS) {
     resolveAliases(foundation, foundation);
     resolveAliases(brandTokens, deepMerge({}, foundation, densityTokens, brandTokens));
     resolveAliases(densityTokens, deepMerge({}, foundation, brandTokens));
+
+    // Appearance (light/dark surface mode). The appearance tokens alias into
+    // brand semantics/components, so resolve them against this combo's brand
+    // tree to get per-brand light and dark values. They are emitted as two
+    // self-contained selector blocks appended below (NOT merged into :root) so
+    // a nested subtree can override the surface in either direction.
+    const appearanceLight = loadAndConvert("light.tokens.json");
+    const appearanceDark = loadAndConvert("dark.tokens.json");
+    const brandContext = deepMerge({}, foundation, densityTokens, brandTokens);
+    resolveAliases(appearanceLight, brandContext);
+    resolveAliases(appearanceDark, brandContext);
 
     const tokens = deepMerge({}, foundation, brandTokens, densityTokens);
 
@@ -657,6 +727,17 @@ for (const brand of BRANDS) {
     });
 
     await sd.buildAllPlatforms();
+
+    // Append the appearance surface blocks. Light is scoped to both :root (the
+    // default surface) and [data-surface="light"] so a light island can reset
+    // inside a dark section; dark is scoped to [data-surface="dark"]. Both are
+    // descendant-matchable, so nesting overrides the surface either direction.
+    const mainFile = `${OUT_DIR}/${brand}-${density}.css`;
+    const lightTree = deepMerge({}, foundation, brandTokens, densityTokens, appearanceLight);
+    const darkTree = deepMerge({}, foundation, brandTokens, densityTokens, appearanceDark);
+    await appendSelectorBlock(mainFile, lightTree, ':root,\n[data-surface="light"]', `light-${brand}-${density}`);
+    await appendSelectorBlock(mainFile, darkTree, '[data-surface="dark"]', `dark-${brand}-${density}`);
+
     process.stdout.write("✓\n");
   }
 }
