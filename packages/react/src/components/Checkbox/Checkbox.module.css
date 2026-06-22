@@ -78,14 +78,14 @@
 
 .checkbox:checked:hover,
 .checkbox:indeterminate:hover {
-  background-color: var(--forms-border-hover);
-  border-color: var(--forms-border-hover);
+  background-color: var(--forms-surface-hover);
+  border-color: var(--forms-surface-hover);
 }
 
 .checkbox:checked:active,
 .checkbox:indeterminate:active {
-  background-color: var(--forms-border-pressed);
-  border-color: var(--forms-border-pressed);
+  background-color: var(--forms-surface-pressed);
+  border-color: var(--forms-surface-pressed);
 }
 
 .checkbox:checked:focus-visible,
