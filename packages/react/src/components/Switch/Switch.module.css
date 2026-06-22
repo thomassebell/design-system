@@ -19,7 +19,7 @@
   width: 32px;
   height: 20px;
   background-color: var(--forms-background-off);
-  border: 1px solid var(--forms-border-subdued);
+  border: 1px solid var(--forms-border-enabled);
   border-radius: var(--radius-medium);
   cursor: pointer;
   transition:
