@@ -124,9 +124,16 @@ function convertNode(node, path = []) {
     let value = node.$value ?? node.value;
     const type = node.$type ?? node.type;
 
-    // Figma color object → hex string.
+    // Figma color object → hex string. For colours with alpha < 1 (e.g. the
+    // transparent form fills used on dark surfaces) the 6-digit hex drops the
+    // alpha, so emit rgba() from the raw components instead to preserve it.
     if (value && typeof value === "object" && !Array.isArray(value) && "hex" in value) {
-      value = value.hex;
+      if (typeof value.alpha === "number" && value.alpha < 1 && Array.isArray(value.components)) {
+        const [r, g, b] = value.components.map((c) => Math.round(c * 255));
+        value = `rgba(${r}, ${g}, ${b}, ${+value.alpha.toFixed(3)})`;
+      } else {
+        value = value.hex;
+      }
     }
 
     // Bare numeric values: add a unit. Font sizes go to rem, everything
@@ -630,7 +637,7 @@ let firstCombo = null;
 // brand `color`/`components` or foundation `primitive`), so we can build a pass
 // over the FULL merged tree — so cross-references into brand resolve — yet emit
 // only the appearance vars via this filter.
-const APPEARANCE_ROOTS = new Set(["text", "border", "icon", "button"]);
+const APPEARANCE_ROOTS = new Set(["text", "border", "icon", "button", "forms"]);
 
 // Build a CSS selector block containing only the appearance tokens (resolved
 // against the full tree) and append it to an existing file. One Style

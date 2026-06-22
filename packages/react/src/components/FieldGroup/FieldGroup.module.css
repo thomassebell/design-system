@@ -27,7 +27,7 @@
   font-size: var(--typography-font-size-display-6);
   font-weight: var(--typography-font-weight-emphasized);
   line-height: var(--typography-line-height-xsmall);
-  color: var(--color-text-primary);
+  color: var(--text-default);
 }
 
 /* ── Description ──────────────────────────── */
@@ -41,7 +41,7 @@
   font-size: var(--typography-font-size-paragraph);
   font-weight: var(--typography-font-weight-default);
   line-height: var(--typography-line-height-xsmall);
-  color: var(--color-text-primary);
+  color: var(--text-default);
 }
 
 /* ── Error banner ─────────────────────────── */

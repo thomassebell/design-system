@@ -21,16 +21,16 @@
   font-size: var(--typography-font-size-components-label);
   font-weight: var(--typography-font-weight-default);
   line-height: var(--typography-line-height-xxsmall);
-  color: var(--color-text-light);
+  color: var(--text-subtle);
 }
 
 .wrapper:hover .label,
 .wrapper:focus-within .label {
-  color: var(--color-text-primary);
+  color: var(--text-default);
 }
 
 .wrapper.hasError .label {
-  color: var(--color-error-main);
+  color: var(--text-danger);
 }
 
 /* ── Hint ─────────────────────────────────── */
@@ -44,16 +44,16 @@
   font-size: var(--typography-font-size-small);
   font-weight: var(--typography-font-weight-default);
   line-height: var(--typography-line-height-xxsmall);
-  color: var(--color-text-light);
+  color: var(--text-subtle);
 }
 
 .wrapper:hover .hint,
 .wrapper:focus-within .hint {
-  color: var(--color-text-primary);
+  color: var(--text-default);
 }
 
 .wrapper.hasError .hint {
-  color: var(--color-text-primary);
+  color: var(--text-default);
 }
 
 /* ── Error banner ─────────────────────────── */
@@ -97,8 +97,8 @@
   align-items: center;
   gap: var(--semantic-components-small);
   padding: var(--semantic-components-large);
-  background: var(--components-forms-background-default);
-  box-shadow: inset 0 0 0 1px var(--components-forms-border-enabled);
+  background: var(--forms-background-default);
+  box-shadow: inset 0 0 0 1px var(--forms-border-enabled);
   font-family: var(--typography-font-family-paragraph);
   font-size: var(--typography-font-size-paragraph);
   line-height: var(--typography-line-height-xsmall);
@@ -113,8 +113,8 @@
    2px in the hover token. */
 
 .inputWrap:hover {
-  background: var(--components-forms-background-active);
-  box-shadow: inset 0 0 0 2px var(--color-border-hover);
+  background: var(--forms-background-active);
+  box-shadow: inset 0 0 0 2px var(--forms-border-hover);
 }
 
 /* Focus: same active background as hover, border switches to the
@@ -122,8 +122,8 @@
    offset (same focus-ring tokens as Button + Checkbox). */
 
 .inputWrap:focus-within {
-  background: var(--components-forms-background-active);
-  box-shadow: inset 0 0 0 2px var(--components-forms-surface-active);
+  background: var(--forms-background-active);
+  box-shadow: inset 0 0 0 2px var(--forms-surface-active);
   outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
   outline-offset: var(--components-focus-ring-offset);
 }
@@ -135,8 +135,8 @@
    stays in the error palette. */
 
 .wrapper.hasError .inputWrap {
-  background: var(--components-forms-background-default);
-  box-shadow: inset 0 0 0 2px var(--components-forms-border-error);
+  background: var(--forms-background-default);
+  box-shadow: inset 0 0 0 2px var(--forms-border-error);
 }
 
 .wrapper.hasError .inputWrap:focus-within {
@@ -152,12 +152,12 @@
    inputs, so we exclude that case to keep the two states distinct. */
 
 .wrapper:has(input:read-only:not(:disabled)) .inputWrap {
-  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
+  box-shadow: inset 0 0 0 1px var(--forms-border-subdued);
 }
 .wrapper:has(input:read-only:not(:disabled)) .inputWrap:hover,
 .wrapper:has(input:read-only:not(:disabled)) .inputWrap:focus-within {
-  background: var(--components-forms-background-default);
-  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
+  background: var(--forms-background-default);
+  box-shadow: inset 0 0 0 1px var(--forms-border-subdued);
   outline: none;
 }
 
@@ -171,11 +171,11 @@
   cursor: not-allowed;
 }
 .wrapper:has(input:disabled) .inputWrap {
-  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
+  box-shadow: inset 0 0 0 1px var(--forms-border-subdued);
 }
 .wrapper:has(input:disabled) .inputWrap:hover {
-  background: var(--components-forms-background-default);
-  box-shadow: inset 0 0 0 1px var(--components-forms-border-subdued);
+  background: var(--forms-background-default);
+  box-shadow: inset 0 0 0 1px var(--forms-border-subdued);
 }
 
 /* ── Native input ─────────────────────────── */
@@ -186,7 +186,7 @@
   outline: none;
   background: transparent;
   font: inherit;
-  color: var(--color-text-primary);
+  color: var(--text-default);
   min-width: 0;
   /* UA stylesheets add 1px top/bottom to <input>; zero it so the
      rendered height matches the wrap's padding + line-height. */
@@ -194,7 +194,7 @@
 }
 
 .input::placeholder {
-  color: var(--color-text-lighter);
+  color: var(--text-disabled);
 }
 
 /* ── Icon slots ───────────────────────────── */
@@ -202,7 +202,7 @@
 .icon {
   display: flex;
   align-items: center;
-  color: var(--color-text-lighter);
+  color: var(--text-disabled);
   flex-shrink: 0;
 }
 
@@ -215,5 +215,5 @@
   font-family: var(--typography-font-family-paragraph);
   font-size: var(--typography-font-size-paragraph);
   line-height: var(--typography-line-height-xsmall);
-  color: var(--color-text-primary);
+  color: var(--text-default);
 }

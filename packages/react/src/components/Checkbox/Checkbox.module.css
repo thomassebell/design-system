@@ -15,8 +15,8 @@
   flex-shrink: 0;
   width: 18px;
   height: 18px;
-  background-color: var(--components-forms-background-default);
-  border: 2px solid var(--components-forms-border-enabled);
+  background-color: var(--forms-background-default);
+  border: 2px solid var(--forms-border-enabled);
   border-radius: 2px;
   cursor: pointer;
   display: inline-grid;
@@ -29,13 +29,13 @@
 /* ── Unchecked states ─────────────────────── */
 
 .checkbox:hover {
-  background-color: var(--components-forms-background-active);
-  border-color: var(--components-forms-border-hover);
+  background-color: var(--forms-background-active);
+  border-color: var(--forms-border-hover);
 }
 
 .checkbox:active {
-  background-color: var(--components-forms-background-pressed);
-  border-color: var(--components-forms-border-pressed);
+  background-color: var(--forms-background-pressed);
+  border-color: var(--forms-border-pressed);
 }
 
 /* Focus indicator: brand-coloured 2px border on the box + an outer
@@ -43,8 +43,8 @@
    tokens as Button / Input so the entire system has one focus
    indicator language. */
 .checkbox:focus-visible {
-  background-color: var(--components-forms-background-active);
-  border-color: var(--components-forms-border-focused);
+  background-color: var(--forms-background-active);
+  border-color: var(--forms-border-focused);
   outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
   outline-offset: var(--components-focus-ring-offset);
 }
@@ -57,8 +57,8 @@
 
 .checkbox:checked,
 .checkbox:indeterminate {
-  background-color: var(--color-surface-primary-main);
-  border-color: var(--color-surface-primary-main);
+  background-color: var(--forms-surface-active);
+  border-color: var(--forms-surface-active);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 80%;
@@ -78,20 +78,20 @@
 
 .checkbox:checked:hover,
 .checkbox:indeterminate:hover {
-  background-color: var(--components-forms-border-hover);
-  border-color: var(--components-forms-border-hover);
+  background-color: var(--forms-border-hover);
+  border-color: var(--forms-border-hover);
 }
 
 .checkbox:checked:active,
 .checkbox:indeterminate:active {
-  background-color: var(--components-forms-border-pressed);
-  border-color: var(--components-forms-border-pressed);
+  background-color: var(--forms-border-pressed);
+  border-color: var(--forms-border-pressed);
 }
 
 .checkbox:checked:focus-visible,
 .checkbox:indeterminate:focus-visible {
-  background-color: var(--color-surface-primary-main);
-  border-color: var(--components-forms-border-focused);
+  background-color: var(--forms-surface-active);
+  border-color: var(--forms-border-focused);
 }
 
 /* ── Error ────────────────────────────────── */
@@ -100,13 +100,13 @@
    variants; checked also gets a red fill. */
 
 .checkbox[aria-invalid="true"] {
-  border-color: var(--components-forms-border-error);
+  border-color: var(--forms-border-error);
 }
 
 .checkbox[aria-invalid="true"]:checked,
 .checkbox[aria-invalid="true"]:indeterminate {
-  background-color: var(--components-forms-surface-error);
-  border-color: var(--components-forms-border-error);
+  background-color: var(--forms-surface-error);
+  border-color: var(--forms-border-error);
 }
 
 .checkbox[aria-invalid="true"]:focus-visible {

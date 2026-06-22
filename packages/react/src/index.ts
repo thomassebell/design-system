@@ -21,6 +21,9 @@ export type { TextProps, TextVariant } from "./components/Text";
 export { Stack } from "./components/Stack";
 export type { StackProps } from "./components/Stack";
 
+export { Surface, useSurface } from "./components/Surface";
+export type { SurfaceProps, SurfaceMode } from "./components/Surface";
+
 export { Input } from "./components/Input";
 export type { InputProps } from "./components/Input";
 

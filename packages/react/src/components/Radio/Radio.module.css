@@ -11,7 +11,7 @@
    "toggle on/off". */
 
 .radio {
-  --dot-color: var(--color-surface-primary-main);
+  --dot-color: var(--forms-surface-active);
 
   appearance: none;
   -webkit-appearance: none;
@@ -20,8 +20,8 @@
   flex-shrink: 0;
   width: 18px;
   height: 18px;
-  background-color: var(--components-forms-background-default);
-  border: 1px solid var(--components-forms-border-enabled);
+  background-color: var(--forms-background-default);
+  border: 1px solid var(--forms-border-enabled);
   border-radius: 50%;
   cursor: pointer;
   transition:
@@ -33,20 +33,20 @@
 /* ── Unchecked states ─────────────────────── */
 
 .radio:hover {
-  background-color: var(--components-forms-background-active);
-  border-color: var(--components-forms-border-hover);
-  --dot-color: var(--components-forms-surface-hover);
+  background-color: var(--forms-background-active);
+  border-color: var(--forms-border-hover);
+  --dot-color: var(--forms-surface-hover);
 }
 
 .radio:active {
-  background-color: var(--components-forms-background-pressed);
-  border-color: var(--components-forms-border-pressed);
-  --dot-color: var(--components-forms-surface-pressed);
+  background-color: var(--forms-background-pressed);
+  border-color: var(--forms-border-pressed);
+  --dot-color: var(--forms-surface-pressed);
 }
 
 .radio:focus-visible {
-  background-color: var(--components-forms-background-active);
-  border-color: var(--components-forms-border-focused);
+  background-color: var(--forms-background-active);
+  border-color: var(--forms-border-focused);
   outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
   outline-offset: var(--components-focus-ring-offset);
 }
@@ -72,8 +72,8 @@
    Field sets when an error message is passed in. */
 
 .radio[aria-invalid="true"] {
-  border-color: var(--components-forms-border-error);
-  --dot-color: var(--components-forms-surface-error);
+  border-color: var(--forms-border-error);
+  --dot-color: var(--forms-surface-error);
 }
 
 .radio[aria-invalid="true"]:focus-visible {
