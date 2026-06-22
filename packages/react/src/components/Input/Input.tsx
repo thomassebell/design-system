@@ -2,16 +2,7 @@ import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from "rea
 import { cx } from "../../utils/shared";
 import styles from "./Input.module.css";
 
-/** Component size — design-driven, independent of the system's
- *  density mode. "regular" is the default; "dense" is tighter for
- *  toolbars, table rows, and dense forms. Both still respond to
- *  density (Default ↔ Compact) automatically. */
-export type InputSize = "regular" | "dense";
-
-export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
-  /** Component size — pairs with Button so they line up at equal heights. */
-  size?: InputSize;
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /** Label rendered above the input. */
   label?: string;
   /** Helper text shown between the label and the input. Hidden when
@@ -58,7 +49,6 @@ function ErrorOutlineIcon() {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      size = "regular",
       label,
       hint,
       error,
@@ -94,7 +84,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <div
         className={cx(
           styles.wrapper,
-          styles[size],
           hasError && styles.hasError,
           className
         )}
@@ -118,7 +107,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           </div>
         )}
 
-        <div className={cx(styles.inputWrap, styles[`${size}Wrap`])}>
+        <div className={styles.inputWrap}>
           {startIcon && (
             <span className={styles.icon} aria-hidden="true">
               {startIcon}

@@ -56,14 +56,6 @@ describe("Button", () => {
     expect(screen.getByRole("button")).toHaveClass("danger");
   });
 
-  it("applies the size class — regular by default, dense when set", () => {
-    const { rerender } = render(<Button>Default</Button>);
-    expect(screen.getByRole("button")).toHaveClass("regular");
-
-    rerender(<Button size="dense">Dense</Button>);
-    expect(screen.getByRole("button")).toHaveClass("dense");
-  });
-
   it("applies fullWidth class when the prop is set", () => {
     render(<Button fullWidth>Wide</Button>);
     expect(screen.getByRole("button")).toHaveClass("fullWidth");

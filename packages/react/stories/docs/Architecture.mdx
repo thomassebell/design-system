@@ -55,11 +55,7 @@ Each brand's **semantic** colour/font tokens alias to that brand's **foundation*
 
 The **semantic** spacing tokens have density modes. `--semantic-components-medium` is `12px` in default and `8px` in compact. Anything referencing it scales automatically.
 
-### Component size (design-driven, *not* token-driven)
-
-Components like Button and Input expose a `size` prop (`regular` / `dense`). Each size pulls a different *step* on the semantic spacing scale — regular uses `medium`, dense uses `small`. Density modes still apply on top, so a dense button in compact density is smaller than a dense button in default density.
-
-This three-axis composition is intentional: brand controls identity, density controls system tightness, size controls per-instance emphasis.
+Components are single-size: there is no per-instance `size` prop. Tighter UI comes from the **density** mode, which scales the semantic spacing tokens a component already references. This keeps the model to two axes: brand controls identity, density controls system tightness.
 
 ## How tokens get into code
 
