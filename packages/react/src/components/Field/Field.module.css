@@ -47,13 +47,10 @@
   cursor: pointer;
 }
 
-.field.hasError .label {
-  color: var(--text-danger);
-}
-
 /* ── Hint / Error message ─────────────────── */
-/* Small size, sits below the label. Error red when the field has an
-   error. */
+/* Small size, sits below the label. The label and hint stay the default text
+   colour even in error — the error is communicated by the control (red border/
+   fill) and the error message, not by recolouring the label. */
 
 .hint {
   margin: 0;
@@ -62,10 +59,6 @@
   font-weight: var(--typography-font-weight-default);
   line-height: var(--typography-line-height-xxsmall);
   color: var(--text-default);
-}
-
-.field.hasError .hint {
-  color: var(--text-danger);
 }
 
 /* ── Disabled ─────────────────────────────── */
