@@ -71,6 +71,8 @@ foundation (primitives)  →  brand (semantic + components)  →  density (layou
 
 Aliases declared in any layer (Figma's `$extensions.com.figma.aliasData`) are resolved against the merged tree, so a brand semantic value like `color.surface.primary.main` correctly resolves to the brand's own foundation primitive even though the resolution happens at build time.
 
+A fourth collection, **`appearance`** (modes `light` / `dark`), sits on top: its tokens alias into the merged brand tree and are emitted as `[data-surface]` override blocks rather than folded into `:root`. See **Appearance & surface mode** below.
+
 ### What lives where
 
 | Layer | Source | Owns |
@@ -78,6 +80,7 @@ Aliases declared in any layer (Figma's `$extensions.com.figma.aliasData`) are re
 | Primitives | `figma-exports/<brand>-foundation.tokens.json` | Colour palettes, radius primitives, font families, font weights |
 | Semantic + components | `figma-exports/<brand>.tokens.json` | `color.<role>.*`, `radius.<size>`, `typography.*`, `components.{focus-ring,button,forms}` |
 | Density | `figma-exports/<density>.tokens.json` | Shared spacing scale, type size ramp, line-height ramp |
+| Appearance | `figma-exports/{light,dark}.tokens.json` | Foreground/contrast layer (`text.*`, `icon.*`, `border.*`, `button.*`, `forms.*`), light + dark; aliases into brand |
 
 ## Colors
 
@@ -89,6 +92,23 @@ Rules:
 - Every brand must define every key in the shape above — the cross-brand consistency check fails the build if a brand is missing a slot another brand provides.
 - Contrast: surface vs text pairs must meet WCAG AA (4.5:1 for body text, 3:1 for ≥18pt or bold).
 - Focus visibility: every interactive component must render a 2px focus ring using `components.focus-ring.default` (or `.error` when invalid).
+
+## Appearance & surface mode (light / dark)
+
+Dark mode is themed **by mode, not by per-variant tokens.** A Figma collection `appearance` (modes `light` / `dark`) holds the **foreground / contrast** layer only – the colours that must adapt when content sits on a light vs dark background.
+
+**What's in it.** Two tiers of `appearance` token:
+
+- **Released** (designer-facing, intent-named): `text.{default, subtle, disabled, link, brand, accent}`, `border.default`, `icon.default`.
+- **Hidden** (`hiddenFromPublishing`, system-internal): status text (`text.{danger, success, warning, info, inverse}`) and the component sets `button.*` and `forms.*`. Designers don't pick these; components consume them.
+
+**Composition by aliasing, not cross-product.** Every `appearance` token *aliases into `brand`* per mode, so `brand × surface` composes without a 4×2 explosion – the alias resolves in whichever brand mode is active, giving the right per-brand value automatically. Light values alias to the brand's existing semantic tokens (so **light rendering is unchanged**); dark values alias to brand colours chosen for a dark surface.
+
+**Backgrounds are NOT owned by the mode.** A frame's/page's background is a free brand-colour choice the designer paints; they tag the frame's `appearance` mode to declare its tone. There is no `background.*` token set today (deferred). Consequently, on dark **form controls are border-defined**: transparent fill + light-neutral border + light text, with checked states in a light brand tint (Sebell's neutral ramp is light-only, so there is no dark surface to fill an input with).
+
+**Three-axis text model.** Text = type style (size + weight, colourless) + text-colour intent (`text.*`) + `appearance` mode. Emphasis (a heading) comes from the **type style**, never a colour token – so there is no `text.strong`; a heading is `text.default` + a heading style.
+
+**In code.** `build.mjs` emits, per `(brand × density)` file, a `:root, [data-surface="light"]` block (the appearance light values) and a `[data-surface="dark"]` override. Both are descendant-matchable, so a subtree can flip surface **in either direction** (a light island inside a dark section, and vice-versa). The React `Surface` component sets `data-surface` (+ a `useSurface` context) and scopes the flip to its subtree. Components consume appearance foreground tokens (`var(--text-default)`, `var(--button-solid-fill-enabled)`, `var(--forms-border-enabled)`) – **error banners are the deliberate exception**: they stay on `color.error.lighter` / `color.text.primary` as light callouts, since there is no appearance background token for them.
 
 ## Typography
 

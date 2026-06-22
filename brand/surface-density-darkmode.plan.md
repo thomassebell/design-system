@@ -1,7 +1,6 @@
 # Surface, density & dark mode — architecture plan
 
-**Status:** Plan. Validated by a Figma spike on 2026-06-19, **not yet implemented**.
-Spike ran in a throwaway duplicate ("Sebell DS – light-dark", file key `K305YQJNYsBibhpZQh1Jiq`); the spike is now closed. This document is the decision record + the work to do. It describes a *target*, not current state — do not treat it as shipped until the tasks below are done and this header is updated.
+**Status:** **Implemented 2026-06-22** (branch `feat/surface-dark-mode`) – the surface/light-dark axis is live in tokens, build, React, and the Figma library. Density-as-a-per-subtree-mode was **deferred**: this workstream shipped surface/dark only; density remains the global per-brand×density stylesheet. The original spike ran in a throwaway duplicate ("Sebell DS – light-dark", file key `K305YQJNYsBibhpZQh1Jiq`, now closed). This doc is kept as the decision record; the canonical model now lives in `core.design.md` → **Appearance & surface mode**. Notable deltas from the original plan: **pure-mode** (Button's `surface` variant axis was dropped, not kept); a **`forms.*` appearance set** was added for form-control chrome (border-defined on dark, no new primitives); `text.on-accent` stayed removed.
 
 > Writing-style note: en-dashes (–), never em-dashes, per repo convention.
 
