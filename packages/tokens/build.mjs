@@ -72,6 +72,7 @@ const FONT_FALLBACKS = {
   Inter: ", system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
   Roboto: ", system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
   Gabarito: ", 'Inter', system-ui, sans-serif",
+  Montserrat: ", system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
   "DM Sans": ", system-ui, sans-serif",
   "JetBrains Mono": ", 'SF Mono', Menlo, Consolas, monospace",
   "Noto Serif": ", Georgia, 'Times New Roman', serif",

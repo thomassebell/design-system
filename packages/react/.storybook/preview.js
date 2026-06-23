@@ -75,7 +75,7 @@ function activateMode(mode) {
 // Web fonts used across the system.
 const fonts = document.createElement("link");
 fonts.rel = "stylesheet";
-fonts.href = "https://fonts.googleapis.com/css2?family=Gabarito:wght@300;400;500;600;700&family=Inter:wght@200;400;500;600;700&family=Roboto:wght@300;400;700&family=Noto+Sans:wght@300;400;500;700&family=Noto+Serif:wght@300;400;500;700&display=swap";
+fonts.href = "https://fonts.googleapis.com/css2?family=Gabarito:wght@300;400;500;600;700&family=Inter:wght@200;400;500;600;700&family=Roboto:wght@300;400;700&family=Montserrat:wght@200;400;700&family=Noto+Sans:wght@300;400;500;700&family=Noto+Serif:wght@300;400;500;700&display=swap";
 document.head.appendChild(fonts);
 
 export const globalTypes = {

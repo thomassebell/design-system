@@ -28,6 +28,7 @@ export const BRANDS = [
   { id: "sebell", title: "Sebell" },
   { id: "brand-a", title: "Brand A" },
   { id: "brand-b", title: "Brand B" },
+  { id: "prep-eat", title: "Prep+Eat" },
 ];
 
 export const DENSITIES = [
