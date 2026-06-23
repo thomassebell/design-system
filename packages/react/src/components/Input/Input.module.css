@@ -29,8 +29,11 @@
   color: var(--text-default);
 }
 
+/* Error label stays the default text colour (white on dark, dark on light)
+   to match the selection controls — the error is signalled by the input
+   border + the error banner, not by recolouring the label. */
 .wrapper.hasError .label {
-  color: var(--text-danger);
+  color: var(--text-default);
 }
 
 /* ── Hint ─────────────────────────────────── */
