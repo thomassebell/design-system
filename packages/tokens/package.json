@@ -6,11 +6,12 @@
   "exports": {
     "./brands.config.js": "./brands.config.js",
     "./dist/*.css": "./dist/*.css",
+    "./dist/*.cjs": "./dist/*.cjs",
     "./dist/tokens.json": "./dist/tokens.json"
   },
   "scripts": {
-    "build": "node build.mjs && node transforms/generate-swift.mjs",
-    "dev": "node build.mjs && node transforms/generate-swift.mjs",
+    "build": "node build.mjs && node transforms/generate-swift.mjs && node transforms/generate-nativewind.mjs",
+    "dev": "node build.mjs && node transforms/generate-swift.mjs && node transforms/generate-nativewind.mjs",
     "clean": "rm -rf dist"
   },
   "files": [
