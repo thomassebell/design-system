@@ -13,6 +13,9 @@
  *   dist/brand-b-default.css
  *   dist/brand-b-compact.css
  *   dist/tokens.json     (combined sebell × default, kept for the Swift generator)
+ *   dist/_<brand>-theme-src.json  (resolved base/light/dark trees per brand at
+ *                                  default density — fed to the NativeWind
+ *                                  theme generator, transforms/generate-nativewind)
  */
 
 import StyleDictionary from "style-dictionary";
@@ -668,6 +671,21 @@ async function appendSelectorBlock(mainFile, fullTree, selector, tag) {
   rmSync(tmp);
 }
 
+// Collapse a resolved token tree ({value,type,_alias} leaves) down to a plain
+// nested object of string values — the same shape Style Dictionary's
+// json/nested emits. The NativeWind generator (transforms/generate-nativewind)
+// consumes this. We dump the base + light + dark trees so a JS/Tailwind theme
+// can be produced for any consumer that can't read CSS variables (e.g. a React
+// Native app using NativeWind).
+function flattenValues(node) {
+  if (node && typeof node === "object" && "value" in node) return node.value;
+  const out = {};
+  for (const [k, v] of Object.entries(node)) {
+    if (v && typeof v === "object") out[k] = flattenValues(v);
+  }
+  return out;
+}
+
 for (const brand of BRANDS) {
   for (const density of DENSITIES) {
     const label = `${brand} × ${density}`;
@@ -745,6 +763,21 @@ for (const brand of BRANDS) {
     const darkTree = deepMerge({}, foundation, brandTokens, densityTokens, appearanceDark);
     await appendSelectorBlock(mainFile, lightTree, ':root,\n[data-surface="light"]', `light-${brand}-${density}`);
     await appendSelectorBlock(mainFile, darkTree, '[data-surface="dark"]', `dark-${brand}-${density}`);
+
+    // Dump the resolved trees (default density only) for the NativeWind theme
+    // generator. base = brand surfaces/status/spacing/type; light/dark = the
+    // appearance foreground sets. Static phone themes don't use compact, so we
+    // only emit the default-density combo.
+    if (density === DENSITIES[0]) {
+      writeFileSync(
+        `${OUT_DIR}/_${brand}-theme-src.json`,
+        JSON.stringify(
+          { base: flattenValues(tokens), light: flattenValues(lightTree), dark: flattenValues(darkTree) },
+          null,
+          2,
+        ),
+      );
+    }
 
     process.stdout.write("✓\n");
   }
