@@ -1084,7 +1084,7 @@
       },
       "paragraph": {
         "$type": "string",
-        "$value": "Montserrat",
+        "$value": "IBM Plex Sans",
         "$extensions": {
           "com.figma.variableId": "VariableID:2033:24",
           "com.figma.scopes": [
