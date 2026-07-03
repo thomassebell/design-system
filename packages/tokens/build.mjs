@@ -641,7 +641,7 @@ let firstCombo = null;
 // brand `color`/`components` or foundation `primitive`), so we can build a pass
 // over the FULL merged tree — so cross-references into brand resolve — yet emit
 // only the appearance vars via this filter.
-const APPEARANCE_ROOTS = new Set(["text", "border", "icon", "button", "forms"]);
+const APPEARANCE_ROOTS = new Set(["text", "border", "icon", "button", "forms", "tab-bar"]);
 
 // Build a CSS selector block containing only the appearance tokens (resolved
 // against the full tree) and append it to an existing file. One Style
