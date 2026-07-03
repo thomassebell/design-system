@@ -71,16 +71,19 @@ StyleDictionary.registerTransform({
 // Figma stores only the chosen typeface name (e.g. "Inter"). For CSS we
 // append a sensible fallback chain so missing fonts don't render in Times.
 
+// Fallback chains come from each brand's `fonts` entry in brands.config.js —
+// the same single source that drives the Storybook Google Fonts URL. The two
+// literal entries cover families that appear in docs/examples but belong to
+// no brand's type ramp.
 const FONT_FALLBACKS = {
-  Inter: ", system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
-  Roboto: ", system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
-  Gabarito: ", 'Inter', system-ui, sans-serif",
-  Montserrat: ", system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
   "DM Sans": ", system-ui, sans-serif",
   "JetBrains Mono": ", 'SF Mono', Menlo, Consolas, monospace",
-  "Noto Serif": ", Georgia, 'Times New Roman', serif",
-  "Noto Sans": ", -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
 };
+for (const brand of BRAND_DEFS) {
+  for (const { family, fallback } of brand.fonts ?? []) {
+    if (fallback) FONT_FALLBACKS[family] = `, ${fallback}`;
+  }
+}
 
 StyleDictionary.registerTransform({
   name: "font-family/fallbacks",

@@ -24,41 +24,59 @@
  *           CSS mode names, and Storybook global values. Must match the
  *           figma-exports / dist filenames exactly.
  * `title` — the human label shown in the Storybook toolbar.
- * `fonts` — the Google Fonts families + weights the brand's type ramp uses.
- *           Keep in sync with the brand's typography/font-family and
- *           font-weight tokens in Figma; the token build has no font-file
- *           knowledge, so this is where a font change (e.g. Prep+Eat's
- *           Montserrat → IBM Plex Sans, July 2026) must be mirrored.
+ * `fonts` — the Google Fonts families + weights the brand's type ramp uses,
+ *           plus each family's CSS fallback chain (what follows the family
+ *           name in the emitted font-family value). Keep in sync with the
+ *           brand's typography/font-family and font-weight tokens in Figma;
+ *           the token build has no font-file knowledge, so this is where a
+ *           font change (e.g. Prep+Eat's Montserrat → IBM Plex Sans,
+ *           July 2026) must be mirrored.
  */
+
+const SANS_FALLBACK = "system-ui, -apple-system, BlinkMacSystemFont, sans-serif";
 
 export const BRANDS = [
   {
     id: "sebell",
     title: "Sebell",
     fonts: [
-      { family: "Noto Serif", weights: [300, 400, 500, 700] },
-      { family: "Noto Sans", weights: [300, 400, 500, 700] },
+      {
+        family: "Noto Serif",
+        weights: [300, 400, 500, 700],
+        fallback: "Georgia, 'Times New Roman', serif",
+      },
+      {
+        family: "Noto Sans",
+        weights: [300, 400, 500, 700],
+        fallback: "-apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+      },
     ],
   },
   {
     id: "brand-a",
     title: "Brand A",
-    fonts: [{ family: "Inter", weights: [200, 400, 500, 600, 700] }],
+    fonts: [
+      { family: "Inter", weights: [200, 400, 500, 600, 700], fallback: SANS_FALLBACK },
+    ],
   },
   {
     id: "brand-b",
     title: "Brand B",
     fonts: [
-      { family: "Gabarito", weights: [300, 400, 500, 600, 700] },
-      { family: "Roboto", weights: [300, 400, 700] },
+      {
+        family: "Gabarito",
+        weights: [300, 400, 500, 600, 700],
+        fallback: "'Inter', system-ui, sans-serif",
+      },
+      { family: "Roboto", weights: [300, 400, 700], fallback: SANS_FALLBACK },
     ],
   },
   {
     id: "prep-eat",
     title: "Prep+Eat",
     fonts: [
-      { family: "Montserrat", weights: [200, 400, 700] },
-      { family: "IBM Plex Sans", weights: [200, 400, 700] },
+      { family: "Montserrat", weights: [200, 400, 700], fallback: SANS_FALLBACK },
+      { family: "IBM Plex Sans", weights: [200, 400, 700], fallback: SANS_FALLBACK },
     ],
   },
 ];
