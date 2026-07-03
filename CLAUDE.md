@@ -83,7 +83,7 @@ Sebell's brand mode in Figma was duplicated from Brand B and not every alias got
 |--------------|---------|
 | Refresh Sebell tokens from Figma | Re-export → `npm run tokens:build` → spot-check `dist/sebell-default.css` → update `brand/brands/sebell.design.md` YAML if values changed |
 | Add a new brand | Follow the runbook in `brand/core.design.md` |
-| Add a new component | Add token slots to ALL brand-tokens files in the same PR (cross-brand consistency check will otherwise fail) |
+| Add a new component | Preferred: add a `<component>/…` group to the **appearance** collection in Figma (light + dark modes), aliased into brand semantics – one definition covers all brands. Then add the group name to `APPEARANCE_ROOTS` in `build.mjs` (and to the NativeWind foreground list in `transforms/generate-nativewind.mjs` if RN apps need it). See the `tab-bar/…` tokens for the pattern. Only add per-brand `components/…` slots when a brand needs values that generic semantics can't express – and then to ALL brand-tokens files in the same PR (cross-brand consistency check will otherwise fail) |
 | Switch the iOS default brand | Re-order the `BRANDS` array in `packages/tokens/brands.config.js` — the first entry feeds `dist/tokens.json` → `DesignTokens.swift` (and is the Storybook default) |
 | Add/remove a brand or density | One edit to `packages/tokens/brands.config.js` — build, Storybook toolbar, sheets, and Chromatic modes all follow |
 | Debug a Chromatic snapshot diff | Chromatic modes are generated from `brands.config.js`; switch the toolbar brand locally to reproduce |
