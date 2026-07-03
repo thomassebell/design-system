@@ -17,7 +17,7 @@ figma-file-keys:
 # food-named (lime, spirulina, chili, mango, oat, mocha).
 color:
   surface:
-    primary:   { lighter: "#effce9", light: "#a3ed7e", main: "#5ad21e", dark: "#3b8a14", darker: "#2c670f" }   # lime
+    primary:   { lighter: "#e9fbe0", light: "#9ceb75", main: "#47a518", dark: "#378112", darker: "#285e0d" }   # lime
     secondary: { lighter: "#9e8561", light: "#8e7757", main: "#7e6a4e", dark: "#6f5d44", darker: "#5f503a" }   # mocha
   text:
     primary: "#4f4230"     # mocha (darkest)
@@ -34,7 +34,7 @@ color:
     contrast: "#ffffff"
   error:   { lighter: "#fdeae7", light: "#f48776", main: "#de2d12", dark: "#b8250f", darker: "#6d1609", contrast-text: "#ffffff" }   # chili
   warning: { lighter: "#fef8e7", light: "#fae299", main: "#f6cb4c", dark: "#f4c025", darker: "#e4ae0c" }   # mango
-  success: { lighter: "#effce9", light: "#bcf2a1", main: "#89e75a", dark: "#5ad21e", darker: "#3b8a14" }   # lime
+  success: { lighter: "#e9fbe0", light: "#b6f098", main: "#83e651", dark: "#56c91d", darker: "#378112" }   # lime
   info:    { lighter: "#e5f2ff", light: "#94c9ff", main: "#42a1ff", dark: "#0078f0", darker: "#004f9e" }   # spirulina
 
 # ─── Radius ─────────────────────────────────────────
@@ -74,10 +74,14 @@ to keep the build's cross-brand parity and alias-alignment checks honest.
 
 The foundation palettes are named after foods: **lime** (greens), **spirulina**
 (blues), **chili** (reds), **mango** (yellows), **oat** (warm greys), and
-**mocha** (browns). Each ramp has 10 even-8 steps (L95 → L23). The semantic
-layer maps these onto the standard surface / text / border / status roles.
+**mocha** (browns). Accent ramps have 10 even-8 steps. Lime was retuned
+July 2026 from L95→23 down to **L93→21** so two steps land under the WCAG
+contrast lines on white: `lime-37` (`#47a518`, 3.15:1 – icons/indicators)
+and `lime-29` (`#378112`, 4.84:1 – text). Spirulina, chili, and mango remain
+on the original L95→23 grid. The semantic layer maps these onto the standard
+surface / text / border / status roles.
 
-The primary surface is a vivid fresh green (`lime-47` → `#5ad21e`), evoking
+The primary surface is a vivid fresh green (`lime-37` → `#47a518`), evoking
 fresh produce. Neutrals and text lean warm — text is built from **mocha**
 (brown) rather than a true grey, and borders from **oat** — giving the UI an
 organic, kitchen-warm feel rather than a cold tech grey.
@@ -86,7 +90,7 @@ organic, kitchen-warm feel rather than a cold tech grey.
 
 | Semantic | Foundation palette | Notes |
 |----------|-------------------|-------|
-| `color.surface.primary`   | `lime`      | Fresh green; `main` = lime-47. |
+| `color.surface.primary`   | `lime`      | Fresh green; `main` = lime-37, `text/brand` = lime-29. |
 | `color.surface.secondary` | `mocha`     | Warm brown; `main` = mocha-40. |
 | `color.surface.neutral`   | `oat`       | Warm grey backgrounds. |
 | `color.text.*`            | `mocha`     | Warm brown text, not true black. |
@@ -138,12 +142,13 @@ tokens above.
 
 - **Figma file keys** (`foundation`, `brand-mode`) are still `<TODO>` — fill
   them in once the Figma files are confirmed.
-- **`prep-eat-foundation.tokens.json` is hand-patched** (July 2026):
-  `primitive/font-family/paragraph` was set to `IBM Plex Sans` by hand. The
-  change IS real in Figma (the brand layer already resolves to IBM Plex Sans)
-  – only the foundation file's JSON export was stale because the brand
-  re-export didn't include it. Next time you export prep-eat-foundation from
-  Figma, the patch should be reproduced verbatim and this note can go.
+- **A11y follow-ups from the July 2026 contrast audit** (lime is fixed; these
+  remain): `text/link` and the solid button label sit on `surface/primary/main`
+  (lime-37) and miss 4.5:1; `text/success` (lime-45), `text/warning` (mango),
+  and `text/info` (spirulina-47, 4.25:1) also fail as text on white; danger
+  hover label is 3.98:1. Fix in Figma per-brand – darker alias targets exist
+  for lime/spirulina; mango may need a darker step. Oat borders (~1.7:1) are
+  a system-wide pattern shared with Sebell, not a Prep+Eat regression.
 
 > Note: `color.error.light` was briefly hand-patched (the brand mode was
 > duplicated from Brand B and that one alias still pointed at
