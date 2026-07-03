@@ -1,0 +1,97 @@
+/* TabBarButton — one item in a bottom tab bar. Vertical icon-over-label,
+   with an indicator pill that marks the active item. All colours come from
+   the tab-bar appearance tokens, so brand and surface switching work with
+   no component involvement. */
+
+/* ── Base ─────────────────────────────────── */
+
+.tabBarButton {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--semantic-components-xsmall);
+  padding: var(--semantic-components-small) var(--semantic-components-medium);
+  /* Wide enough to be a comfortable thumb target on its own; in a real bar
+     the items additionally flex to share the row. */
+  min-width: var(--semantic-layout-xlarge);
+  border: none;
+  border-radius: var(--radius-medium);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--typography-font-family-paragraph);
+  font-size: var(--typography-font-size-small);
+  font-weight: var(--typography-font-weight-default);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
+}
+
+/* ── States ───────────────────────────────── */
+
+.tabBarButton:active:not(:disabled) {
+  background: var(--tab-bar-item-background-pressed);
+}
+
+.tabBarButton:focus-visible {
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
+  outline-offset: var(--components-focus-ring-offset);
+}
+
+.tabBarButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Parts ────────────────────────────────── */
+
+/* Indicator pill above the icon. Rendered in both states (transparent when
+   inactive) so activating an item never changes the item's height. */
+.indicator {
+  width: var(--semantic-components-xxlarge);
+  height: var(--semantic-components-xsmall);
+  border-radius: var(--radius-xlarge);
+  background: transparent;
+  transition: background 150ms ease;
+}
+
+.icon {
+  display: inline-flex;
+  color: var(--tab-bar-item-icon-inactive);
+  transition: color 150ms ease;
+}
+
+.label {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--tab-bar-item-label-inactive);
+  transition: color 150ms ease;
+}
+
+/* The active label is emphasized, which is wider than the default weight.
+   Reserve the bold width up front with a hidden zero-height ghost of the
+   label, so activating a tab never nudges its neighbours sideways. */
+.label::after {
+  content: attr(data-label);
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  font-weight: var(--typography-font-weight-emphasized);
+}
+
+/* ── Active ───────────────────────────────── */
+
+.active .indicator {
+  background: var(--tab-bar-item-indicator-active);
+}
+
+.active .icon {
+  color: var(--tab-bar-item-icon-active);
+}
+
+.active .label {
+  color: var(--tab-bar-item-label-active);
+  font-weight: var(--typography-font-weight-emphasized);
+}

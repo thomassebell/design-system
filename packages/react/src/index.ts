@@ -15,6 +15,9 @@ export type { ButtonProps, ButtonVariant } from "./components/Button";
 export { IconButton } from "./components/IconButton";
 export type { IconButtonProps, IconButtonVariant } from "./components/IconButton";
 
+export { TabBarButton } from "./components/TabBarButton";
+export type { TabBarButtonProps } from "./components/TabBarButton";
+
 export { Text } from "./components/Text";
 export type { TextProps, TextVariant } from "./components/Text";
 
