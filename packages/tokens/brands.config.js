@@ -11,7 +11,9 @@
  *                                            (dist/tokens.json).
  *   - packages/react/.storybook/preview.js — toolbar items, the per-mode token
  *                                            stylesheets, Chromatic snapshot
- *                                            modes, and the initial globals.
+ *                                            modes, the initial globals, and
+ *                                            the web-font loading (via
+ *                                            GOOGLE_FONTS_URL below).
  *
  * ORDER MATTERS: the FIRST brand and FIRST density are the system defaults
  * (Storybook's initial view + the iOS default combo). Keep the production
@@ -22,13 +24,43 @@
  *           CSS mode names, and Storybook global values. Must match the
  *           figma-exports / dist filenames exactly.
  * `title` — the human label shown in the Storybook toolbar.
+ * `fonts` — the Google Fonts families + weights the brand's type ramp uses.
+ *           Keep in sync with the brand's typography/font-family and
+ *           font-weight tokens in Figma; the token build has no font-file
+ *           knowledge, so this is where a font change (e.g. Prep+Eat's
+ *           Montserrat → IBM Plex Sans, July 2026) must be mirrored.
  */
 
 export const BRANDS = [
-  { id: "sebell", title: "Sebell" },
-  { id: "brand-a", title: "Brand A" },
-  { id: "brand-b", title: "Brand B" },
-  { id: "prep-eat", title: "Prep+Eat" },
+  {
+    id: "sebell",
+    title: "Sebell",
+    fonts: [
+      { family: "Noto Serif", weights: [300, 400, 500, 700] },
+      { family: "Noto Sans", weights: [300, 400, 500, 700] },
+    ],
+  },
+  {
+    id: "brand-a",
+    title: "Brand A",
+    fonts: [{ family: "Inter", weights: [200, 400, 500, 600, 700] }],
+  },
+  {
+    id: "brand-b",
+    title: "Brand B",
+    fonts: [
+      { family: "Gabarito", weights: [300, 400, 500, 600, 700] },
+      { family: "Roboto", weights: [300, 400, 700] },
+    ],
+  },
+  {
+    id: "prep-eat",
+    title: "Prep+Eat",
+    fonts: [
+      { family: "Montserrat", weights: [200, 400, 700] },
+      { family: "IBM Plex Sans", weights: [200, 400, 700] },
+    ],
+  },
 ];
 
 export const DENSITIES = [
@@ -39,3 +71,26 @@ export const DENSITIES = [
 /** First brand × first density — the default everywhere (Storybook + iOS). */
 export const DEFAULT_BRAND = BRANDS[0].id;
 export const DEFAULT_DENSITY = DENSITIES[0].id;
+
+/**
+ * One Google Fonts URL covering every brand's families. Families appearing in
+ * several brands get their weight lists merged, so each family is requested
+ * exactly once.
+ */
+export const GOOGLE_FONTS_URL = (() => {
+  const weightsByFamily = new Map();
+  for (const brand of BRANDS) {
+    for (const { family, weights } of brand.fonts ?? []) {
+      const merged = weightsByFamily.get(family) ?? new Set();
+      for (const w of weights) merged.add(w);
+      weightsByFamily.set(family, merged);
+    }
+  }
+  const params = [...weightsByFamily]
+    .map(
+      ([family, weights]) =>
+        `family=${family.replaceAll(" ", "+")}:wght@${[...weights].sort((a, b) => a - b).join(";")}`,
+    )
+    .join("&");
+  return `https://fonts.googleapis.com/css2?${params}&display=swap`;
+})();

@@ -138,6 +138,12 @@ tokens above.
 
 - **Figma file keys** (`foundation`, `brand-mode`) are still `<TODO>` — fill
   them in once the Figma files are confirmed.
+- **`prep-eat-foundation.tokens.json` is hand-patched** (July 2026):
+  `primitive/font-family/paragraph` was set to `IBM Plex Sans` by hand. The
+  change IS real in Figma (the brand layer already resolves to IBM Plex Sans)
+  – only the foundation file's JSON export was stale because the brand
+  re-export didn't include it. Next time you export prep-eat-foundation from
+  Figma, the patch should be reproduced verbatim and this note can go.
 
 > Note: `color.error.light` was briefly hand-patched (the brand mode was
 > duplicated from Brand B and that one alias still pointed at
