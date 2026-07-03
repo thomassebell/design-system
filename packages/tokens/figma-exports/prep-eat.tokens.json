@@ -442,6 +442,33 @@
           }
         }
       },
+      "secondary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4339999854564667,
+            0.36399999260902405,
+            0.26600000262260437
+          ],
+          "alpha": 1,
+          "hex": "#6F5D44"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3031:3295",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:9018bf84761d17f66f2c787615498477ad10f655/4088:6",
+            "targetVariableName": "primitive/color/mocha/mocha-35",
+            "targetVariableSetId": "VariableCollectionId:749a212e6639ad6ff1d2848f98583b4bc9c611d7/4078:299",
+            "targetVariableSetName": "prep-eat-foundation"
+          }
+        }
+      },
       "brand": {
         "$type": "color",
         "$value": "{color.surface.primary.main}",
@@ -577,6 +604,31 @@
           "com.figma.scopes": [
             "SHAPE_FILL"
           ]
+        }
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4339999854564667,
+            0.36399999260902405,
+            0.26600000262260437
+          ],
+          "alpha": 1,
+          "hex": "#6F5D44"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3031:3298",
+          "com.figma.scopes": [
+            "SHAPE_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:9018bf84761d17f66f2c787615498477ad10f655/4088:6",
+            "targetVariableName": "primitive/color/mocha/mocha-35",
+            "targetVariableSetId": "VariableCollectionId:749a212e6639ad6ff1d2848f98583b4bc9c611d7/4078:299",
+            "targetVariableSetName": "prep-eat-foundation"
+          }
         }
       },
       "light": {
@@ -1313,7 +1365,7 @@
           ],
           "com.figma.type": "string",
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:d7547fe9a8a39e9f4bfd2b04101132abca6622a3/4078:352",
+            "targetVariableId": "VariableID:d7547fe9a8a39e9f4bfd2b04101132abca6622a3/4096:2",
             "targetVariableName": "primitive/font-family/header",
             "targetVariableSetId": "VariableCollectionId:749a212e6639ad6ff1d2848f98583b4bc9c611d7/4078:299",
             "targetVariableSetName": "prep-eat-foundation"
@@ -1322,7 +1374,7 @@
       },
       "paragraph": {
         "$type": "string",
-        "$value": "Montserrat",
+        "$value": "IBM Plex Sans",
         "$extensions": {
           "com.figma.variableId": "VariableID:42:25",
           "com.figma.scopes": [
@@ -1330,7 +1382,7 @@
           ],
           "com.figma.type": "string",
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:34fcbfd01a38fcd3afa6f0f2f5542e190f20d361/4078:351",
+            "targetVariableId": "VariableID:34fcbfd01a38fcd3afa6f0f2f5542e190f20d361/4096:1",
             "targetVariableName": "primitive/font-family/paragraph",
             "targetVariableSetId": "VariableCollectionId:749a212e6639ad6ff1d2848f98583b4bc9c611d7/4078:299",
             "targetVariableSetName": "prep-eat-foundation"
