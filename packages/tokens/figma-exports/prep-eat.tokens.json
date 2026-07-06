@@ -1725,7 +1725,7 @@
       "text": {
         "enabled": {
           "$type": "color",
-          "$value": "{color.text.primary}",
+          "$value": "{color.text.contrast-text}",
           "$extensions": {
             "com.figma.variableId": "VariableID:2607:1285",
             "com.figma.scopes": [
