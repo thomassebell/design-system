@@ -83,6 +83,17 @@ export const WithBothIcons: Story = {
   },
 };
 
+/** The text variant renders its icons at 16px (all other variants use
+ *  24px) and without the optical bleed – matching the Figma design. */
+export const TextWithIcons: Story = {
+  args: {
+    children: "Read more",
+    variant: "text",
+    startIcon: <PlusIcon />,
+    endIcon: <ChevronRightIcon />,
+  },
+};
+
 /** Icons across all variants — visual reference. */
 export const IconsMatrix: Story = {
   render: () => (
