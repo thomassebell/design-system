@@ -183,6 +183,22 @@
   margin-right: -12px;
 }
 
+/* Text variant: icons are 16px in the Figma design (vs 24px elsewhere) so
+   they sit quietly next to the link-sized label, and the optical bleed is
+   removed — there is no padding to bleed into. The size is forced here on
+   the variant rather than asked of the consumer, so the same
+   <Icon size="lg"> works across all variants. */
+.text .icon svg {
+  width: 16px;
+  height: 16px;
+}
+.text .iconStart {
+  margin-left: 0;
+}
+.text .iconEnd {
+  margin-right: 0;
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
