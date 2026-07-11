@@ -40,7 +40,15 @@ Brand A is the "primary blue" exemplar — a single typeface (Inter), sky-blue p
 
 ## Colors
 
-Inter blue (`#00aaff`) as primary, neutral greys for secondary, conventional status colours. Nothing surprising — the value of Brand A is in being the baseline against which the consistency checks in `build.mjs` operate.
+Inter blue (`#00aaff`) as primary, a vivid green for secondary, conventional status colours. Nothing surprising — the value of Brand A is in being the baseline against which the consistency checks in `build.mjs` operate.
+
+`color.text.contrast-text` aliases `color.text.primary` (dark ink), not white — Brand A's primary and secondary are bright mid-tones, so "text on brand surfaces" must be dark here (re-pointed 2026-07-11; it was white, which failed 1.6–3.9:1 on the brand's own fills).
+
+### Flip-zone case study — why `components/chip/*` slots exist (resolved 2026-07-11)
+
+Brand A's green ramp flips between `green-40` (ink passes, 7.6:1) and `green-30` (ink fails, 4.2:1). Its 9-step, step-10 spacing at high saturation means no three *distinct* dark-half steps share a single AA label colour via the generic semantic ramp: ink works only down to green-40; white works only from green-30 down — and `contrast-text` must be ink for this brand's bright light-mode fills. No single global recipe could satisfy both.
+
+**Resolution:** the per-brand `components/chip/{background,text}/*` slots (the same escape hatch Button uses). Brand A's chip slots alias `green-10 → green-20 → green-30` with a white label (14.8 / 8.0 / 4.6), while the other brands keep their secondary dark-half runs. This brand is the documented reason the slots exist: when a palette's flip zone cuts through the only available run, per-brand component slots — not semantic gymnastics or foundation edits — are the sanctioned fix.
 
 ## Typography
 

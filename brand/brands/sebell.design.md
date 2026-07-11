@@ -11,9 +11,10 @@ figma-file-keys:
 
 color:
   surface:
-    primary:   { lighter: "#66996a", light: "#527a55", main: "#3d5c40", dark: "#293d2b", darker: "#141f15" }   # pine
-    secondary: { lighter: "#beb2a7", light: "#b3a698", main: "#93806c", dark: "#756657", darker: "#584d41" }   # walnut
-    neutral:   { white:   "#fbfbf9", lighter: "#f6f4ef", light: "#ece8df", main: "#d9d2bf", dark: "#bdb08f", darker: "#a18e5e" }   # ash/cream
+    # 7-step ramps (2026-07-11) — lightest…darkest on existing pine/walnut/ash tints
+    primary:   { lightest: "#75a379", lighter: "#66996a", light: "#5c8a60", main: "#476b4a", dark: "#334d35", darker: "#1f2e20", darkest: "#141f15" }   # pine 55→10
+    secondary: { lightest: "#c9bfb6", lighter: "#beb2a7", light: "#b3a698", main: "#93806c", dark: "#756657", darker: "#67594c", darkest: "#584d41" }   # walnut 75→30
+    neutral:   { white: "#fbfbf9", lightest: "#f6f4ef", lighter: "#ece8df", light: "#e3ddcf", main: "#d9d2bf", dark: "#bdb08f", darker: "#aa996e", darkest: "#a18e5e" }   # ash 95→50; lightest is a real tint, never white
   text:
     primary:        "#0a0f0b"
     light:          "#3d5c40"
@@ -27,10 +28,10 @@ color:
     dark:    "#b4a47e"
     hover:   "#a18e5e"
     active:  "#3d5c40"   # pine (surface.primary.main) — focus/active border; shared with focus ring
-  error:   { lighter: "#fbefe9", light: "#e89d7d", main: "#d95c26", dark: "#ad491f", darker: "#823717", contrast-text: "#fbfbf9" }   # cedar
-  warning: { lighter: "#ece8df", light: "#d9d2bf", main: "#c6bb9f", dark: "#b4a47e", darker: "#a18e5e", contrast-text: "#0a0f0b" }   # ash, with dark text
-  success: { lighter: "#e3ddcf", light: "#d0c6af", main: "#66996a", dark: "#3d5c40", darker: "#141f15", contrast-text: "#0a0f0b" }   # pine + warm
-  info:    { lighter: "#eef5f6", light: "#9cc4c9", main: "#599da6", dark: "#477d85", darker: "#243f42", contrast-text: "#0a0f0b" }   # juniper (muted cool teal) — the system's one cool signal
+  error:   { lightest: "#fbefe9", lighter: "#f7ded4", light: "#e89d7d", main: "#ad491f", dark: "#823717", darker: "#57250f", darkest: "#2b1208", contrast-text: "#fbfbf9" }   # cedar 95→10
+  warning: { lightest: "#f6f4ef", lighter: "#ece8df", light: "#d9d2bf", main: "#c6bb9f", dark: "#b4a47e", darker: "#aa996e", darkest: "#a18e5e", contrast-text: "#0a0f0b" }   # ash 95→50, with dark text
+  success: { lightest: "#ece8df", lighter: "#e3ddcf", light: "#d0c6af", main: "#5c8a60", dark: "#476b4a", darker: "#1f2e20", darkest: "#141f15", contrast-text: "#fbfbf9" }   # two-ramp family: ash light half + pine dark half
+  info:    { lightest: "#eef5f6", lighter: "#deebed", light: "#9cc4c9", main: "#599da6", dark: "#477d85", darker: "#243f42", darkest: "#121f21", contrast-text: "#0a0f0b" }   # juniper 95→10 (muted cool teal) — the system's one cool signal
 
 radius:
   none:   "0px"
