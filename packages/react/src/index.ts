@@ -18,6 +18,9 @@ export type { ChipProps, ChipVariant } from "./components/Chip";
 export { IconButton } from "./components/IconButton";
 export type { IconButtonProps, IconButtonVariant } from "./components/IconButton";
 
+export { TabBar } from "./components/TabBar";
+export type { TabBarProps } from "./components/TabBar";
+
 export { TabBarButton } from "./components/TabBarButton";
 export type { TabBarButtonProps } from "./components/TabBarButton";
 
