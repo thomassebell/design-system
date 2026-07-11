@@ -2282,6 +2282,7 @@
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:3033:4",
+        "com.figma.hiddenFromPublishing": true,
         "com.figma.scopes": [
           "FRAME_FILL",
           "SHAPE_FILL"
@@ -2308,6 +2309,7 @@
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:3033:5",
+        "com.figma.hiddenFromPublishing": true,
         "com.figma.scopes": [
           "STROKE",
           "EFFECT_COLOR"
@@ -2336,6 +2338,7 @@
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:3033:6",
+            "com.figma.hiddenFromPublishing": true,
             "com.figma.scopes": [
               "SHAPE_FILL",
               "TEXT_FILL"
@@ -2353,22 +2356,23 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.2800000011920929,
-              0.41999998688697815,
-              0.2916666567325592
+              0.9850000143051147,
+              0.9825000166893005,
+              0.9750000238418579
             ],
             "alpha": 1,
-            "hex": "#476B4A"
+            "hex": "#FBFBF9"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:3033:8",
+            "com.figma.hiddenFromPublishing": true,
             "com.figma.scopes": [
               "SHAPE_FILL",
               "TEXT_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:75670763b9a265e4d201f598d65f645e81bec506/-1:-1",
-              "targetVariableName": "color/icon/brand",
+              "targetVariableId": "VariableID:ab4fc7763310cf696999c468c4e48c5e8a019439/-1:-1",
+              "targetVariableName": "components/tab-bar/active-text/enabled",
               "targetVariableSetId": "VariableCollectionId:de19ddbb8ca65220e9e8a029fa8f4d5ba587af37/-1:-1",
               "targetVariableSetName": "brand"
             }
@@ -2390,6 +2394,7 @@
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:3033:7",
+            "com.figma.hiddenFromPublishing": true,
             "com.figma.scopes": [
               "TEXT_FILL"
             ],
@@ -2406,21 +2411,22 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.23999999463558197,
-              0.36000001430511475,
-              0.25
+              0.9850000143051147,
+              0.9825000166893005,
+              0.9750000238418579
             ],
             "alpha": 1,
-            "hex": "#3D5C40"
+            "hex": "#FBFBF9"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:3033:9",
+            "com.figma.hiddenFromPublishing": true,
             "com.figma.scopes": [
               "TEXT_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:8a20afbd42c9672f1231b7d3a101991f14aa09a4/-1:-1",
-              "targetVariableName": "color/text/brand",
+              "targetVariableId": "VariableID:ab4fc7763310cf696999c468c4e48c5e8a019439/-1:-1",
+              "targetVariableName": "components/tab-bar/active-text/enabled",
               "targetVariableSetId": "VariableCollectionId:de19ddbb8ca65220e9e8a029fa8f4d5ba587af37/-1:-1",
               "targetVariableSetName": "brand"
             }
@@ -2442,14 +2448,15 @@
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:3033:10",
+            "com.figma.hiddenFromPublishing": true,
             "com.figma.scopes": [
               "FRAME_FILL",
               "SHAPE_FILL",
               "STROKE"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:93af4802339b646c9de134e3e086da9c86ed8345/-1:-1",
-              "targetVariableName": "color/surface/primary/main",
+              "targetVariableId": "VariableID:a67ab2c0f108e28ef2158257547272968db00987/-1:-1",
+              "targetVariableName": "components/tab-bar/active-background/enabled",
               "targetVariableSetId": "VariableCollectionId:de19ddbb8ca65220e9e8a029fa8f4d5ba587af37/-1:-1",
               "targetVariableSetName": "brand"
             }
@@ -2462,22 +2469,50 @@
           "$value": {
             "colorSpace": "srgb",
             "components": [
-              0.9259999990463257,
-              0.9112666845321655,
-              0.8740000128746033
+              0.20000000298023224,
+              0.30000001192092896,
+              0.2083333283662796
             ],
             "alpha": 1,
-            "hex": "#ECE8DF"
+            "hex": "#334D35"
           },
           "$extensions": {
             "com.figma.variableId": "VariableID:3033:11",
+            "com.figma.hiddenFromPublishing": true,
             "com.figma.scopes": [
               "FRAME_FILL",
               "SHAPE_FILL"
             ],
             "com.figma.aliasData": {
-              "targetVariableId": "VariableID:1385d0cacd7d6a302b94077da500bd0888477498/-1:-1",
-              "targetVariableName": "color/surface/neutral/lighter",
+              "targetVariableId": "VariableID:fcaa470a10761b708691204570ce8077034ecbe3/-1:-1",
+              "targetVariableName": "components/tab-bar/active-background/pressed",
+              "targetVariableSetId": "VariableCollectionId:de19ddbb8ca65220e9e8a029fa8f4d5ba587af37/-1:-1",
+              "targetVariableSetName": "brand"
+            }
+          }
+        },
+        "active": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2800000011920929,
+              0.41999998688697815,
+              0.2916666567325592
+            ],
+            "alpha": 1,
+            "hex": "#476B4A"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:3114:3710",
+            "com.figma.hiddenFromPublishing": true,
+            "com.figma.scopes": [
+              "FRAME_FILL",
+              "SHAPE_FILL"
+            ],
+            "com.figma.aliasData": {
+              "targetVariableId": "VariableID:a67ab2c0f108e28ef2158257547272968db00987/-1:-1",
+              "targetVariableName": "components/tab-bar/active-background/enabled",
               "targetVariableSetId": "VariableCollectionId:de19ddbb8ca65220e9e8a029fa8f4d5ba587af37/-1:-1",
               "targetVariableSetName": "brand"
             }

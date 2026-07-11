@@ -121,6 +121,10 @@ extension Color {
     static let componentsChipActiveTextEnabled = Color(red: 0.984, green: 0.984, blue: 0.976)
     static let componentsChipActiveTextHover = Color(red: 0.039, green: 0.059, blue: 0.043)
     static let componentsChipActiveTextPressed = Color(red: 0.984, green: 0.984, blue: 0.976)
+    static let componentsTabBarActiveBackgroundEnabled = Color(red: 0.278, green: 0.420, blue: 0.290)
+    static let componentsTabBarActiveBackgroundPressed = Color(red: 0.200, green: 0.302, blue: 0.208)
+    static let componentsTabBarActiveTextEnabled = Color(red: 0.984, green: 0.984, blue: 0.976)
+    static let componentsTabBarActiveTextPressed = Color(red: 0.984, green: 0.984, blue: 0.976)
 }
 
 // MARK: - Radius
