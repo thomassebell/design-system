@@ -12,6 +12,9 @@ import "./styles/globals.css";
 export { Button } from "./components/Button";
 export type { ButtonProps, ButtonVariant } from "./components/Button";
 
+export { Chip } from "./components/Chip";
+export type { ChipProps, ChipVariant } from "./components/Chip";
+
 export { IconButton } from "./components/IconButton";
 export type { IconButtonProps, IconButtonVariant } from "./components/IconButton";
 

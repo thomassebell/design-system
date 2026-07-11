@@ -1,0 +1,117 @@
+/* ── Base ─────────────────────────────────── */
+/* Interactive filter/selection chip. Resting states ride the neutral ramp,
+   the selected ("active") states flip to the brand ramp – all via the
+   chip/* appearance tokens, so light/dark and all brands resolve in CSS. */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--semantic-components-xsmall);
+  padding: var(--semantic-components-small) var(--semantic-components-large);
+  font-family: var(--typography-font-family-paragraph);
+  font-weight: var(--typography-font-weight-default);
+  font-size: var(--typography-font-size-components-label);
+  line-height: var(--typography-line-height-xxsmall);
+  border: none;
+  border-radius: var(--radius-xlarge);
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* ── States ───────────────────────────────── */
+
+.chip:focus-visible {
+  outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
+  outline-offset: var(--components-focus-ring-offset);
+}
+
+.chip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Solid variant ────────────────────────── */
+
+.solid {
+  background: var(--chip-solid-fill-enabled);
+  color: var(--chip-solid-label-enabled);
+}
+.solid:hover:not(:disabled) {
+  background: var(--chip-solid-fill-hover);
+  color: var(--chip-solid-label-hover);
+}
+.solid:active:not(:disabled) {
+  background: var(--chip-solid-fill-pressed);
+  color: var(--chip-solid-label-pressed);
+}
+.solid.active {
+  background: var(--chip-solid-fill-active);
+  color: var(--chip-solid-label-active);
+}
+.solid.active:hover:not(:disabled) {
+  background: var(--chip-solid-fill-active-hover);
+  color: var(--chip-solid-label-active-hover);
+}
+.solid.active:active:not(:disabled) {
+  background: var(--chip-solid-fill-active-pressed);
+  color: var(--chip-solid-label-active-pressed);
+}
+
+/* ── Outline variant ──────────────────────── */
+/* Border via inset box-shadow (Button's outline pattern) so state changes
+   never shift layout. 1px – Button's 2px reads too heavy at chip size. */
+
+.outline {
+  background: transparent;
+  color: var(--chip-outline-label-enabled);
+  box-shadow: inset 0 0 0 1px var(--chip-outline-border-enabled);
+}
+.outline:hover:not(:disabled) {
+  background: var(--chip-outline-fill-hover);
+  color: var(--chip-outline-label-hover);
+  box-shadow: inset 0 0 0 1px var(--chip-outline-border-hover);
+}
+.outline:active:not(:disabled) {
+  background: var(--chip-outline-fill-pressed);
+  color: var(--chip-outline-label-pressed);
+  box-shadow: inset 0 0 0 1px var(--chip-outline-border-pressed);
+}
+.outline.active {
+  background: var(--chip-outline-fill-active);
+  color: var(--chip-outline-label-active);
+  box-shadow: inset 0 0 0 1px var(--chip-outline-border-active);
+}
+.outline.active:hover:not(:disabled) {
+  background: var(--chip-outline-fill-active-hover);
+  color: var(--chip-outline-label-active-hover);
+  box-shadow: inset 0 0 0 1px var(--chip-outline-border-active-hover);
+}
+.outline.active:active:not(:disabled) {
+  background: var(--chip-outline-fill-active-pressed);
+  color: var(--chip-outline-label-active-pressed);
+  box-shadow: inset 0 0 0 1px var(--chip-outline-border-active-pressed);
+}
+
+/* ── Icons ────────────────────────────────── */
+/* Icons inherit the chip's label color via SVG currentColor – no separate
+   icon tokens (see the tab-bar for the only icon-diverges-from-label case). */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* Chips are compact – force 16px regardless of the passed Icon size, same
+   trick as Button's text variant, so <Icon size="lg"> works everywhere. */
+.icon svg {
+  width: 16px;
+  height: 16px;
+}
