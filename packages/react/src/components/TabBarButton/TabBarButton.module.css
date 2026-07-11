@@ -1,7 +1,7 @@
 /* TabBarButton — one item in a bottom tab bar. Vertical icon-over-label,
-   with an indicator pill that marks the active item. All colours come from
-   the tab-bar appearance tokens, so brand and surface switching work with
-   no component involvement. */
+   with a filled pill behind the active item. All colours come from the
+   tab-bar appearance tokens, so brand and surface switching work with no
+   component involvement. */
 
 /* ── Base ─────────────────────────────────── */
 
@@ -30,10 +30,6 @@
 
 /* ── States ───────────────────────────────── */
 
-.tabBarButton:active:not(:disabled) {
-  background: var(--tab-bar-item-background-pressed);
-}
-
 .tabBarButton:focus-visible {
   outline: var(--components-focus-ring-width) solid var(--components-focus-ring-default);
   outline-offset: var(--components-focus-ring-offset);
@@ -45,16 +41,6 @@
 }
 
 /* ── Parts ────────────────────────────────── */
-
-/* Indicator pill above the icon. Rendered in both states (transparent when
-   inactive) so activating an item never changes the item's height. */
-.indicator {
-  width: var(--semantic-components-xxlarge);
-  height: var(--semantic-components-xsmall);
-  border-radius: var(--radius-xlarge);
-  background: transparent;
-  transition: background 150ms ease;
-}
 
 .icon {
   display: inline-flex;
@@ -83,8 +69,8 @@
 
 /* ── Active ───────────────────────────────── */
 
-.active .indicator {
-  background: var(--tab-bar-item-indicator-active);
+.active {
+  background: var(--tab-bar-item-background-active);
 }
 
 .active .icon {
@@ -94,4 +80,22 @@
 .active .label {
   color: var(--tab-bar-item-label-active);
   font-weight: var(--typography-font-weight-emphasized);
+}
+
+/* ── Pressed ──────────────────────────────── */
+
+/* Pressing previews activation: the pill fill darkens one step and the
+   foreground switches to the active colours, so the label stays readable on
+   the coloured fill. Declared after .active so pressing an already-active
+   item also shows the darker fill. */
+.tabBarButton:active:not(:disabled) {
+  background: var(--tab-bar-item-background-pressed);
+}
+
+.tabBarButton:active:not(:disabled) .icon {
+  color: var(--tab-bar-item-icon-active);
+}
+
+.tabBarButton:active:not(:disabled) .label {
+  color: var(--tab-bar-item-label-active);
 }
