@@ -12,9 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-        with:
-          # Chromatic needs the full git history to detect baselines.
-          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v6
@@ -50,14 +47,15 @@ jobs:
       - name: Build Storybook
         run: npx turbo run build-storybook --filter=@ds/react
 
-      - name: Chromatic
-        uses: chromaui/action@v17
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          workingDir: packages/react
-          storybookBuildDir: storybook-static
-          exitZeroOnChanges: true
-          autoAcceptChanges: main
+      # Chromatic disabled 2026-07-11 (Tseb): snapshot quota kept running out,
+      # PRs were merged past the pending check, and pseudo-states aren't
+      # covered by stories yet – so it cost CI time without catching anything.
+      # The Storybook modes config in preview.js is still in place; to
+      # re-enable, restore this step (chromaui/action@v17 with projectToken,
+      # workingDir packages/react, storybookBuildDir storybook-static,
+      # exitZeroOnChanges, autoAcceptChanges: main).
+      #
+      # Build Storybook (above) stays – it's the check that stories compile.
 
       # The Swift file is committed (SwiftPM consumes it from git). The token
       # build above regenerated it, so any diff means the committed copy is
