@@ -1,0 +1,17 @@
+/* TabBar — the bar chrome that hosts TabBarButtons. Paints the surface and
+   the upward elevation shadow; items sit centered with a token gap, matching
+   the Figma tabbar component. Colours come from the tab-bar appearance
+   tokens, so brand and surface switching work with no component
+   involvement. */
+
+.tabBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--semantic-layout-xsmall);
+  padding: var(--semantic-layout-xsmall) 0;
+  background: var(--tab-bar-surface);
+  /* Upward shadow — the bar sits at the bottom edge and lifts off the
+     content above it. Geometry mirrors the Figma effect (y -4, blur 24). */
+  box-shadow: 0 -4px 24px var(--tab-bar-shadow);
+}
