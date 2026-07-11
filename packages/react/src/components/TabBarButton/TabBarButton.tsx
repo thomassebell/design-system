@@ -21,7 +21,6 @@ export const TabBarButton = forwardRef<HTMLButtonElement, TabBarButtonProps>(
         aria-current={active ? "page" : undefined}
         {...rest}
       >
-        <span className={styles.indicator} aria-hidden="true" />
         <span className={styles.icon} aria-hidden="true">
           {icon}
         </span>
