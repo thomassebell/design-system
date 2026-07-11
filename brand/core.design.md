@@ -25,16 +25,25 @@ system:
   densities: ["default", "compact"]
 
 # Token shape every brand must provide. Values are "per-brand".
+# Colour ramps are SEVEN steps (lightest…darkest) as of 2026-07-11 — widened
+# from five so interactive components get more than one AA-compliant 3-state
+# window per ramp. Slots map onto EXISTING foundation primitives only; a brand
+# may collapse a slot onto its neighbour where its foundation ramp lacks span
+# (same convention as radius). Foundation palettes are set — widening semantics
+# never adds foundation tints (see the ramp-remap decision, 2026-07-11).
 token-shape:
   color:
-    surface:    { primary: "per-brand", secondary: "per-brand" }
+    surface:
+      primary:   { lightest: "per-brand", lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", darkest: "per-brand" }
+      secondary: { lightest: "per-brand", lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", darkest: "per-brand" }
+      neutral:   { white: "per-brand", lightest: "per-brand", lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", darkest: "per-brand" }   # lightest is the lightest REAL neutral tint, never an alias of white
     text:       { primary: "per-brand", secondary: "per-brand", disabled: "per-brand" }
     icon:       { primary: "per-brand", secondary: "per-brand", contrast: "per-brand" }
     border:     { default: "per-brand", strong: "per-brand", subtle: "per-brand" }
-    error:      { lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", "contrast-text": "per-brand" }
-    warning:    { lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", "contrast-text": "per-brand" }
-    success:    { lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", "contrast-text": "per-brand" }
-    info:       { lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", "contrast-text": "per-brand" }
+    error:      { lightest: "per-brand", lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", darkest: "per-brand", "contrast-text": "per-brand" }
+    warning:    { lightest: "per-brand", lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", darkest: "per-brand", "contrast-text": "per-brand" }
+    success:    { lightest: "per-brand", lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", darkest: "per-brand", "contrast-text": "per-brand" }
+    info:       { lightest: "per-brand", lighter: "per-brand", light: "per-brand", main: "per-brand", dark: "per-brand", darker: "per-brand", darkest: "per-brand", "contrast-text": "per-brand" }
   radius:
     keys: [none, xsmall, small, medium, large, xlarge]
     note: "Each brand specifies values. A brand may collapse multiple slots onto the same primitive (e.g. Sebell's 'square or full' identity)."
@@ -84,7 +93,7 @@ A fourth collection, **`appearance`** (modes `light` / `dark`), sits on top: its
 
 ## Colors
 
-Naming: `color.<role>.<weight>` where `<role>` ∈ `{surface, text, icon, border, error, warning, success, info}` and `<weight>` ∈ `{lighter, light, main, dark, darker, contrast-text}` for status colours, or role-specific keys (e.g. `text.primary`, `border.subtle`) otherwise.
+Naming: `color.<role>.<weight>` where `<role>` ∈ `{surface, text, icon, border, error, warning, success, info}` and `<weight>` ∈ `{lightest, lighter, light, main, dark, darker, darkest, contrast-text}` for surface and status colour ramps, or role-specific keys (e.g. `text.primary`, `border.subtle`) otherwise. The seven weight steps exist so an interactive component can pick a 3-state run (`enabled → hover → pressed`, `active → active-hover → active-pressed`) whose fills all keep one label colour above WCAG AA — with five steps each ramp had exactly one such window; seven gives a choice of direction. `main` is the family's anchor and never moves when a ramp is re-cut.
 
 Rules:
 
@@ -170,6 +179,7 @@ The React library exposes the following components, each consuming a specific sl
 | Component | Token slots consumed | Notes |
 |-----------|---------------------|-------|
 | `Button` | `components.button.*`, `typography.font-family.paragraph`, `radius.medium`, `components.focus-ring.*` | Variants: `solid`, `outline`, `text`. States: `default`, `hover`, `active`, `focus`, `disabled` |
+| `Chip` | `chip.*` (appearance), `components.chip.*` (per-brand dark resting fills/labels), `radius.xlarge`, `semantic.components.*`, `typography.font-size.components.label`, `components.focus-ring.*` | Interactive filter/selection toggle (`aria-pressed`). Variants: `solid`, `outline`. States: `enabled`, `hover`, `pressed`, `active`, `active-hover`, `active-pressed`; disabled via the universal opacity rule. The brand-sensitive ramps route through per-brand slots, mirroring Button's wiring: dark-mode resting via `components.chip.{background,text}.*`, light-mode selected via `components.chip.{active-background,active-text}.*` — each brand picks flip-zone-coherent runs (see brand-a.design.md and Prep+Eat for why). Static status labels are the (planned) separate `Pill` component |
 | `Input` | `components.forms.*`, `color.text.*`, `color.border.*`, `radius.small`, `components.focus-ring.*` | Supports `startIcon`, `endIcon`, hint above, error banner below |
 | `Checkbox` (+ `CheckboxField`, `CheckboxGroup`) | `components.forms.*`, `color.border.*`, `components.focus-ring.*` | Indeterminate state supported |
 | `Radio` (+ `RadioField`, `RadioGroup`) | `components.forms.*`, `color.border.*`, `components.focus-ring.*` | |

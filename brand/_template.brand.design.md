@@ -27,8 +27,12 @@ figma-file-keys:
 # cross-check — the resolved hex values are right there.
 color:
   surface:
-    primary:   { lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>" }
-    secondary: { lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>" }
+    # 7-step ramps (lightest…darkest). Map onto EXISTING foundation tints only;
+    # collapse a slot onto its neighbour if the ramp lacks span. main is the anchor.
+    primary:   { lightest: "<TODO>", lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", darkest: "<TODO>" }
+    secondary: { lightest: "<TODO>", lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", darkest: "<TODO>" }
+    # neutral.lightest is the lightest REAL neutral tint — never an alias of white.
+    neutral:   { white: "<TODO>", lightest: "<TODO>", lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", darkest: "<TODO>" }
   text:
     primary: "<TODO>"
     secondary: "<TODO>"
@@ -41,10 +45,10 @@ color:
     default: "<TODO>"
     strong:  "<TODO>"
     subtle:  "<TODO>"
-  error:   { lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", contrast-text: "<TODO>" }
-  warning: { lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", contrast-text: "<TODO>" }
-  success: { lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", contrast-text: "<TODO>" }
-  info:    { lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", contrast-text: "<TODO>" }
+  error:   { lightest: "<TODO>", lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", darkest: "<TODO>", contrast-text: "<TODO>" }
+  warning: { lightest: "<TODO>", lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", darkest: "<TODO>", contrast-text: "<TODO>" }
+  success: { lightest: "<TODO>", lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", darkest: "<TODO>", contrast-text: "<TODO>" }
+  info:    { lightest: "<TODO>", lighter: "<TODO>", light: "<TODO>", main: "<TODO>", dark: "<TODO>", darker: "<TODO>", darkest: "<TODO>", contrast-text: "<TODO>" }
 
 # ─── Radius ─────────────────────────────────────────
 radius:
