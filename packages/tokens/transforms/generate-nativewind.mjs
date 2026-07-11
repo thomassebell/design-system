@@ -156,9 +156,9 @@ function buildTheme(src) {
     if (colorNs[status]) colors[status] = mapColors(colorNs[status]);
   }
   // Foreground from the light appearance tree (the modern semantic API).
-  // tab-bar rides along because the RN apps are where tab bars live; the other
+  // tab-bar and chip ride along because the RN apps use them; the other
   // component groups (button, forms) stay web-only until an app needs them.
-  for (const fg of ["text", "border", "icon", "tab-bar"]) {
+  for (const fg of ["text", "border", "icon", "tab-bar", "chip"]) {
     if (light[fg]) colors[fg] = mapColors(light[fg]);
   }
 
