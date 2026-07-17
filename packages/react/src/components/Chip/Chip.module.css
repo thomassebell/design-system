@@ -8,10 +8,10 @@
   align-items: center;
   justify-content: center;
   gap: var(--semantic-components-xsmall);
-  padding: var(--semantic-components-small) var(--semantic-components-large);
+  padding: var(--semantic-components-small) var(--semantic-components-medium);
   font-family: var(--typography-font-family-paragraph);
-  font-weight: var(--typography-font-weight-default);
-  font-size: var(--typography-font-size-components-label);
+  font-weight: var(--typography-font-weight-emphasized);
+  font-size: var(--typography-font-size-small);
   line-height: var(--typography-line-height-xxsmall);
   border: none;
   border-radius: var(--radius-xlarge);
