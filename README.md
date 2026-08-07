@@ -42,6 +42,17 @@ npm run build
 | `@ds/react` | React component library (buttons, form fields, layout primitives, typography) with CSS Modules consuming token variables. |
 | `ios-tokens` | Swift Package exposing `DesignTokens.swift` for iOS / SwiftUI. The generated file is committed – SwiftPM consumes it straight from this repo. |
 
+## Spacing rhythm
+
+The layout scale is Fibonacci (8, 16, 24, 40, 64, 104) and the component scale
+deliberately is not — [docs/spacing-rhythm.md](./docs/spacing-rhythm.md) works
+through why the constant ≈1.6 ratio is what keeps each step perceptible, and why
+the two scales must not mix.
+
+⚠️ That doc's **rules for sequencing are a DRAFT, not adopted** — the scales and
+the ratio analysis are settled, the rules are not. See
+[docs/backlog.md](./docs/backlog.md).
+
 ## Brand structure
 
 This is a multi-brand design system. The active brands are **Sebell** (production) and **Brand A / Brand B** (test fixtures that exercise the multi-brand pipeline). The brand spec — token shape, component contracts, and the runbook for adding a new brand — lives in [`brand/`](./brand/), written in the [DESIGN.md](https://github.com/google-labs-code/design.md) format.

@@ -1,0 +1,70 @@
+# Design System backlog
+
+The work list for the DS. Not just what was decided but **why**, so a cold thread
+can be picked up without re-litigating it. Started 2026-08-07.
+
+## Open
+
+- [ ] **FINISH ARTICULATING THE SPACING RHYTHM — the rules are drafted but NOT
+      ADOPTED.** Draft: [spacing-rhythm.md](./spacing-rhythm.md), marked as such
+      at the top so nobody mistakes it for system law.
+      **WHERE IT CAME FROM.** Thomas, 2026-08-07: *"I always try to establish a
+      rhythm to the design where I use different spacings in a sequence that to
+      me is hard to put into rules. The spacing tokens are actually made with a
+      fibonacci-like rhythm; 8, 16, 24, 40, 64, 104. This rhythm helps the user
+      'read' the design easier, because each gap is optically different enough
+      to notice."*
+      **WHAT IS SETTLED AND CAN BE RELIED ON — the analysis, not the rules:**
+      - The layout scale is Fibonacci from 8 up, so past the first step it is
+        geometric at **≈1.6** (measured: 1.50, 1.67, 1.60, 1.63). That constant
+        RATIO is why every step stays equally noticeable — perceived magnitude is
+        ratio-based, not additive (Weber's law). A linear scale's ratios fall as
+        it climbs, which is why the top of a linear scale turns to mush.
+      - **The component scale is deliberately NOT Fibonacci** — it oscillates
+        ×1.5 / ×1.33 at the top (12, 16, 24, 32). Correct for close-range reading
+        inside one object, where fine control beats dramatic separation. This is
+        what turns "don't mix the two scales" from tidiness into perception.
+      - The underlying principle is Gestalt **proximity**: spacing is the
+        notation hierarchy is written in, not decoration between elements.
+      **WHAT IS NOT SETTLED.** Thomas: *"it is not there yet."* Three specific
+      claims in the draft are Claude's inference from his work rather than his
+      own words, and each needs him to confirm, correct or reject it:
+      1. **That 4px sits outside the ladder deliberately.** 4, 8, 16 is not
+         Fibonacci. The draft calls it a half-step for hairline separations. It
+         may have a different reason, or none.
+      2. **"One rung per level"** — that going up a grouping level moves exactly
+         one step, and skipping a rung is reserved for a genuine section break.
+         This is the rule Claude is least confident is read correctly off the
+         work.
+      3. **The closing formulation of the irreducible part:** *"you are spending
+         the minimum spacing needed, given what the background, borders and type
+         are already saying."* If this is wrong, the whole "where the rules stop"
+         section is wrong with it.
+      **THE ONE WORTH KEEPING EITHER WAY: "outer beats inner"** — the gap
+      separating two things must exceed the largest gap inside either of them.
+      It is mechanically checkable, needs no taste, and it is exactly what would
+      have caught the Prep+Eat shopping list shipping a category heading with 16
+      above it and 8 below, so the heading sat closer to the previous group than
+      to the rows it labelled (found and fixed 2026-08-07).
+      **NEXT:** Thomas reviews 1–3 against real screens. If "outer beats inner"
+      survives, it is a candidate for a lint rule rather than prose.
+
+- [ ] **Tighten `color/surface/secondary/main` off `ALL_SCOPES`.** Found
+      2026-08-07 from a real mistake in the Prep+Eat app file: every drag handle
+      was coloured with a SURFACE token instead of an icon one.
+      **The cause was not carelessness.** Thomas had correctly scoped the text
+      tokens to `[TEXT_FILL]`, so they cannot be picked for a vector fill —
+      *"I scoped the text-tokens only to be visible to text. But you work in the
+      code so you don't get 'scoped out' of applying a color-token."* With the
+      right family scoped out of reach, the only plausible-looking option left in
+      the picker was `surface/secondary/main`, because it is `ALL_SCOPES` and
+      therefore appears in **every** picker in the file.
+      So the scoping worked and one unscoped token undermined it. The correct
+      token existed all along: `icon/subtle`, same #6F5D44, scoped
+      `[SHAPE_FILL, TEXT_FILL]`. 113 nodes have since been rebound to it.
+      **FIX:** give `color/surface/secondary/main` real scopes. Worth sweeping
+      for other `ALL_SCOPES` colour variables at the same time — each one is a
+      trap of the same shape, for any property.
+      LESSON WORTH KEEPING: **`ALL_SCOPES` is not neutral.** It does not mean
+      "unrestricted", it means "offer this everywhere", and an unscoped token
+      will be picked in a context a scoped one was deliberately kept out of.
