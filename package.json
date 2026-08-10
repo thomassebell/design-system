@@ -12,7 +12,8 @@
     "test": "turbo run test",
     "storybook": "turbo run storybook --filter=@ds/react",
     "tokens:build": "turbo run build --filter=@ds/tokens",
-    "smoke": "node scripts/consumer-smoke-test.mjs"
+    "smoke": "node scripts/consumer-smoke-test.mjs",
+    "hooks:install": "./scripts/install-git-hooks.sh"
   },
   "devDependencies": {
     "turbo": "^2.0.0",

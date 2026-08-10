@@ -1,0 +1,42 @@
+#!/bin/sh
+# Push main to origin after every commit, so work is never local-only for long.
+#
+# Why this exists: on 2026-08-11 a commit from 2026-08-07 was found sitting
+# unpushed on this repo - four days on a single Mac that belongs to an
+# employer. The Prep+Eat repo has had this hook since 2026-08-10, after pushing
+# silently stopped there and 43 commits went unbacked for three days. This repo
+# did not, so the same failure simply moved here.
+#
+# ⚠️ THIS IS THE SOURCE: scripts/git-hooks/post-commit. The copy git actually
+# runs lives in .git/hooks/, which is NOT version controlled. Editing this file
+# does nothing until you re-run `npm run hooks:install`.
+#
+# That path is also load-bearing: install-git-hooks.sh decides whether a hook is
+# ITS OWN by grepping the installed copy for "scripts/git-hooks". A hook without
+# that string can never be updated by the installer - a bug found in Prep+Eat
+# the same day, where it had been silently declining every change.
+#
+# Deliberately conservative:
+#   - main only. Other branches are yours to push when you mean to.
+#   - never --force, so a rewritten history fails loudly instead of destroying
+#     what is on GitHub.
+#   - runs in the background, so a slow network never makes a commit feel stuck.
+#   - silent when it works, loud when it does not.
+
+branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || exit 0
+[ "$branch" = "main" ] || exit 0
+git remote get-url origin >/dev/null 2>&1 || exit 0
+
+log="$(git rev-parse --git-dir)/autopush.log"
+
+(
+  if out=$(git push --quiet origin main 2>&1); then
+    printf '%s  pushed %s\n' "$(date '+%F %T')" "$(git rev-parse --short HEAD)" >>"$log"
+  else
+    printf '%s  FAILED\n%s\n\n' "$(date '+%F %T')" "$out" >>"$log"
+    printf '\n  ⚠️  auto-push failed — this commit is LOCAL ONLY\n     %s\n     retry with:  git push origin main\n\n' \
+      "$(printf '%s' "$out" | grep -v '^$' | tail -1)" >&2
+  fi
+) &
+
+exit 0
