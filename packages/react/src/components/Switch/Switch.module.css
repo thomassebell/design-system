@@ -11,10 +11,15 @@
 
    Geometry comes from the semantic scale rather than fixed px, because
    that's how the Figma component is built: the handle is `components/
-   large` and the padding around it `components/xsmall`, so the track is
-   xsmall + large on the near edge and large on the far edge. Expressed
-   as tokens it scales with density for free (36×24 default, 26×16
-   compact) instead of staying frozen at the default-density size. */
+   large`, the padding around it is a uniform `components/xsmall`, and
+   the handle sits beside an empty spacer of its own width. So the track
+   is xsmall + large + large + xsmall, and the handle travels exactly one
+   handle-width. Figma models that spacer as a real empty node rather
+   than as padding because the far edge needs large + xsmall (20px at
+   default density) and there is no 20px token to express it directly.
+
+   Expressed as tokens it scales with density for free (40×24 default,
+   28×16 compact) instead of staying frozen at the default size. */
 
 .switchEl {
   appearance: none;
@@ -23,8 +28,8 @@
   padding: 0;
   flex-shrink: 0;
   position: relative;
-  /* xsmall (near pad) + large (handle) + large (far pad) */
-  width: calc(var(--semantic-components-xsmall) + var(--semantic-components-large) * 2);
+  /* xsmall (pad) + large (handle) + large (spacer) + xsmall (pad) */
+  width: calc((var(--semantic-components-xsmall) + var(--semantic-components-large)) * 2);
   /* xsmall (pad) + large (handle) + xsmall (pad) */
   height: calc(var(--semantic-components-xsmall) * 2 + var(--semantic-components-large));
   background-color: var(--forms-background-off);
