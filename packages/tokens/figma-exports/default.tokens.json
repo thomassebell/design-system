@@ -170,6 +170,18 @@
             "GAP"
           ]
         }
+      },
+      "xxxlarge": {
+        "$type": "number",
+        "$value": "{primitive.size-40}",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:3248:253",
+          "com.figma.hiddenFromPublishing": true,
+          "com.figma.scopes": [
+            "WIDTH_HEIGHT",
+            "GAP"
+          ]
+        }
       }
     }
   },

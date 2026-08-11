@@ -70,8 +70,8 @@ separations where a real gap would be too much.
 
 ## Why components are NOT Fibonacci
 
-The component scale oscillates ×1.5 / ×1.33 at the top (12, 16, 24, 32) rather
-than holding ≈1.6. That is correct and should stay: inside a single object,
+The component scale decelerates at the top – ×1.5 / ×1.33 / ×1.25
+(12, 16, 24, 32, 40) – rather than holding ≈1.6. That is correct and should stay: inside a single object,
 distances are read at close range and against each other, so fine control matters
 more than dramatic separation. A 16 vs 24 padding difference inside a button is
 legible precisely because you are looking at one button.
