@@ -11,15 +11,25 @@
 
    Geometry comes from the semantic scale rather than fixed px, because
    that's how the Figma component is built: the handle is `components/
-   large`, the padding around it is a uniform `components/xsmall`, and
-   the handle sits beside an empty spacer of its own width. So the track
-   is xsmall + large + large + xsmall, and the handle travels exactly one
-   handle-width. Figma models that spacer as a real empty node rather
-   than as padding because the far edge needs large + xsmall (20px at
-   default density) and there is no 20px token to express it directly.
+   large`, the track carries a uniform `layout/xxsmall` pad, and the
+   handle aligns to one edge leaving a gap of its own width at the other.
+   So the track is xxsmall + large + large + xxsmall, and the handle
+   travels exactly one handle-width.
 
-   Expressed as tokens it scales with density for free (40×24 default,
-   28×16 compact) instead of staying frozen at the default size. */
+   Note `layout/xxsmall` is 4px at BOTH densities, unlike
+   `components/xsmall` (4 → 2). That's what the Figma component binds, and
+   it's why compact is 32×20 rather than the 28×16 you'd get from a pad
+   that scaled.
+
+   The width is derived from those two tokens rather than bound to the
+   `components/xxxlarge` total that Figma sets on the frame. A bound total
+   has to be kept equal to 2×pad + 2×handle by hand in every density mode,
+   and build.mjs only checks consistency across BRANDS, never across
+   densities — a total that's missing or stale in one density ships
+   silently, and an undefined var would collapse the track to `auto`.
+   Deriving it from the parts cannot drift.
+
+   Scales with density for free: 40×24 default, 32×20 compact. */
 
 .switchEl {
   appearance: none;
@@ -28,10 +38,10 @@
   padding: 0;
   flex-shrink: 0;
   position: relative;
-  /* xsmall (pad) + large (handle) + large (spacer) + xsmall (pad) */
-  width: calc((var(--semantic-components-xsmall) + var(--semantic-components-large)) * 2);
-  /* xsmall (pad) + large (handle) + xsmall (pad) */
-  height: calc(var(--semantic-components-xsmall) * 2 + var(--semantic-components-large));
+  /* xxsmall (pad) + large (handle) + large (gap) + xxsmall (pad) */
+  width: calc((var(--semantic-layout-xxsmall) + var(--semantic-components-large)) * 2);
+  /* xxsmall (pad) + large (handle) + xxsmall (pad) */
+  height: calc(var(--semantic-layout-xxsmall) * 2 + var(--semantic-components-large));
   background-color: var(--forms-background-off);
   /* Border via inset box-shadow (like Input), not `border` — so thickening it
      1px→2px on interaction never changes the box model, and the absolutely-
@@ -46,16 +56,16 @@
 
 /* ── Handle ───────────────────────────────── */
 /* A `components/large` square (slightly rounded via radius/small)
-   positioned via absolute `left`. Slides from xsmall-from-left (off)
-   to xsmall-from-right (on) — same padded positions as the Figma
-   source. Colour shifts from neutral (surface/enabled) to brand
-   (surface/active) when on. */
+   positioned via absolute `left`. Slides from xxsmall-from-left (off)
+   to xxsmall-from-right (on) — the same two edges Figma expresses as
+   `items-start` / `items-end`. Colour shifts from neutral
+   (surface/enabled) to brand (surface/active) when on. */
 
 .switchEl::before {
   content: "";
   position: absolute;
   top: 50%;
-  left: var(--semantic-components-xsmall);
+  left: var(--semantic-layout-xxsmall);
   transform: translateY(-50%);
   width: var(--semantic-components-large);
   height: var(--semantic-components-large);
@@ -67,8 +77,8 @@
 }
 
 .switchEl:checked::before {
-  /* = xsmall from the right edge */
-  left: calc(100% - var(--semantic-components-large) - var(--semantic-components-xsmall));
+  /* = xxsmall from the right edge */
+  left: calc(100% - var(--semantic-components-large) - var(--semantic-layout-xxsmall));
   background-color: var(--forms-surface-active);
 }
 
