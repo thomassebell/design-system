@@ -82,7 +82,12 @@
    variant (on=false → off, on=true → default), and the track half was
    missing here, so an "on" switch kept the "off" track colour. Declared
    before the interaction states below so hover/pressed/focus still win
-   on equal specificity. */
+   on equal specificity.
+
+   This holds when disabled as well – Figma binds on=true/disabled to
+   background/default, so a disabled "on" switch keeps the on track colour
+   and is distinguished only by the 56% dim. Do not add a
+   :checked:disabled override. */
 .switchEl:checked {
   background-color: var(--forms-background-default);
 }
@@ -137,11 +142,4 @@
 .switchEl:disabled {
   opacity: 0.56;
   cursor: not-allowed;
-}
-
-/* A disabled switch reverts to the "off" track even when on – Figma binds
-   on=true/disabled to background/off, unlike on=true/enabled. So the dim
-   is not the only signal: the track colour drops back too. */
-.switchEl:checked:disabled {
-  background-color: var(--forms-background-off);
 }
