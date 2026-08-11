@@ -1833,9 +1833,6 @@
       "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:37",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:975978fc78120e2a087750cdfe13de0aa873f195/4078:350",
           "targetVariableName": "primitive/radius/none",
@@ -1849,9 +1846,6 @@
       "$value": 4,
       "$extensions": {
         "com.figma.variableId": "VariableID:2427:818",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:4bc47b9335790472dfe693cd3dfabe782e77924a/4078:356",
           "targetVariableName": "primitive/radius/xsmall",
@@ -1865,9 +1859,6 @@
       "$value": 8,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:36",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:18c238c007d37585ba63609b7126c6a1acd3b070/4078:347",
           "targetVariableName": "primitive/radius/small",
@@ -1881,9 +1872,6 @@
       "$value": 12,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:35",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:8f83b02ae57d33a5e4d4bf2bf5b88cd715d0d444/4078:349",
           "targetVariableName": "primitive/radius/medium",
@@ -1897,9 +1885,6 @@
       "$value": 16,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:34",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:54aefc3b894690ce5befda0bd9fab9b0c2f990c5/4078:348",
           "targetVariableName": "primitive/radius/large",
@@ -1913,14 +1898,24 @@
       "$value": 24,
       "$extensions": {
         "com.figma.variableId": "VariableID:2427:829",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:49a162383ab19937729d6bd3f1b9940fb94a2925/4078:357",
           "targetVariableName": "primitive/radius/xlarge",
           "targetVariableSetId": "VariableCollectionId:749a212e6639ad6ff1d2848f98583b4bc9c611d7/4078:299",
           "targetVariableSetName": "prep-eat-foundation"
+        }
+      }
+    },
+    "full": {
+      "$type": "number",
+      "$value": 8000,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3249:5364",
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:381ae94cf646b0dc65497395b5e2495c23e47e6a/-1:-1",
+          "targetVariableName": "primitive/size-8000",
+          "targetVariableSetId": "VariableCollectionId:73b9e5499348a08be4c68cf73fc761ea8c0e2c87/-1:-1",
+          "targetVariableSetName": "layout"
         }
       }
     }

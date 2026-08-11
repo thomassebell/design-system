@@ -1833,9 +1833,6 @@
       "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:37",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
           "targetVariableName": "primitive/radius/square",
@@ -1849,9 +1846,6 @@
       "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:2427:818",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
           "targetVariableName": "primitive/radius/square",
@@ -1865,9 +1859,6 @@
       "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:36",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
           "targetVariableName": "primitive/radius/square",
@@ -1881,9 +1872,6 @@
       "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:35",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
           "targetVariableName": "primitive/radius/square",
@@ -1897,9 +1885,6 @@
       "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:38:34",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
           "targetVariableName": "primitive/radius/square",
@@ -1910,17 +1895,27 @@
     },
     "xlarge": {
       "$type": "number",
-      "$value": 9999,
+      "$value": 0,
       "$extensions": {
         "com.figma.variableId": "VariableID:2427:829",
-        "com.figma.scopes": [
-          "CORNER_RADIUS"
-        ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:c9969a13badc8f063fa0be48739272c6fc18733a/2069:2",
-          "targetVariableName": "primitive/radius/full",
+          "targetVariableId": "VariableID:6eec9ee612ab32a6374dc124944da2e5104b0dc5/2065:8",
+          "targetVariableName": "primitive/radius/square",
           "targetVariableSetId": "VariableCollectionId:f623f549115efe165c52478fbf0f7750a252c4ca/2065:0",
           "targetVariableSetName": "sebell-foundation"
+        }
+      }
+    },
+    "full": {
+      "$type": "number",
+      "$value": 8000,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3249:5364",
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:381ae94cf646b0dc65497395b5e2495c23e47e6a/-1:-1",
+          "targetVariableName": "primitive/size-8000",
+          "targetVariableSetId": "VariableCollectionId:73b9e5499348a08be4c68cf73fc761ea8c0e2c87/-1:-1",
+          "targetVariableSetName": "layout"
         }
       }
     }

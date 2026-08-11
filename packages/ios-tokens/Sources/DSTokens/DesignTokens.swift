@@ -134,7 +134,8 @@ enum DSRadius {
     static let small: CGFloat = 0
     static let medium: CGFloat = 0
     static let large: CGFloat = 0
-    static let xlarge: CGFloat = 9999
+    static let xlarge: CGFloat = 0
+    static let full: CGFloat = 8000
 }
 
 // MARK: - Spacing

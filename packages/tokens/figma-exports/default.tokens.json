@@ -613,9 +613,51 @@
           "ALL_SCOPES"
         ]
       }
+    },
+    "size-8000": {
+      "$type": "number",
+      "$value": 8000,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3256:5368",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
     }
   },
   "radius": {
+    "none": {
+      "$type": "number",
+      "$value": 0,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3249:5361",
+        "com.figma.scopes": [
+          "CORNER_RADIUS"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:c2b2d498fc198b57ff9eed1ef9f161882bce795f/-1:-1",
+          "targetVariableName": "radius/none",
+          "targetVariableSetId": "VariableCollectionId:de19ddbb8ca65220e9e8a029fa8f4d5ba587af37/-1:-1",
+          "targetVariableSetName": "brand"
+        }
+      }
+    },
+    "xsmall": {
+      "$type": "number",
+      "$value": 0,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3249:5360",
+        "com.figma.scopes": [
+          "CORNER_RADIUS"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:c225474ede9157fe4278225a0e4185edb1598cdc/-1:-1",
+          "targetVariableName": "radius/xsmall",
+          "targetVariableSetId": "VariableCollectionId:de19ddbb8ca65220e9e8a029fa8f4d5ba587af37/-1:-1",
+          "targetVariableSetName": "brand"
+        }
+      }
+    },
     "small": {
       "$type": "number",
       "$value": 0,
@@ -659,6 +701,38 @@
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:504ff2cc13fa68f6a4206964af3bd0da9bf58fc9/-1:-1",
           "targetVariableName": "radius/large",
+          "targetVariableSetId": "VariableCollectionId:de19ddbb8ca65220e9e8a029fa8f4d5ba587af37/-1:-1",
+          "targetVariableSetName": "brand"
+        }
+      }
+    },
+    "xlarge": {
+      "$type": "number",
+      "$value": 0,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3249:5362",
+        "com.figma.scopes": [
+          "CORNER_RADIUS"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:5089d4e1160b9f9ac90f4dec228fb6b93474bba0/-1:-1",
+          "targetVariableName": "radius/xlarge",
+          "targetVariableSetId": "VariableCollectionId:de19ddbb8ca65220e9e8a029fa8f4d5ba587af37/-1:-1",
+          "targetVariableSetName": "brand"
+        }
+      }
+    },
+    "full": {
+      "$type": "number",
+      "$value": 8000,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3249:5363",
+        "com.figma.scopes": [
+          "CORNER_RADIUS"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:c983f69f84cc6d9eae80b6db401ef4db32e57864/-1:-1",
+          "targetVariableName": "radius/full",
           "targetVariableSetId": "VariableCollectionId:de19ddbb8ca65220e9e8a029fa8f4d5ba587af37/-1:-1",
           "targetVariableSetName": "brand"
         }
