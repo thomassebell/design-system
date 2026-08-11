@@ -45,6 +45,7 @@ radius:
   medium: "12px"
   large:  "16px"
   xlarge: "24px"
+  full:   "8000px"
 
 # ─── Typography ─────────────────────────────────────
 typography:
@@ -118,8 +119,9 @@ Inherits from `core.design.md` — no shadow tokens.
 
 ## Shapes
 
-Standard six-step radius ramp (`0 / 4 / 8 / 12 / 16 / 24px`) — soft, friendly
-rounding consistent with a consumer food app. No collapsing of slots.
+Seven-step radius ramp (`0 / 4 / 8 / 12 / 16 / 24px`, plus `full` at 8000px for
+shapes that must read as fully round) – soft, friendly rounding consistent with
+a consumer food app. No collapsing of slots.
 
 ## Components
 

@@ -23,6 +23,7 @@ radius:
   medium:  "12px"
   large:   "16px"
   xlarge:  "24px"
+  full:    "8000px"
 
 typography:
   font-family:

@@ -21,8 +21,9 @@ radius:
   xsmall:  "2px"
   small:   "2px"
   medium:  "4px"
-  large:   "4px"
-  xlarge:  "9999px"
+  large:   "8px"
+  xlarge:  "8px"
+  full:    "8000px"
 
 typography:
   font-family:

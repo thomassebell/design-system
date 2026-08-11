@@ -39,7 +39,8 @@ radius:
   small:  "0px"
   medium: "0px"
   large:  "0px"
-  xlarge: "9999px"
+  xlarge: "0px"
+  full:   "8000px"
 
 typography:
   font-family:

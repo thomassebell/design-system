@@ -170,7 +170,23 @@ The system is intentionally flat — there are no shadow tokens today. A brand t
 
 ## Shapes
 
-Radius slot convention: `radius.{none, xsmall, small, medium, large, xlarge}`. Values are brand-specific. A brand may collapse multiple slots onto the same primitive (e.g. Sebell currently collapses everything onto `square (0)` or `full (9999)` until its foundation grows intermediate primitives) — that is a brand-level decision, not a system regression.
+Radius slot convention: `radius.{none, xsmall, small, medium, large, xlarge, full}`. Values are brand-specific. A brand may collapse multiple slots onto the same primitive (Sebell puts everything on `0` except `full`, so Sebell is square by definition and its chip, switch and checkbox all render square corners) – that is a brand-level decision, not a system regression.
+
+**Radius exists in two collections, and components bind only one of them.** The `brand` collection holds each brand's raw ramp. The `layout` collection re-exposes it per density, and **every component binds the `layout` slots** – verified across all 22 components in Figma. Treat `brand` radii the way primitives are treated elsewhere: real, but never bound directly.
+
+The density mapping is not uniform. Four slots pass through unchanged; three step down one rung at compact:
+
+| Slot | default → brand | compact → brand |
+|------|-----------------|-----------------|
+| `none`, `xsmall`, `full` | same slot | **same slot** (no step) |
+| `small` | `small` | `xsmall` |
+| `medium` | `medium` | `small` |
+| `large` | `large` | `medium` |
+| `xlarge` | `xlarge` | `large` |
+
+This is why a shape that must read as *fully round* uses `full` (Radio, Badge) rather than `xlarge`: `full` cannot step, so roundness survives a density change. Shapes that are round only as a consequence of their brand's ramp use a normal rung – Chip and the Switch track use `large`, which happens to be exactly half their height in Brand B and Prep+Eat at both densities, and 0 in Sebell.
+
+Open question, not yet settled: whether `xlarge` should also stop stepping. It currently steps (24 → 16 in Brand B), which is fine for the components on it today but would break anything relying on `xlarge` for roundness.
 
 ## Components
 
@@ -179,13 +195,13 @@ The React library exposes the following components, each consuming a specific sl
 | Component | Token slots consumed | Notes |
 |-----------|---------------------|-------|
 | `Button` | `components.button.*`, `typography.font-family.paragraph`, `radius.medium`, `components.focus-ring.*` | Variants: `solid`, `outline`, `text`. States: `default`, `hover`, `active`, `focus`, `disabled` |
-| `Chip` | `chip.*` (appearance), `components.chip.*` (per-brand dark resting fills/labels), `radius.xlarge`, `semantic.components.*`, `typography.font-size.small` + `typography.font-weight.emphasized` (12px bold label – `paragraph/small emphasized`), `components.focus-ring.*` | Interactive filter/selection toggle (`aria-pressed`). Variants: `solid`, `outline`. States: `enabled`, `hover`, `pressed`, `active`, `active-hover`, `active-pressed`; disabled via the universal opacity rule. The brand-sensitive ramps route through per-brand slots, mirroring Button's wiring: dark-mode resting via `components.chip.{background,text}.*`, light-mode selected via `components.chip.{active-background,active-text}.*` — each brand picks flip-zone-coherent runs (see brand-a.design.md and Prep+Eat for why). Static status labels are the (planned) separate `Pill` component |
+| `Chip` | `chip.*` (appearance), `components.chip.*` (per-brand dark resting fills/labels), `radius.large`, `semantic.components.*`, `typography.font-size.small` + `typography.font-weight.emphasized` (12px bold label – `paragraph/small emphasized`), `components.focus-ring.*` | Interactive filter/selection toggle (`aria-pressed`). Variants: `solid`, `outline`. States: `enabled`, `hover`, `pressed`, `active`, `active-hover`, `active-pressed`; disabled via the universal opacity rule. The brand-sensitive ramps route through per-brand slots, mirroring Button's wiring: dark-mode resting via `components.chip.{background,text}.*`, light-mode selected via `components.chip.{active-background,active-text}.*` – each brand picks flip-zone-coherent runs (see brand-a.design.md and Prep+Eat for why). Static status labels are the (planned) separate `Pill` component |
 | `TabBar` + `TabBarButton` | `tab-bar.*` (appearance recipe), `components.tab-bar.{active-background,active-text}.*` (per-brand light active pill/foreground), `semantic.layout.*`, `radius.medium`, `components.focus-ring.*` | Bottom navigation. `TabBar` is the chrome (`<nav>` landmark, surface fill, elevation shadow via `tab-bar.shadow`, centered items); `TabBarButton` is one item (`aria-current="page"` when active). Active item = filled pill; pressing previews activation (foreground switches to the active colours with the pressed fill). Dark mode reuses Chip's dark-selected language: white pill + `text.primary`, all generic – only the light pill routes through per-brand slots |
 | `Input` | `components.forms.*`, `color.text.*`, `color.border.*`, `radius.small`, `components.focus-ring.*` | Supports `startIcon`, `endIcon`, hint above, error banner below |
-| `Checkbox` (+ `CheckboxField`, `CheckboxGroup`) | `components.forms.*`, `color.border.*`, `components.focus-ring.*` | Indeterminate state supported |
-| `Radio` (+ `RadioField`, `RadioGroup`) | `components.forms.*`, `color.border.*`, `components.focus-ring.*` | |
-| `Switch` (+ `SwitchField`) | `components.forms.*`, `radius.medium` (track) + `radius.small` (handle), `components.focus-ring.*`, and for sizing `semantic.components.{xxxlarge, large}` + `semantic.layout.xxsmall` | Toggle: `<input type="checkbox" role="switch">`. States: `enabled`, `hover`, `pressed`, `focused`, `error` (via `aria-invalid`), `disabled` (56% opacity). Sized from tokens, so it scales with density: 40×24 default, 32×20 compact. **Only width and handle are bound** – track width `components.xxxlarge`, handle `components.large`, padding `layout.xxsmall`. The track height is *derived*, not bound: in Figma the track hugs its handle, so height = padding + handle + padding. The density-invariant padding is deliberate – the breathing room around the handle holds at 4px while the handle shrinks, so compact isn't merely a scaled-down default |
-| `Field`, `FieldGroup` | `typography.*`, `color.text.*` | Form-field layout primitives |
+| `Checkbox` (+ `CheckboxField`, `CheckboxGroup`) | `components.forms.*`, `color.border.*`, `radius.xsmall`, `components.focus-ring.*` | Indeterminate state supported |
+| `Radio` (+ `RadioField`, `RadioGroup`) | `components.forms.*`, `color.border.*`, `radius.full`, `components.focus-ring.*` | `radius.full` (8000px) rather than `50%`, so roundness is a token decision |
+| `Switch` (+ `SwitchField`) | `components.forms.*`, `radius.large` (track) + `radius.medium` (handle), `components.focus-ring.*`, and for sizing `semantic.components.{xxxlarge, large}` + `semantic.layout.xxsmall` | Toggle: `<input type="checkbox" role="switch">`. States: `enabled`, `hover`, `pressed`, `focused`, `error` (via `aria-invalid`), `disabled` (56% opacity). Sized from tokens, so it scales with density: 40×24 default, 32×20 compact. **Only width and handle are bound** – track width `components.xxxlarge`, handle `components.large`, padding `layout.xxsmall`. The track height is *derived*, not bound: in Figma the track hugs its handle, so height = padding + handle + padding. The density-invariant padding is deliberate – the breathing room around the handle holds at 4px while the handle shrinks, so compact isn't merely a scaled-down default |
+| `Field`, `FieldGroup` | `typography.*`, `color.text.*`, `radius.medium` (error banner) | Form-field layout primitives |
 | `Text` | `typography.*`, `color.text.*` | Variants follow the type ramp from density |
 | `Icon` | `color.icon.*` | Sized via spacing tokens |
 | `Stack` | `semantic.layout.*` | Spacing primitive |
