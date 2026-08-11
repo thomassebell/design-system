@@ -14,7 +14,7 @@
   font-size: var(--typography-font-size-small);
   line-height: var(--typography-line-height-xxsmall);
   border: none;
-  border-radius: var(--radius-xlarge);
+  border-radius: var(--radius-large);
   cursor: pointer;
   transition:
     background 150ms ease,

@@ -35,7 +35,7 @@
      1px→2px on interaction never changes the box model, and the absolutely-
      positioned handle below doesn't shift. */
   box-shadow: inset 0 0 0 1px var(--forms-border-enabled);
-  border-radius: var(--radius-medium);
+  border-radius: var(--radius-large);
   cursor: pointer;
   transition:
     background-color 100ms ease,
@@ -43,7 +43,7 @@
 }
 
 /* ── Handle ───────────────────────────────── */
-/* 16×16 square (slightly rounded via radius/small) positioned via
+/* 16×16 square (rounded via radius/medium) positioned via
    absolute `left`. Slides from inset-from-left (off) to inset-from-right
    (on) — same padded positions as the Figma source. Colour shifts
    from neutral (surface/enabled) to brand (surface/active) when on.
@@ -63,7 +63,7 @@
   width: var(--semantic-components-large);
   height: var(--semantic-components-large);
   background-color: var(--forms-surface-enabled);
-  border-radius: var(--radius-small);
+  border-radius: var(--radius-medium);
   transition:
     left 150ms ease,
     background-color 100ms ease;

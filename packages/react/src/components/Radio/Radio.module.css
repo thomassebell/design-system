@@ -22,7 +22,7 @@
   height: 18px;
   background-color: var(--forms-background-default);
   border: 1px solid var(--forms-border-enabled);
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   cursor: pointer;
   transition:
     background-color 100ms ease,

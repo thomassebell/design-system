@@ -19,7 +19,7 @@
   /* 1px at rest, thickening to 2px on interaction below (matches Input/Select
      + Radio/Switch). box-sizing: border-box (global) keeps it shift-free. */
   border: 1px solid var(--forms-border-enabled);
-  border-radius: 2px;
+  border-radius: var(--radius-xsmall);
   cursor: pointer;
   display: inline-grid;
   place-content: center;
