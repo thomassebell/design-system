@@ -338,7 +338,9 @@ function findCrossBrandAliases(node, fileBrand) {
   return issues;
 }
 
-const preflightIssues = { aliasMisalignment: [], missing: [], likelyTypos: [], typeMismatches: [] };
+const preflightIssues = {
+  aliasMisalignment: [], missing: [], likelyTypos: [], typeMismatches: [], densityMismatches: [],
+};
 
 const brandTokenIndexes = {};
 const brandTokenRawByBrand = {};
@@ -401,7 +403,49 @@ for (let i = 0; i < BRANDS.length; i++) {
   }
 }
 
+// Cross-density consistency. Same shape as the cross-brand check above, and
+// for a sharper reason: a semantic key present in one density mode but not
+// another builds perfectly cleanly. The variable is emitted into one sheet and
+// omitted from the other, and nothing downstream notices — `width: var(--gone)`
+// is invalid at computed-value time, so the element quietly falls back to
+// `auto` instead of erroring. The failure surfaces as a component losing its
+// geometry at one density only, which is a long way from the export that
+// caused it.
+//
+// Fatal rather than a warning: unlike brands, where a token can legitimately be
+// brand-specific, every semantic token must resolve in every density mode. If a
+// value is genuinely meant to be constant across densities, it still needs the
+// same value set in each mode.
+const densityTokenIndexes = {};
+for (const density of DENSITIES) {
+  const raw = JSON.parse(readFileSync(`${EXPORTS_DIR}/${density}.tokens.json`, "utf-8"));
+  densityTokenIndexes[density] = collectLeafIndex(raw);
+}
+
+for (let i = 0; i < DENSITIES.length; i++) {
+  for (let j = i + 1; j < DENSITIES.length; j++) {
+    const pair = [DENSITIES[i], DENSITIES[j]];
+    for (const [from, to] of [pair, [...pair].reverse()]) {
+      for (const path of densityTokenIndexes[from].keys()) {
+        if (!densityTokenIndexes[to].has(path)) {
+          preflightIssues.densityMismatches.push({ path, inDensity: from, missingFromDensity: to });
+        }
+      }
+    }
+  }
+}
+
 let preflightFatal = false;
+
+if (preflightIssues.densityMismatches.length > 0) {
+  preflightFatal = true;
+  console.error(`\n✗ ${preflightIssues.densityMismatches.length} token(s) defined in only one density:`);
+  for (const m of preflightIssues.densityMismatches) {
+    console.error(`    "${m.path}" — defined in ${m.inDensity}, missing from ${m.missingFromDensity}`);
+  }
+  console.error("  Give the variable a value in EVERY density mode in Figma, then re-export.");
+  console.error("  A missing density value builds clean but collapses the consuming component at that density.");
+}
 
 if (preflightIssues.aliasMisalignment.length > 0) {
   preflightFatal = true;
@@ -446,9 +490,10 @@ if (
   preflightIssues.likelyTypos.length === 0 &&
   preflightIssues.missing.length === 0 &&
   preflightIssues.typeMismatches.length === 0 &&
-  preflightIssues.aliasMisalignment.length === 0
+  preflightIssues.aliasMisalignment.length === 0 &&
+  preflightIssues.densityMismatches.length === 0
 ) {
-  console.log("✓ Figma export health: all brands consistent, no alias misalignment");
+  console.log("✓ Figma export health: all brands and densities consistent, no alias misalignment");
 }
 
 // ── Structural diff vs git HEAD ─────────────────────
