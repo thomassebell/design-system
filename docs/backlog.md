@@ -76,3 +76,48 @@ can be picked up without re-litigating it. Started 2026-08-07.
       LESSON WORTH KEEPING: **`ALL_SCOPES` is not neutral.** It does not mean
       "unrestricted", it means "offer this everywhere", and an unscoped token
       will be picked in a context a scoped one was deliberately kept out of.
+
+## Decided
+
+- [x] **Radius: components bind `layout` radii only; `brand` radii are the raw
+      ramp.** Decided 2026-08-11. The `layout` collection gained `none`,
+      `xsmall`, `xlarge` and a new `full` (8000px) so every component has a
+      layout slot to bind; all 22 components were re-pointed. Treat `brand`
+      radii like primitives – real, but never bound directly.
+      **WHY IT MATTERED.** Both collections contain variables literally named
+      `radius/medium`, and the export flattens both into one top-level `radius`
+      block with no collection qualifier. Density wins the cascade, so a
+      component binding the brand slot silently got the density-stepped value.
+      Invisible at default density, where the two coincide; visible at compact,
+      where Brand B's switch rendered an almost-but-not-quite pill.
+      Full mapping table and the reason `full` exists are in
+      [core.design.md](../brand/core.design.md) under Shapes.
+      STILL OPEN: whether `xlarge` should stop stepping down at compact. It
+      currently steps (24 → 16 in Brand B). Nothing on it today depends on
+      roundness, so nothing is broken – but anything reaching for `xlarge`
+      expecting a pill would break at compact.
+
+- [x] **Every component fill and stroke in Figma is variable-bound.** Swept
+      2026-08-11: zero raw values remain across all components. Fixed in the
+      same pass: `checkboxGroup`'s Header and Subheader were raw `#000000`
+      (radioGroup's equivalents were already on `text/default`), and
+      `iconButton`'s three loading spinners had raw strokes, now on
+      `button/<variant>/label/enabled` matching how `button`'s own spinners
+      are bound.
+      **WHY IT MATTERED.** A raw value cannot flip for dark mode. None of these
+      were code bugs – React draws the spinner with `currentColor` – but they
+      would have become code bugs the moment someone implemented from the file.
+
+- [x] **`select` and `counter` migrated to the appearance collection.** Decided
+      2026-08-11. Both still bound brand-level `components/forms/*` and
+      `color/text/*` tokens while `input` and `textArea` had moved to the
+      appearance twins. Every pair is identical in light and differs only in
+      dark, so the swap was invisible in light mode and made dark mode work.
+      `select` additionally now mirrors `input` state for state: hover lightens
+      the field to `background/active`, and Label/Hint switch `subtle` →
+      `default` on hover, focus and error (previously uniform, with a red error
+      label). Thomas added `disabled` and `readOnly` variants to match.
+      KNOWN DIFFERENCE, deliberate: `select` shows Hint text in `disabled` and
+      `readOnly`; `input` has no Hint text node in those states.
+      Neither component has a React counterpart yet – this was done so the
+      first implementation starts from a correct file.
