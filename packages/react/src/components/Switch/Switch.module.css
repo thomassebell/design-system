@@ -21,15 +21,17 @@
    it's why compact is 32×20 rather than the 28×16 you'd get from a pad
    that scaled.
 
-   The width is derived from those two tokens rather than bound to the
-   `components/xxxlarge` total that Figma sets on the frame. A bound total
-   has to be kept equal to 2×pad + 2×handle by hand in every density mode,
-   and build.mjs only checks consistency across BRANDS, never across
-   densities — a total that's missing or stale in one density ships
-   silently, and an undefined var would collapse the track to `auto`.
-   Deriving it from the parts cannot drift.
+   TODO: the width below is a stopgap. Figma binds the track to
+   `components/xxxlarge`, and that token — not this arithmetic — is the
+   source of truth for it. The token isn't in figma-exports yet, so
+   referencing it now would resolve to nothing and collapse the track to
+   `auto`. Once the re-export lands this becomes
+   `width: var(--semantic-components-xxxlarge)` and this note goes away.
+   The derivation is only here to keep the component rendering in the
+   meantime; it happens to agree at both densities, which is why it's safe
+   to sit on briefly, but it is not the decision.
 
-   Scales with density for free: 40×24 default, 32×20 compact. */
+   Scales with density: 40×24 default, 32×20 compact. */
 
 .switchEl {
   appearance: none;
