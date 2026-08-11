@@ -50,6 +50,28 @@ When you make a change to the Phase 1 / Phase 2 workflow (the build, Storybook w
 
 The current `packages/react/.storybook/preview.js` correctly uses top-level `initialGlobals` for brand and density. **Do not move these onto `globalTypes` as `defaultValue`** — Storybook 10+ silently breaks Chromatic per-snapshot mode globals when `defaultValue` is set. The breakage is silent (Chromatic just doesn't render the mode), which is why this is documented prominently. Source: user memory `feedback_storybook_initial_globals.md`.
 
+### Call `get_design_context` before writing CSS from a Figma node
+
+`get_metadata`, `get_screenshot` and `get_variable_defs` are for orientation. **None of them tell you how a frame is laid out**, and a component cannot be implemented correctly without that. Always call `get_design_context` on the specific node before writing or changing component CSS – the metadata responses say so themselves, in every response.
+
+**Why this is not optional here.** `get_variable_defs` on a parent frame returns the *union* of bindings across all its variants, with no indication of which node binds what. A value can also appear in the design without being bound at all – a token number and a rendered number matching each other is a coincidence, not evidence of a binding. This system makes that coincidence likely: `layout.*` and `components.*` collide at 4, 8, 16, 24 and 40 at default density, so at default the wrong token is indistinguishable from the right one.
+
+Worked example (2026-08-11, Switch, node `2620:10`). The track renders 40×24. `components.xxxlarge` = 40 and `components.xlarge` = 24, so both looked bound. Only the width actually is. The height is not set at all: the Figma frame is auto-layout with `layout.xxsmall` padding that **hugs** its handle, so height = padding + handle + padding, which is 24 at default and 20 at compact. Binding a height token instead produced a 16px-tall compact switch, and then a chain of "corrections" to defend the mistake. One `get_design_context` call showed `p-[var(--semantic/layout/xxsmall,4px)]` and no height class at all.
+
+**A derived dimension must stay derived in code.** Reproduce the derivation (`calc(handle + 2 * padding)`), don't bind a token that merely equals the result today.
+
+### Flagging an improvisation is not permission to ship it
+
+`~/.claude/CLAUDE.md` says: build the actual design, and where the design has a genuine gap, flag the improvisation rather than quietly filling it. **Flagging loudly and then proceeding is a violation of that rule, not compliance with it.** The point is that Thomas decides.
+
+Specifically, when the code seems to disagree with what the designer bound in Figma:
+
+1. Assume the design is right and the reading is wrong. Verify with `get_design_context` first.
+2. If it still looks wrong after that, **ask** – do not implement the deviation.
+3. Never write an unverified inference into `brand/core.design.md` or `docs/backlog.md`. Those are the contract and the decisions log; they are what a cold thread trusts. A wrong entry there outlives the session that wrote it.
+
+**Density is where this bites.** A wrong colour is visible immediately; a wrong *binding* is invisible at default density and only appears when the density global is switched – the one axis nothing in the test suite covers. Check both densities in Storybook before claiming a component matches Figma.
+
 ### Components consume semantic tokens, never primitives
 
 Component CSS reads `var(--color-surface-primary-main)`, never `var(--primitive-color-pine-30)`; and `var(--semantic-components-small)`, never `var(--primitive-size-8)`. The semantic layer is what makes both brand-switching **and** density-switching work at the component level — Sebell runs a true density setup, so all spacing scales via semantics with no fixed-primitive exceptions.
