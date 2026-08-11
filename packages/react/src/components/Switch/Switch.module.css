@@ -5,9 +5,16 @@
    makes screen readers announce "switch, on/off" instead of
    "checkbox, checked".
 
-   Track is 32×20 with a 1px border. The handle is a ::before pseudo-
+   Track is 36×24 with a 1px border. The handle is a ::before pseudo-
    element that slides between left and right padded positions when
-   the input toggles. */
+   the input toggles.
+
+   Geometry comes from the semantic scale rather than fixed px, because
+   that's how the Figma component is built: the handle is `components/
+   large` and the padding around it `components/xsmall`, so the track is
+   xsmall + large on the near edge and large on the far edge. Expressed
+   as tokens it scales with density for free (36×24 default, 26×16
+   compact) instead of staying frozen at the default-density size. */
 
 .switchEl {
   appearance: none;
@@ -16,8 +23,10 @@
   padding: 0;
   flex-shrink: 0;
   position: relative;
-  width: 32px;
-  height: 20px;
+  /* xsmall (near pad) + large (handle) + large (far pad) */
+  width: calc(var(--semantic-components-xsmall) + var(--semantic-components-large) * 2);
+  /* xsmall (pad) + large (handle) + xsmall (pad) */
+  height: calc(var(--semantic-components-xsmall) * 2 + var(--semantic-components-large));
   background-color: var(--forms-background-off);
   /* Border via inset box-shadow (like Input), not `border` — so thickening it
      1px→2px on interaction never changes the box model, and the absolutely-
@@ -31,19 +40,20 @@
 }
 
 /* ── Handle ───────────────────────────────── */
-/* 12×12 square (slightly rounded via radius/small) positioned via
-   absolute `left`. Slides from 4px-from-left (off) to 4px-from-right
-   (on) — same padded positions as the Figma source. Colour shifts
-   from neutral (surface/enabled) to brand (surface/active) when on. */
+/* A `components/large` square (slightly rounded via radius/small)
+   positioned via absolute `left`. Slides from xsmall-from-left (off)
+   to xsmall-from-right (on) — same padded positions as the Figma
+   source. Colour shifts from neutral (surface/enabled) to brand
+   (surface/active) when on. */
 
 .switchEl::before {
   content: "";
   position: absolute;
   top: 50%;
-  left: 4px;
+  left: var(--semantic-components-xsmall);
   transform: translateY(-50%);
-  width: 12px;
-  height: 12px;
+  width: var(--semantic-components-large);
+  height: var(--semantic-components-large);
   background-color: var(--forms-surface-enabled);
   border-radius: var(--radius-small);
   transition:
@@ -52,8 +62,18 @@
 }
 
 .switchEl:checked::before {
-  left: calc(100% - 12px - 4px); /* = 4px from right edge */
+  /* = xsmall from the right edge */
+  left: calc(100% - var(--semantic-components-large) - var(--semantic-components-xsmall));
   background-color: var(--forms-surface-active);
+}
+
+/* Track lightens from the "off" fill to the default form fill when on, so
+   the on state reads as active rather than just relocating the handle.
+   Declared before the interaction states below so hover / pressed / focus
+   still win on source order — matching Figma, where on+hover is
+   background/active, not this. */
+.switchEl:checked {
+  background-color: var(--forms-background-default);
 }
 
 /* ── States (track only — handle colour is driven by :checked) ─── */
@@ -106,4 +126,14 @@
 .switchEl:disabled {
   opacity: 0.56;
   cursor: not-allowed;
+}
+
+/* Figma also drops the disabled border to `border/subdued`; opacity alone
+   left it too present. Scoped off error so a disabled-but-invalid switch
+   keeps its red border — that combination isn't drawn in Figma, and losing
+   the error colour is the worse of the two guesses. The extra specificity
+   also keeps this border from being replaced by the :hover rule above,
+   which still matches on a disabled input. */
+.switchEl:disabled:not([aria-invalid="true"]) {
+  box-shadow: inset 0 0 0 1px var(--forms-border-subdued);
 }
