@@ -141,7 +141,7 @@ Display sizes (which exist for headlines and hero content) always render in the 
 
 ## Layout
 
-Spacing is on an 8-point grid (with a 4px micro-step). The semantic spacing ramp (`xxsmall`, `xsmall`, `small`, `medium`, `large`, `xlarge`, `xxlarge`) lives in the density file and is shared across brands. It's split into two scopes — and which one you reach for is a **system rule**, not a free choice.
+Spacing is on an 8-point grid (with a 4px micro-step). The semantic spacing ramp lives in the density file and is shared across brands. It's split into two scopes – and which one you reach for is a **system rule**, not a free choice. The two scopes are not the same length: `layout.*` runs `xxsmall` → `xxlarge` (7 steps), `components.*` runs `xxsmall` → `xxxlarge` (8 steps).
 
 ### Component vs. layout spacing (system rule)
 
@@ -184,6 +184,7 @@ The React library exposes the following components, each consuming a specific sl
 | `Input` | `components.forms.*`, `color.text.*`, `color.border.*`, `radius.small`, `components.focus-ring.*` | Supports `startIcon`, `endIcon`, hint above, error banner below |
 | `Checkbox` (+ `CheckboxField`, `CheckboxGroup`) | `components.forms.*`, `color.border.*`, `components.focus-ring.*` | Indeterminate state supported |
 | `Radio` (+ `RadioField`, `RadioGroup`) | `components.forms.*`, `color.border.*`, `components.focus-ring.*` | |
+| `Switch` (+ `SwitchField`) | `components.forms.*`, `radius.medium` (track) + `radius.small` (handle), `components.focus-ring.*`, and for sizing `semantic.components.{xxxlarge, large}` + `semantic.layout.xxsmall` | Toggle: `<input type="checkbox" role="switch">`. States: `enabled`, `hover`, `pressed`, `focused`, `error` (via `aria-invalid`), `disabled` (56% opacity). Sized from tokens, so it scales with density: 40×24 default, 32×20 compact. **Only width and handle are bound** – track width `components.xxxlarge`, handle `components.large`, padding `layout.xxsmall`. The track height is *derived*, not bound: in Figma the track hugs its handle, so height = padding + handle + padding. The density-invariant padding is deliberate – the breathing room around the handle holds at 4px while the handle shrinks, so compact isn't merely a scaled-down default |
 | `Field`, `FieldGroup` | `typography.*`, `color.text.*` | Form-field layout primitives |
 | `Text` | `typography.*`, `color.text.*` | Variants follow the type ramp from density |
 | `Icon` | `color.icon.*` | Sized via spacing tokens |

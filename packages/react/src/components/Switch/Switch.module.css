@@ -5,9 +5,19 @@
    makes screen readers announce "switch, on/off" instead of
    "checkbox, checked".
 
-   Track is 32×20 with a 1px border. The handle is a ::before pseudo-
-   element that slides between left and right padded positions when
-   the input toggles. */
+   Track is 40×24 at default density, 32×20 at compact. The handle is a
+   ::before pseudo-element that slides between left and right padded
+   positions when the input toggles.
+
+   SIZING – mirrors the Figma source exactly, don't put raw px back.
+   Only TWO dimensions are bound there: the track width
+   (`components/xxxlarge`) and the handle (`components/large`). The
+   track's height is not set at all – in Figma it's an auto-layout frame
+   with `layout/xxsmall` padding that HUGS its handle, so the height is
+   derived: padding + handle + padding. The calc below reproduces that
+   derivation rather than binding a height token, which is why it stays
+   correct at both densities (4+16+4=24, 4+12+4=20) even though the
+   padding is density-invariant and the handle is not. */
 
 .switchEl {
   appearance: none;
@@ -16,8 +26,10 @@
   padding: 0;
   flex-shrink: 0;
   position: relative;
-  width: 32px;
-  height: 20px;
+  width: var(--semantic-components-xxxlarge);
+  height: calc(
+    var(--semantic-components-large) + 2 * var(--semantic-layout-xxsmall)
+  );
   background-color: var(--forms-background-off);
   /* Border via inset box-shadow (like Input), not `border` — so thickening it
      1px→2px on interaction never changes the box model, and the absolutely-
@@ -31,19 +43,25 @@
 }
 
 /* ── Handle ───────────────────────────────── */
-/* 12×12 square (slightly rounded via radius/small) positioned via
-   absolute `left`. Slides from 4px-from-left (off) to 4px-from-right
+/* 16×16 square (slightly rounded via radius/small) positioned via
+   absolute `left`. Slides from inset-from-left (off) to inset-from-right
    (on) — same padded positions as the Figma source. Colour shifts
-   from neutral (surface/enabled) to brand (surface/active) when on. */
+   from neutral (surface/enabled) to brand (surface/active) when on.
+
+   The inset is `layout/xxsmall` – the same token Figma uses as the
+   track's padding, and deliberately density-invariant: the gap around
+   the handle holds at 4px in both densities while the handle itself
+   shrinks. That's what keeps the compact switch from reading as a
+   miniature of the default one. */
 
 .switchEl::before {
   content: "";
   position: absolute;
   top: 50%;
-  left: 4px;
+  left: var(--semantic-layout-xxsmall);
   transform: translateY(-50%);
-  width: 12px;
-  height: 12px;
+  width: var(--semantic-components-large);
+  height: var(--semantic-components-large);
   background-color: var(--forms-surface-enabled);
   border-radius: var(--radius-small);
   transition:
@@ -52,7 +70,10 @@
 }
 
 .switchEl:checked::before {
-  left: calc(100% - 12px - 4px); /* = 4px from right edge */
+  /* = one padding step in from the right edge, at either density */
+  left: calc(
+    100% - var(--semantic-components-large) - var(--semantic-layout-xxsmall)
+  );
   background-color: var(--forms-surface-active);
 }
 
