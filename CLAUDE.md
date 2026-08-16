@@ -76,7 +76,19 @@ Specifically, when the code seems to disagree with what the designer bound in Fi
 
 Component CSS reads `var(--color-surface-primary-main)`, never `var(--primitive-color-pine-30)`; and `var(--semantic-components-small)`, never `var(--primitive-size-8)`. The semantic layer is what makes both brand-switching **and** density-switching work at the component level — Sebell runs a true density setup, so all spacing scales via semantics with no fixed-primitive exceptions.
 
-**This is machine-enforced.** A stylelint rule (`packages/react/.stylelintrc.json`, run as part of `npm run lint`) fails the build on any raw color (hex / named / `rgb()` / `hsl()` …) or **any** `var(--primitive-…)` reference (color or size) in `packages/react/src/components/**/*.module.css`. Grep for `var(--primitive-` in components — there should be zero matches, and the linter keeps it that way.
+**This is machine-enforced.** A stylelint rule (`packages/react/.stylelintrc.json`, run as part of `npm run lint`, which CI runs on every PR) fails the build on three things in `packages/react/src/components/**/*.module.css`:
+
+1. Any raw color — hex / named / `rgb()` / `hsl()` / `oklch()` …
+2. **Any** `var(--primitive-…)` reference, color or size.
+3. Any raw `px` / `rem` / `em` on `padding*`, `margin*`, `gap` / `row-gap` / `column-gap`, `*radius`, and `font-size`.
+
+Grep for `var(--primitive-` in components — there should be zero matches, and the linter keeps it that way.
+
+**Rule 3 stops exactly where the token layer stops, and that boundary is deliberate.** It covers spacing, radius and type because every one of those is a decision with a token behind it. It does **not** cover `border-width`, `box-shadow` geometry, or gradient stops — the system has no tokens for those (the only width token in any brand sheet is `--components-focus-ring-width`), so banning raw numbers there would push you into binding a token that merely *equals* the value today. That is the Switch-height mistake documented above. If those values need tokens, add them in Figma first, then tighten the rule.
+
+There are two live exceptions, both carrying a `stylelint-disable-next-line` and a reason: the `-12px` optical bleed on `Button`'s `.iconStart` / `.iconEnd`, which is derived from the 24px icon rather than from the spacing scale. A new disable comment is a design question, not a lint question — ask before adding one.
+
+**What this rule cannot catch:** it stops `padding: 12px`, but nothing stops `var(--layout-large)` where the design says medium. Both compile and both pass CI. Wrong-token errors are now the failure mode that actually happens; only checking against Figma catches them.
 
 ### Cross-brand structural parity is enforced
 

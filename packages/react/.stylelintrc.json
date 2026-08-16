@@ -1,5 +1,6 @@
 {
   "//": "Enforces the design system's core invariant: component CSS consumes tokens through the SEMANTIC layer only — never a raw hex / named / rgb-hsl colour, and never ANY primitive variable (var(--primitive-…), colour OR size). The semantic layer is what makes brand-switching and density-switching work at the component level. Scoped to component module CSS via the lint script. Sebell runs a true density setup: every spacing value scales via semantic tokens, with no fixed-primitive exceptions.",
+  "//2": "The value rule also bans raw px/rem/em on the properties where the semantic layer is TOTAL — spacing (padding / margin / gap), radius, and font-size. Those are decisions, and every one of them has a token. It is deliberately NOT extended to border-width, box-shadow geometry or gradient stops: the system has no token for those (the only width token is --components-focus-ring-width), so a ban there would push you into binding a token that merely equals the value today. That is the Switch-height mistake documented in CLAUDE.md. If those need tokens, add them in Figma first, then tighten this rule.",
   "rules": {
     "color-no-hex": true,
     "color-named": "never",
@@ -15,8 +16,17 @@
       "oklch",
       "color"
     ],
-    "declaration-property-value-disallowed-list": {
-      "/.*/": ["/var\\(\\s*--primitive-/"]
-    }
+    "declaration-property-value-disallowed-list": [
+      {
+        "/.*/": ["/var\\(\\s*--primitive-/"],
+        "/^(padding|margin)/": ["/\\d(px|rem|em)\\b/"],
+        "/^(row-gap|column-gap|gap)$/": ["/\\d(px|rem|em)\\b/"],
+        "/radius$/": ["/\\d(px|rem|em)\\b/"],
+        "/^font-size$/": ["/\\d(px|rem|em)\\b/"]
+      },
+      {
+        "message": "Component CSS must go through the semantic token layer: no var(--primitive-…), and no raw px/rem/em for spacing, radius or font-size. Use the matching semantic token (--components-*, --layout-*, --radius-*, --font-size-*). If no token fits, that is a Figma question — ask before hardcoding."
+      }
+    ]
   }
 }
