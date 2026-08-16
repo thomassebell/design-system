@@ -49,13 +49,81 @@ can be picked up without re-litigating it. Started 2026-08-07.
       **NEXT:** Thomas reviews 1–3 against real screens. If "outer beats inner"
       survives, it is a candidate for a lint rule rather than prose.
 
-- [ ] **Consider a stylelint rule against raw `px` dimensions in component
-      CSS.** Found 2026-08-11: the Switch had drifted from Figma because its
-      track and handle were hard-coded `32px / 20px / 12px`. The existing rule
-      bans raw colours and `var(--primitive-…)`, so *colour* can't drift – but
-      *sizing* silently can, and did. Now that Figma tokenises component
-      dimensions, a rule could close the last axis. Needs thought about
-      legitimate exceptions (1px borders, `100%`, `0`) before it's written.
+- [ ] **The lint rules guard the design system's own CSS, not the product code
+      an LLM writes against it — and the escape hatch there is wide open.**
+      Found 2026-08-16 while comparing us to Polar's "LLM-safe" piece. This is
+      the single biggest gap between us and them, and it survived the rule we
+      shipped that same day.
+      **WHAT IS ACTUALLY ENFORCED.** Stylelint is scoped to
+      `packages/react/src/components/**/*.module.css` — CSS written by us, when
+      building the system. An app consuming `@ds/react` gets **nothing**. Polar's
+      ESLint rule guards the opposite surface: the app code. Different codebases,
+      and we only cover one.
+      **THE HOLE.** All 20 components extend `HTMLAttributes`, so `className`
+      and `style` are inherited props on every one of them.
+      `Stack.tsx:57` goes further and merges a consumer's `style` into its own
+      inline styles. All of this compiles and passes CI today:
+      `<Stack style={{ padding: 13, gap: 7 }}>`, `<Button className="hack">`.
+      That is the `<div className="…">` hole the article bans, in the position
+      where it does the most damage.
+      **NOT A ONE-LINE FIX, AND NOT OBVIOUSLY WORTH IT.** Removing `style` from
+      the props narrows a public API and would break any consumer relying on it;
+      Prep+Eat is the one to check first. It also cannot be enforced from this
+      repo — the check has to run in the consuming app's lint config, which means
+      shipping a config for consumers, not just a rule.
+      **DECIDE FIRST:** is `@ds/react` a library other people's code composes
+      freely, or a closed vocabulary? Polar chose closed. That is a product
+      decision, not a lint decision, and everything else here follows from it.
+
+- [ ] **`Surface` requires the consumer to invent a colour.** Found 2026-08-16.
+      Its own doc comment says so: *"The background is yours to set — paint it
+      from brand colours."* The one component whose entire job is appearance has
+      no `background` prop, so the consumer writes the colour themselves. An LLM
+      will produce a hex. This is the exact failure the whole system exists to
+      prevent, and it is currently by design.
+      **FIX:** a `background` prop taking a union of brand surface tokens. Needs
+      a designer's call on *which* tokens are legal backgrounds for a surface —
+      probably not all of them.
+
+- [ ] **The stories teach the habit the lint rule forbids.** Found 2026-08-16.
+      35 inline `style={{…}}` across `packages/react/stories/`, including
+      `border: "1px dashed #ccc"` and `padding: 8` in `Stack.stories.tsx:82`
+      and `:106`.
+      **WHY IT MATTERS MORE THAN IT LOOKS.** Stories are the highest-signal
+      example corpus an LLM reads — it is what Storybook renders and what gets
+      copied into product code. We forbid raw values in component CSS and then
+      demonstrate them in the examples. `eslint.config.js` has no rule against
+      it.
+      **FIX:** the demo-scaffolding cases (`maxWidth`, dashed debug borders) are
+      legitimately not design decisions, so this is not simply "ban it" — decide
+      what a story is allowed to hardcode, then lint that.
+
+- [ ] **No consumer-facing docs for `@ds/react`.** Found 2026-08-16. There is no
+      README in `packages/react`, and the root `README.md` documents working *on*
+      the system (build tokens, launch Storybook, add a brand), not building a
+      screen *with* it. `CLAUDE.md` is likewise written for a contributor. An LLM
+      writing an app against the library has the TypeScript definitions and
+      nothing else — no worked example, no "which scale when", no statement that
+      `style` is not the intended way to space things.
+      **Cheapest item on this list and the highest ratio.** The article does not
+      cover this either; it is ours to get right.
+
+- [ ] **Wrong-token errors are now the failure mode, and nothing can lint
+      them.** Found 2026-08-16, as the direct consequence of the rule shipped
+      the same day. `padding: 12px` is dead; `var(--semantic-layout-large)`
+      where the design says `medium` compiles, passes CI, and looks fine.
+      **WHY THIS SYSTEM MAKES IT LIKELY.** `--semantic-components-*` and
+      `--semantic-layout-*` collide numerically at 4, 8, 16, 24 and 40 at
+      default density (see the CLAUDE.md note on `get_design_context`). Pick the
+      wrong *scale* and it is invisible at default and only wrong at compact —
+      the axis nothing in the test suite covers.
+      **PARTIAL MITIGATION SHIPPED:** the stylelint error message now states the
+      inside-vs-between distinction at the point of failure, which is the best a
+      linter can do here.
+      **THE REAL CANDIDATE** is "outer beats inner" from the spacing-rhythm item
+      above — mechanically checkable, needs no taste, and it is the only rule
+      drafted so far that could catch a wrong *token* rather than a wrong
+      *value*.
 
 - [ ] **Tighten `color/surface/secondary/main` off `ALL_SCOPES`.** Found
       2026-08-07 from a real mistake in the Prep+Eat app file: every drag handle
@@ -92,6 +160,13 @@ can be picked up without re-litigating it. Started 2026-08-07.
       "LLM-safe design system" piece, which argues that docs are a suggestion and
       CI is a contract. We already ran the colour half of that check in CI, so
       the question was only whether to widen it to numbers.
+      **THIS CLOSES the open item raised 2026-08-11** ("consider a stylelint rule
+      against raw `px` dimensions", opened after the Switch drifted from Figma on
+      hard-coded `32px / 20px / 12px`). That item asked for the legitimate
+      exceptions to be worked out before the rule was written; they were, and the
+      answer is the boundary below — `0` and `%` were never at risk (no unit /
+      not a length), and `1px` borders are excluded by scope rather than by
+      exception, because the ban only applies to properties that have tokens.
       **WHY IT STOPS WHERE IT DOES.** It deliberately excludes `border-width`,
       `box-shadow` geometry and gradient stops. There are 12 raw `1px`/`2px`
       borders in components (the 1px→2px thickening on hover in Input, Checkbox
