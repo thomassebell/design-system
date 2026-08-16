@@ -25,7 +25,7 @@
         "/^font-size$/": ["/\\d(px|rem|em)\\b/"]
       },
       {
-        "message": "Component CSS must go through the semantic token layer: no var(--primitive-…), and no raw px/rem/em for spacing, radius or font-size. Use the matching semantic token (--components-*, --layout-*, --radius-*, --font-size-*). If no token fits, that is a Figma question — ask before hardcoding."
+        "message": "Component CSS must go through the semantic token layer: no var(--primitive-…), and no raw px/rem/em for spacing, radius or font-size. Use the matching semantic token — --semantic-components-* for spacing INSIDE one object, --semantic-layout-* for spacing BETWEEN objects, --radius-* for corners, --typography-font-size-* for type. If no token fits, that is a Figma question — ask before hardcoding."
       }
     ]
   }
