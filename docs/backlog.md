@@ -79,6 +79,34 @@ can be picked up without re-litigating it. Started 2026-08-07.
 
 ## Decided
 
+- [x] **The stylelint rule now also bans raw px/rem/em for spacing, radius and
+      type — but stops there.** Decided 2026-08-16. `padding*`, `margin*`,
+      `gap`/`row-gap`/`column-gap`, `*radius` and `font-size` may no longer
+      carry a raw number in component CSS. Cost at adoption: near zero, because
+      the components were already clean — the only changes needed were the two
+      loading spinners (`Button`, `IconButton`), which now bind
+      `var(--radius-full)` instead of a magic `9999px`; both render an identical
+      circle. Two `-12px` optical-bleed margins on `Button` keep a
+      `stylelint-disable-next-line` with a written reason.
+      **WHERE IT CAME FROM.** Thomas, 2026-08-16, after reading Polar's
+      "LLM-safe design system" piece, which argues that docs are a suggestion and
+      CI is a contract. We already ran the colour half of that check in CI, so
+      the question was only whether to widen it to numbers.
+      **WHY IT STOPS WHERE IT DOES.** It deliberately excludes `border-width`,
+      `box-shadow` geometry and gradient stops. There are 12 raw `1px`/`2px`
+      borders in components (the 1px→2px thickening on hover in Input, Checkbox
+      and Radio is a real interaction pattern) and **no border-width token
+      exists in any brand sheet**. Banning raw numbers there would create
+      pressure to bind whichever token happens to equal 1 or 2 today — the exact
+      failure the Switch-height note in CLAUDE.md warns about. Widening the rule
+      is a Figma decision first: add the token, then tighten the lint.
+      **WHAT IT DOESN'T BUY US.** It converts wrong-value errors into
+      wrong-token errors. `var(--layout-large)` where the design says medium
+      still compiles and still passes CI. Polar's version has the same hole –
+      nothing in their ESLint rule distinguishes `padding="m"` from
+      `padding="l"` – so "correct by construction" is a narrower claim than the
+      article implies.
+
 - [x] **Radius: components bind `layout` radii only; `brand` radii are the raw
       ramp.** Decided 2026-08-11. The `layout` collection gained `none`,
       `xsmall`, `xlarge` and a new `full` (8000px) so every component has a

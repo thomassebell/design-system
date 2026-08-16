@@ -147,7 +147,7 @@
   height: 1em;
   border: 2px solid currentColor;
   border-right-color: transparent;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   animation: spin 600ms linear infinite;
 }
 
@@ -174,12 +174,21 @@
    unaffected (gap to the label still applies, label still sits where
    the flex says it should). The 12px assumes a standard-size 24px
    icon (Icon size="lg"); if you pass a smaller or larger icon, the
-   bleed will be off-center but still readable. */
+   bleed will be off-center but still readable.
+
+   Raw -12px on purpose: this is derived from the ICON's size (half of
+   24px), not from the spacing scale, and there is no icon-size token to
+   derive it from. Binding a spacing token that happens to equal 12 would
+   make the bleed follow density instead of the icon. If Icon ever gets a
+   size token, rewrite as calc(var(--icon-lg) / -2) and drop these
+   disables. */
 .iconStart {
+  /* stylelint-disable-next-line declaration-property-value-disallowed-list */
   margin-left: -12px;
 }
 
 .iconEnd {
+  /* stylelint-disable-next-line declaration-property-value-disallowed-list */
   margin-right: -12px;
 }
 
