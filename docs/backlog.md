@@ -5,6 +5,30 @@ can be picked up without re-litigating it. Started 2026-08-07.
 
 ## Open
 
+- [ ] **TOKEN STRUCTURE REVIEW – in the problem space, deliberately.** Opened
+      2026-08-18 by Thomas. Brief:
+      [token-structure-review-brief.md](./token-structure-review-brief.md).
+      **THE ASK.** Can the structure be simplified; does it account for **who is
+      using it and when**; and is the naming **intent-driven** – every token the
+      record of a decision, legible to most people who meet it.
+      **WHY NOTHING IS BEING FIXED YET.** Thomas: *"I think it is wise to stay in
+      the problem space for a while, before choosing a solution."* The brief
+      therefore contains no proposed structure and no renaming scheme, on
+      purpose – a solution written down early anchors the review to whoever
+      wrote it first.
+      **THE ACTOR MODEL IS THE SPINE**, and it is wider than it first looks. Not
+      only the designer *authoring* tokens, but the designer *consuming* them
+      while doing layout or building recipes – picking from a Figma dropdown,
+      mid-layout, no docs open, no view of the tree. Plus the DS component
+      author, the external web developer (now genuinely external, via npm), iOS,
+      React Native, and the build pipeline. Five of the seven actors only ever
+      see a flat list of names, so intent carried by nesting is invisible to
+      them.
+      **BOTH `Alert` DEFECTS ARE DOWNSTREAM OF THIS** and are parked until it
+      resolves. Fixing them first would bake the current structure in.
+      **NEXT STEP** is a diagnostic, not a proposal: walk the tree and mark, per
+      token, what decision it records and whether the name recovers it.
+
 - [ ] **`Alert` IS NOT FINISHED.** Built from Figma "alert banner"
       (node `42:78`), started 2026-08-16.
       **STATUS CORRECTED 2026-08-18 by Thomas.** This entry previously sat under
@@ -17,7 +41,59 @@ can be picked up without re-litigating it. Started 2026-08-07.
       `packages/react/src/index.ts`, which keeps it out of the published package
       – verified: zero `Alert` references in `dist/index.js`, `dist/index.d.ts`
       and `dist/index.css`. Re-add the two export lines when it is done.
-      **WHAT REMAINS IS NOT RECORDED HERE. Ask – do not infer it from the code.**
+      **WHAT REMAINS – two defects Thomas identified while building it in
+      Figma (2026-08-18). These are STATED FACTS, not open questions. Neither is
+      polish; both block Alert.**
+
+      **1. THE CLOSE CONTROL SHOULD BE AN `IconButton` WITH HOVER / PRESSED,
+      not a bare icon.** It is currently a transparent `<button>` carrying only
+      the DS focus ring, because the Figma had no states for it (see decision 3
+      below, which this supersedes).
+      *What already exists:* the appearance collection defines `button.text`
+      with `label` and `underline`, each carrying **enabled / hover / pressed**
+      in both light and dark. So the state tokens for a quiet button are there.
+      *What does not:* `IconButtonVariant` is `solid | outline | danger` – there
+      is **no `text` variant**, even though `Button` has one and the token layer
+      defines it. Adding it is the obvious route.
+      *Why it is not just "add the variant":* `button.text` is **brand-coloured**
+      and carries an **underline**. An underline is wrong for a `×`, and a brand
+      colour on a status banner is the exact trap that produced the green close
+      icon already logged above – it fails contrast on the solid variants. A
+      quiet IconButton on an Alert has to work on **8 different backgrounds**
+      (2 variants × 4 statuses), which `button.text` was not designed for.
+      *Still to be worked out (not a challenge to the above):* whether the
+      quiet variant takes its colour from the banner via `currentColor`, as the
+      bare icon does today, or gets its own token set.
+
+      **2. THERE ARE NO NOTIFICATION COLOURS THAT SUPPORT LIGHT / DARK.**
+      Verified: the appearance collection covers exactly `text`, `border`,
+      `icon`, `button`, `chip`, `forms`, `tab-bar` (matching `APPEARANCE_ROOTS`
+      in `build.mjs`). For status it provides **text colours only** –
+      `text.danger`, `text.success`, `text.warning`, `text.info`. There is no
+      per-status **background**, **border** or **icon** in either mode.
+      *Consequence, already documented at the top of `Alert.module.css`:* Alert
+      binds the brand-semantic `--color-*` layer instead, which is what the Figma
+      nodes bind, so **an Alert keeps its own colours inside a dark `<Surface>`
+      rather than flipping.** That was a deliberate, recorded exception, not an
+      oversight – but it is why the component cannot be finished as a
+      dark-mode-aware banner today.
+      *The fix is a Figma-first change*, per the "add a new component" row in
+      `CLAUDE.md`: add a status/notification group to the **appearance**
+      collection with light + dark modes, then add its root to
+      `APPEARANCE_ROOTS`. One definition covers all brands.
+      *Still to be worked out (not a challenge to the above):* the shape of
+      that group – which slots per status, and how far it generalises beyond
+      Alert.
+
+      **3. NAMING COLLISION FOUND WHILE VERIFYING THE ABOVE.** The appearance
+      layer calls it `danger` (`text.danger`, `button.danger`); `AlertStatus`
+      calls it `error`. Flagged here because it has to be settled before the new
+      group is built in Figma, not after.
+
+      **BOTH OF THESE ARE NOW UPSTREAM OF A WIDER REVIEW** – see the
+      token-structure review item. Thomas's call, 2026-08-18: do not fix either
+      in isolation, because a notification group added to the current structure
+      bakes in whatever the review might change.
       **THE DESIGN DECISIONS BELOW WERE GENUINELY MADE AND STILL HOLD.**
       Two variants × four statuses, plus optional icon, title,
       message and close button. Verified against the design at BOTH densities:
