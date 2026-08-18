@@ -5,6 +5,90 @@ can be picked up without re-litigating it. Started 2026-08-07.
 
 ## Open
 
+- [ ] **THE MISSING GATE: nothing checks whether the DS can build a page.**
+      Found 2026-08-18, after `Button` turned out to be unable to render a link.
+      **THE DIAGNOSIS.** Every gate this repo has asks *"does this component match
+      the design and ship cleanly?"* – stylelint checks tokens, `build.mjs` pre-flight
+      checks cross-brand parity, the contrast sweeps check colour, Chromatic checks
+      appearance, `npm run smoke` checks that a consumer can install and import the
+      tarball. Not one asks *"can I build a page out of this?"* And Figma cannot
+      prompt the question: a Figma Button has variants for appearance and state, and
+      no way to express *"this one navigates"*. A system built to mirror Figma
+      faithfully – which is what `CLAUDE.md` demands, and it has been followed –
+      inherits Figma's blind spot precisely. `Text` got `as` only because
+      heading-level-versus-style is a distinction you hit inside Storybook;
+      `Button`'s equivalent is invisible until there is a real page.
+      **WHY IT WENT UNNOTICED FOR SO LONG.** The two consumers proved nothing about
+      it. Storybook stories never navigate anywhere, and Prep+Eat is React Native and
+      cannot consume the components at all (see the entry below). `prepeat-share` is
+      the **first real web page ever built with this library**, and it surfaced three
+      gaps in one sitting. That is a normal first-consumer yield, not a scandal – but
+      it means the remaining gaps are still unfound.
+      **THE FIX IS PAGES, NOT COMPONENTS.** Testing 20 components one at a time
+      re-tests what Storybook already covers. What broke was *composition*. Three
+      page archetypes cover the whole library, and one page exercises ~15 components
+      at once:
+        1. Marketing / share – `Button`, `IconButton`, `Text`, `Stack`, `Surface`.
+           **In progress** as `prepeat-share`; it is what found this.
+        2. A form (sign-up or settings) – `Field`, `FieldGroup`, `Input`,
+           `Checkbox(+Field,+Group)`, `Radio(+Field,+Group)`, `Switch(+Field)`,
+           `Button`, `Text`, `Stack`. **Never built. Highest risk – do this next.**
+        3. App shell – `TabBar`, `TabBarButton`, `Surface`, `Chip`, `Icon`.
+      **WHY THE FORM PAGE IS THE ONE TO FEAR.** There is no `<form>` and no
+      `onSubmit` anywhere in the library or its stories – verified 2026-08-18, zero
+      matches. Eleven form-shaped components, never once assembled into a working
+      form. Tests exist for exactly four components, all in the button / tab-bar
+      family; the entire form cluster has none. Forms are where element semantics
+      matter *most* – label association, error announcement, required fields, what
+      actually happens on submit. If a button could not be a link, do not assume
+      eleven form components got their semantics right untested.
+      **KEEP THE PAGES – they are three backlog items, not one.** Kept in the repo as
+      an example app, the same artifact also closes "No consumer-facing docs for
+      `@sebellds/react`" and "The stories teach the habit the lint rule forbids": a
+      real page is a far better example corpus, for a person and for an LLM, than
+      isolated stories.
+      **SMALLER THING SPOTTED IN PASSING, for whoever does the form page.** `Button`
+      sets no `type` attribute, so inside a `<form>` it defaults to `type="submit"`.
+      That may well be wrong as a default, but changing it is a behaviour change for
+      anything already relying on it – decide it deliberately with the form page, not
+      as a drive-by.
+
+- [ ] **Stories and tests are excluded from typechecking, and it hid a real
+      regression.** Found 2026-08-18 while adding `as` to `Button`.
+      `packages/react/tsconfig.json` has `"exclude": [… "**/*.stories.*",
+      "**/*.test.*"]`, and Vite / esbuild strip types without checking them. So
+      `npm run lint` runs ESLint over `stories`, but **nothing type-checks a single
+      story or test file.**
+      **WHAT IT HID, concretely.** The first cut of polymorphic `Button` typed the
+      component as a bare call signature, which – unlike
+      `ForwardRefExoticComponent` – carries no implicit `ref`. `<Button ref={…}>`
+      stopped typechecking while continuing to work at runtime. Every test passed,
+      lint passed, `tsc -p tsconfig.json` passed, the build passed, `npm run smoke`
+      passed. The only thing that caught it was type-checking the test file by hand.
+      A consumer would have hit it immediately.
+      **THE FIX IS SMALL AND CURRENTLY FREE.** A second config, because `rootDir` is
+      `src` and the story files sit outside it:
+      `{"extends":"./tsconfig.json","compilerOptions":{"rootDir":".","noEmit":true,
+      "declaration":false,"declarationMap":false},"include":["src","stories",
+      "vitest.setup.ts"],"exclude":["node_modules","dist"]}` – then a `typecheck`
+      script and a CI step. Verified 2026-08-18: with that config the whole repo,
+      **all 17 story files included, typechecks with zero errors.** So this is a
+      ~3-line change with no cleanup tail attached – but it does change what CI
+      fails on, so it is Thomas's call, not a drive-by.
+      **`vitest.setup.ts` must be in `include`** or every jest-dom matcher
+      (`toBeInTheDocument`, `toHaveClass`, …) reports as a missing property and buries
+      the real errors in noise.
+
+- [ ] **`TabBarButton` still cannot render a link.** Found 2026-08-18, deliberately
+      left out of the `Button` / `IconButton` `as` change by Thomas ("fix the button
+      and iconButton").
+      It renders a hardcoded `<button>` (`TabBarButton.tsx:18`). A tab bar on the web
+      is navigation almost by definition, so this is the most certain of the three
+      cases, not the least – it is unfixed only because the scope was drawn at two
+      components. The pattern to copy is now in `Button.tsx`: `ButtonOwnProps` +
+      a generic `as`, the `[aria-disabled="true"]` CSS counterparts, and `ref` on the
+      call signature.
+
 - [ ] **`Alert` IS NOT FINISHED.** Built from Figma "alert banner"
       (node `42:78`), started 2026-08-16.
       **STATUS CORRECTED 2026-08-18 by Thomas.** This entry previously sat under
@@ -258,6 +342,52 @@ can be picked up without re-litigating it. Started 2026-08-07.
       will be picked in a context a scoped one was deliberately kept out of.
 
 ## Decided
+
+- [x] **`Button` and `IconButton` can render any element via `as`; a call to action
+      that navigates is now an `<a>`.** Decided 2026-08-18 by Thomas, after
+      `prepeat-share` was blocked by it.
+      **THE BUG.** Both components rendered a hardcoded `<button>` with no `as`, so
+      `as="a" href="…"` fell into `...rest` and was spread onto the button as unknown
+      DOM attributes: `<button as="a" href="https://…">`. It looked exactly right and
+      navigated nowhere. There was no correct workaround either – an `<a>` wrapping a
+      `<button>` is invalid HTML, and the CSS Module class object is not exported, so
+      copying the classes onto one's own anchor is not even mechanically possible.
+      **WHY `as` AND NOT `asChild`.** `Text` and `Stack` already establish `as`. A
+      second idiom for the same job would be worse than the gap. The props follow the
+      element, so `as="a"` accepts `href` and rejects `type`.
+      **THE PART THAT NEEDED A REAL DECISION: `disabled` on an anchor.** `disabled`
+      is a `<button>` attribute and nothing else – React drops it from an anchor
+      silently, so a "disabled" link would have gone on looking faded *and still
+      navigating*, which is a worse bug than the one being fixed. On a non-`<button>`
+      element the state is now expressed the only way an anchor can express it:
+      `aria-disabled="true"`, `href` removed so there is nothing to follow, and
+      `onClick` suppressed to match the native path. Removing `href` also takes the
+      element out of the tab order on its own – **verified in the browser**, not
+      assumed: the disabled link is neither programmatically focusable nor in the
+      sequential tab order, exactly like a native disabled button, so no
+      `tabIndex={-1}` override was added. The element-state block is spread *after*
+      `...rest` on purpose, so a caller's `href` cannot survive the disabled state.
+      **TWO CSS CHANGES THE ANCHOR PATH REQUIRED.** (1) `text-decoration: none` on
+      the base class – an `<a>` underlines by default, and the `text` variant draws
+      its own underline as an inset `box-shadow` at the offset the design asks for, so
+      a browser underline would have sat at the wrong place. (2) Every `:disabled` and
+      `:not(:disabled)` selector gained an `[aria-disabled="true"]` counterpart;
+      `:disabled` never matches an anchor, so without it a disabled link would not
+      have faded at all.
+      **VERIFIED.** 30/30 tests pass, including 5 new ones covering the anchor path
+      (href present and working, `as` not leaked to the DOM, styling identical,
+      disabled strips `href` and blocks `onClick`, ref forwards to the anchor).
+      `tsc`, `npm run lint`, `npm run build` and `npm run smoke` all clean – smoke
+      matters here because the emitted `.d.ts` had to survive the polymorphic cast,
+      and it does. Checked visually in Storybook: the three link variants render
+      identically to the buttons with no browser underline, and the disabled link
+      computes `opacity: 0.5` / `cursor: not-allowed`, which is the proof that the new
+      `[aria-disabled="true"]` selectors match.
+      **NOT DONE, deliberately:** `TabBarButton` – see the Open entry. Scope was
+      Thomas's: "fix the button and iconButton, log the test for another day."
+      **`ButtonOwnProps` / `IconButtonOwnProps` are now exported** because
+      `ButtonProps` references them; a consumer with declaration emit would otherwise
+      hit a "using private name" error.
 
 - [x] **`Text` now mirrors the Figma type ramp exactly; `caption` and `overline`
       dropped.** Decided 2026-08-18 by Thomas, same day as the variant rename above.

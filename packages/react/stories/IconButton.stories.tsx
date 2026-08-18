@@ -65,3 +65,28 @@ export const Matrix: Story = {
     </Stack>
   ),
 };
+
+/** An icon-only control is as often a navigation as an action – a logo home
+ *  link, a social icon. Same `as` prop as `Button`, same reasoning. */
+export const AsLink: Story = {
+  render: () => (
+    <Stack direction="row" gap="small" align="center">
+      <IconButton as="a" href="https://example.com" icon={<PlusIcon />} label="Add" />
+      <IconButton
+        as="a"
+        href="https://example.com"
+        icon={<PlusIcon />}
+        label="Add"
+        variant="outline"
+      />
+      <IconButton
+        as="a"
+        href="https://example.com"
+        icon={<PlusIcon />}
+        label="Add"
+        variant="outline"
+        disabled
+      />
+    </Stack>
+  ),
+};

@@ -18,6 +18,7 @@
   border: none;
   border-radius: var(--radius-medium);
   cursor: pointer;
+  text-decoration: none;
   transition:
     background 150ms ease,
     color 150ms ease,
@@ -39,7 +40,8 @@
   outline-color: var(--components-focus-ring-error);
 }
 
-.iconButton:disabled {
+.iconButton:disabled,
+.iconButton[aria-disabled="true"] {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -54,11 +56,11 @@
   background: var(--button-solid-fill-enabled);
   color: var(--button-solid-label-enabled);
 }
-.solid:hover:not(:disabled) {
+.solid:hover:not(:disabled, [aria-disabled="true"]) {
   background: var(--button-solid-fill-hover);
   color: var(--button-solid-label-hover);
 }
-.solid:active:not(:disabled) {
+.solid:active:not(:disabled, [aria-disabled="true"]) {
   background: var(--button-solid-fill-pressed);
   color: var(--button-solid-label-pressed);
 }
@@ -71,12 +73,12 @@
 /* Hover/pressed add the brand-tinted fill and switch the icon to the outline
    label colour, keeping it high-contrast on the fill. Hover and pressed differ
    by fill + border. Mirrors Button. */
-.outline:hover:not(:disabled) {
+.outline:hover:not(:disabled, [aria-disabled="true"]) {
   background: var(--button-outline-fill-hover);
   color: var(--button-outline-label-hover);
   box-shadow: inset 0 0 0 2px var(--button-outline-border-hover);
 }
-.outline:active:not(:disabled) {
+.outline:active:not(:disabled, [aria-disabled="true"]) {
   background: var(--button-outline-fill-pressed);
   color: var(--button-outline-label-pressed);
   box-shadow: inset 0 0 0 2px var(--button-outline-border-pressed);
@@ -91,11 +93,11 @@
   background: var(--button-danger-fill-enabled);
   color: var(--button-danger-label-enabled);
 }
-.danger:hover:not(:disabled) {
+.danger:hover:not(:disabled, [aria-disabled="true"]) {
   background: var(--button-danger-fill-hover);
   color: var(--button-danger-label-hover);
 }
-.danger:active:not(:disabled) {
+.danger:active:not(:disabled, [aria-disabled="true"]) {
   background: var(--button-danger-fill-pressed);
   color: var(--button-danger-label-pressed);
 }
