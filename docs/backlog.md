@@ -53,8 +53,11 @@ can be picked up without re-litigating it. Started 2026-08-07.
       anything already relying on it – decide it deliberately with the form page, not
       as a drive-by.
 
-- [ ] **Stories and tests are excluded from typechecking, and it hid a real
-      regression.** Found 2026-08-18 while adding `as` to `Button`.
+- [x] **Stories and tests are excluded from typechecking, and it hid a real
+      regression.** Found 2026-08-18 while adding `as` to `Button`. **LANDED
+      2026-08-18** — `packages/react/tsconfig.typecheck.json` now checks the whole
+      surface and `npm run typecheck` (already run by CI) points at it. Diagnosis
+      kept below for the record.
       `packages/react/tsconfig.json` has `"exclude": [… "**/*.stories.*",
       "**/*.test.*"]`, and Vite / esbuild strip types without checking them. So
       `npm run lint` runs ESLint over `stories`, but **nothing type-checks a single
@@ -66,15 +69,15 @@ can be picked up without re-litigating it. Started 2026-08-07.
       lint passed, `tsc -p tsconfig.json` passed, the build passed, `npm run smoke`
       passed. The only thing that caught it was type-checking the test file by hand.
       A consumer would have hit it immediately.
-      **THE FIX IS SMALL AND CURRENTLY FREE.** A second config, because `rootDir` is
-      `src` and the story files sit outside it:
-      `{"extends":"./tsconfig.json","compilerOptions":{"rootDir":".","noEmit":true,
-      "declaration":false,"declarationMap":false},"include":["src","stories",
-      "vitest.setup.ts"],"exclude":["node_modules","dist"]}` – then a `typecheck`
-      script and a CI step. Verified 2026-08-18: with that config the whole repo,
-      **all 17 story files included, typechecks with zero errors.** So this is a
-      ~3-line change with no cleanup tail attached – but it does change what CI
-      fails on, so it is Thomas's call, not a drive-by.
+      **HOW IT WAS FIXED.** A second config (`tsconfig.typecheck.json`), because
+      `tsconfig.json` emits declarations scoped to `src` with `rootDir` `src`, and
+      the story files sit outside it. The new config extends the base, sets
+      `noEmit`, drops `rootDir` to `.`, and includes `src`, `stories` and
+      `vitest.setup.ts`. `packages/react`'s `typecheck` script points at it; CI
+      already runs `npm run typecheck`, so no workflow edit was needed. Proven both
+      ways before landing: the whole surface (17 stories + 4 test files) typechecks
+      with zero errors, and a deliberate bad type in a test file is caught by the
+      new config while `tsconfig.json` waves it through.
       **`vitest.setup.ts` must be in `include`** or every jest-dom matcher
       (`toBeInTheDocument`, `toHaveClass`, …) reports as a missing property and buries
       the real errors in noise.

@@ -1,0 +1,21 @@
+{
+  // Type-checking ONLY — the build emits via tsup, so this never produces output.
+  // The base tsconfig.json exists to emit declarations, so it is scoped to `src`
+  // with rootDir `src`; that scope silently excludes every story and test file.
+  // A `ref` regression on Button (a bare call signature carries no implicit ref)
+  // once passed tsc, lint, build, test and smoke because nothing type-checked the
+  // test that used the ref. This config closes that hole: it checks the whole
+  // surface. `vitest.setup.ts` MUST stay in `include` — it registers the
+  // @testing-library/jest-dom matcher types, without which every `toHaveClass`
+  // etc. reports as a missing property and buries the real errors.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "noEmit": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false
+  },
+  "include": ["src", "stories", "vitest.setup.ts"],
+  "exclude": ["node_modules", "dist"]
+}
