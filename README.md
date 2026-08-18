@@ -38,8 +38,8 @@ npm run build
 
 | Package | Description |
 |---------|-------------|
-| `@ds/tokens` | Design tokens exported from Figma (DTCG JSON), transformed via Style Dictionary into CSS custom properties and Swift constants. |
-| `@ds/react` | React component library (buttons, form fields, layout primitives, typography) with CSS Modules consuming token variables. |
+| `@sebellds/tokens` | Design tokens exported from Figma (DTCG JSON), transformed via Style Dictionary into CSS custom properties and Swift constants. |
+| `@sebellds/react` | React component library (buttons, form fields, layout primitives, typography) with CSS Modules consuming token variables. |
 | `ios-tokens` | Swift Package exposing `DesignTokens.swift` for iOS / SwiftUI. The generated file is committed – SwiftPM consumes it straight from this repo. |
 
 ## Spacing rhythm

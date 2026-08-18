@@ -2,7 +2,7 @@
  * Consumer smoke test.
  *
  * Storybook renders components from src/ via Vite, so it can never catch a
- * broken *published* package. This script consumes @ds/tokens and @ds/react
+ * broken *published* package. This script consumes @sebellds/tokens and @sebellds/react
  * exactly like an external app would:
  *
  *   1. `npm pack` both packages into a temp directory.
@@ -29,9 +29,9 @@ function run(cmd, cwd) {
 }
 
 try {
-  console.log("▸ Packing @ds/tokens and @ds/react…");
+  console.log("▸ Packing @sebellds/tokens and @sebellds/react…");
   const tarballs = run(
-    `npm pack --workspace @ds/tokens --workspace @ds/react --pack-destination "${tmp}"`,
+    `npm pack --workspace @sebellds/tokens --workspace @sebellds/react --pack-destination "${tmp}"`,
     repoRoot,
   )
     .trim()
@@ -63,13 +63,13 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 
 // 1. The JS entry resolves and exports components.
-const ds = await import("@ds/react");
+const ds = await import("@sebellds/react");
 assert(ds.Button, "Button export missing");
 assert(ds.Text, "Text export missing");
 assert(typeof ds.cx === "function", "cx export missing");
 
 // 2. The documented stylesheet export resolves and has real content.
-const stylesPath = require.resolve("@ds/react/styles.css");
+const stylesPath = require.resolve("@sebellds/react/styles.css");
 const css = readFileSync(stylesPath, "utf-8");
 assert(css.includes("box-sizing"), "reset missing from styles.css");
 assert(css.includes(".ds-visually-hidden"), "global utility class missing or hashed");
@@ -82,7 +82,7 @@ assert(/\\.Button_\\w+/.test(css), "scoped Button classes missing from styles.cs
 assert(!/(^|[}\\s])\\.button\\s*\\{/.test(css), "unscoped .button leaked into styles.css");
 
 // 4. Token stylesheets resolve via the documented path and define variables.
-const tokensPath = require.resolve("@ds/tokens/dist/sebell-default.css");
+const tokensPath = require.resolve("@sebellds/tokens/dist/sebell-default.css");
 const tokens = readFileSync(tokensPath, "utf-8");
 assert(tokens.includes("--color-"), "color variables missing from token CSS");
 assert(tokens.includes("--semantic-"), "semantic spacing variables missing from token CSS");

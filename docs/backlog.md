@@ -5,6 +5,111 @@ can be picked up without re-litigating it. Started 2026-08-07.
 
 ## Open
 
+- [ ] **`Alert` IS NOT FINISHED.** Built from Figma "alert banner"
+      (node `42:78`), started 2026-08-16.
+      **STATUS CORRECTED 2026-08-18 by Thomas.** This entry previously sat under
+      "Decided", checked off, claiming it had *landed*. It had not. Two things
+      made that claim look true and neither was: the component builds and its 9
+      tests pass, and the log said so. It is also untracked in git, so it exists
+      in nobody else's checkout.
+      **WHAT IS TRUE RIGHT NOW.** The component, its tests and its story are in
+      the working tree. It is deliberately **not exported** from
+      `packages/react/src/index.ts`, which keeps it out of the published package
+      – verified: zero `Alert` references in `dist/index.js`, `dist/index.d.ts`
+      and `dist/index.css`. Re-add the two export lines when it is done.
+      **WHAT REMAINS IS NOT RECORDED HERE. Ask – do not infer it from the code.**
+      **THE DESIGN DECISIONS BELOW WERE GENUINELY MADE AND STILL HOLD.**
+      Two variants × four statuses, plus optional icon, title,
+      message and close button. Verified against the design at BOTH densities:
+      200×80 at Default and 200×72 at Compact, matching the Figma symbol size.
+      **THREE THINGS THE DESIGN DID NOT ANSWER — Thomas decided each:**
+      1. **The title↔message gap is a raw `8` in Figma, unbound.** `layout.xsmall`
+         and `components.small` are BOTH 8 at Default and diverge at Compact
+         (8 vs 4), so the file could not tell us which was meant — the same trap
+         that produced the Switch-height mistake. Decision: **`layout.xsmall`**,
+         so the gap matches the icon↔text gap above it, which *is* bound to
+         `layout.xsmall`. Worth binding properly in Figma.
+      2. **The close icon is bound to a brand green in 4 of the 8 variants**
+         (`color.icon.lighter` / `color.icon.light`, which alias to
+         `color.text.{lighter,light}` — Sebell's pine tints). On solid/success
+         that is a dark green × on a mid-green fill, ~1.5:1, against the 3:1
+         WCAG 1.4.11 needs for a control. Decision: **the × inherits the status
+         text colour** in every variant. This is an authorised deviation from the
+         bound tokens, not a reading of them. **The Figma still has the green
+         bindings — fix at source and re-export.**
+      3. **No hover / pressed / focus state exists for the close button.**
+         Decision: **add the DS focus ring only**, nothing invented beyond it.
+      **ONE FIGMA ODDITY REPRODUCED RATHER THAN CORRECTED.** solid/error takes
+      its message colour from `color.text.contrast-text` while its title takes
+      `color.error.contrast-text`; every other status uses `<status>.contrast-text`
+      for both. The two resolve to the same value in Sebell, so nothing is
+      visible today — but they could diverge in another brand. Built as bound and
+      commented in place; **this is almost certainly a slip worth checking.**
+      **WHY THE FOCUS RING IS NOT `focus-ring.default`.** That token resolves to
+      the brand green, which measures **1.08:1 on solid/error and 1.52:1 on
+      solid/success** — invisible on two of the four solid fills. The ring uses
+      the width/offset tokens but `currentColor` for the colour, which clears 3:1
+      in all eight combinations (lowest 3.85:1). Precedent: `IconButton`'s
+      `.danger` already overrides ring colour per variant.
+      **A REAL BUG THE BUILD WOULD NOT HAVE CAUGHT.** Storybook does not load
+      `src/styles/globals.css`, so components there render **without the DS
+      `box-sizing: border-box` reset**. `Alert` is the first component with both
+      `width` and padding, so it was the first to expose this: it computed
+      `content-box` and overflowed its 200px container by 28px. Fixed by
+      restating `box-sizing` on the component and dropping the redundant
+      `width: 100%`. **The general problem is still open — see the item above.**
+
+- [ ] **React Native apps can consume the tokens but NOT the components.**
+      Recorded 2026-08-18, prompted by Prep+Eat.
+      `@sebellds/react` peers on `react-dom`, renders DOM and imports CSS, so there
+      is no delivery path into an RN app at all – publishing to npm does not
+      change this. What RN *can* consume is `@sebellds/tokens`, specifically
+      `dist/<brand>-theme.cjs`, the NativeWind/Tailwind fragment (light
+      appearance only in v1).
+      **WHY THIS IS WRITTEN DOWN.** Prep+Eat's screens use hand-built inline
+      buttons because of this gap. That is the correct call given the gap – but
+      it is a gap to fix, **not a pattern to copy**. The global rule stands: a
+      component is built in the DS, never in a consuming project. If RN
+      components are wanted, that is a DS decision (a second entry point, or
+      react-native-web) and it belongs here, not in an app repo.
+
+- [ ] **Storybook renders components WITHOUT the DS reset, so it does not show
+      what a consuming app shows.** Found 2026-08-16 while building `Alert`.
+      `src/styles/globals.css` (which sets `box-sizing: border-box` on `*`) is
+      imported by `src/index.ts`, but `.storybook/preview.js` imports only the
+      token stylesheets and the stories import components from `src/components/…`
+      directly. So the reset never loads in Storybook.
+      **WHY IT MATTERS.** It is a second blind spot of the same family as the one
+      `npm run smoke` exists to cover, but pointing the other way: smoke proves
+      the *published package* works outside the monorepo, while this means
+      *Storybook* silently differs from every real consumer. `Alert` computed
+      `content-box` and overflowed its container by 28px – a bug that is invisible
+      in a real app and visible only in the tool we use to check designs. Any
+      component mixing `width`/`min-width` with padding can hit it.
+      **THE FIX IS ONE LINE** – `import "../src/styles/globals.css"` in
+      `.storybook/preview.js`. Left undone deliberately: it changes the rendering
+      baseline for every existing story, so it wants its own PR with a Chromatic
+      pass, not a drive-by in a component PR.
+      **DO NOT "fix" this by restating the reset in each component.** `Alert`
+      restates `box-sizing` because it genuinely depends on the box model for
+      `min-width` to mean what Figma means; that is a local reason, not a pattern
+      to copy.
+
+- [ ] **Figma fixes queued for the next `alert banner` re-export.** Opened
+      2026-08-16 from the `Alert` build. All three are source-of-truth edits –
+      the code is already correct or deliberately deviates, so nothing in the
+      repo changes until the re-export.
+      1. **Bind the title↔message gap.** It is a raw `8` today. Bind it to
+         `layout/xsmall` to match what was shipped, or to `components/small` and
+         tell us, because the two differ at Compact.
+      2. **Re-point the close icon.** 4 of 8 variants bind `color/icon/lighter`
+         or `color/icon/light`, both of which alias to Sebell's pine tints, so the
+         × comes out green. solid/success is ~1.5:1 and fails WCAG 1.4.11. The
+         code already uses the status text colour instead.
+      3. **Check solid/error's message colour.** It binds
+         `color/text/contrast-text` where its own title and all other statuses
+         bind `<status>/contrast-text`. Same value in Sebell, so nothing shows.
+
 - [ ] **FINISH ARTICULATING THE SPACING RHYTHM — the rules are drafted but NOT
       ADOPTED.** Draft: [spacing-rhythm.md](./spacing-rhythm.md), marked as such
       at the top so nobody mistakes it for system law.
@@ -56,7 +161,7 @@ can be picked up without re-litigating it. Started 2026-08-07.
       shipped that same day.
       **WHAT IS ACTUALLY ENFORCED.** Stylelint is scoped to
       `packages/react/src/components/**/*.module.css` — CSS written by us, when
-      building the system. An app consuming `@ds/react` gets **nothing**. Polar's
+      building the system. An app consuming `@sebellds/react` gets **nothing**. Polar's
       ESLint rule guards the opposite surface: the app code. Different codebases,
       and we only cover one.
       **THE HOLE.** All 20 components extend `HTMLAttributes`, so `className`
@@ -71,7 +176,7 @@ can be picked up without re-litigating it. Started 2026-08-07.
       Prep+Eat is the one to check first. It also cannot be enforced from this
       repo — the check has to run in the consuming app's lint config, which means
       shipping a config for consumers, not just a rule.
-      **DECIDE FIRST:** is `@ds/react` a library other people's code composes
+      **DECIDE FIRST:** is `@sebellds/react` a library other people's code composes
       freely, or a closed vocabulary? Polar chose closed. That is a product
       decision, not a lint decision, and everything else here follows from it.
 
@@ -98,7 +203,7 @@ can be picked up without re-litigating it. Started 2026-08-07.
       legitimately not design decisions, so this is not simply "ban it" — decide
       what a story is allowed to hardcode, then lint that.
 
-- [ ] **No consumer-facing docs for `@ds/react`.** Found 2026-08-16. There is no
+- [ ] **No consumer-facing docs for `@sebellds/react`.** Found 2026-08-16. There is no
       README in `packages/react`, and the root `README.md` documents working *on*
       the system (build tokens, launch Storybook, add a brand), not building a
       screen *with* it. `CLAUDE.md` is likewise written for a contributor. An LLM
@@ -146,6 +251,51 @@ can be picked up without re-litigating it. Started 2026-08-07.
       will be picked in a context a scoped one was deliberately kept out of.
 
 ## Decided
+
+- [x] **Licence: MIT.** Decided 2026-08-18 by Thomas, before the first publish.
+      `LICENSE` at the repo root and copied into both published packages
+      (`packages/tokens`, `packages/react`), plus `"license": "MIT"` in both
+      package.json files. Copyright line: **Thomas Sebell**.
+      **WHAT WAS WEIGHED.** MIT lets anyone take a *copy* and use, modify or sell
+      it, keeping the copyright notice; it grants nobody any control over this
+      repo, this package or the Figma file, and it disclaims warranty so a
+      consumer cannot hold Thomas responsible. The one real consideration for a
+      *design system* is that MIT covers the brand palettes too, so the token
+      values are legally reusable, not merely readable. Judged a small cost: the
+      values are visible in any published CSS anyway, and the realistic consumers
+      are Thomas's own projects. The brand *name* is unaffected – trademarks are
+      not covered by a code licence.
+      **WHY IT WAS SETTLED BEFORE PUBLISHING**, not after: the licence a package
+      shipped under is the one people relied on, and changing it later is messy.
+      The first publish attempt failed on npm's 2FA requirement, which is what
+      left room to get this right.
+
+- [x] **Published to public npm under the `@sebellds` scope.** Decided 2026-08-18,
+      wired the same day. `@ds/tokens` → `@sebellds/tokens`, `@ds/react` →
+      `@sebellds/react`, renamed everywhere including docs, CI, the Vercel build
+      command and the generated Swift header.
+      **WHY THE RENAME WAS FORCED.** `@ds` was never ours. It is a two-letter
+      scope, unclaimed on npm (0 packages), and `@ds/react` depended on
+      `"@ds/tokens": "*"` – a wildcard that resolves against the **public**
+      registry. Publishing that as-is would have meant anyone who claimed `@ds`
+      could serve tokens into every consumer's install. Every distribution route
+      we considered required a scope we actually control, so the rename was not
+      really a choice between routes.
+      **WHY PUBLIC RATHER THAN PRIVATE.** Thomas chose public npm over GitHub
+      Packages and a paid private org, with the trade-off stated: the components,
+      the token pipeline and every brand palette (Sebell, Brand A, Brand B,
+      Prep+Eat) become world-readable. Bought in exchange: no auth anywhere, no
+      `.npmrc` in consuming projects, no registry env var in Vercel builds.
+      **THE ORDERING IS LOAD-BEARING.** `@sebellds/react` now pins
+      `"@sebellds/tokens": "^0.1.0"` instead of `"*"`. Tokens must be published
+      first; react published against an unpublished tokens version is installable
+      by nobody, and npm only permits unpublishing for 72 hours.
+      **NO PUBLISH JOB IN CI**, deliberately – publishing is irreversible enough
+      to want a human at the keyboard. Sequence is in `CLAUDE.md`.
+      **THE SCOPE IS `@sebellds`, NOT `@sebell`.** A custom npm scope needs an
+      org of the same name; `sebellds` is the org Thomas registered.
+      **`Alert` IS EXCLUDED FROM THE FIRST PUBLISH** – it is unfinished, so it
+      is not exported from the package entry point. See the open item.
 
 - [x] **The stylelint rule now also bans raw px/rem/em for spacing, radius and
       type — but stops there.** Decided 2026-08-16. `padding*`, `margin*`,

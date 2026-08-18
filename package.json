@@ -10,8 +10,8 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "storybook": "turbo run storybook --filter=@ds/react",
-    "tokens:build": "turbo run build --filter=@ds/tokens",
+    "storybook": "turbo run storybook --filter=@sebellds/react",
+    "tokens:build": "turbo run build --filter=@sebellds/tokens",
     "smoke": "node scripts/consumer-smoke-test.mjs",
     "hooks:install": "./scripts/install-git-hooks.sh"
   },

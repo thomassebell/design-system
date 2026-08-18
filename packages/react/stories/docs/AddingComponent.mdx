@@ -4,7 +4,7 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # Adding a Component
 
-How to add a new component to `@ds/react`.
+How to add a new component to `@sebellds/react`.
 
 ## Before you start
 
@@ -109,4 +109,7 @@ The build's pre-flight check (`packages/tokens/build.mjs`) requires every semant
 ## What gets deployed
 
 - Storybook on Vercel — the public design-system reference.
-- `@ds/react` package — currently workspace-only; will be published to a registry at some point in the future.
+- `@sebellds/react` package — published to **public npm** under the `@sebellds` scope, together with
+  `@sebellds/tokens` (its runtime dependency). Publishing is manual: bump both versions, `npm run build`,
+  `npm run smoke`, then `npm publish` from each package. Publish `@sebellds/tokens` **first** — `@sebellds/react`
+  depends on a published range of it, so the reverse order leaves a version nobody can install.

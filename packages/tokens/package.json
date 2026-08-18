@@ -1,7 +1,23 @@
 {
-  "name": "@ds/tokens",
-  "version": "0.1.0",
+  "name": "@sebellds/tokens",
+  "version": "0.1.1",
   "description": "Design tokens – the single source of truth for colors, typography, spacing, and more.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomassebell/design-system.git",
+    "directory": "packages/tokens"
+  },
+  "homepage": "https://github.com/thomassebell/design-system#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "css-variables",
+    "multi-brand"
+  ],
   "type": "module",
   "exports": {
     "./brands.config.js": "./brands.config.js",
