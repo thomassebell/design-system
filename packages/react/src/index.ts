@@ -29,7 +29,7 @@ export { TabBarButton } from "./components/TabBarButton";
 export type { TabBarButtonProps } from "./components/TabBarButton";
 
 export { Text } from "./components/Text";
-export type { TextProps, TextVariant } from "./components/Text";
+export type { TextProps, TextVariant, TextWeight } from "./components/Text";
 
 export { Stack } from "./components/Stack";
 export type { StackProps } from "./components/Stack";
