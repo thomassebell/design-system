@@ -1,4 +1,4 @@
-// ESLint flat config for @ds/react.
+// ESLint flat config for @sebellds/react.
 // Lints components and Storybook stories with sensible defaults
 // for React + TypeScript. Run with `npm run lint`.
 

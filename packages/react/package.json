@@ -1,7 +1,23 @@
 {
-  "name": "@ds/react",
-  "version": "0.1.0",
+  "name": "@sebellds/react",
+  "version": "0.1.1",
   "description": "React component library for the design system.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomassebell/design-system.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/thomassebell/design-system#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "design-system",
+    "react",
+    "components",
+    "multi-brand"
+  ],
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +47,7 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
-    "@ds/tokens": "*"
+    "@sebellds/tokens": "^0.1.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.2",

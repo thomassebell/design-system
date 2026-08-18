@@ -1,10 +1,10 @@
 /* ─────────────────────────────────────────────
-   @ds/react – global styles (reset + utilities).
+   @sebellds/react – global styles (reset + utilities).
    Bundled into dist/index.css via src/index.ts.
 
    Token variables are NOT included here: the consuming app picks its
-   brand × density stylesheet from @ds/tokens/dist/ and imports it
-   alongside "@ds/react/styles.css".
+   brand × density stylesheet from @sebellds/tokens/dist/ and imports it
+   alongside "@sebellds/react/styles.css".
    ───────────────────────────────────────────── */
 
 /* ── Reset baseline ─────────────────────────── */

@@ -28,7 +28,7 @@ jobs:
       - name: Build all packages
         run: npm run build
 
-      # Consume @ds/tokens + @ds/react the way an external app would:
+      # Consume @sebellds/tokens + @sebellds/react the way an external app would:
       # npm pack → install into a scratch project → import and verify the
       # documented entry points. Catches broken exports maps and lost CSS
       # Modules scoping that Storybook (which builds from src/) never sees.
@@ -45,7 +45,7 @@ jobs:
         run: npm run test
 
       - name: Build Storybook
-        run: npx turbo run build-storybook --filter=@ds/react
+        run: npx turbo run build-storybook --filter=@sebellds/react
 
       # Chromatic disabled 2026-07-11 (Tseb): snapshot quota kept running out,
       # PRs were merged past the pending check, and pseudo-states aren't

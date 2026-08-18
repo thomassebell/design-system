@@ -14,10 +14,10 @@
 system:
   name: "Sebell Design System"
   packages:
-    - "@ds/tokens"        # Style Dictionary build, Figma exports → CSS + Swift
-    - "@ds/react"         # React component library + Storybook
-    - "@ds/ios-tokens"    # Swift Package consumed by iOS apps
-    - "@ds/docs"          # Documentation site (placeholder)
+    - "@sebellds/tokens"        # Style Dictionary build, Figma exports → CSS + Swift
+    - "@sebellds/react"         # React component library + Storybook
+    - "@sebellds/ios-tokens"    # Swift Package consumed by iOS apps
+    - "@sebellds/docs"          # Documentation site (placeholder)
 
   brands:
     primary: "sebell"
@@ -201,6 +201,7 @@ The React library exposes the following components, each consuming a specific sl
 | `Checkbox` (+ `CheckboxField`, `CheckboxGroup`) | `components.forms.*`, `color.border.*`, `radius.xsmall`, `components.focus-ring.*` | Indeterminate state supported |
 | `Radio` (+ `RadioField`, `RadioGroup`) | `components.forms.*`, `color.border.*`, `radius.full`, `components.focus-ring.*` | `radius.full` (8000px) rather than `50%`, so roundness is a token decision |
 | `Switch` (+ `SwitchField`) | `components.forms.*`, `radius.large` (track) + `radius.medium` (handle), `components.focus-ring.*`, and for sizing `semantic.components.{xxxlarge, large}` + `semantic.layout.xxsmall` | Toggle: `<input type="checkbox" role="switch">`. States: `enabled`, `hover`, `pressed`, `focused`, `error` (via `aria-invalid`), `disabled` (56% opacity). Sized from tokens, so it scales with density: 40×24 default, 32×20 compact. **Only width and handle are bound** – track width `components.xxxlarge`, handle `components.large`, padding `layout.xxsmall`. The track height is *derived*, not bound: in Figma the track hugs its handle, so height = padding + handle + padding. The density-invariant padding is deliberate – the breathing room around the handle holds at 4px while the handle shrinks, so compact isn't merely a scaled-down default |
+| `Alert` | `color.{error,warning,success,info}.*`, `color.surface.neutral.white`, `color.icon.{contrast,primary}`, `color.text.contrast-text`, `radius.medium`, `semantic.components.{medium,large}` + `semantic.layout.xsmall`, `typography.font-size.{display-6,paragraph}`, `components.focus-ring.{width,offset}` | Status banner. Variants: `solid`, `outline`; statuses: `error`, `warning`, `success`, `info`. `role="alert"` for error/warning, `role="status"` for success/info. Draws from the **brand-semantic `color.*` layer, not the appearance layer** — so it keeps its own colours inside a dark `Surface` instead of flipping, the same exception this file already records for error banners. Two contrast-driven irregularities in the design are deliberate and reproduced as-is: solid/info fills from `info.light` (not `main`) so near-black `contrast-text` stays legible, and outlined/warning takes its text and icon from `warning.contrast-text` rather than `warning.dark`, which is a pale tan (~2.2:1 on white). The close button's focus ring uses the ring width/offset tokens but `currentColor` for the colour — `focus-ring.default` is the brand green and measures 1.08:1 on solid/error and 1.52:1 on solid/success |
 | `Field`, `FieldGroup` | `typography.*`, `color.text.*`, `radius.medium` (error banner) | Form-field layout primitives |
 | `Text` | `typography.*`, `color.text.*` | Variants follow the type ramp from density |
 | `Icon` | `color.icon.*` | Sized via spacing tokens |

@@ -4,15 +4,19 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # Using Components in Your App
 
-For engineers consuming `@ds/react`.
+For engineers consuming `@sebellds/react`.
 
 ## Install
 
 ```bash
-npm install @ds/react
+npm install @sebellds/react
 ```
 
-(Currently published only inside the Sebell DS workspace; external publishing comes later.)
+Public npm — no auth or registry configuration needed. `@sebellds/tokens` comes along as a dependency,
+so a single install gives you both components and token stylesheets.
+
+`react` and `react-dom` are peer dependencies (>=18). This is a **web** package: it renders DOM and
+imports CSS, so it cannot be consumed by React Native.
 
 ## Import the stylesheets once
 
@@ -20,13 +24,13 @@ In your app's entry point, import **two** stylesheets – your brand's token
 variables, then the component styles:
 
 ```ts
-import "@ds/tokens/dist/sebell-default.css"; // token variables (pick your brand × density)
-import "@ds/react/styles.css"; // reset + component styles
+import "@sebellds/tokens/dist/sebell-default.css"; // token variables (pick your brand × density)
+import "@sebellds/react/styles.css"; // reset + component styles
 ```
 
 - The token stylesheet defines every `--color-…` / `--semantic-…` CSS variable.
   Components render unstyled without it.
-- `@ds/react/styles.css` brings the baseline reset (`box-sizing: border-box`),
+- `@sebellds/react/styles.css` brings the baseline reset (`box-sizing: border-box`),
   shared utilities, and all component styles.
 
 For a single-brand production app (the most common case), this is all you need – pick the brand CSS once at build time and you're done.
@@ -42,7 +46,7 @@ import {
   Stack,
   Text,
   Icon,
-} from "@ds/react";
+} from "@sebellds/react";
 
 export function SignupForm() {
   return (
@@ -83,7 +87,7 @@ By default the app loads Sebell Default. To switch, replace the active styleshee
 <link rel="stylesheet" href="/path/to/brand-a-default.css">
 ```
 
-The six built CSS files live in `@ds/tokens/dist/`:
+The six built CSS files live in `@sebellds/tokens/dist/`:
 
 - `sebell-default.css`
 - `sebell-compact.css`
@@ -117,7 +121,7 @@ All components ship with reasonable accessibility defaults — keyboard navigati
 Full type definitions are bundled. Strict mode friendly. Component prop interfaces are exported with the component:
 
 ```ts
-import { Button, type ButtonProps, type ButtonVariant } from "@ds/react";
+import { Button, type ButtonProps, type ButtonVariant } from "@sebellds/react";
 ```
 
 Use these for typed wrappers around components.

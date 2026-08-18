@@ -1,14 +1,18 @@
 /* ─────────────────────────────────────────────
-   @ds/react — Design System Components
+   @sebellds/react — Design System Components
    ───────────────────────────────────────────── */
 
 // Global styles (reset + utilities). tsup extracts all CSS – this file plus
 // every component's CSS Module – into dist/index.css, which consumers load
-// via the "@ds/react/styles.css" export alongside a token stylesheet from
-// @ds/tokens/dist/.
+// via the "@sebellds/react/styles.css" export alongside a token stylesheet from
+// @sebellds/tokens/dist/.
 import "./styles/globals.css";
 
 // Components
+// NOTE: Alert is deliberately NOT exported yet – the component is unfinished.
+// Its files, tests and story stay in the repo so work can continue; leaving it
+// out of this entry point keeps it out of the published bundle. Add the two
+// export lines back when it is done.
 export { Button } from "./components/Button";
 export type { ButtonProps, ButtonVariant } from "./components/Button";
 
