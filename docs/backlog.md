@@ -378,7 +378,36 @@ can be picked up without re-litigating it. Started 2026-08-07.
       **THE SCOPE IS `@sebellds`, NOT `@sebell`.** A custom npm scope needs an
       org of the same name; `sebellds` is the org Thomas registered.
       **`Alert` IS EXCLUDED FROM THE FIRST PUBLISH** – it is unfinished, so it
-      is not exported from the package entry point. See the open item.
+      is not exported from the package entry point. See the open item. (Its code
+      was deleted 2026-08-18; it never reached any published version.)
+
+      **WHAT IS LIVE ON NPM RIGHT NOW — keep this current.** Thomas's shipping
+      rule is that what is in the code and what is actually published must never
+      drift silently, so record every publish here.
+
+      | package | live version | published |
+      |---|---|---|
+      | `@sebellds/tokens` | `0.1.1` | 2026-08-18 |
+      | `@sebellds/react` | `0.2.0` | 2026-08-18 |
+
+      `@sebellds/react` `0.2.0` is the breaking `Text` change (see the entry
+      above): `display1 … display6, body, bodySmall`, no inferred element. It is
+      tagged `latest`, so a fresh `npm install` gets the new API and any consumer
+      still on `variant="h1"` or `"caption"` fails to compile – verified, those
+      are hard `TS2322` errors against the published types.
+      **Tokens was deliberately NOT republished.** It was unchanged at `0.1.1`,
+      and react pins `"^0.1.0"`, which resolves to it. The "tokens first" rule is
+      about never publishing react against an *unpublished* tokens version – it
+      does not require a version bump when tokens has not changed.
+      **VERIFIED FROM THE REGISTRY, not from the monorepo.** A clean-room install
+      outside the workspace resolved `react@0.2.0` → `tokens@0.1.1` transitively,
+      server-rendered `<Text variant="display6" as="h1">` to
+      `<h1 class="Text_text Text_display6">`, and confirmed both CSS entry points
+      resolve. `npm run smoke` proves the same thing pre-publish; this proves it
+      post-publish, which is the only check that covers the registry itself.
+      **PUBLISHING NEEDS A HUMAN.** The npm account has 2FA set to
+      `auth-and-writes`, so `npm publish` demands a one-time code. An agent
+      cannot supply it – prepare the release, then hand Thomas the command.
 
 - [x] **The stylelint rule now also bans raw px/rem/em for spacing, radius and
       type — but stops there.** Decided 2026-08-16. `padding*`, `margin*`,
