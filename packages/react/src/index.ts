@@ -14,13 +14,13 @@ import "./styles/globals.css";
 // out of this entry point keeps it out of the published bundle. Add the two
 // export lines back when it is done.
 export { Button } from "./components/Button";
-export type { ButtonProps, ButtonVariant } from "./components/Button";
+export type { ButtonProps, ButtonOwnProps, ButtonVariant } from "./components/Button";
 
 export { Chip } from "./components/Chip";
 export type { ChipProps, ChipVariant } from "./components/Chip";
 
 export { IconButton } from "./components/IconButton";
-export type { IconButtonProps, IconButtonVariant } from "./components/IconButton";
+export type { IconButtonProps, IconButtonOwnProps, IconButtonVariant } from "./components/IconButton";
 
 export { TabBar } from "./components/TabBar";
 export type { TabBarProps } from "./components/TabBar";

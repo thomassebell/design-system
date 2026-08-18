@@ -79,4 +79,34 @@ describe("IconButton", () => {
     );
     expect(captured).toBeInstanceOf(HTMLButtonElement);
   });
+
+  it("renders an anchor with a working href when as=\"a\"", () => {
+    render(<IconButton as="a" href="/home" icon={<svg />} label="Home" />);
+    const link = screen.getByRole("link", { name: "Home" });
+    expect(link).toBeInstanceOf(HTMLAnchorElement);
+    expect(link).toHaveAttribute("href", "/home");
+    expect(link).not.toHaveAttribute("as");
+  });
+
+  it("strips href and does not fire onClick on a disabled anchor", async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(
+      <IconButton
+        as="a"
+        href="/home"
+        onClick={onClick}
+        disabled
+        icon={<svg />}
+        label="Home"
+      />,
+    );
+
+    const link = screen.getByLabelText("Home");
+    await user.click(link);
+
+    expect(onClick).not.toHaveBeenCalled();
+    expect(link).not.toHaveAttribute("href");
+    expect(link).toHaveAttribute("aria-disabled", "true");
+  });
 });

@@ -91,4 +91,53 @@ describe("Button", () => {
     // can take its visual place. The text is still in the DOM and accessible.
     expect(screen.getByRole("button", { name: "Saving…" })).toBeInTheDocument();
   });
+
+  it("renders an anchor with a working href when as=\"a\"", () => {
+    render(
+      <Button as="a" href="https://example.com">
+        Get the app
+      </Button>,
+    );
+    const link = screen.getByRole("link", { name: "Get the app" });
+    expect(link).toBeInstanceOf(HTMLAnchorElement);
+    expect(link).toHaveAttribute("href", "https://example.com");
+    // The style is the same style – only the element changed.
+    expect(link).toHaveClass("button");
+    expect(link).toHaveClass("solid");
+    // `as` must be consumed, not leaked onto the DOM.
+    expect(link).not.toHaveAttribute("as");
+  });
+
+  it("strips href and does not fire onClick on a disabled anchor", async () => {
+    const user = userEvent.setup();
+    const onClick = vi.fn();
+    render(
+      <Button as="a" href="https://example.com" onClick={onClick} disabled>
+        Get the app
+      </Button>,
+    );
+
+    const link = screen.getByText("Get the app").closest("a")!;
+    await user.click(link);
+
+    expect(onClick).not.toHaveBeenCalled();
+    expect(link).not.toHaveAttribute("href");
+    expect(link).toHaveAttribute("aria-disabled", "true");
+  });
+
+  it("forwards refs to the anchor element when as=\"a\"", () => {
+    let captured: HTMLAnchorElement | null = null;
+    render(
+      <Button
+        as="a"
+        href="https://example.com"
+        ref={(el: HTMLAnchorElement | null) => {
+          captured = el;
+        }}
+      >
+        Ref
+      </Button>,
+    );
+    expect(captured).toBeInstanceOf(HTMLAnchorElement);
+  });
 });
