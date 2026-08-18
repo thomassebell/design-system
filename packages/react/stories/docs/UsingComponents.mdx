@@ -51,7 +51,7 @@ import {
 export function SignupForm() {
   return (
     <Stack gap="medium">
-      <Text variant="h2">Sign up</Text>
+      <Text variant="display4" as="h2">Sign up</Text>
       <Input label="Email" placeholder="you@example.com" />
       <Input label="Password" type="password" />
       <Checkbox label="I agree to the terms" />
@@ -73,7 +73,7 @@ export function SignupForm() {
 | `Radio` | `checked`, `value`, `name`, `onChange`, `disabled` |
 | `RadioField` | `label`, `hint`, `error`, plus all `Radio` props |
 | `RadioGroup` | `legend`, `value`, `onChange`, `options` (array of `RadioOption`) |
-| `Text` | `variant` (`display`, `h1`–`h4`, `body`, `bodySmall`, `caption`, `overline`), `truncate`, `align`, `muted` |
+| `Text` | `variant` (`display1`–`display6`, `body`, `bodySmall`), `as` (sets the element – headings are always explicit), `weight`, `truncate`, `align`, `muted` |
 | `Stack` | `direction`, `gap` (t-shirt sizes), `align`, `justify`, `wrap` |
 | `Icon` | `size` (`sm` / `md` / `lg`), `label` (omit for decorative icons) |
 

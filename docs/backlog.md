@@ -12,11 +12,18 @@ can be picked up without re-litigating it. Started 2026-08-07.
       made that claim look true and neither was: the component builds and its 9
       tests pass, and the log said so. It is also untracked in git, so it exists
       in nobody else's checkout.
-      **WHAT IS TRUE RIGHT NOW.** The component, its tests and its story are in
-      the working tree. It is deliberately **not exported** from
-      `packages/react/src/index.ts`, which keeps it out of the published package
-      – verified: zero `Alert` references in `dist/index.js`, `dist/index.d.ts`
-      and `dist/index.css`. Re-add the two export lines when it is done.
+      **THE CODE WAS DELETED 2026-08-18 by Thomas** – *"There was an issue with
+      the component alert. Delete the component."* `Alert.tsx`, `Alert.test.tsx`,
+      `Alert.module.css`, its `index.ts` and `Alert.stories.tsx` are gone. They
+      were never committed, so **git cannot restore them**; a copy was kept in
+      the session scratchpad only, which does not survive long. Treat the code as
+      gone and rebuild from Figma when Alert is picked up again.
+      Nothing depended on it: it was deliberately never exported from
+      `packages/react/src/index.ts`, so the published package is unaffected
+      (zero `Alert` references in `dist/`), and no other component imported it.
+      The `Alert` row in `core.design.md` and every design decision recorded in
+      this entry are LEFT STANDING on purpose – they are the contract and the
+      reasoning, and all of it still applies to a rebuild.
       **WHAT REMAINS IS NOT RECORDED HERE. Ask – do not infer it from the code.**
       **THE DESIGN DECISIONS BELOW WERE GENUINELY MADE AND STILL HOLD.**
       Two variants × four statuses, plus optional icon, title,
@@ -251,6 +258,82 @@ can be picked up without re-litigating it. Started 2026-08-07.
       will be picked in a context a scoped one was deliberately kept out of.
 
 ## Decided
+
+- [x] **`Text` now mirrors the Figma type ramp exactly; `caption` and `overline`
+      dropped.** Decided 2026-08-18 by Thomas, same day as the variant rename above.
+      **WHAT WENT.** `caption` (small + `text.subtle`) and `overline` (small +
+      emphasized + uppercase + `letter-spacing: 0.04em` + `text.disabled`). Neither
+      existed in the Figma `typography` page (node `52:111`), which defines twelve
+      styles and no more: `header/display 1 … 6`, `paragraph/{paragraph, paragraph
+      emphasized, small, small emphasized}`, `components/{label, tabel header}`.
+      Both also baked a **colour** into a type style, contradicting the three-axis
+      model in `core.design.md`; `overline`'s tracking was invented outright, since
+      every Figma style is `letterSpacing: 0`. `Text` is now `display1 … display6`,
+      `body`, `bodySmall` – nothing else. No production code used the two removed
+      variants; only stories and the props table referenced them.
+      **WHY EMPHASIS DID *NOT* BECOME A VARIANT, which is the subtler half.** Figma
+      carries `paragraph emphasized` and `small emphasized` as separate styles, so
+      "mirror Figma exactly" would seem to demand `bodyEmphasized` variants. Thomas
+      ruled otherwise, and the reason is the useful part: *"It is only possible to
+      change a word's styling in a paragraph by applying a different style. Not
+      possible to do it the right way and set a weight."* Those two styles are a
+      **workaround for a Figma limitation** – the tool cannot set a weight on a text
+      range – not a statement that emphasis is its own type style. The web can
+      express the real intent, so it does: a nested `<strong>`/`<b>` for a word
+      (bound to `font-weight.emphasized`, never the browser's bold), and the
+      `weight` prop for a whole block. Same rendered values as Figma's two styles.
+      **GENERAL RULE THIS SETS.** Mirroring Figma means mirroring the *design
+      decisions*, not the shapes Figma's editing model forced them into. Where a
+      Figma construct exists only because the tool could not express the intent
+      directly, code should express the intent. Flag such cases rather than
+      transcribing them – and equally, do not invent styles the ramp does not have.
+      **LEFT ALONE.** `weight="understate"` stays, though no Figma text style uses
+      that slot – it is a real weight in the brand collection, and the story says so.
+
+- [x] **`Text` variants renamed to the type ramp; style and hierarchy decoupled.**
+      Decided 2026-08-18 by Thomas, built the same day. `@sebellds/react` 0.1.1 → 0.2.0.
+      **WHAT CHANGED.** The variant vocabulary was `display, h1, h2, h3, h4, body,
+      bodySmall, caption, overline`. It is now `display1 … display6` plus the same
+      four paragraph-family variants – one variant per `font-size.display-*` token.
+      The element is no longer inferred from the variant: every variant renders `<p>`
+      and heading level is set explicitly with `as`. Two capabilities were added at
+      the same time: nested `<strong>` / `<b>` bind to `font-weight.emphasized`, and a
+      `weight` prop exposes all three weight slots.
+      **WHY.** Thomas's framing, which is the decision: *"H1, H2 etc. is set to create
+      hierarchy, display-1, display-2 etc. is set to create styling. They should not be
+      dependent on each other."* The old names welded the two together, so choosing a
+      size also chose a document outline level – and `variant="h1"` returned the
+      *second* largest size, because a "display above the ladder" convention from the
+      pre-Figma scaffold survived the token migration unexamined.
+      **WHAT THE OLD NAMES COST, concretely.** Five old slots were re-pointed at the new
+      ramp slot-for-slot in 9df1af5 (its own commit message ends the mapping at
+      `display-5`). Six tokens, five slots – `display-6` was orphaned and unreachable
+      through `Text`, which is why `Alert` and `FieldGroup` hand-rolled the same
+      header/emphasized/display-6 recipe in their own CSS. `font-weight.understate`
+      was orphaned the same way and had **zero** consumers anywhere in the library.
+      **WHY NO DEPRECATION PATH.** The package was public (0.1.1, npm) but had no known
+      consumer – Prep+Eat is React Native and cannot install `@sebellds/react` at all.
+      Thomas: *"nothing is breaking, because nothing is built."* 0.x permits the break,
+      so the old names were removed outright rather than kept as warning aliases.
+      **NOT DONE, deliberately.** `Alert` and `FieldGroup` still hand-roll display-6
+      instead of composing `Text` – a separate change, kept out to keep this diff
+      readable. Token values were not touched.
+      **CHECKED AGAINST FIGMA** (2026-08-18, file `65DhWI9kmp9ee9wzoIfTMM`, the
+      `typography` page, node `52:111` – pointed out by Thomas).
+      **THE PAIRING IS DESIGN-SPECIFIED, and the build matches it exactly.** Figma
+      has composite text styles that bind family + weight + size + line-height:
+      `header/display 1 … header/display 6`, `paragraph/{paragraph, paragraph
+      emphasized, small, small emphasized}`, `components/{label, tabel header}`.
+      `header/display 6` binds `font-size/display-6` to `line-height/xsmall` – so
+      the display-6 line-height shipped here is Figma's decision, not an inference.
+      All six display pairings match. Figma's own labels are "Display 1"…"Display 6",
+      so `display1 … display6` is Thomas's naming; no rename owed.
+      **A SEARCH MISTAKE WORTH NOT REPEATING.** `search_design_system` returned
+      `"styles": []` three times, and that was read as "the file has no text styles".
+      It only searches **published library** assets; these styles are local to the
+      file. A negative from that tool is not evidence of absence – open the page.
+      The same tool also lists only the `cover` page for this file, so pages cannot
+      be enumerated; ask for a node link rather than concluding something is missing.
 
 - [x] **Licence: MIT.** Decided 2026-08-18 by Thomas, before the first publish.
       `LICENSE` at the repo root and copied into both published packages
