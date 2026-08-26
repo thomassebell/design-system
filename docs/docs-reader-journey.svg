@@ -1,0 +1,96 @@
+<svg role="img" viewBox="0 0 1000 860" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <title>What happens when an agent opens this repo cold</title>
+  <desc>A trace of one real session on 2026-08-26. Seven questions an agent needed answered while working in the repo, and where each answer actually came from. One: what are the rules here – answered by the docs, because CLAUDE.md loads automatically. Two: what documents exist – no index linked them, so it was found by running a filesystem search. Three: what is the system and what are its contracts – answered by the docs, via core.design.md. Four: what states does one component have – partial, because twenty component contracts live in one table and the answer sits in a two-hundred-word cell. Five: are the brand values still current – unanswerable, because the values are hand-copied from build output and nothing verifies them. Six: what does an npm consumer actually receive – no document says, so it was answered by running npm pack. Seven: what work is underway right now – the backlog on main does not mention it, so it was answered by the human, and the document turned out to be on an unpushed branch. Two of seven questions were answered by the documentation, one partially, and four required searching, running commands, or asking a person.</desc>
+
+  <defs>
+    <marker id="d" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><circle cx="4" cy="4" r="3" fill="#c8c8c4"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="860" fill="#fafaf8"/>
+
+  <text x="30" y="36" font-size="19" font-weight="600" fill="#0d0d0c">A reader's journey</text>
+  <text x="30" y="57" font-size="11.5" fill="#5a5a58">What happened when an agent opened this repo cold. A trace of one real session, 2026-08-26 – not a hypothetical.</text>
+
+  <text x="112" y="98" font-size="10" letter-spacing="1.2" fill="#8a8a87">WHAT IT NEEDED TO KNOW</text>
+  <text x="492" y="98" font-size="10" letter-spacing="1.2" fill="#8a8a87">WHERE THE ANSWER ACTUALLY CAME FROM</text>
+
+  <line x1="60" y1="112" x2="60" y2="694" stroke="#dcdcd8" stroke-width="2"/>
+
+  <!-- 1 -->
+  <circle cx="60" cy="150" r="15" fill="#3d5c40"/><text x="60" y="155" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">1</text>
+  <rect x="112" y="116" width="348" height="68" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="128" y="144" font-size="12.5" fill="#0d0d0c">“What are the rules here?”</text>
+  <text x="128" y="165" font-size="10.5" fill="#8a8a87">Before touching a single file.</text>
+  <rect x="492" y="116" width="478" height="68" rx="6" fill="#e7ede7" stroke="#3d5c40"/>
+  <text x="508" y="139" font-size="10.5" font-weight="600" letter-spacing="0.6" fill="#3d5c40">ANSWERED BY THE DOCS</text>
+  <text x="508" y="158" font-size="11" fill="#0d0d0c">CLAUDE.md loads automatically. Invariants, semantic-tokens-only,</text>
+  <text x="508" y="173" font-size="11" fill="#0d0d0c">the density trap, “flagging is not permission”. All of it landed.</text>
+
+  <!-- 2 -->
+  <circle cx="60" cy="234" r="15" fill="#9a6b1f"/><text x="60" y="239" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">2</text>
+  <rect x="112" y="200" width="348" height="68" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="128" y="228" font-size="12.5" fill="#0d0d0c">“What documents exist?”</text>
+  <text x="128" y="249" font-size="10.5" fill="#8a8a87">The question that started this session.</text>
+  <rect x="492" y="200" width="478" height="68" rx="6" fill="#fdfaf4" stroke="#9a6b1f"/>
+  <text x="508" y="223" font-size="10.5" font-weight="600" letter-spacing="0.6" fill="#9a6b1f">FOUND BY SEARCHING THE FILESYSTEM</text>
+  <text x="508" y="242" font-size="11" fill="#0d0d0c">No index links them. Ran <tspan font-family="ui-monospace, monospace" font-size="10.5">find . -name "*.md"</tspan> and read the</text>
+  <text x="508" y="257" font-size="11" fill="#0d0d0c">result. A reader who cannot run commands gets nothing here.</text>
+
+  <!-- 3 -->
+  <circle cx="60" cy="318" r="15" fill="#3d5c40"/><text x="60" y="323" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">3</text>
+  <rect x="112" y="284" width="348" height="68" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="128" y="312" font-size="12.5" fill="#0d0d0c">“What is the system?”</text>
+  <text x="128" y="333" font-size="10.5" fill="#8a8a87">Token shape, contracts, how to add a brand.</text>
+  <rect x="492" y="284" width="478" height="68" rx="6" fill="#e7ede7" stroke="#3d5c40"/>
+  <text x="508" y="307" font-size="10.5" font-weight="600" letter-spacing="0.6" fill="#3d5c40">ANSWERED BY THE DOCS</text>
+  <text x="508" y="326" font-size="11" fill="#0d0d0c">core.design.md. The YAML said what exists; the prose said what it</text>
+  <text x="508" y="341" font-size="11" fill="#0d0d0c">means. Both registers were needed – neither alone would do.</text>
+
+  <!-- 4 -->
+  <circle cx="60" cy="402" r="15" fill="#9a6b1f"/><text x="60" y="407" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">4</text>
+  <rect x="112" y="368" width="348" height="68" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="128" y="396" font-size="12.5" fill="#0d0d0c">“What states does Chip have?”</text>
+  <text x="128" y="417" font-size="10.5" fill="#8a8a87">One component, in detail.</text>
+  <rect x="492" y="368" width="478" height="68" rx="6" fill="#fdfaf4" stroke="#9a6b1f"/>
+  <text x="508" y="391" font-size="10.5" font-weight="600" letter-spacing="0.6" fill="#9a6b1f">PARTIAL</text>
+  <text x="508" y="410" font-size="11" fill="#0d0d0c">A 200-word cell inside a 20-row table. Readable, but nothing to</text>
+  <text x="508" y="425" font-size="11" fill="#0d0d0c">link to, nothing to diff, and no way to check it against the code.</text>
+
+  <!-- 5 -->
+  <circle cx="60" cy="486" r="15" fill="#9a4a3a"/><text x="60" y="491" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">5</text>
+  <rect x="112" y="452" width="348" height="68" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="128" y="480" font-size="12.5" fill="#0d0d0c">“Are these values still true?”</text>
+  <text x="128" y="501" font-size="10.5" fill="#8a8a87">The brand files' YAML frontmatter.</text>
+  <rect x="492" y="452" width="478" height="68" rx="6" fill="#fbf0ee" stroke="#9a4a3a"/>
+  <text x="508" y="475" font-size="10.5" font-weight="600" letter-spacing="0.6" fill="#9a4a3a">UNANSWERABLE</text>
+  <text x="508" y="494" font-size="11" fill="#0d0d0c">Hand-copied from the build output, with nothing checking them.</text>
+  <text x="508" y="509" font-size="11" fill="#0d0d0c">The most structured layer in the repo has the weakest guarantee.</text>
+
+  <!-- 6 -->
+  <circle cx="60" cy="570" r="15" fill="#9a4a3a"/><text x="60" y="575" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">6</text>
+  <rect x="112" y="536" width="348" height="68" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="128" y="564" font-size="12.5" fill="#0d0d0c">“What does a user receive?”</text>
+  <text x="128" y="585" font-size="10.5" fill="#8a8a87">Thomas asked whether the backlog ships.</text>
+  <rect x="492" y="536" width="478" height="68" rx="6" fill="#fbf0ee" stroke="#9a4a3a"/>
+  <text x="508" y="559" font-size="10.5" font-weight="600" letter-spacing="0.6" fill="#9a4a3a">ANSWERED BY RUNNING CODE</text>
+  <text x="508" y="578" font-size="11" fill="#0d0d0c">No document states it. Ran <tspan font-family="ui-monospace, monospace" font-size="10.5">npm pack --dry-run</tspan>. The system</text>
+  <text x="508" y="593" font-size="11" fill="#0d0d0c">cannot say where it ends, so nobody can say what to rely on.</text>
+
+  <!-- 7 -->
+  <circle cx="60" cy="654" r="15" fill="#9a4a3a"/><text x="60" y="659" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">7</text>
+  <rect x="112" y="620" width="348" height="68" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="128" y="648" font-size="12.5" fill="#0d0d0c">“What work is underway?”</text>
+  <text x="128" y="669" font-size="10.5" fill="#8a8a87">The single most important current fact.</text>
+  <rect x="492" y="620" width="478" height="68" rx="6" fill="#fbf0ee" stroke="#9a4a3a"/>
+  <text x="508" y="643" font-size="10.5" font-weight="600" letter-spacing="0.6" fill="#9a4a3a">ANSWERED BY THE HUMAN</text>
+  <text x="508" y="662" font-size="11" fill="#0d0d0c">The backlog on main never mentions the token review. Thomas had</text>
+  <text x="508" y="677" font-size="11" fill="#0d0d0c">to ask. Found via <tspan font-family="ui-monospace, monospace" font-size="10.5">git branch</tspan> – it sits on an unpushed branch.</text>
+
+  <!-- summary -->
+  <rect x="112" y="722" width="858" height="82" rx="8" fill="#e8f1f2" stroke="#477d85"/>
+  <text x="132" y="750" font-size="13.5" font-weight="600" fill="#0d0d0c">Two of seven questions were answered by the documentation. One partially. Four were not.</text>
+  <text x="132" y="772" font-size="11.5" fill="#5a5a58">Those four were recovered by searching the filesystem, running a build command, and asking Thomas directly – none of which</text>
+  <text x="132" y="789" font-size="11.5" fill="#5a5a58">an external consumer can do. The failures cluster into three fixes: an index that links, a check that proves freshness, and reach.</text>
+
+  <text x="30" y="838" font-size="10" fill="#8a8a87">Green = the docs answered it.   Amber = the docs made it hard.   Red = the docs could not answer it at all.</text>
+</svg>

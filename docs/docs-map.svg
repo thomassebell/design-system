@@ -1,0 +1,127 @@
+<svg role="img" viewBox="0 0 1000 790" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <title>Sebell Design System – the markdown layer</title>
+  <desc>A reachability map of the repo's markdown files. One file is loaded automatically, CLAUDE.md, and it is the only document guaranteed to be read; the two READMEs are the human entry points. From there, links lead down to core.design.md, which states what the system is, and backlog.md, which records why. Below those sit the details: four brand value files, a brand template, and spacing-rhythm.md which is marked draft and not adopted. Below that is a layer that does not exist: there is no file per component, pattern or template, so twenty component contracts live inside one table in core.design.md. To the right, detached from the flow with no arrows in or out, are four documents that are written but unreachable from a clean checkout of main: the token structure review brief on an unpushed branch, two untracked files, and an orphaned architecture plan. Below a dashed boundary line sit the only two documents an npm consumer ever receives, packages/tokens/README.md and packages/react/README.md, which nothing links to and which link nowhere. Link graph verified 2026-08-26.</desc>
+
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="7" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#5a5a58"/></marker>
+    <marker id="as" markerWidth="9" markerHeight="7" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6 z" fill="#5a5a58"/></marker>
+    <marker id="al" markerWidth="9" markerHeight="7" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#8a8a87"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="790" fill="#fafaf8"/>
+
+  <text x="30" y="36" font-size="19" font-weight="600" fill="#0d0d0c">The markdown layer</text>
+  <text x="30" y="57" font-size="11.5" fill="#5a5a58">Where a reader starts, and how far they get. Arrows are real markdown links, verified 2026-08-26.</text>
+
+  <!-- ===== TIER 1 ===== -->
+  <text x="30" y="112" font-size="12" font-weight="600" fill="#0d0d0c">THE DOOR</text>
+  <text x="30" y="129" font-size="10.5" fill="#5a5a58">CLAUDE.md loads by itself.</text>
+  <text x="30" y="142" font-size="10.5" fill="#5a5a58">Everything else must be found.</text>
+
+  <rect x="240" y="92" width="210" height="54" rx="6" fill="#e8f1f2" stroke="#477d85" stroke-width="1.5"/>
+  <text x="256" y="118" font-family="ui-monospace, monospace" font-size="13" fill="#0d0d0c">CLAUDE.md</text>
+  <text x="256" y="134" font-size="10" fill="#5a5a58">auto-loaded · the rules</text>
+
+  <rect x="470" y="92" width="210" height="54" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="486" y="118" font-family="ui-monospace, monospace" font-size="13" fill="#0d0d0c">README.md  ×2</text>
+  <text x="486" y="134" font-size="10" fill="#5a5a58">root + brand/ · human index</text>
+
+  <!-- ===== TIER 2 ===== -->
+  <text x="30" y="232" font-size="12" font-weight="600" fill="#0d0d0c">THE SYSTEM</text>
+  <text x="30" y="249" font-size="10.5" fill="#5a5a58">What it is, and why it is</text>
+  <text x="30" y="262" font-size="10.5" fill="#5a5a58">that way.</text>
+
+  <rect x="240" y="212" width="210" height="54" rx="6" fill="#ffffff" stroke="#477d85" stroke-width="1.5"/>
+  <text x="256" y="238" font-family="ui-monospace, monospace" font-size="13" fill="#0d0d0c">core.design.md</text>
+  <text x="256" y="254" font-size="10" fill="#5a5a58">the contract · shape + rules</text>
+
+  <rect x="470" y="212" width="210" height="54" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="486" y="238" font-family="ui-monospace, monospace" font-size="13" fill="#0d0d0c">backlog.md</text>
+  <text x="486" y="254" font-size="10" fill="#5a5a58">the decisions log</text>
+
+  <!-- ===== TIER 3 ===== -->
+  <text x="30" y="352" font-size="12" font-weight="600" fill="#0d0d0c">THE DETAILS</text>
+  <text x="30" y="369" font-size="10.5" fill="#5a5a58">Actual values, plus rules</text>
+  <text x="30" y="382" font-size="10.5" fill="#5a5a58">still being worked out.</text>
+
+  <rect x="240" y="332" width="136" height="54" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="252" y="356" font-family="ui-monospace, monospace" font-size="11" fill="#0d0d0c">brands/*.design.md</text>
+  <text x="252" y="372" font-size="10" fill="#5a5a58">×4 · the values</text>
+
+  <rect x="392" y="332" width="136" height="54" rx="6" fill="#ffffff" stroke="#dcdcd8"/>
+  <text x="404" y="356" font-family="ui-monospace, monospace" font-size="11" fill="#0d0d0c">_template</text>
+  <text x="404" y="372" font-size="10" fill="#5a5a58">skeleton</text>
+
+  <rect x="544" y="332" width="136" height="54" rx="6" fill="#ffffff" stroke="#c9a86a"/>
+  <text x="556" y="356" font-family="ui-monospace, monospace" font-size="11" fill="#0d0d0c">spacing-rhythm</text>
+  <text x="556" y="372" font-size="10" fill="#9a6b1f">DRAFT · not adopted</text>
+
+  <!-- ===== TIER 4 ===== -->
+  <text x="30" y="472" font-size="12" font-weight="600" fill="#8a8a87">THE GAP</text>
+  <text x="30" y="489" font-size="10.5" fill="#8a8a87">No file per component.</text>
+  <text x="30" y="502" font-size="10.5" fill="#8a8a87">All 20 sit in one table.</text>
+
+  <rect x="240" y="452" width="440" height="54" rx="6" fill="#f4f4f2" stroke="#8a8a87" stroke-dasharray="5 4"/>
+  <text x="256" y="477" font-family="ui-monospace, monospace" font-size="12" fill="#8a8a87">*.component.md   ·   *.pattern.md   ·   *.template.md</text>
+  <text x="256" y="493" font-size="10.5" font-weight="600" fill="#8a8a87">THIS LAYER DOES NOT EXIST</text>
+
+  <!-- ===== DETACHED PANEL ===== -->
+  <rect x="726" y="92" width="244" height="414" rx="8" fill="#fdfaf4" stroke="#9a6b1f" stroke-dasharray="5 4"/>
+  <text x="744" y="120" font-size="12" font-weight="600" fill="#9a6b1f">WRITTEN, BUT</text>
+  <text x="744" y="137" font-size="12" font-weight="600" fill="#9a6b1f">UNREACHABLE</text>
+  <text x="744" y="157" font-size="10.5" fill="#9a6b1f">Not on main. No arrows in</text>
+  <text x="744" y="170" font-size="10.5" fill="#9a6b1f">or out – that is the point.</text>
+
+  <rect x="744" y="192" width="208" height="46" rx="5" fill="#ffffff" stroke="#9a6b1f"/>
+  <text x="756" y="212" font-family="ui-monospace, monospace" font-size="10.5" fill="#0d0d0c">token-structure-review</text>
+  <text x="756" y="228" font-size="9.5" fill="#9a6b1f">unpushed branch</text>
+
+  <rect x="744" y="252" width="208" height="46" rx="5" fill="#ffffff" stroke="#9a6b1f"/>
+  <text x="756" y="272" font-family="ui-monospace, monospace" font-size="10.5" fill="#0d0d0c">system-rationale.md</text>
+  <text x="756" y="288" font-size="9.5" fill="#9a6b1f">untracked</text>
+
+  <rect x="744" y="312" width="208" height="46" rx="5" fill="#ffffff" stroke="#9a6b1f"/>
+  <text x="756" y="332" font-family="ui-monospace, monospace" font-size="10.5" fill="#0d0d0c">design-systems-...ai.md</text>
+  <text x="756" y="348" font-size="9.5" fill="#9a6b1f">untracked</text>
+
+  <rect x="744" y="372" width="208" height="46" rx="5" fill="#ffffff" stroke="#8a8a87" stroke-dasharray="4 3"/>
+  <text x="756" y="392" font-family="ui-monospace, monospace" font-size="10.5" fill="#5a5a58">surface-density.plan.md</text>
+  <text x="756" y="408" font-size="9.5" fill="#8a8a87">orphan · on main, unlinked</text>
+
+  <!-- ===== BOUNDARY ===== -->
+  <line x1="30" y1="562" x2="970" y2="562" stroke="#3d5c40" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="30" y="582" font-size="11" font-weight="600" fill="#3d5c40">THE npm BOUNDARY – nothing above crosses it</text>
+
+  <text x="30" y="638" font-size="12" font-weight="600" fill="#0d0d0c">WHAT A USER</text>
+  <text x="30" y="655" font-size="12" font-weight="600" fill="#0d0d0c">ACTUALLY GETS</text>
+  <text x="30" y="674" font-size="10.5" fill="#5a5a58">95 lines, total.</text>
+
+  <rect x="240" y="616" width="210" height="54" rx="6" fill="#e7ede7" stroke="#3d5c40"/>
+  <text x="256" y="641" font-family="ui-monospace, monospace" font-size="11.5" fill="#0d0d0c">tokens/README.md</text>
+  <text x="256" y="657" font-size="10" fill="#5a5a58">48 lines</text>
+
+  <rect x="470" y="616" width="210" height="54" rx="6" fill="#e7ede7" stroke="#3d5c40"/>
+  <text x="486" y="641" font-family="ui-monospace, monospace" font-size="11.5" fill="#0d0d0c">react/README.md</text>
+  <text x="486" y="657" font-size="10" fill="#5a5a58">47 lines</text>
+
+  <rect x="726" y="616" width="244" height="54" rx="6" fill="#fdf6e9" stroke="#c9a86a"/>
+  <text x="740" y="639" font-size="10.5" fill="#0d0d0c">Nothing links to them.</text>
+  <text x="740" y="656" font-size="10.5" fill="#0d0d0c">They link nowhere.</text>
+
+  <!-- ===== ARROWS ===== -->
+  <line x1="345" y1="146" x2="345" y2="206" stroke="#5a5a58" marker-end="url(#a)"/>
+  <line x1="575" y1="146" x2="575" y2="206" stroke="#5a5a58" marker-end="url(#a)"/>
+  <line x1="500" y1="146" x2="420" y2="206" stroke="#5a5a58" marker-end="url(#a)"/>
+  <line x1="470" y1="239" x2="454" y2="239" stroke="#5a5a58" marker-end="url(#a)"/>
+  <line x1="308" y1="266" x2="308" y2="326" stroke="#5a5a58" marker-end="url(#a)"/>
+  <line x1="612" y1="266" x2="612" y2="326" stroke="#5a5a58" marker-end="url(#a)" marker-start="url(#as)"/>
+  <line x1="392" y1="359" x2="380" y2="359" stroke="#8a8a87" stroke-dasharray="4 3" marker-end="url(#al)"/>
+  <line x1="308" y1="386" x2="308" y2="446" stroke="#8a8a87" stroke-dasharray="4 3" marker-end="url(#al)"/>
+
+  <!-- ===== FOOTER ===== -->
+  <text x="30" y="730" font-size="10.5" fill="#8a8a87">Six of fourteen markdown files have no outgoing links at all. Four cannot be reached from main. Two reach every user and connect to nothing.</text>
+  <line x1="30" y1="758" x2="60" y2="758" stroke="#5a5a58" marker-end="url(#a)"/>
+  <text x="70" y="762" font-size="10" fill="#8a8a87">real link</text>
+  <line x1="150" y1="758" x2="180" y2="758" stroke="#8a8a87" stroke-dasharray="4 3" marker-end="url(#al)"/>
+  <text x="190" y="762" font-size="10" fill="#8a8a87">implied, not linked</text>
+</svg>
