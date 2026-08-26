@@ -8,7 +8,7 @@
     "url": "git+https://github.com/thomassebell/design-system.git",
     "directory": "packages/tokens"
   },
-  "homepage": "https://github.com/thomassebell/design-system#readme",
+  "homepage": "https://storybook.sebell.dk",
   "publishConfig": {
     "access": "public"
   },
