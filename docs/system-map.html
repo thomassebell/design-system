@@ -1,0 +1,406 @@
+<title>Sebell System Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700&family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ground:#faf9f6; --surface:#ffffff; --surface-2:#f3f1ec; --sunk:#efedE6;
+    --ink:#14140f; --ink-2:#55544c; --ink-3:#8a8880; --line:#e3e1d9; --line-2:#d3d0c5;
+    --pine:#3d5c40; --pine-soft:#e6ede6; --pine-line:#a9c0ab;
+    --teal:#3f7079; --teal-soft:#e3eef0; --teal-line:#a3c4c9;
+    --cedar:#a3462c; --cedar-soft:#f7e9e4; --cedar-line:#dcb0a1;
+    --walnut:#8a7862;
+    --shadow:0 1px 2px rgba(20,20,15,.05), 0 8px 24px -12px rgba(20,20,15,.14);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#141410; --surface:#1e1e18; --surface-2:#26251e; --sunk:#1a1a14;
+      --ink:#f1efe7; --ink-2:#a9a79b; --ink-3:#77756c; --line:#32312a; --line-2:#3d3c33;
+      --pine:#87ab8a; --pine-soft:#212c21; --pine-line:#3c5340;
+      --teal:#84b3bb; --teal-soft:#1a2b2e; --teal-line:#38585e;
+      --cedar:#dd8a6d; --cedar-soft:#301f18; --cedar-line:#5c3a2c;
+      --walnut:#ac9880;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#141410; --surface:#1e1e18; --surface-2:#26251e; --sunk:#1a1a14;
+    --ink:#f1efe7; --ink-2:#a9a79b; --ink-3:#77756c; --line:#32312a; --line-2:#3d3c33;
+    --pine:#87ab8a; --pine-soft:#212c21; --pine-line:#3c5340;
+    --teal:#84b3bb; --teal-soft:#1a2b2e; --teal-line:#38585e;
+    --cedar:#dd8a6d; --cedar-soft:#301f18; --cedar-line:#5c3a2c;
+    --walnut:#ac9880;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"Noto Sans", system-ui, sans-serif;
+    font-size:15px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:48px 28px 90px}
+
+  /* ---------- masthead ---------- */
+  .mast{display:flex; flex-direction:column; gap:14px; margin-bottom:34px}
+  h1{
+    font-family:"Noto Serif", Georgia, serif; font-weight:600;
+    font-size:clamp(30px,4.4vw,42px); line-height:1.1; letter-spacing:-.015em;
+    margin:0; text-wrap:balance;
+  }
+  .lede{color:var(--ink-2); max-width:62ch; margin:0; font-size:15.5px}
+  .stamp{
+    font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.06em;
+    color:var(--ink-3); text-transform:uppercase;
+  }
+
+  /* ---------- numbers ---------- */
+  .numbers{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(112px,1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line);
+    border-radius:8px; overflow:hidden; margin:30px 0 26px;
+  }
+  .num{background:var(--surface); padding:14px 16px}
+  .num b{
+    display:block; font-family:"IBM Plex Mono",monospace; font-weight:500;
+    font-size:24px; line-height:1.15; letter-spacing:-.02em; font-variant-numeric:tabular-nums;
+  }
+  .num span{display:block; font-size:11.5px; color:var(--ink-3); margin-top:3px}
+  .num.warn b{color:var(--cedar)}
+
+  /* ---------- controls ---------- */
+  .bar{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:20px}
+  .btn{
+    font-family:inherit; font-size:12.5px; color:var(--ink-2);
+    background:var(--surface); border:1px solid var(--line-2); border-radius:999px;
+    padding:6px 14px; cursor:pointer; transition:.15s;
+  }
+  .btn:hover{border-color:var(--ink-3); color:var(--ink)}
+  .btn[aria-pressed="true"]{background:var(--cedar-soft); border-color:var(--cedar-line); color:var(--cedar)}
+  .btn:focus-visible{outline:2px solid var(--teal); outline-offset:2px}
+  .bar-note{font-size:12px; color:var(--ink-3); margin-left:auto}
+
+  /* ---------- strata ---------- */
+  .strata{display:flex; flex-direction:column; gap:10px}
+  .stratum{position:relative}
+  .band{
+    width:100%; display:grid; grid-template-columns:88px 1fr auto 26px;
+    gap:18px; align-items:center; text-align:left;
+    background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--pine);
+    border-radius:8px; padding:15px 16px 15px 18px; cursor:pointer;
+    font-family:inherit; color:inherit; transition:.16s; box-shadow:var(--shadow);
+  }
+  .band:hover{border-color:var(--line-2); transform:translateY(-1px)}
+  .band:focus-visible{outline:2px solid var(--teal); outline-offset:2px}
+  .stratum[data-state="gap"] .band{border-left-color:var(--walnut); border-style:dashed; background:var(--sunk); box-shadow:none}
+  .stratum[data-state="broken"] .band{border-left-color:var(--cedar)}
+
+  .stage{
+    font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--ink-3);
+  }
+  .band-title{font-family:"Noto Serif",Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; display:block}
+  .band-sub{font-size:13px; color:var(--ink-2); display:block; margin-top:2px; max-width:56ch}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; justify-content:flex-end; max-width:290px}
+  .chip{
+    font-family:"IBM Plex Mono",monospace; font-size:11px; font-variant-numeric:tabular-nums;
+    background:var(--surface-2); border:1px solid var(--line); border-radius:5px;
+    padding:2px 7px; color:var(--ink-2); white-space:nowrap;
+  }
+  .chip.bad{background:var(--cedar-soft); border-color:var(--cedar-line); color:var(--cedar)}
+  .chip.good{background:var(--pine-soft); border-color:var(--pine-line); color:var(--pine)}
+  .caret{
+    width:22px; height:22px; border-radius:50%; border:1px solid var(--line-2);
+    display:grid; place-items:center; color:var(--ink-3); font-size:11px; transition:.2s;
+  }
+  .band[aria-expanded="true"] .caret{transform:rotate(90deg); background:var(--teal-soft); border-color:var(--teal-line); color:var(--teal)}
+
+  /* ---------- panel ---------- */
+  .panel{
+    border:1px solid var(--line); border-top:none; border-radius:0 0 8px 8px;
+    background:var(--surface-2); padding:18px; margin:-8px 0 0 0;
+  }
+  .panel[hidden]{display:none}
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(232px,1fr)); gap:10px}
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:6px;
+    padding:11px 13px; border-left:2px solid var(--line-2);
+  }
+  .card.ok{border-left-color:var(--pine)}
+  .card.gap{border-left-color:var(--walnut); border-style:dashed; background:var(--sunk)}
+  .card.bad{border-left-color:var(--cedar)}
+  .card h4{
+    margin:0 0 3px; font-size:13px; font-weight:600; letter-spacing:-.005em;
+    font-family:"IBM Plex Mono",monospace;
+  }
+  .card p{margin:0; font-size:12.5px; color:var(--ink-2); line-height:1.45}
+  .tag{
+    display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:9.5px;
+    letter-spacing:.08em; text-transform:uppercase; padding:1px 6px; border-radius:3px;
+    margin-bottom:6px;
+  }
+  .tag.ok{background:var(--pine-soft); color:var(--pine)}
+  .tag.gap{background:var(--surface-2); color:var(--walnut)}
+  .tag.bad{background:var(--cedar-soft); color:var(--cedar)}
+  .panel-note{
+    margin:14px 0 0; padding-top:12px; border-top:1px solid var(--line);
+    font-size:12.5px; color:var(--ink-2); max-width:74ch;
+  }
+  .panel-note strong{color:var(--ink); font-weight:600}
+
+  .foot{margin-top:40px; padding-top:20px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-3); max-width:76ch}
+  .key{display:flex; flex-wrap:wrap; gap:16px; margin-bottom:12px}
+  .key span{display:flex; align-items:center; gap:7px; font-size:12px; color:var(--ink-2)}
+  .sw{width:10px; height:10px; border-radius:2px; display:inline-block}
+
+  @media (max-width:720px){
+    .band{grid-template-columns:1fr auto; gap:10px}
+    .stage{grid-column:1/-1}
+    .chips{max-width:none; justify-content:flex-start; grid-column:1/-1}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; transform:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <p class="stamp">Sebell Design System · read from the repo 2026-08-26</p>
+    <h1>The system, in one view</h1>
+    <p class="lede">Every layer the system actually contains, from the Figma file where a value is decided
+      to the person who installs it. Open a layer to see what is inside it. Where something does not exist,
+      it is drawn as an empty band rather than left out.</p>
+  </header>
+
+  <div class="numbers">
+    <div class="num"><b>4</b><span>brands</span></div>
+    <div class="num"><b>2</b><span>densities</span></div>
+    <div class="num"><b>2</b><span>appearance modes</span></div>
+    <div class="num"><b>1,103</b><span>source tokens</span></div>
+    <div class="num"><b>20</b><span>components</span></div>
+    <div class="num warn"><b>3 / 9</b><span>actors served</span></div>
+  </div>
+
+  <div class="bar">
+    <button class="btn" id="all">Open every layer</button>
+    <button class="btn" id="none">Close all</button>
+    <button class="btn" id="gaps" aria-pressed="false">Show only what is missing or broken</button>
+    <span class="bar-note">8 layers</span>
+  </div>
+
+  <div class="strata" id="strata">
+
+    <!-- 1 SOURCE -->
+    <section class="stratum" data-state="ok">
+      <button class="band" aria-expanded="false" aria-controls="p1">
+        <span class="stage">Source</span>
+        <span><span class="band-title">Figma</span><span class="band-sub">Where every value is decided. Nothing downstream may be edited by hand.</span></span>
+        <span class="chips"><span class="chip">4 foundations</span><span class="chip">4 collections</span></span>
+        <span class="caret">▸</span>
+      </button>
+      <div class="panel" id="p1" hidden>
+        <div class="cards">
+          <div class="card ok"><span class="tag ok">source</span><h4>&lt;brand&gt;-foundation</h4><p>Four files. Palettes, radius primitives, font families and weights. 60–69 tokens each.</p></div>
+          <div class="card ok"><span class="tag ok">source</span><h4>brand collection</h4><p>130 semantic tokens per brand, each aliased into that brand's own foundation.</p></div>
+          <div class="card ok"><span class="tag ok">source</span><h4>density collection</h4><p>default and compact. 65 tokens each: the spacing scale, type ramp and line heights.</p></div>
+          <div class="card ok"><span class="tag ok">source</span><h4>appearance collection</h4><p>light and dark. 99 tokens each, across seven roots. Aliases into brand, so it composes without a cross-product.</p></div>
+        </div>
+        <p class="panel-note"><strong>The most common bug starts here.</strong> A brand mode duplicated from another brand keeps aliases pointing at the wrong foundation. The build treats that as fatal rather than letting it through.</p>
+      </div>
+    </section>
+
+    <!-- 2 CASCADE -->
+    <section class="stratum" data-state="ok">
+      <button class="band" aria-expanded="false" aria-controls="p2">
+        <span class="stage">Cascade</span>
+        <span><span class="band-title">Token merge</span><span class="band-sub">Four layers merge for every brand × density pair. Aliases resolve at build time.</span></span>
+        <span class="chips"><span class="chip">12 files</span><span class="chip">1,103 tokens</span><span class="chip good">3 checks</span></span>
+        <span class="caret">▸</span>
+      </button>
+      <div class="panel" id="p2" hidden>
+        <div class="cards">
+          <div class="card ok"><h4>1 · foundation</h4><p>Raw primitives. Never referenced by a component.</p></div>
+          <div class="card ok"><h4>2 · brand semantics</h4><p>The names components are allowed to use.</p></div>
+          <div class="card ok"><h4>3 · density</h4><p>Spacing and type, shared across all brands.</p></div>
+          <div class="card ok"><h4>4 · appearance</h4><p>Foreground and contrast, emitted as a light block and a dark override.</p></div>
+          <div class="card ok"><span class="tag ok">enforced</span><h4>alias misalignment</h4><p>Fatal. Every alias must target its own brand's foundation.</p></div>
+          <div class="card ok"><span class="tag ok">enforced</span><h4>cross-brand parity</h4><p>Fatal. Every brand must define the same set of semantic keys.</p></div>
+          <div class="card ok"><span class="tag ok">enforced</span><h4>structural diff</h4><p>Informational. Surfaces renamed tokens and stale references in component CSS.</p></div>
+          <div class="card ok"><h4>brands.config.js</h4><p>One entry adds a brand. Drives the build, Storybook and the snapshot modes.</p></div>
+        </div>
+        <p class="panel-note"><strong>This is the strongest part of the system.</strong> Better than most production design systems have. Nothing in the refactor discussion should put it at risk.</p>
+      </div>
+    </section>
+
+    <!-- 3 OUTPUT -->
+    <section class="stratum" data-state="broken">
+      <button class="band" aria-expanded="false" aria-controls="p3">
+        <span class="stage">Output</span>
+        <span><span class="band-title">Generated artifacts</span><span class="band-sub">What the build emits. All generated; none safe to edit by hand.</span></span>
+        <span class="chips"><span class="chip">8 sheets</span><span class="chip">~350 vars each</span><span class="chip bad">161 kB dead</span></span>
+        <span class="caret">▸</span>
+      </button>
+      <div class="panel" id="p3" hidden>
+        <div class="cards">
+          <div class="card ok"><h4>&lt;brand&gt;-&lt;density&gt;.css</h4><p>Eight sheets, 347–353 variables each. A light block plus a dark override, both matchable on any subtree.</p></div>
+          <div class="card ok"><h4>&lt;brand&gt;-theme.cjs</h4><p>Four NativeWind fragments for React Native. Light appearance only.</p></div>
+          <div class="card ok"><h4>tokens.json</h4><p>Feeds the Swift generator. First brand in the config only.</p></div>
+          <div class="card ok"><h4>DesignTokens.swift</h4><p>Committed to git on purpose. CI fails if the committed copy is stale.</p></div>
+          <div class="card bad"><span class="tag bad">dead weight</span><h4>_&lt;brand&gt;-theme-src.json</h4><p>Four build intermediates, 161 kB. They ship in the tarball but are not in the exports map, so nobody can import them.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 COMPONENTS -->
+    <section class="stratum" data-state="ok">
+      <button class="band" aria-expanded="false" aria-controls="p4">
+        <span class="stage">Library</span>
+        <span><span class="band-title">React components</span><span class="band-sub">Twenty components. None is brand-aware; all read semantic variables only.</span></span>
+        <span class="chips"><span class="chip">20 components</span><span class="chip">38 exports</span><span class="chip bad">4 tested</span></span>
+        <span class="caret">▸</span>
+      </button>
+      <div class="panel" id="p4" hidden>
+        <div class="cards">
+          <div class="card ok"><h4>Actions</h4><p>Button, IconButton. Both render any element via <code>as</code>, so a call to action can be a link.</p></div>
+          <div class="card ok"><h4>Forms · 11</h4><p>Input, Checkbox, Radio, Switch, each with Field and Group wrappers, plus Field and FieldGroup.</p></div>
+          <div class="card ok"><h4>Navigation</h4><p>TabBar, TabBarButton. Active item is a filled pill; pressing previews activation.</p></div>
+          <div class="card ok"><h4>Content</h4><p>Text, Icon, Chip. A Text variant is a style, never an element.</p></div>
+          <div class="card ok"><h4>Layout</h4><p>Stack, Surface. Surface flips appearance for its subtree in either direction.</p></div>
+          <div class="card ok"><span class="tag ok">enforced</span><h4>stylelint</h4><p>No raw colour, no primitive variable, no raw px on spacing, radius or type. Two documented exceptions.</p></div>
+          <div class="card bad"><span class="tag bad">thin</span><h4>test coverage</h4><p>30 tests across 4 of 20 components. There is no <code>&lt;form&gt;</code> and no submit handler anywhere in the library or its stories.</p></div>
+          <div class="card bad"><span class="tag bad">unfinished</span><h4>Alert</h4><p>Built, but deliberately not exported. Two known defects, both parked behind the token review.</p></div>
+          <div class="card gap"><span class="tag gap">does not exist</span><h4>*.component.md</h4><p>No per-component spec. All twenty contracts live in one table, some cells 200 words long.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 GAP -->
+    <section class="stratum" data-state="gap">
+      <button class="band" aria-expanded="false" aria-controls="p5">
+        <span class="stage">Missing</span>
+        <span><span class="band-title">Patterns and templates</span><span class="band-sub">Nothing above component level exists. This band is empty on purpose.</span></span>
+        <span class="chips"><span class="chip">0 patterns</span><span class="chip">0 templates</span></span>
+        <span class="caret">▸</span>
+      </button>
+      <div class="panel" id="p5" hidden>
+        <div class="cards">
+          <div class="card gap"><span class="tag gap">in progress</span><h4>Marketing page</h4><p>Button, IconButton, Text, Stack, Surface. The first real web page ever built with the library. It found three gaps in one sitting.</p></div>
+          <div class="card gap"><span class="tag gap">never built</span><h4>Form page</h4><p>Eleven form components, never once assembled into a working form. Named in the backlog as the highest risk.</p></div>
+          <div class="card gap"><span class="tag gap">never built</span><h4>App shell</h4><p>TabBar, TabBarButton, Surface, Chip, Icon.</p></div>
+        </div>
+        <p class="panel-note"><strong>Every gate asks whether a component matches the design. None asks whether a page can be built from them.</strong> Component correctness does not compose, and this is where the system's identity actually lives.</p>
+      </div>
+    </section>
+
+    <!-- 6 DELIVERY -->
+    <section class="stratum" data-state="broken">
+      <button class="band" aria-expanded="false" aria-controls="p6">
+        <span class="stage">Delivery</span>
+        <span><span class="band-title">What ships</span><span class="band-sub">Two npm packages, one Swift package, and every documentation link broken.</span></span>
+        <span class="chips"><span class="chip">2 packages</span><span class="chip bad">404 homepage</span><span class="chip bad">iOS unreachable</span></span>
+        <span class="caret">▸</span>
+      </button>
+      <div class="panel" id="p6" hidden>
+        <div class="cards">
+          <div class="card ok"><h4>@sebellds/tokens 0.1.1</h4><p>22 files, 28 kB packed. All four brands, both densities, all three output formats.</p></div>
+          <div class="card ok"><h4>@sebellds/react 0.3.0</h4><p>6 files, 15 kB packed. Built JS, one CSS file, type definitions.</p></div>
+          <div class="card bad"><span class="tag bad">unreachable</span><h4>@sebellds/ios-tokens</h4><p>Not on npm at all. SwiftPM fetches it from git, and the repository is private, so no external iOS app can install it.</p></div>
+          <div class="card bad"><span class="tag bad">404</span><h4>homepage links</h4><p>Both READMEs and both package.json homepage fields point at the private repo. Every documentation link a consumer follows is dead.</p></div>
+          <div class="card bad"><span class="tag bad">invisible</span><h4>storybook.sebell.dk</h4><p>Public. Every component, state, brand and density, switchable live. Advertised in nothing that is published.</p></div>
+          <div class="card ok"><span class="tag ok">enforced</span><h4>npm run smoke</h4><p>Packs real tarballs and installs them into a scratch project. Proves the package installs. Does not ask whether it can be used.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 CONSUMERS -->
+    <section class="stratum" data-state="broken">
+      <button class="band" aria-expanded="false" aria-controls="p7">
+        <span class="stage">Consumers</span>
+        <span><span class="band-title">Who meets the system</span><span class="band-sub">Nine actors. Three were designed for; six were never named.</span></span>
+        <span class="chips"><span class="chip good">3 served</span><span class="chip bad">6 unserved</span></span>
+        <span class="caret">▸</span>
+      </button>
+      <div class="panel" id="p7" hidden>
+        <div class="cards">
+          <div class="card ok"><span class="tag ok">served</span><h4>A · System designer</h4><p>Authoring in Figma. Sees the whole tree. Every name was written from inside this moment.</p></div>
+          <div class="card ok"><span class="tag ok">served</span><h4>B · System engineer</h4><p>Building in the repo. Rules load automatically; the linter blocks the known mistakes.</p></div>
+          <div class="card ok"><span class="tag ok">served</span><h4>C · Build pipeline</h4><p>The only actor that can enforce anything, and it does.</p></div>
+          <div class="card bad"><span class="tag bad">unserved</span><h4>D · Product designer</h4><p>Picking from a dropdown mid-layout, no docs open. Served worst by the current naming, by the system's own assessment.</p></div>
+          <div class="card bad"><span class="tag bad">unserved</span><h4>E · Web engineer</h4><p>Has a tarball, a type file and a 47-line README. The repo is private.</p></div>
+          <div class="card bad"><span class="tag bad">unserved</span><h4>F · Native engineer</h4><p>iOS gets one brand at one density, from a private repo. React Native gets tokens and no components at all.</p></div>
+          <div class="card bad"><span class="tag bad">unserved</span><h4>G · AI agent</h4><p>Gets types. The lint rules that would keep it correct run only where it is not.</p></div>
+          <div class="card bad"><span class="tag bad">unserved</span><h4>H · Evaluator</h4><p>Deciding whether to adopt. Every route from npm to anything visual is a 404.</p></div>
+          <div class="card bad"><span class="tag bad">unserved</span><h4>I · Cold maintainer</h4><p>Well served on why things were decided. Failed on what is happening now.</p></div>
+        </div>
+        <p class="panel-note"><strong>A, B and C are all inside the repo.</strong> Every convention, check and document serves them. D through I are outside it, and nothing in the system is addressed to any of them. That is the whole diagnosis in one line.</p>
+      </div>
+    </section>
+
+    <!-- 8 DOCS -->
+    <section class="stratum" data-state="broken">
+      <button class="band" aria-expanded="false" aria-controls="p8">
+        <span class="stage">Documentation</span>
+        <span><span class="band-title">Fourteen markdown files</span><span class="band-sub">Two reach a consumer. Four cannot be reached from the main branch at all.</span></span>
+        <span class="chips"><span class="chip">14 files</span><span class="chip bad">2 published</span><span class="chip bad">4 unreachable</span></span>
+        <span class="caret">▸</span>
+      </button>
+      <div class="panel" id="p8" hidden>
+        <div class="cards">
+          <div class="card ok"><span class="tag ok">auto-loaded</span><h4>CLAUDE.md</h4><p>The only document guaranteed to be read. Carries the invariants with the failures that produced them.</p></div>
+          <div class="card ok"><h4>core.design.md</h4><p>The contract. Token shape in YAML, component contracts and the brand runbook in prose.</p></div>
+          <div class="card ok"><h4>brands/*.design.md</h4><p>Four brand files. Values hand-copied from the build output, with nothing checking them.</p></div>
+          <div class="card ok"><h4>backlog.md</h4><p>621 lines. Records why, not just what. Unusually good, and the reason a cold session can pick up work.</p></div>
+          <div class="card gap"><span class="tag gap">draft</span><h4>spacing-rhythm.md</h4><p>The scales and ratios are fact. The three rules are a proposal, marked not adopted.</p></div>
+          <div class="card bad"><span class="tag bad">published</span><h4>Two READMEs</h4><p>95 lines total. The entire documentation surface of the system as received by anyone outside this repo.</p></div>
+          <div class="card bad"><span class="tag bad">unreachable</span><h4>Four documents</h4><p>The token structure review on an unpushed branch, and three untracked files written today. Reach, not content, is the failure.</p></div>
+          <div class="card gap"><span class="tag gap">orphan</span><h4>surface-density plan</h4><p>On the main branch, linked from nothing, linking to nothing.</p></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="foot">
+    <div class="key">
+      <span><i class="sw" style="background:var(--pine)"></i> designed and enforced</span>
+      <span><i class="sw" style="background:var(--walnut)"></i> does not exist</span>
+      <span><i class="sw" style="background:var(--cedar)"></i> exists but broken</span>
+    </div>
+    Counts read from the repository on 2026-08-26: token totals from the twelve Figma exports, variable counts from the built
+    stylesheets, package contents from <code>npm pack --dry-run</code>. The Storybook deployment is taken from the project's own
+    records and was not re-verified. Nothing here proposes a change; it is the system as it currently stands.
+  </footer>
+</div>
+
+<script>
+  var strata = document.getElementById('strata');
+  strata.addEventListener('click', function(e){
+    var b = e.target.closest('.band'); if(!b) return;
+    var open = b.getAttribute('aria-expanded') === 'true';
+    b.setAttribute('aria-expanded', String(!open));
+    document.getElementById(b.getAttribute('aria-controls')).hidden = open;
+  });
+  function setAll(open){
+    strata.querySelectorAll('.band').forEach(function(b){
+      if(b.closest('.stratum').style.display === 'none') return;
+      b.setAttribute('aria-expanded', String(open));
+      document.getElementById(b.getAttribute('aria-controls')).hidden = !open;
+    });
+  }
+  document.getElementById('all').addEventListener('click', function(){ setAll(true); });
+  document.getElementById('none').addEventListener('click', function(){ setAll(false); });
+  var gapsBtn = document.getElementById('gaps');
+  gapsBtn.addEventListener('click', function(){
+    var on = gapsBtn.getAttribute('aria-pressed') !== 'true';
+    gapsBtn.setAttribute('aria-pressed', String(on));
+    var shown = 0;
+    strata.querySelectorAll('.stratum').forEach(function(s){
+      var bad = s.dataset.state !== 'ok';
+      var vis = !on || bad;
+      s.style.display = vis ? '' : 'none';
+      if(vis) shown++;
+    });
+    document.querySelector('.bar-note').textContent = shown + (on ? ' layers with a problem' : ' layers');
+  });
+</script>
