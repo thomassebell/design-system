@@ -147,6 +147,20 @@ export const decorators = [
 
 export default {
   parameters: {
+    // Sidebar order. Storybook opens on the first entry, so this decides what
+    // someone arriving from the npm README sees first. Alphabetical ordering
+    // put "Guides/Adding a Component" - a contributor guide - in that slot.
+    // Consumer-facing docs come first; contributing comes after.
+    options: {
+      storySort: {
+        order: [
+          "Introduction", ["Welcome", "Architecture"],
+          "Guides", ["Using Components", "Adding a Component", "Updating from Figma"],
+          "Tokens",
+          "Components",
+        ],
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
