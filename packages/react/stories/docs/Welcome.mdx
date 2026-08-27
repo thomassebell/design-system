@@ -8,7 +8,7 @@ A multi-brand design system that turns Figma decisions into a living UI library.
 
 ## What's in here
 
-- **Components** — React building blocks. Today: Button, Input, Checkbox (+ Field, Group), Radio (+ Field, Group), Text, Stack, Icon. Browse the **Components** section in the sidebar.
+- **Components** – React building blocks. Today: Button, IconButton, Chip, Input, Checkbox (+ Field, Group), Radio (+ Field, Group), Switch (+ Field), TabBar (+ TabBarButton), Text, Icon, Stack, Surface. Browse the **Components** section in the sidebar.
 - **Tokens** — the design decisions (colours, typography, spacing, radius) that flow from Figma into code. The **Tokens** section is a live catalog — what you see is exactly what's currently built.
 - **Guides** — how to update tokens from Figma, how to add components, how to consume the system in an app.
 
@@ -17,13 +17,16 @@ A multi-brand design system that turns Figma decisions into a living UI library.
 - **Designers** working in a Sebell DS brand — to see what's available, how each component behaves under different brands and densities, and what changes when a token moves.
 - **Engineers** building UIs — to install `@sebellds/react`, drop in components, and have brand/density theming and accessibility handled automatically.
 
-## The three brands
+## The four brands
+
+Two are real products; two are calibration tools.
 
 - **Sebell** — the production brand. Tseb's own brand, used for real apps and websites. Wood-species palette (pine green primary, walnut, cedar, ash), Noto Serif headers + Noto Sans body, square-or-full radius identity.
+- **Prep+Eat** – a production brand. The brand of a shipped food app built on this system. Food-named ramps, Montserrat + IBM Plex Sans. Being React Native, the app consumes the tokens but not the React components.
 - **Brand A** — a test fixture. Generic primary-blue exemplar, Inter typeface. Exists to exercise the multi-brand pipeline.
 - **Brand B** — a test fixture. Diverges from Brand A on every axis (green primary, Gabarito + Roboto type pair, soft rounded radii) so cross-brand consistency checks have something to compare.
 
-Brand A and Brand B are kept deliberately. Don't mine them for design inspiration — they're calibration tools, not real brands. The canonical brand spec lives in [`brand/core.design.md`](https://github.com/thomassebell/design-system/tree/main/brand) at the repo root, written in Google's DESIGN.md format.
+Brand A and Brand B are kept deliberately. Don't mine them for design inspiration – they're calibration tools, not real brands. The canonical brand spec lives in `brand/core.design.md` at the repo root, written in Google's DESIGN.md format.
 
 ## Two things to know about the toolbar
 

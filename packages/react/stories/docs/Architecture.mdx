@@ -4,7 +4,7 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # Architecture
 
-Sebell DS is **multi-brand** — Sebell, Brand A and Brand B share the same component shapes but render with different colours and fonts. It's also **density-aware** — the same components tighten or loosen depending on whether you're in `default` or `compact` density.
+Sebell DS is **multi-brand** – Sebell, Prep+Eat, Brand A and Brand B share the same component shapes but render with different colours and fonts. It's also **density-aware** – the same components tighten or loosen depending on whether you're in `default` or `compact` density.
 
 This page explains how those two axes coexist without the codebase tying itself in knots.
 
@@ -17,6 +17,7 @@ Each layer owns a different kind of decision:
 Each brand has its own Foundation file or collection:
 
 - `sebell-foundation` — Sebell's wood-species colour ramps (pine, walnut, cedar, ash), Noto type families, square/full radius primitives.
+- `prep-eat-foundation` – Prep+Eat's food-named ramps and Montserrat + IBM Plex Sans typefaces.
 - `brand-a-foundation` — Brand A's primary-blue ramps and Inter typeface.
 - `brand-b-foundation` — Brand B's green/rust ramps and Gabarito + Roboto typefaces.
 
@@ -71,13 +72,15 @@ packages/tokens/build.mjs
 packages/tokens/dist/
   ├── sebell-default.css
   ├── sebell-compact.css
+  ├── prep-eat-default.css
+  ├── prep-eat-compact.css
   ├── brand-a-default.css
   ├── brand-a-compact.css
   ├── brand-b-default.css
   └── brand-b-compact.css
         │
         ▼
-Storybook bundles all six inline; toolbar swaps the active stylesheet.
+Storybook bundles all eight inline; toolbar swaps the active stylesheet.
 The first combo (sebell × default) also feeds dist/tokens.json, which
 generate-swift.mjs turns into DesignTokens.swift for iOS.
         │
@@ -99,7 +102,7 @@ This is the system's safety net for the multi-brand contract.
 
 ## The canonical brand spec
 
-The values you see in Storybook are the *result* of design decisions. The *decisions themselves* — token shape, component contracts, brand voice, "adding a brand" runbook — live in [`brand/`](https://github.com/thomassebell/design-system/tree/main/brand) at the repo root, written in Google's [DESIGN.md](https://github.com/google-labs-code/design.md) format (alpha, April 2026). Start with `brand/core.design.md` for the system-level spec; then read `brand/brands/<name>.design.md` for a specific brand's values and voice.
+The values you see in Storybook are the *result* of design decisions. The *decisions themselves* – token shape, component contracts, brand voice, "adding a brand" runbook – live in `brand/` at the repo root, written in Google's [DESIGN.md](https://github.com/google-labs-code/design.md) format (alpha, April 2026). Start with `brand/core.design.md` for the system-level spec; then read `brand/brands/<name>.design.md` for a specific brand's values and voice.
 
 ## Architectural rules of thumb
 
