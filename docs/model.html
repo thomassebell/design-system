@@ -102,9 +102,10 @@
   <h1>Two sides, and what each actor can reach</h1>
   <p class="lede">The system side builds the design system. The product side consumes it and never builds it.
     Only two things cross between them. Select anyone to see what they actually have – and watch the other side go dark.</p>
-  <p class="lede" style="margin-top:-18px"><strong>Neither side can see the other.</strong> The product side cannot look inside the system.
-    The system side cannot see how its work is used, what was overridden, or which gaps people hit. That is what the request channel is for,
-    and it does not exist yet.</p>
+  <p class="lede" style="margin-top:-18px"><strong>The boundary is authorship, not visibility.</strong> Look, don&rsquo;t edit. In Figma that
+    already works &ndash; a product designer can read every component&rsquo;s guidelines and every foundation, and change none of them. In code the
+    same rule should hold and currently doesn&rsquo;t, because the repository is private. That is a choice about the repo, not a property of the
+    system.</p>
 
   <div class="stage" id="stage">
 
@@ -168,19 +169,19 @@
 
     pd: { name:"Product designer", side:"product", role:"Designing a screen with the published library. Picking from a dropdown mid-layout, no documentation open.",
       support:[["Storybook: Welcome, Using Components","a website – reachable, if they know it exists"],["the published Figma library","components and variables"],["a changelog",false],["a roadmap",false],["a way to ask for something",false]],
-      artifacts:[["the component library","consumed, not built – internals are not theirs"],["semantic colours","apply, never author"],["layout spacing","between things, not inside them"],["typography styles","the ramp, paired to families"],["brand and density modes","a supported choice"]],
+      artifacts:[["the component library","consumed, not built – internals are not theirs"],["the whole library, readable","guidelines, foundations, how each alias resolves"],["semantic colours","apply, never author"],["layout spacing","between things, not inside them"],["typography styles","the ramp, paired to families"],["brand and density modes","a supported choice"]],
       enforcement:[["Figma variable scoping","the strongest enforcement any actor gets"],["overrides are visible","the instance shows it was changed"],["overrides are reversible","reset to main puts it back"]],
       verdict:"Overrides here are legible and undoable. That is the standard the code side fails to meet – not the other way round." },
 
     pai: { name:"Product AI", side:"product", role:"Writing product code against the installed package. Cannot ask anyone, and cannot tell when it is guessing.",
       support:[["type definitions","15.6 kB of .d.ts"],["two READMEs","95 lines, recently rewritten"],["Storybook",false,"a website. It does not browse."],["MD instructions that travel",false,"CLAUDE.md stops at the repo edge"],["recipes",false,"named, never built"]],
-      artifacts:[["the npm packages","built JS, CSS, types"],["CSS variables","around 350 per sheet"],["component props","the public interface"],["a component manifest",false,"no machine-readable inventory exists"]],
+      artifacts:[["the npm packages","built JS, CSS, types"],["CSS variables","around 350 per sheet"],["component props","the public interface"],["the system's source",false,"the repository is private. Public would make it readable without making it editable"],["a component manifest",false,"no machine-readable inventory exists"]],
       enforcement:[["nothing",false,"the lint rules stay in the DS repo"],["className and style reach inside",false,"every component inherits them"],["overrides are silent and permanent",false,"no marker, no reset, no way to know"]],
-      verdict:"The actor your model says types the code has the rules of none of them. It does not hit the boundary of the system – it fills it, quietly." },
+      verdict:"The one actor for whom the dimming is literal rather than a focus device: it cannot author the system, and it cannot see it either. Nothing travels, and the repository is shut. It does not hit the boundary – it fills it, quietly." },
 
     pdev: { name:"Product developer", side:"product", role:"Reviewing what the AI wrote. Rarely typing it themselves any more.",
       support:[["Storybook","every component, state, brand and density"],["the two READMEs","the front door"],["type definitions","the editor tells them most of it"],["a changelog",false],["upgrade notes",false]],
-      artifacts:[["the npm packages","two, public"],["brand stylesheets","eight, a supported choice"],["type definitions","the only machine-readable contract"]],
+      artifacts:[["the npm packages","two, public"],["brand stylesheets","eight, a supported choice"],["type definitions","the only machine-readable contract"],["the system's source",false,"private repository – their Figma counterpart can read theirs"]],
       enforcement:[["nothing in their own repo",false,"the checks never travelled"],["review by eye","the last line of defence, and it is a person"]],
       verdict:"Judgement is still theirs, and it is the only enforcement left on this side. Which means it fails silently when attention does." },
   };

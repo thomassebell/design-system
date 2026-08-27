@@ -22,6 +22,7 @@ should be able to tell which parts are decided and which are my inference:
 - *"The whole team building a complex product are all consumers. They just use
   the DS instead of build it themselves. If they need something else, they need
   to request it, not build it."*
+- *"People can look but not edit"* - the boundary is authorship, not visibility.
 - *"The DS is a guide, not law… This rule is only for humans. If AI gets the
   same set of rules, then we are in the plausible range, with no way to guide
   the outcome."*
@@ -49,18 +50,37 @@ This is the same rule already written in `~/.claude/CLAUDE.md` – a component m
 only be built in the DS project, never in a consuming project – stated as
 structure rather than as a prohibition.
 
-**The consequence that follows immediately.** The product side cannot look
-inside. There is no reading the source, no checking the decisions log, no asking
-the author across the desk. So anything they need is either published, or for
-them it does not exist. That is not a quality goal; it is the definition of the
-boundary.
+**The boundary is authorship, not visibility.** Look, do not edit. Figma already
+works this way: a product designer can open the published library, read every
+component's guidelines, inspect the foundations, see how each alias resolves -
+and change none of it. Reading is not merely permitted there, it is the point.
+
+The same rule should hold in code, and currently does not. A consumer can read
+what ships - the built JS, the CSS variables, the type definitions - but not the
+source, the reasoning or the decisions log, because the repository is private.
+**That is a choice about the repository, not a property of the medium.** A public
+repo would give exactly the Figma arrangement: readable by everyone, pushable by
+nobody.
+
+**Publishing well is an obligation either way.** Not because the product side
+literally cannot see - in one of the two media they can - but because nobody
+should have to reconstruct a decision from source in order to use the system
+correctly.
+
+*Corrected 2026-08-26 by Thomas: "people can look but not edit... In Figma,
+designers can look at the system and read the guidelines for each component - the
+same for foundations." The earlier version of this section claimed the product
+side cannot look inside, which conflated authorship with visibility and was
+simply wrong for Figma.*
 
 ## 2. Two crossings, with opposite natures
 
 Only two things cross between the sides.
 
-**Down – what the system publishes.** Not optional. Because there is no
-fallback, everything the product side needs to work correctly must travel.
+**Down – what the system publishes.** Not optional. Everything the product side
+needs in order to work correctly has to travel to them, because reconstructing a
+decision from source - where that is even possible - is not what using a design
+system means.
 
 **Up – requests.** An opportunity, not a duty (Thomas, 2026-08-26). Not every
 unmet need is the system's problem to solve. A system that offers no request
