@@ -1,8 +1,9 @@
-import { Meta } from "@storybook/addon-docs/blocks";
-
-<Meta title="Guides/Adding a Component" />
-
 # Adding a Component
+
+> **Builder documentation.** This lives in the repo rather than in Storybook:
+> Storybook is the consumer's window onto what the system publishes, and this
+> is material for people building the system itself. Moved out of
+> `packages/react/stories/docs/` on 2026-08-26.
 
 How to add a new component to `@sebellds/react`.
 
@@ -96,15 +97,15 @@ CSS Modules class names are kept non-hashed in tests (configured in `vitest.conf
 - Focus styles visible (use `:focus-visible`, not just `:focus`).
 - ARIA attributes when meaningful (`aria-busy` on a loading button, `aria-invalid` on errored input, `aria-label` on icon-only buttons).
 - The Storybook **a11y addon** runs axe on every story automatically — check the Accessibility panel before merging.
-- **Verify contrast in every brand.** Switch the toolbar across all three brands before merging — a state that passes AA in Sebell may fail in Brand A or Brand B because each brand's primary surface has different luminance. If the component lands on a coloured surface that varies brand-to-brand, use per-state component tokens (see Token usage rules above) rather than a static `color.text.*` slot.
+- **Verify contrast in every brand.** Switch the toolbar across all four brands before merging – a state that passes AA in Sebell may fail in Prep+Eat, Brand A or Brand B because each brand's primary surface has different luminance. If the component lands on a coloured surface that varies brand-to-brand, use per-state component tokens (see Token usage rules above) rather than a static `color.text.*` slot.
 
 ## Cross-brand contract
 
 The build's pre-flight check (`packages/tokens/build.mjs`) requires every semantic / component token slot to exist in every brand. Practically:
 
-- If your component reads a new token (e.g. `components.banner.background`), that slot must be defined in `sebell.tokens.json`, `brand-a.tokens.json`, **and** `brand-b.tokens.json`.
+- If your component reads a new token (e.g. `components.banner.background`), that slot must be defined in `sebell.tokens.json`, `prep-eat.tokens.json`, `brand-a.tokens.json`, **and** `brand-b.tokens.json`.
 - Add the slot in Figma to every brand mode in the same PR. The build will fail "defined in only one brand" otherwise.
-- For test fixtures (Brand A / Brand B), the value can be a reasonable default — they're calibration brands, not real product designs.
+- Sebell and Prep+Eat are production brands – give those slots real, considered values. For the test fixtures (Brand A / Brand B) a reasonable default is fine; they're calibration brands, not real product designs.
 
 ## What gets deployed
 

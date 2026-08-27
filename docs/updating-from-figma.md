@@ -1,8 +1,9 @@
-import { Meta } from "@storybook/addon-docs/blocks";
-
-<Meta title="Guides/Updating from Figma" />
-
 # Updating from Figma
+
+> **Builder documentation.** This lives in the repo rather than in Storybook:
+> Storybook is the consumer's window onto what the system publishes, and this
+> is material for people building the system itself. Moved out of
+> `packages/react/stories/docs/` on 2026-08-26.
 
 The most common workflow: a token changes in Figma, and the change needs to reach the deployed Storybook (and any consumer app). Here's how that goes end-to-end.
 
@@ -21,7 +22,7 @@ Where you make the edit depends on what's changing:
 
 | What's changing | Edit in |
 |---|---|
-| A brand's colour ramp (e.g. Sebell's pine green, Brand B's grass green) | The matching foundation (`sebell-foundation`, `brand-a-foundation`, or `brand-b-foundation`) |
+| A brand's colour ramp (e.g. Sebell's pine green, Brand B's grass green) | The matching foundation (`sebell-foundation`, `prep-eat-foundation`, `brand-a-foundation`, or `brand-b-foundation`) |
 | A brand's font choices | The matching foundation |
 | Universal sizes / typography sizes / line-heights | The main DS file |
 | Compact-density spacing values | The main DS file (the `compact` mode of the relevant variable) |
@@ -33,25 +34,31 @@ When in doubt: foundations are for brand identity; the DS file is for everything
 
 ## Step 2 — Re-export
 
-Use the same export tool you used last time. The eight files we consume live in `packages/tokens/figma-exports/` and follow the `.tokens.json` naming convention (Figma plugin's default):
+Use the same export tool you used last time. The twelve files we consume live in `packages/tokens/figma-exports/` and follow the `.tokens.json` naming convention (Figma plugin's default):
 
 ```
 sebell-foundation.tokens.json
 sebell.tokens.json
+prep-eat-foundation.tokens.json
+prep-eat.tokens.json
 brand-a-foundation.tokens.json
 brand-a.tokens.json
 brand-b-foundation.tokens.json
 brand-b.tokens.json
 default.tokens.json
 compact.tokens.json
+light.tokens.json
+dark.tokens.json
 ```
+
+That's four foundations, four brand semantic layers, two densities and two appearance modes.
 
 Replace the relevant files. **Naming must match exactly** — the build script reads them by name.
 
 ## Step 3 — Commit & push
 
 ```bash
-cd "/Users/tseb/Documents/Sebell Design System/design-system"
+cd <your clone of the design system>
 git status
 git add packages/tokens/figma-exports/
 git commit -m "Update <what you changed>"
@@ -63,7 +70,7 @@ git push
 GitHub Actions runs:
 
 1. **`npm run tokens:build`** — runs `build.mjs`, which:
-   - Reads all eight JSON files (3 foundations + 3 brand semantic + 2 density)
+   - Reads all twelve JSON files (4 foundations + 4 brand semantic + 2 density + 2 appearance)
    - Runs the pre-flight cross-brand health checks:
      - **Alias misalignment** — every alias in `<brand>.tokens.json` must target `<brand>-foundation`, not another brand's foundation. Fatal.
      - **Structural parity** — every brand must define the same set of semantic keys. Mismatches fail or warn; Levenshtein-close names get flagged as likely typos.
@@ -74,14 +81,14 @@ GitHub Actions runs:
    - Adds units to dimensional values (px, rem) based on path
    - Maps font-weight strings ("Semi Bold") to CSS numeric weights (600)
    - Adds font-family fallback chains
-   - Emits six CSS files: `dist/{sebell,brand-a,brand-b}-{default,compact}.css`
+   - Emits eight CSS files: `dist/{sebell,prep-eat,brand-a,brand-b}-{default,compact}.css`
    - Emits `dist/tokens.json` from the first combo (`sebell × default`) for `generate-swift.mjs` → iOS
 
 2. **`npm run build`** — builds all packages and confirms components compile against the new tokens.
 
 3. **`npm run lint`** and **`npm test`** — sanity checks.
 
-4. **Storybook builds**, Vercel deploys; Chromatic captures visual snapshots for every story across every brand × density combination.
+4. **Storybook builds**, Vercel deploys. (Chromatic visual snapshots were disabled in July 2026 – the quota kept running out and PRs were merged past the pending check. The Storybook build stays, as the check that every story still compiles.)
 
 The whole pipeline takes ~2–3 minutes.
 

@@ -22,6 +22,11 @@ Active brands:
 - **`brand/core.design.md`** — system-level spec: token shape every brand provides, component contracts, the "adding a brand" runbook. Read this first when scaffolding new brand work.
 - **`brand/brands/<brand>.design.md`** — per-brand spec: actual values, palette mapping, brand voice. Read this when working on a specific brand's design.
 - **`brand/_template.brand.design.md`** — copy-paste skeleton for new brands.
+- **`docs/adding-a-component.md`** – how to add a component: file structure, the
+  checklist, token rules, testing and accessibility expectations. Builder
+  documentation; deliberately not in Storybook, which is the consumer's window.
+- **`docs/updating-from-figma.md`** – the day-to-day Figma → code loop: export,
+  build, commit, what CI does, and the common gotchas.
 - **`packages/tokens/figma-exports/*.tokens.json`** — Figma source-of-truth exports (DTCG schema). Foundation + brand semantic layers for each brand.
 - **`packages/tokens/dist/*.css`** — generated CSS, one file per (brand × density). Do not hand-edit.
 - **`packages/tokens/brands.config.js`** — single source of truth for the brand × density matrix. Adding a brand/density is one edit here; both `build.mjs` and `preview.js` read from it. The first `BRANDS` entry is the iOS + Storybook default.

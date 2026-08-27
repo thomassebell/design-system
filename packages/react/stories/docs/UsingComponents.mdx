@@ -41,11 +41,9 @@ For a single-brand production app (the most common case), this is all you need �
 import {
   Button,
   Input,
-  Checkbox,
-  Radio,
+  CheckboxField,
   Stack,
   Text,
-  Icon,
 } from "@sebellds/react";
 
 export function SignupForm() {
@@ -54,28 +52,39 @@ export function SignupForm() {
       <Text variant="display4" as="h2">Sign up</Text>
       <Input label="Email" placeholder="you@example.com" />
       <Input label="Password" type="password" />
-      <Checkbox label="I agree to the terms" />
+      <CheckboxField label="I agree to the terms" />
       <Button>Create account</Button>
     </Stack>
   );
 }
 ```
 
+The bare `Checkbox`, `Radio` and `Switch` are the controls on their own. The
+`*Field` wrappers add the label, hint and error and wire up the accessibility –
+that's what you usually want in a form.
+
 ## Components currently available
 
 | Component | Key props |
 |---|---|
-| `Button` | `variant` (`solid` / `outline` / `danger` / `text`), `startIcon`, `endIcon`, `fullWidth`, `loading` |
-| `Input` | `label`, `hint`, `error`, `startIcon`, `endIcon` |
+| `Button` | `variant` (`solid` / `outline` / `danger` / `text`), `startIcon`, `endIcon`, `fullWidth`, `loading`, `disabled`, `as` |
+| `IconButton` | `icon`, `label` (required – becomes the `aria-label`), `variant` (`solid` / `outline` / `danger`), `loading`, `disabled`, `as` |
+| `Chip` | `variant` (`solid` / `outline`), `active` (announced via `aria-pressed`), `startIcon`, `endIcon` |
+| `Input` | `label`, `hint`, `error`, `startIcon`, `endIcon`, `prefix`, `suffix` |
 | `Checkbox` | `checked`, `indeterminate`, `onChange`, `disabled` |
 | `CheckboxField` | `label`, `hint`, `error`, plus all `Checkbox` props |
-| `CheckboxGroup` | `legend`, `value`, `onChange`, list of `Checkbox` children |
+| `CheckboxGroup` | `legend`, `description`, `error`, and the fields as children |
 | `Radio` | `checked`, `value`, `name`, `onChange`, `disabled` |
 | `RadioField` | `label`, `hint`, `error`, plus all `Radio` props |
-| `RadioGroup` | `legend`, `value`, `onChange`, `options` (array of `RadioOption`) |
+| `RadioGroup` | `legend`, `description`, `name`, `options` (array of `RadioOption`), `value`, `onChange`, `error`, `disabled` |
+| `Switch` | `checked`, `onChange`, `disabled` – a checkbox with `role="switch"` |
+| `SwitchField` | `label`, `hint`, `error`, plus all `Switch` props |
+| `TabBar` | Bottom-navigation chrome – a `<nav>` landmark. Takes `aria-label` and the tabs as children |
+| `TabBarButton` | `icon`, `label` (both required), `active` (sets `aria-current="page"`) |
 | `Text` | `variant` (`display1`–`display6`, `body`, `bodySmall`), `as` (sets the element – headings are always explicit), `weight`, `truncate`, `align`, `muted` |
-| `Stack` | `direction`, `gap` (t-shirt sizes), `align`, `justify`, `wrap` |
 | `Icon` | `size` (`sm` / `md` / `lg`), `label` (omit for decorative icons) |
+| `Stack` | `direction`, `gap` (t-shirt sizes), `align`, `justify`, `wrap`, `as` |
+| `Surface` | `surface` (`light` / `dark`) – scopes an appearance mode to its subtree. Sets the foreground tokens; the background is yours to paint |
 
 Every prop is fully typed — hover any prop in your IDE for documentation.
 
@@ -87,16 +96,18 @@ By default the app loads Sebell Default. To switch, replace the active styleshee
 <link rel="stylesheet" href="/path/to/brand-a-default.css">
 ```
 
-The six built CSS files live in `@sebellds/tokens/dist/`:
+The eight built CSS files live in `@sebellds/tokens/dist/`:
 
 - `sebell-default.css`
 - `sebell-compact.css`
+- `prep-eat-default.css`
+- `prep-eat-compact.css`
 - `brand-a-default.css`
 - `brand-a-compact.css`
 - `brand-b-default.css`
 - `brand-b-compact.css`
 
-For a real product, you'll normally pick **one** of these at build time and never swap. Brand A and Brand B exist in the system as multi-brand pipeline test fixtures; they're not intended to ship in a Sebell-branded app. Multi-brand swapping is for engineers building products that intentionally render in different brands at runtime (white-label apps, etc.).
+For a real product, you'll normally pick **one** of these at build time and never swap. Sebell and Prep+Eat are production brands; Brand A and Brand B are multi-brand pipeline test fixtures and aren't intended to ship in a real app. Multi-brand swapping is for engineers building products that intentionally render in different brands at runtime (white-label apps, etc.).
 
 Your bundler can copy them as static assets. The active stylesheet is whichever one is currently in the DOM — swap it via JavaScript when the user toggles.
 
