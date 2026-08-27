@@ -81,8 +81,8 @@ dist/<brand>-<density>.css   dist/tokens.json
 
 ## Adding a component
 
-See the **Guides → Adding a Component** page in Storybook
-([source](packages/react/stories/docs/AddingComponent.mdx)).
+See [`docs/adding-a-component.md`](docs/adding-a-component.md). The day-to-day
+Figma → code loop is [`docs/updating-from-figma.md`](docs/updating-from-figma.md).
 
 ## Architecture decisions
 

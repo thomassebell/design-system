@@ -150,12 +150,15 @@ export default {
     // Sidebar order. Storybook opens on the first entry, so this decides what
     // someone arriving from the npm README sees first. Alphabetical ordering
     // put "Guides/Adding a Component" - a contributor guide - in that slot.
-    // Consumer-facing docs come first; contributing comes after.
+    //
+    // Storybook is the consumer's window onto what the system publishes.
+    // Builder documentation ("Adding a Component", "Updating from Figma") now
+    // lives in docs/ instead, so this list only holds consumer-facing pages.
     options: {
       storySort: {
         order: [
           "Introduction", ["Welcome", "Architecture"],
-          "Guides", ["Using Components", "Adding a Component", "Updating from Figma"],
+          "Guides", ["Using Components"],
           "Tokens",
           "Components",
         ],

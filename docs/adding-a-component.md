@@ -1,8 +1,9 @@
-import { Meta } from "@storybook/addon-docs/blocks";
-
-<Meta title="Guides/Adding a Component" />
-
 # Adding a Component
+
+> **Builder documentation.** This lives in the repo rather than in Storybook:
+> Storybook is the consumer's window onto what the system publishes, and this
+> is material for people building the system itself. Moved out of
+> `packages/react/stories/docs/` on 2026-08-26.
 
 How to add a new component to `@sebellds/react`.
 

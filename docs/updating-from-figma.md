@@ -1,8 +1,9 @@
-import { Meta } from "@storybook/addon-docs/blocks";
-
-<Meta title="Guides/Updating from Figma" />
-
 # Updating from Figma
+
+> **Builder documentation.** This lives in the repo rather than in Storybook:
+> Storybook is the consumer's window onto what the system publishes, and this
+> is material for people building the system itself. Moved out of
+> `packages/react/stories/docs/` on 2026-08-26.
 
 The most common workflow: a token changes in Figma, and the change needs to reach the deployed Storybook (and any consumer app). Here's how that goes end-to-end.
 
