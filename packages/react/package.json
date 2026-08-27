@@ -1,6 +1,6 @@
 {
   "name": "@sebellds/react",
-  "version": "0.1.1",
+  "version": "0.3.0",
   "description": "React component library for the design system.",
   "license": "MIT",
   "repository": {
@@ -35,7 +35,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "lint": "eslint src stories && stylelint \"src/components/**/*.module.css\"",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc -p tsconfig.typecheck.json",
     "test": "vitest run",
     "test:watch": "vitest",
     "storybook": "storybook dev -p 6006",

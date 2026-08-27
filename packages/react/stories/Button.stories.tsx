@@ -104,3 +104,39 @@ export const IconsMatrix: Story = {
     </Stack>
   ),
 };
+
+/** A call to action that navigates is an `<a>`, not a `<button>` – set the
+ *  element with `as` and the styling is unchanged. On a marketing or share
+ *  surface most buttons are links, so this is the common case, not the exotic
+ *  one. `href` is accepted because the props follow the element. */
+export const AsLink: Story = {
+  render: () => (
+    <Stack direction="row" gap="small" align="center">
+      <Button as="a" href="https://example.com" variant="solid">
+        Get the app
+      </Button>
+      <Button as="a" href="https://example.com" variant="outline">
+        Open the recipe
+      </Button>
+      <Button as="a" href="https://example.com" variant="text" endIcon={<ChevronRightIcon />}>
+        Read more
+      </Button>
+    </Stack>
+  ),
+};
+
+/** A disabled link. `disabled` is a `<button>` attribute and means nothing on
+ *  an anchor, so the state is expressed as `aria-disabled` with the `href`
+ *  removed – a faded link that still navigated would be the worse bug. */
+export const AsDisabledLink: Story = {
+  render: () => (
+    <Stack direction="row" gap="small" align="center">
+      <Button as="a" href="https://example.com" variant="solid" disabled>
+        Get the app
+      </Button>
+      <Button as="a" href="https://example.com" variant="outline" disabled>
+        Open the recipe
+      </Button>
+    </Stack>
+  ),
+};

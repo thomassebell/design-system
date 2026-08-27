@@ -64,6 +64,93 @@ can be picked up without re-litigating it. Started 2026-08-07.
       **NEXT STEP** is a diagnostic, not a proposal: walk the tree and mark, per
       token, what decision it records and whether the name recovers it.
 
+- [ ] **THE MISSING GATE: nothing checks whether the DS can build a page.**
+      Found 2026-08-18, after `Button` turned out to be unable to render a link.
+      **THE DIAGNOSIS.** Every gate this repo has asks *"does this component match
+      the design and ship cleanly?"* – stylelint checks tokens, `build.mjs` pre-flight
+      checks cross-brand parity, the contrast sweeps check colour, Chromatic checks
+      appearance, `npm run smoke` checks that a consumer can install and import the
+      tarball. Not one asks *"can I build a page out of this?"* And Figma cannot
+      prompt the question: a Figma Button has variants for appearance and state, and
+      no way to express *"this one navigates"*. A system built to mirror Figma
+      faithfully – which is what `CLAUDE.md` demands, and it has been followed –
+      inherits Figma's blind spot precisely. `Text` got `as` only because
+      heading-level-versus-style is a distinction you hit inside Storybook;
+      `Button`'s equivalent is invisible until there is a real page.
+      **WHY IT WENT UNNOTICED FOR SO LONG.** The two consumers proved nothing about
+      it. Storybook stories never navigate anywhere, and Prep+Eat is React Native and
+      cannot consume the components at all (see the entry below). `prepeat-share` is
+      the **first real web page ever built with this library**, and it surfaced three
+      gaps in one sitting. That is a normal first-consumer yield, not a scandal – but
+      it means the remaining gaps are still unfound.
+      **THE FIX IS PAGES, NOT COMPONENTS.** Testing 20 components one at a time
+      re-tests what Storybook already covers. What broke was *composition*. Three
+      page archetypes cover the whole library, and one page exercises ~15 components
+      at once:
+        1. Marketing / share – `Button`, `IconButton`, `Text`, `Stack`, `Surface`.
+           **In progress** as `prepeat-share`; it is what found this.
+        2. A form (sign-up or settings) – `Field`, `FieldGroup`, `Input`,
+           `Checkbox(+Field,+Group)`, `Radio(+Field,+Group)`, `Switch(+Field)`,
+           `Button`, `Text`, `Stack`. **Never built. Highest risk – do this next.**
+        3. App shell – `TabBar`, `TabBarButton`, `Surface`, `Chip`, `Icon`.
+      **WHY THE FORM PAGE IS THE ONE TO FEAR.** There is no `<form>` and no
+      `onSubmit` anywhere in the library or its stories – verified 2026-08-18, zero
+      matches. Eleven form-shaped components, never once assembled into a working
+      form. Tests exist for exactly four components, all in the button / tab-bar
+      family; the entire form cluster has none. Forms are where element semantics
+      matter *most* – label association, error announcement, required fields, what
+      actually happens on submit. If a button could not be a link, do not assume
+      eleven form components got their semantics right untested.
+      **KEEP THE PAGES – they are three backlog items, not one.** Kept in the repo as
+      an example app, the same artifact also closes "No consumer-facing docs for
+      `@sebellds/react`" and "The stories teach the habit the lint rule forbids": a
+      real page is a far better example corpus, for a person and for an LLM, than
+      isolated stories.
+      **SMALLER THING SPOTTED IN PASSING, for whoever does the form page.** `Button`
+      sets no `type` attribute, so inside a `<form>` it defaults to `type="submit"`.
+      That may well be wrong as a default, but changing it is a behaviour change for
+      anything already relying on it – decide it deliberately with the form page, not
+      as a drive-by.
+
+- [x] **Stories and tests are excluded from typechecking, and it hid a real
+      regression.** Found 2026-08-18 while adding `as` to `Button`. **LANDED
+      2026-08-18** — `packages/react/tsconfig.typecheck.json` now checks the whole
+      surface and `npm run typecheck` (already run by CI) points at it. Diagnosis
+      kept below for the record.
+      `packages/react/tsconfig.json` has `"exclude": [… "**/*.stories.*",
+      "**/*.test.*"]`, and Vite / esbuild strip types without checking them. So
+      `npm run lint` runs ESLint over `stories`, but **nothing type-checks a single
+      story or test file.**
+      **WHAT IT HID, concretely.** The first cut of polymorphic `Button` typed the
+      component as a bare call signature, which – unlike
+      `ForwardRefExoticComponent` – carries no implicit `ref`. `<Button ref={…}>`
+      stopped typechecking while continuing to work at runtime. Every test passed,
+      lint passed, `tsc -p tsconfig.json` passed, the build passed, `npm run smoke`
+      passed. The only thing that caught it was type-checking the test file by hand.
+      A consumer would have hit it immediately.
+      **HOW IT WAS FIXED.** A second config (`tsconfig.typecheck.json`), because
+      `tsconfig.json` emits declarations scoped to `src` with `rootDir` `src`, and
+      the story files sit outside it. The new config extends the base, sets
+      `noEmit`, drops `rootDir` to `.`, and includes `src`, `stories` and
+      `vitest.setup.ts`. `packages/react`'s `typecheck` script points at it; CI
+      already runs `npm run typecheck`, so no workflow edit was needed. Proven both
+      ways before landing: the whole surface (17 stories + 4 test files) typechecks
+      with zero errors, and a deliberate bad type in a test file is caught by the
+      new config while `tsconfig.json` waves it through.
+      **`vitest.setup.ts` must be in `include`** or every jest-dom matcher
+      (`toBeInTheDocument`, `toHaveClass`, …) reports as a missing property and buries
+      the real errors in noise.
+
+- [ ] **`TabBarButton` still cannot render a link.** Found 2026-08-18, deliberately
+      left out of the `Button` / `IconButton` `as` change by Thomas ("fix the button
+      and iconButton").
+      It renders a hardcoded `<button>` (`TabBarButton.tsx:18`). A tab bar on the web
+      is navigation almost by definition, so this is the most certain of the three
+      cases, not the least – it is unfixed only because the scope was drawn at two
+      components. The pattern to copy is now in `Button.tsx`: `ButtonOwnProps` +
+      a generic `as`, the `[aria-disabled="true"]` CSS counterparts, and `ref` on the
+      call signature.
+
 - [ ] **`Alert` IS NOT FINISHED.** Built from Figma "alert banner"
       (node `42:78`), started 2026-08-16.
       **STATUS CORRECTED 2026-08-18 by Thomas.** This entry previously sat under
@@ -363,6 +450,128 @@ can be picked up without re-litigating it. Started 2026-08-07.
 
 ## Decided
 
+- [x] **`Button` and `IconButton` can render any element via `as`; a call to action
+      that navigates is now an `<a>`.** Decided 2026-08-18 by Thomas, after
+      `prepeat-share` was blocked by it.
+      **THE BUG.** Both components rendered a hardcoded `<button>` with no `as`, so
+      `as="a" href="…"` fell into `...rest` and was spread onto the button as unknown
+      DOM attributes: `<button as="a" href="https://…">`. It looked exactly right and
+      navigated nowhere. There was no correct workaround either – an `<a>` wrapping a
+      `<button>` is invalid HTML, and the CSS Module class object is not exported, so
+      copying the classes onto one's own anchor is not even mechanically possible.
+      **WHY `as` AND NOT `asChild`.** `Text` and `Stack` already establish `as`. A
+      second idiom for the same job would be worse than the gap. The props follow the
+      element, so `as="a"` accepts `href` and rejects `type`.
+      **THE PART THAT NEEDED A REAL DECISION: `disabled` on an anchor.** `disabled`
+      is a `<button>` attribute and nothing else – React drops it from an anchor
+      silently, so a "disabled" link would have gone on looking faded *and still
+      navigating*, which is a worse bug than the one being fixed. On a non-`<button>`
+      element the state is now expressed the only way an anchor can express it:
+      `aria-disabled="true"`, `href` removed so there is nothing to follow, and
+      `onClick` suppressed to match the native path. Removing `href` also takes the
+      element out of the tab order on its own – **verified in the browser**, not
+      assumed: the disabled link is neither programmatically focusable nor in the
+      sequential tab order, exactly like a native disabled button, so no
+      `tabIndex={-1}` override was added. The element-state block is spread *after*
+      `...rest` on purpose, so a caller's `href` cannot survive the disabled state.
+      **TWO CSS CHANGES THE ANCHOR PATH REQUIRED.** (1) `text-decoration: none` on
+      the base class – an `<a>` underlines by default, and the `text` variant draws
+      its own underline as an inset `box-shadow` at the offset the design asks for, so
+      a browser underline would have sat at the wrong place. (2) Every `:disabled` and
+      `:not(:disabled)` selector gained an `[aria-disabled="true"]` counterpart;
+      `:disabled` never matches an anchor, so without it a disabled link would not
+      have faded at all.
+      **VERIFIED.** 30/30 tests pass, including 5 new ones covering the anchor path
+      (href present and working, `as` not leaked to the DOM, styling identical,
+      disabled strips `href` and blocks `onClick`, ref forwards to the anchor).
+      `tsc`, `npm run lint`, `npm run build` and `npm run smoke` all clean – smoke
+      matters here because the emitted `.d.ts` had to survive the polymorphic cast,
+      and it does. Checked visually in Storybook: the three link variants render
+      identically to the buttons with no browser underline, and the disabled link
+      computes `opacity: 0.5` / `cursor: not-allowed`, which is the proof that the new
+      `[aria-disabled="true"]` selectors match.
+      **NOT DONE, deliberately:** `TabBarButton` – see the Open entry. Scope was
+      Thomas's: "fix the button and iconButton, log the test for another day."
+      **`ButtonOwnProps` / `IconButtonOwnProps` are now exported** because
+      `ButtonProps` references them; a consumer with declaration emit would otherwise
+      hit a "using private name" error.
+
+- [x] **`Text` now mirrors the Figma type ramp exactly; `caption` and `overline`
+      dropped.** Decided 2026-08-18 by Thomas, same day as the variant rename above.
+      **WHAT WENT.** `caption` (small + `text.subtle`) and `overline` (small +
+      emphasized + uppercase + `letter-spacing: 0.04em` + `text.disabled`). Neither
+      existed in the Figma `typography` page (node `52:111`), which defines twelve
+      styles and no more: `header/display 1 … 6`, `paragraph/{paragraph, paragraph
+      emphasized, small, small emphasized}`, `components/{label, tabel header}`.
+      Both also baked a **colour** into a type style, contradicting the three-axis
+      model in `core.design.md`; `overline`'s tracking was invented outright, since
+      every Figma style is `letterSpacing: 0`. `Text` is now `display1 … display6`,
+      `body`, `bodySmall` – nothing else. No production code used the two removed
+      variants; only stories and the props table referenced them.
+      **WHY EMPHASIS DID *NOT* BECOME A VARIANT, which is the subtler half.** Figma
+      carries `paragraph emphasized` and `small emphasized` as separate styles, so
+      "mirror Figma exactly" would seem to demand `bodyEmphasized` variants. Thomas
+      ruled otherwise, and the reason is the useful part: *"It is only possible to
+      change a word's styling in a paragraph by applying a different style. Not
+      possible to do it the right way and set a weight."* Those two styles are a
+      **workaround for a Figma limitation** – the tool cannot set a weight on a text
+      range – not a statement that emphasis is its own type style. The web can
+      express the real intent, so it does: a nested `<strong>`/`<b>` for a word
+      (bound to `font-weight.emphasized`, never the browser's bold), and the
+      `weight` prop for a whole block. Same rendered values as Figma's two styles.
+      **GENERAL RULE THIS SETS.** Mirroring Figma means mirroring the *design
+      decisions*, not the shapes Figma's editing model forced them into. Where a
+      Figma construct exists only because the tool could not express the intent
+      directly, code should express the intent. Flag such cases rather than
+      transcribing them – and equally, do not invent styles the ramp does not have.
+      **LEFT ALONE.** `weight="understate"` stays, though no Figma text style uses
+      that slot – it is a real weight in the brand collection, and the story says so.
+
+- [x] **`Text` variants renamed to the type ramp; style and hierarchy decoupled.**
+      Decided 2026-08-18 by Thomas, built the same day. `@sebellds/react` 0.1.1 → 0.2.0.
+      **WHAT CHANGED.** The variant vocabulary was `display, h1, h2, h3, h4, body,
+      bodySmall, caption, overline`. It is now `display1 … display6` plus the same
+      four paragraph-family variants – one variant per `font-size.display-*` token.
+      The element is no longer inferred from the variant: every variant renders `<p>`
+      and heading level is set explicitly with `as`. Two capabilities were added at
+      the same time: nested `<strong>` / `<b>` bind to `font-weight.emphasized`, and a
+      `weight` prop exposes all three weight slots.
+      **WHY.** Thomas's framing, which is the decision: *"H1, H2 etc. is set to create
+      hierarchy, display-1, display-2 etc. is set to create styling. They should not be
+      dependent on each other."* The old names welded the two together, so choosing a
+      size also chose a document outline level – and `variant="h1"` returned the
+      *second* largest size, because a "display above the ladder" convention from the
+      pre-Figma scaffold survived the token migration unexamined.
+      **WHAT THE OLD NAMES COST, concretely.** Five old slots were re-pointed at the new
+      ramp slot-for-slot in 9df1af5 (its own commit message ends the mapping at
+      `display-5`). Six tokens, five slots – `display-6` was orphaned and unreachable
+      through `Text`, which is why `Alert` and `FieldGroup` hand-rolled the same
+      header/emphasized/display-6 recipe in their own CSS. `font-weight.understate`
+      was orphaned the same way and had **zero** consumers anywhere in the library.
+      **WHY NO DEPRECATION PATH.** The package was public (0.1.1, npm) but had no known
+      consumer – Prep+Eat is React Native and cannot install `@sebellds/react` at all.
+      Thomas: *"nothing is breaking, because nothing is built."* 0.x permits the break,
+      so the old names were removed outright rather than kept as warning aliases.
+      **NOT DONE, deliberately.** `Alert` and `FieldGroup` still hand-roll display-6
+      instead of composing `Text` – a separate change, kept out to keep this diff
+      readable. Token values were not touched.
+      **CHECKED AGAINST FIGMA** (2026-08-18, file `65DhWI9kmp9ee9wzoIfTMM`, the
+      `typography` page, node `52:111` – pointed out by Thomas).
+      **THE PAIRING IS DESIGN-SPECIFIED, and the build matches it exactly.** Figma
+      has composite text styles that bind family + weight + size + line-height:
+      `header/display 1 … header/display 6`, `paragraph/{paragraph, paragraph
+      emphasized, small, small emphasized}`, `components/{label, tabel header}`.
+      `header/display 6` binds `font-size/display-6` to `line-height/xsmall` – so
+      the display-6 line-height shipped here is Figma's decision, not an inference.
+      All six display pairings match. Figma's own labels are "Display 1"…"Display 6",
+      so `display1 … display6` is Thomas's naming; no rename owed.
+      **A SEARCH MISTAKE WORTH NOT REPEATING.** `search_design_system` returned
+      `"styles": []` three times, and that was read as "the file has no text styles".
+      It only searches **published library** assets; these styles are local to the
+      file. A negative from that tool is not evidence of absence – open the page.
+      The same tool also lists only the `cover` page for this file, so pages cannot
+      be enumerated; ask for a node link rather than concluding something is missing.
+
 - [x] **Licence: MIT.** Decided 2026-08-18 by Thomas, before the first publish.
       `LICENSE` at the repo root and copied into both published packages
       (`packages/tokens`, `packages/react`), plus `"license": "MIT"` in both
@@ -406,7 +615,36 @@ can be picked up without re-litigating it. Started 2026-08-07.
       **THE SCOPE IS `@sebellds`, NOT `@sebell`.** A custom npm scope needs an
       org of the same name; `sebellds` is the org Thomas registered.
       **`Alert` IS EXCLUDED FROM THE FIRST PUBLISH** – it is unfinished, so it
-      is not exported from the package entry point. See the open item.
+      is not exported from the package entry point. See the open item. (Its code
+      was deleted 2026-08-18; it never reached any published version.)
+
+      **WHAT IS LIVE ON NPM RIGHT NOW — keep this current.** Thomas's shipping
+      rule is that what is in the code and what is actually published must never
+      drift silently, so record every publish here.
+
+      | package | live version | published |
+      |---|---|---|
+      | `@sebellds/tokens` | `0.1.1` | 2026-08-18 |
+      | `@sebellds/react` | `0.2.0` | 2026-08-18 |
+
+      `@sebellds/react` `0.2.0` is the breaking `Text` change (see the entry
+      above): `display1 … display6, body, bodySmall`, no inferred element. It is
+      tagged `latest`, so a fresh `npm install` gets the new API and any consumer
+      still on `variant="h1"` or `"caption"` fails to compile – verified, those
+      are hard `TS2322` errors against the published types.
+      **Tokens was deliberately NOT republished.** It was unchanged at `0.1.1`,
+      and react pins `"^0.1.0"`, which resolves to it. The "tokens first" rule is
+      about never publishing react against an *unpublished* tokens version – it
+      does not require a version bump when tokens has not changed.
+      **VERIFIED FROM THE REGISTRY, not from the monorepo.** A clean-room install
+      outside the workspace resolved `react@0.2.0` → `tokens@0.1.1` transitively,
+      server-rendered `<Text variant="display6" as="h1">` to
+      `<h1 class="Text_text Text_display6">`, and confirmed both CSS entry points
+      resolve. `npm run smoke` proves the same thing pre-publish; this proves it
+      post-publish, which is the only check that covers the registry itself.
+      **PUBLISHING NEEDS A HUMAN.** The npm account has 2FA set to
+      `auth-and-writes`, so `npm publish` demands a one-time code. An agent
+      cannot supply it – prepare the release, then hand Thomas the command.
 
 - [x] **The stylelint rule now also bans raw px/rem/em for spacing, radius and
       type — but stops there.** Decided 2026-08-16. `padding*`, `margin*`,

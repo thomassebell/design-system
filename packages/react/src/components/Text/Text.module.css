@@ -3,6 +3,7 @@
 .text {
   margin: 0;
   font-family: var(--typography-font-family-paragraph);
+  font-weight: var(--typography-font-weight-default);
   color: var(--text-default);
 }
 
@@ -10,41 +11,62 @@
   color: var(--text-subtle);
 }
 
-/* ── Variants ─────────────────────────────── */
+/* ── Inline emphasis ──────────────────────── */
+/* Without this, a nested <strong> falls back to the browser's bold, which
+   is not the brand's `emphasized` weight — it only *looks* right on brands
+   where that token happens to be 700. Bind it to the token instead.
+   <em> keeps the UA's italic and inherits weight, so it needs nothing. */
 
-.display {
+.text strong,
+.text b {
+  font-weight: var(--typography-font-weight-emphasized);
+}
+
+/* ── Variants ─────────────────────────────── */
+/* The six display steps pair 1:1 with the density type ramp, and each one
+   steps down the line-height ramp in lockstep. All six take the header
+   family — the size-to-family pairing is a system rule (core.design.md). */
+
+.display1 {
   font-family: var(--typography-font-family-header);
   font-size: var(--typography-font-size-display-1);
   font-weight: var(--typography-font-weight-emphasized);
   line-height: var(--typography-line-height-xxlarge);
 }
 
-.h1 {
+.display2 {
   font-family: var(--typography-font-family-header);
   font-size: var(--typography-font-size-display-2);
   font-weight: var(--typography-font-weight-emphasized);
   line-height: var(--typography-line-height-xlarge);
 }
 
-.h2 {
+.display3 {
   font-family: var(--typography-font-family-header);
   font-size: var(--typography-font-size-display-3);
   font-weight: var(--typography-font-weight-emphasized);
   line-height: var(--typography-line-height-large);
 }
 
-.h3 {
+.display4 {
   font-family: var(--typography-font-family-header);
   font-size: var(--typography-font-size-display-4);
   font-weight: var(--typography-font-weight-emphasized);
   line-height: var(--typography-line-height-medium);
 }
 
-.h4 {
+.display5 {
   font-family: var(--typography-font-family-header);
   font-size: var(--typography-font-size-display-5);
   font-weight: var(--typography-font-weight-emphasized);
   line-height: var(--typography-line-height-small);
+}
+
+.display6 {
+  font-family: var(--typography-font-family-header);
+  font-size: var(--typography-font-size-display-6);
+  font-weight: var(--typography-font-weight-emphasized);
+  line-height: var(--typography-line-height-xsmall);
 }
 
 .body {
@@ -59,21 +81,13 @@
   line-height: var(--typography-line-height-xxsmall);
 }
 
-.caption {
-  font-size: var(--typography-font-size-small);
-  font-weight: var(--typography-font-weight-default);
-  line-height: var(--typography-line-height-xxsmall);
-  color: var(--text-subtle);
-}
+/* ── Weight override ──────────────────────── */
+/* Must follow the variants: these are single classes like the variants are,
+   so source order is what lets the prop win. */
 
-.overline {
-  font-size: var(--typography-font-size-small);
-  font-weight: var(--typography-font-weight-emphasized);
-  line-height: var(--typography-line-height-xxsmall);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-disabled);
-}
+.weightUnderstate { font-weight: var(--typography-font-weight-understate); }
+.weightDefault    { font-weight: var(--typography-font-weight-default); }
+.weightEmphasized { font-weight: var(--typography-font-weight-emphasized); }
 
 /* ── Alignment ────────────────────────────── */
 
