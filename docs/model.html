@@ -1,0 +1,228 @@
+<title>Sebell Channel Model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600&family=Noto+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --ground:#faf9f6; --surface:#ffffff; --sunk:#f2f0ea; --line:#e2e0d8; --line-2:#cfccc1;
+    --ink:#14140f; --ink-2:#54534b; --ink-3:#8b897f;
+    --pine:#3d5c40; --pine-soft:#e6ede6; --pine-line:#a7bfa9;
+    --teal:#3f7079; --teal-soft:#e2eef0; --teal-line:#9fc2c8;
+    --cedar:#a3462c; --cedar-soft:#f7e8e3; --cedar-line:#dbaf9f;
+    --walnut:#8a7862;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#141410; --surface:#1e1e18; --sunk:#191913; --line:#32312a; --line-2:#413f36;
+      --ink:#f1efe7; --ink-2:#a8a69a; --ink-3:#76746b;
+      --pine:#88ac8b; --pine-soft:#202b20; --pine-line:#3b5340;
+      --teal:#85b4bc; --teal-soft:#192a2d; --teal-line:#37575d;
+      --cedar:#dd8a6d; --cedar-soft:#2f1e17; --cedar-line:#5b392b;
+      --walnut:#ad9981;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#141410; --surface:#1e1e18; --sunk:#191913; --line:#32312a; --line-2:#413f36;
+    --ink:#f1efe7; --ink-2:#a8a69a; --ink-3:#76746b;
+    --pine:#88ac8b; --pine-soft:#202b20; --pine-line:#3b5340;
+    --teal:#85b4bc; --teal-soft:#192a2d; --teal-line:#37575d;
+    --cedar:#dd8a6d; --cedar-soft:#2f1e17; --cedar-line:#5b392b;
+    --walnut:#ad9981;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--ground); color:var(--ink); font-family:"Noto Sans",system-ui,sans-serif; font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px; margin:0 auto; padding:44px 26px 80px}
+
+  h1{font-family:"Noto Serif",Georgia,serif; font-weight:600; font-size:clamp(28px,4vw,38px); letter-spacing:-.015em; line-height:1.12; margin:0 0 10px; text-wrap:balance}
+  .lede{color:var(--ink-2); max-width:64ch; margin:0 0 30px}
+
+  /* ---------- stage ---------- */
+  .stage{border:1px solid var(--line); border-radius:12px; background:var(--surface); overflow:hidden}
+  .side{padding:20px 22px; transition:opacity .35s ease}
+  .side.dim{opacity:.16}
+  .side-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px; flex-wrap:wrap}
+  .side-name{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3)}
+  .side-sub{font-size:12.5px; color:var(--ink-3)}
+  .row{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+
+  .actor{
+    font:inherit; text-align:left; cursor:pointer; background:var(--surface);
+    border:1px solid var(--line-2); border-radius:10px; padding:12px 15px; min-width:172px;
+    transition:.16s;
+  }
+  .actor:hover{border-color:var(--teal); transform:translateY(-1px)}
+  .actor:focus-visible{outline:2px solid var(--teal); outline-offset:2px}
+  .actor[aria-pressed="true"]{background:var(--teal-soft); border-color:var(--teal); box-shadow:inset 0 0 0 1px var(--teal)}
+  .actor b{display:block; font-family:"Noto Serif",Georgia,serif; font-size:15.5px; font-weight:600}
+  .actor span{display:block; font-size:11.5px; color:var(--ink-2); margin-top:2px}
+  .actor.passive{cursor:default; border-style:dashed; background:transparent}
+  .actor.passive:hover{border-color:var(--line-2); transform:none}
+
+  .horiz{font-family:"IBM Plex Mono",monospace; font-size:10.5px; color:var(--ink-3); white-space:nowrap; display:flex; align-items:center; gap:6px}
+  .horiz::before{content:"→"; font-size:14px; color:var(--line-2)}
+
+  /* ---------- boundary ---------- */
+  .boundary{border-top:1px dashed var(--ink); border-bottom:1px dashed var(--ink); background:var(--sunk); padding:14px 22px; display:grid; grid-template-columns:1fr 1fr; gap:22px}
+  .cross{display:flex; gap:11px; align-items:flex-start}
+  .cross i{font-style:normal; font-size:19px; line-height:1; color:var(--ink-2)}
+  .cross.up i{color:var(--ink-3)}
+  .cross b{display:block; font-size:12.5px; letter-spacing:.02em}
+  .cross span{display:block; font-size:12px; color:var(--ink-2); margin-top:2px}
+  .cross.up b, .cross.up span{color:var(--ink-3)}
+
+  /* ---------- inspector ---------- */
+  .inspector{margin-top:14px; border:1px solid var(--line); border-radius:12px; background:var(--surface); overflow:hidden}
+  .insp-head{padding:16px 22px; border-bottom:1px solid var(--line); display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+  .insp-head h2{font-family:"Noto Serif",Georgia,serif; font-size:20px; font-weight:600; margin:0}
+  .insp-head p{margin:0; font-size:12.5px; color:var(--ink-2)}
+  .cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .col{padding:18px 22px; border-right:1px solid var(--line)}
+  .col:last-child{border-right:none}
+  .col h3{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 4px}
+  .col .why{font-size:12px; color:var(--ink-3); margin:0 0 13px; min-height:2.6em}
+  ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px}
+  li{font-size:13px; line-height:1.4; padding:7px 11px; border-radius:7px; border:1px solid var(--line); background:var(--sunk)}
+  li.has{border-left:3px solid var(--pine)}
+  li.no{border-style:dashed; border-left:3px dashed var(--cedar); color:var(--ink-3); background:transparent}
+  li em{font-style:normal; display:block; font-size:11.5px; color:var(--ink-3); margin-top:2px}
+  .verdict{padding:14px 22px; border-top:1px solid var(--line); font-size:13px; color:var(--ink-2); background:var(--sunk)}
+  .verdict b{color:var(--ink)}
+
+  .hint{padding:26px 22px; text-align:center; color:var(--ink-3); font-size:13.5px}
+  .foot{margin-top:26px; font-size:12px; color:var(--ink-3); display:flex; gap:18px; flex-wrap:wrap; align-items:center}
+  .key{display:inline-flex; align-items:center; gap:7px}
+  .kbox{width:11px;height:11px;border-radius:2px;display:inline-block}
+  @media (max-width:760px){ .boundary{grid-template-columns:1fr} .col{border-right:none;border-bottom:1px solid var(--line)} }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;transform:none!important}}
+</style>
+
+<div class="wrap">
+  <h1>Two sides, and what each actor can reach</h1>
+  <p class="lede">The system side builds the design system. The product side consumes it and never builds it.
+    Only two things cross between them. Select anyone to see what they actually have – and watch the other side go dark.</p>
+  <p class="lede" style="margin-top:-18px"><strong>Neither side can see the other.</strong> The product side cannot look inside the system.
+    The system side cannot see how its work is used, what was overridden, or which gaps people hit. That is what the request channel is for,
+    and it does not exist yet.</p>
+
+  <div class="stage" id="stage">
+
+    <div class="side" id="side-system">
+      <div class="side-head">
+        <span class="side-name">System side</span>
+        <span class="side-sub">Decides what the system contains, and builds it.</span>
+      </div>
+      <div class="row">
+        <button class="actor" data-actor="dsd" aria-pressed="false"><b>DS designer</b><span>decides, visually</span></button>
+        <span class="horiz">handover</span>
+        <button class="actor" data-actor="dsai" aria-pressed="false"><b>DS AI</b><span>builds the system</span></button>
+      </div>
+    </div>
+
+    <div class="boundary">
+      <div class="cross"><i>↓</i><div><b>What the system publishes</b><span>Not optional. There is no looking inside, so anything unpublished does not exist for them.</span></div></div>
+      <div class="cross up"><i>↑</i><div><b>Requests</b><span>An opportunity the system may offer, not a duty. Answer yes, no, or not now – and a no carries what to do instead.</span></div></div>
+    </div>
+
+    <div class="side" id="side-product">
+      <div class="side-head">
+        <span class="side-name">Product side</span>
+        <span class="side-sub">Consumes the system. Never builds it. Builds the product.</span>
+      </div>
+      <div class="row">
+        <button class="actor" data-actor="pd" aria-pressed="false"><b>Product designer</b><span>designs screens</span></button>
+        <span class="horiz">handover</span>
+        <button class="actor" data-actor="pai" aria-pressed="false"><b>Product AI</b><span>types the code</span></button>
+        <button class="actor" data-actor="pdev" aria-pressed="false"><b>Product developer</b><span>reviews, rarely types</span></button>
+        <span class="actor passive"><b>The product</b><span>complex, shipped</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="inspector" id="inspector">
+    <div class="hint" id="hint">Select an actor above to see what they have.</div>
+    <div id="panel" hidden></div>
+  </div>
+
+  <div class="foot">
+    <span class="key"><i class="kbox" style="background:var(--pine)"></i> they have it</span>
+    <span class="key"><i class="kbox" style="border:1px dashed var(--cedar)"></i> missing</span>
+    <span>Read from the repo, 2026-08-26.</span>
+  </div>
+</div>
+
+<script>
+  var DATA = {
+    dsd: { name:"DS designer", side:"system", role:"Authoring the system in Figma. Sees the whole tree, and is the only actor who meets a token as a decision being made.",
+      support:[["Figma guideline frames","per-component, in the library"],["brand/core.design.md","the contract – currently missing Prep+Eat"],["docs/backlog.md","the decisions log, with the why"],["docs/adding-a-component.md","the runbook"]],
+      artifacts:[["brand foundations","four, one per brand"],["primitives","colour ramps, radius, type"],["semantic tokens","the names components use"],["appearance collection","light and dark, seven roots"],["the component library","authoring it, not consuming it"]],
+      enforcement:[["Figma variable scoping","the right token is the easy one to reach"],["cross-brand parity","fatal at build time"],["nothing checks a name",false]],
+      verdict:"Best served actor in the system. Every convention was written from inside this moment – which is also why the names serve this moment and no other." },
+
+    dsai: { name:"DS AI", side:"system", role:"Building or changing a component inside the repo. The widest field of view of any actor.",
+      support:[["CLAUDE.md","loads automatically – the only guaranteed read"],["the invariants","each with the failure that produced it"],["docs/","backlog, spacing rhythm, the runbooks"],["read the spec, not the render","the handover rule"]],
+      artifacts:[["the whole repository","source, config, history"],["Figma via MCP","bindings, not pixels"],["the linters","it can run them"],["twelve token exports","1,103 tokens"]],
+      enforcement:[["stylelint","no raw colour, no primitives, no raw px"],["build pre-flight","alias and parity checks, fatal"],["CI diffs the Swift file","stale output fails"],["npm run smoke","packs and installs real tarballs"],["tests cover 4 of 20 components",false]],
+      verdict:"The only actor with both the rules and something that fails when it breaks them. Everything below the boundary loses one or both." },
+
+    pd: { name:"Product designer", side:"product", role:"Designing a screen with the published library. Picking from a dropdown mid-layout, no documentation open.",
+      support:[["Storybook: Welcome, Using Components","a website – reachable, if they know it exists"],["the published Figma library","components and variables"],["a changelog",false],["a roadmap",false],["a way to ask for something",false]],
+      artifacts:[["the component library","consumed, not built – internals are not theirs"],["semantic colours","apply, never author"],["layout spacing","between things, not inside them"],["typography styles","the ramp, paired to families"],["brand and density modes","a supported choice"]],
+      enforcement:[["Figma variable scoping","the strongest enforcement any actor gets"],["overrides are visible","the instance shows it was changed"],["overrides are reversible","reset to main puts it back"]],
+      verdict:"Overrides here are legible and undoable. That is the standard the code side fails to meet – not the other way round." },
+
+    pai: { name:"Product AI", side:"product", role:"Writing product code against the installed package. Cannot ask anyone, and cannot tell when it is guessing.",
+      support:[["type definitions","15.6 kB of .d.ts"],["two READMEs","95 lines, recently rewritten"],["Storybook",false,"a website. It does not browse."],["MD instructions that travel",false,"CLAUDE.md stops at the repo edge"],["recipes",false,"named, never built"]],
+      artifacts:[["the npm packages","built JS, CSS, types"],["CSS variables","around 350 per sheet"],["component props","the public interface"],["a component manifest",false,"no machine-readable inventory exists"]],
+      enforcement:[["nothing",false,"the lint rules stay in the DS repo"],["className and style reach inside",false,"every component inherits them"],["overrides are silent and permanent",false,"no marker, no reset, no way to know"]],
+      verdict:"The actor your model says types the code has the rules of none of them. It does not hit the boundary of the system – it fills it, quietly." },
+
+    pdev: { name:"Product developer", side:"product", role:"Reviewing what the AI wrote. Rarely typing it themselves any more.",
+      support:[["Storybook","every component, state, brand and density"],["the two READMEs","the front door"],["type definitions","the editor tells them most of it"],["a changelog",false],["upgrade notes",false]],
+      artifacts:[["the npm packages","two, public"],["brand stylesheets","eight, a supported choice"],["type definitions","the only machine-readable contract"]],
+      enforcement:[["nothing in their own repo",false,"the checks never travelled"],["review by eye","the last line of defence, and it is a person"]],
+      verdict:"Judgement is still theirs, and it is the only enforcement left on this side. Which means it fails silently when attention does." },
+  };
+
+  var stage = document.getElementById("stage"),
+      hint = document.getElementById("hint"),
+      panel = document.getElementById("panel"),
+      sysSide = document.getElementById("side-system"),
+      prodSide = document.getElementById("side-product"),
+      current = null;
+
+  function chips(list){
+    return list.map(function(it){
+      var has = it[1] !== false;
+      var note = has ? it[1] : (it[2] || "");
+      return '<li class="' + (has ? "has" : "no") + '">' + it[0] +
+             (note ? '<em>' + note + '</em>' : '') + '</li>';
+    }).join("");
+  }
+
+  function render(key){
+    var d = DATA[key];
+    panel.innerHTML =
+      '<div class="insp-head"><h2>' + d.name + '</h2><p>' + d.role + '</p></div>' +
+      '<div class="cols">' +
+        '<div class="col"><h3>Support</h3><p class="why">What helps them do the job – guidance, documentation, a way to ask.</p><ul>' + chips(d.support) + '</ul></div>' +
+        '<div class="col"><h3>Artifacts</h3><p class="why">The material itself. What they hold, and whether they author it or apply it.</p><ul>' + chips(d.artifacts) + '</ul></div>' +
+        '<div class="col"><h3>Enforcement</h3><p class="why">What actually holds them to the rules when nobody is looking.</p><ul>' + chips(d.enforcement) + '</ul></div>' +
+      '</div>' +
+      '<div class="verdict"><b>' + (d.side === "system" ? "Above the line." : "Below the line.") + '</b> ' + d.verdict + '</div>';
+    panel.hidden = false;
+    hint.hidden = true;
+    sysSide.classList.toggle("dim", d.side === "product");
+    prodSide.classList.toggle("dim", d.side === "system");
+  }
+
+  stage.addEventListener("click", function(e){
+    var b = e.target.closest(".actor[data-actor]"); if(!b) return;
+    var key = b.dataset.actor;
+    stage.querySelectorAll(".actor[data-actor]").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b && current !== key)); });
+    if(current === key){ current = null; panel.hidden = true; hint.hidden = false;
+      sysSide.classList.remove("dim"); prodSide.classList.remove("dim"); return; }
+    current = key; render(key);
+  });
+</script>
