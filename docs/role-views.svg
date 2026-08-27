@@ -1,0 +1,128 @@
+<svg role="img" viewBox="0 0 1240 1160" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <title>What the system provides, and what it costs to change</title>
+  <desc>A matrix of material the design system provides to a designer, a developer and an AI agent, split into builder-only, shared, and consumer-only. Solid pills exist today, dashed pills do not. A diamond marks a supported choice, where the system expects the consumer to pick. Everything else in the shared row can be overridden, and an override means the consumer keeps their own value and stops receiving updates. The asymmetry recorded under the shared row is that in Figma an override is visible and resettable, while in code it is silent and permanent, and an AI agent cannot even know the rule exists. The builder row is complete in all three columns. The consumer row, which holds delivery material such as a changelog, roadmap, release notes, getting started, upgrade notes and rules that travel with the package, is almost entirely absent.</desc>
+
+  <rect width="1240" height="1160" fill="#ffffff"/>
+
+  <text x="24" y="42" font-size="26" fill="#111111">What the system provides</text>
+  <text x="24" y="68" font-size="13.5" fill="#6b6b6b">Material the system gives each role, not work the role does with it. Solid = exists today. Dashed = does not exist. Examples, not an inventory.</text>
+
+  <text x="168" y="112" font-size="15" font-weight="600" fill="#111111">Designer</text>
+  <text x="522" y="112" font-size="15" font-weight="600" fill="#111111">Developer</text>
+  <text x="876" y="112" font-size="15" font-weight="600" fill="#111111">AI agent</text>
+
+  <text x="24" y="152" font-size="11" letter-spacing="1" fill="#8a8a8a">BUILDER</text>
+  <text x="24" y="167" font-size="11" letter-spacing="1" fill="#8a8a8a">ONLY</text>
+  <text x="24" y="416" font-size="11" letter-spacing="1" fill="#8a8a8a">SHARED</text>
+  <text x="24" y="434" font-size="10" fill="#a0a0a0">built by one,</text>
+  <text x="24" y="447" font-size="10" fill="#a0a0a0">consumed by</text>
+  <text x="24" y="460" font-size="10" fill="#a0a0a0">the other</text>
+  <text x="24" y="710" font-size="11" letter-spacing="1" fill="#8a8a8a">CONSUMER</text>
+  <text x="24" y="725" font-size="11" letter-spacing="1" fill="#8a8a8a">ONLY</text>
+
+  <rect x="168" y="128" width="336" height="250" rx="12" fill="#fafafa" stroke="#dcdcdc"/>
+  <rect x="522" y="128" width="336" height="250" rx="12" fill="#fafafa" stroke="#dcdcdc"/>
+  <rect x="876" y="128" width="336" height="250" rx="12" fill="#fafafa" stroke="#dcdcdc"/>
+  <rect x="168" y="392" width="336" height="280" rx="12" fill="#ffffff" stroke="#bdbdbd"/>
+  <rect x="522" y="392" width="336" height="280" rx="12" fill="#ffffff" stroke="#bdbdbd"/>
+  <rect x="876" y="392" width="336" height="280" rx="12" fill="#ffffff" stroke="#bdbdbd"/>
+  <rect x="168" y="686" width="336" height="290" rx="12" fill="#fafafa" stroke="#dcdcdc"/>
+  <rect x="522" y="686" width="336" height="290" rx="12" fill="#fafafa" stroke="#dcdcdc"/>
+  <rect x="876" y="686" width="336" height="290" rx="12" fill="#fafafa" stroke="#dcdcdc"/>
+
+  <!-- DESIGNER builder -->
+  <g font-size="13" fill="#1a1a1a">
+    <rect x="188" y="148" width="136" height="28" rx="14" fill="#e6e6e6"/><text x="204" y="167">Brand foundation</text>
+    <rect x="188" y="182" width="136" height="28" rx="14" fill="#e6e6e6"/><text x="204" y="201">primitive colors</text>
+    <rect x="188" y="216" width="143" height="28" rx="14" fill="#e6e6e6"/><text x="204" y="235">primitive spacing</text>
+    <rect x="188" y="250" width="150" height="28" rx="14" fill="#e6e6e6"/><text x="204" y="269">typography tokens</text>
+    <rect x="188" y="284" width="150" height="28" rx="14" fill="#e6e6e6"/><text x="204" y="303">component spacing</text>
+    <rect x="188" y="318" width="76" height="28" rx="14" fill="#6b6b6b"/><text x="204" y="337" fill="#ffffff">Backlog</text>
+  </g>
+  <!-- DESIGNER shared -->
+  <g font-size="13" fill="#1a1a1a">
+    <rect x="188" y="412" width="130" height="28" rx="14" fill="#e6e6e6"/><text x="204" y="431">semantic colors</text>
+    <rect x="188" y="446" width="126" height="28" rx="14" fill="#e6e6e6"/><text x="204" y="465">layout spacing</text>
+    <rect x="188" y="480" width="146" height="28" rx="14" fill="#e6e6e6"/><text x="204" y="499">typography styles</text>
+    <rect x="188" y="514" width="150" height="28" rx="14" fill="#e6e6e6"/><text x="204" y="533">component library</text>
+    <rect x="188" y="548" width="70" height="28" rx="14" fill="#6b6b6b"/><text x="204" y="567" fill="#ffffff">Guides</text>
+    <rect x="188" y="582" width="76" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="204" y="601" fill="#9a9a9a">Recipes</text>
+    <line x1="188" y1="626" x2="484" y2="626" stroke="#e0e0e0"/>
+    <text x="188" y="645" font-size="11" font-weight="600" fill="#3f6b46">Override is visible, and resettable.</text>
+    <text x="188" y="660" font-size="10.5" fill="#8a8a8a">Figma marks it and can reset to main.</text>
+  </g>
+  <!-- DESIGNER consumer -->
+  <g font-size="13" fill="#1a1a1a">
+    <rect x="188" y="706" width="200" height="28" rx="14" fill="#e6e6e6"/><text x="204" y="725">◆  brand + density modes</text>
+    <rect x="188" y="740" width="168" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="204" y="759" fill="#9a9a9a">library release notes</text>
+    <rect x="188" y="774" width="186" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="204" y="793" fill="#9a9a9a">what changed, and when</text>
+    <rect x="188" y="808" width="164" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="204" y="827" fill="#9a9a9a">how to ask for more</text>
+    <rect x="188" y="842" width="96" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="204" y="861" fill="#9a9a9a">roadmap</text>
+  </g>
+
+  <!-- DEVELOPER builder -->
+  <g font-size="13" fill="#1a1a1a">
+    <rect x="542" y="148" width="144" height="28" rx="14" fill="#e6e6e6"/><text x="558" y="167">component source</text>
+    <rect x="542" y="182" width="122" height="28" rx="14" fill="#e6e6e6"/><text x="558" y="201">stylelint rules</text>
+    <rect x="542" y="216" width="170" height="28" rx="14" fill="#e6e6e6"/><text x="558" y="235">token build + parity</text>
+    <rect x="542" y="250" width="120" height="28" rx="14" fill="#e6e6e6"/><text x="558" y="269">Figma exports</text>
+    <rect x="542" y="284" width="76" height="28" rx="14" fill="#6b6b6b"/><text x="558" y="303" fill="#ffffff">Backlog</text>
+  </g>
+  <!-- DEVELOPER shared -->
+  <g font-size="13" fill="#1a1a1a">
+    <rect x="542" y="412" width="180" height="28" rx="14" fill="#e6e6e6"/><text x="558" y="431">semantic CSS variables</text>
+    <rect x="542" y="446" width="136" height="28" rx="14" fill="#e6e6e6"/><text x="558" y="465">component props</text>
+    <rect x="542" y="480" width="92" height="28" rx="14" fill="#e6e6e6"/><text x="558" y="499">Storybook</text>
+    <rect x="542" y="514" width="70" height="28" rx="14" fill="#6b6b6b"/><text x="558" y="533" fill="#ffffff">Guides</text>
+    <rect x="542" y="548" width="76" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="558" y="567" fill="#9a9a9a">Recipes</text>
+    <line x1="542" y1="626" x2="838" y2="626" stroke="#e0e0e0"/>
+    <text x="542" y="645" font-size="11" font-weight="600" fill="#a34a2e">Override is silent, and permanent.</text>
+    <text x="542" y="660" font-size="10.5" fill="#8a8a8a">className and style reach inside. No reset.</text>
+  </g>
+  <!-- DEVELOPER consumer -->
+  <g font-size="13" fill="#1a1a1a">
+    <rect x="542" y="706" width="120" height="28" rx="14" fill="#e6e6e6"/><text x="558" y="725">npm packages</text>
+    <rect x="542" y="740" width="166" height="28" rx="14" fill="#e6e6e6"/><text x="558" y="759">◆  brand stylesheets</text>
+    <rect x="542" y="774" width="142" height="28" rx="14" fill="#e6e6e6"/><text x="558" y="793">type definitions</text>
+    <rect x="542" y="808" width="96" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="558" y="827" fill="#9a9a9a">changelog</text>
+    <rect x="542" y="842" width="130" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="558" y="861" fill="#9a9a9a">getting started</text>
+    <rect x="542" y="876" width="128" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="558" y="895" fill="#9a9a9a">upgrade notes</text>
+    <rect x="542" y="910" width="96" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="558" y="929" fill="#9a9a9a">roadmap</text>
+  </g>
+
+  <!-- AI builder -->
+  <g font-size="13" fill="#1a1a1a">
+    <rect x="896" y="148" width="172" height="28" rx="14" fill="#e6e6e6"/><text x="912" y="167">CLAUDE.md invariants</text>
+    <rect x="896" y="182" width="106" height="28" rx="14" fill="#e6e6e6"/><text x="912" y="201">repo source</text>
+    <rect x="896" y="216" width="106" height="28" rx="14" fill="#e6e6e6"/><text x="912" y="235">the linters</text>
+    <rect x="896" y="250" width="122" height="28" rx="14" fill="#e6e6e6"/><text x="912" y="269">Figma via MCP</text>
+    <rect x="896" y="284" width="76" height="28" rx="14" fill="#6b6b6b"/><text x="912" y="303" fill="#ffffff">Backlog</text>
+  </g>
+  <!-- AI shared -->
+  <g font-size="13" fill="#1a1a1a">
+    <rect x="896" y="412" width="140" height="28" rx="14" fill="#e6e6e6"/><text x="912" y="431">component types</text>
+    <rect x="896" y="446" width="146" height="28" rx="14" fill="#e6e6e6"/><text x="912" y="465">the two READMEs</text>
+    <rect x="896" y="480" width="70" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="912" y="499" fill="#9a9a9a">Guides</text>
+    <rect x="896" y="514" width="76" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="912" y="533" fill="#9a9a9a">Recipes</text>
+    <rect x="896" y="548" width="146" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="912" y="567" fill="#9a9a9a">component specs</text>
+    <line x1="896" y1="626" x2="1192" y2="626" stroke="#e0e0e0"/>
+    <text x="896" y="645" font-size="11" font-weight="600" fill="#a34a2e">Override is silent, permanent, and</text>
+    <text x="896" y="660" font-size="11" font-weight="600" fill="#a34a2e">it cannot know the rule exists.</text>
+  </g>
+  <!-- AI consumer -->
+  <g font-size="13" fill="#1a1a1a">
+    <rect x="896" y="706" width="148" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="912" y="725" fill="#9a9a9a">rules that travel</text>
+    <rect x="896" y="740" width="146" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="912" y="759" fill="#9a9a9a">worked examples</text>
+    <rect x="896" y="774" width="120" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="912" y="793" fill="#9a9a9a">token index</text>
+    <rect x="896" y="808" width="96" height="28" rx="14" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/><text x="912" y="827" fill="#9a9a9a">changelog</text>
+  </g>
+
+  <line x1="168" y1="1006" x2="1212" y2="1006" stroke="#dcdcdc"/>
+
+  <text x="168" y="1032" font-size="12.5" font-weight="600" fill="#111111">Two ways to change something</text>
+  <text x="168" y="1053" font-size="12" fill="#4a4a4a">◆  A supported choice. The system expects you to pick, and you keep receiving updates.</text>
+  <text x="168" y="1072" font-size="12" fill="#4a4a4a">Everything else in the shared row can be overridden – you keep your value, and that one property leaves the system.</text>
+
+  <text x="168" y="1110" font-size="12.5" fill="#111111">The builder row is finished. The shared row is the interface. The bottom row is the product, and it is almost entirely unbuilt.</text>
+  <text x="168" y="1132" font-size="11.5" fill="#8a8a8a">Light pill = design material.   Dark pill = document or process.   Dashed = does not exist today.</text>
+</svg>

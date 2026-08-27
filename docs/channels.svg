@@ -1,0 +1,113 @@
+<svg role="img" viewBox="0 0 1240 1070" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, -apple-system, sans-serif">
+  <title>Two sides, two crossings</title>
+  <desc>The design system has a system side and a product side. On the system side a DS designer hands over to a DS AI, and together they produce tokens, components, recipes, guides, MD instructions and decisions. On the product side a product designer hands over to a product AI which writes the product, while a product developer reviews rather than types. Handover is horizontal and happens inside each side without crossing. Only two things cross the boundary: downward, what the system publishes, which is the only thing the product side can ever see; and upward, requests, which are an opportunity the system may offer rather than a duty, answered yes, no or not now, with a no carrying what to do instead. The final panel records the asymmetry that matters: a human consumer who needs something missing knows they have hit an edge, while an AI fills the empty space without saying so, which means the system must publish where it ends and not only what it contains.</desc>
+
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="8" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 z" fill="#5a5a58"/></marker>
+    <marker id="arL" markerWidth="10" markerHeight="8" refX="9" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 z" fill="#a0a0a0"/></marker>
+  </defs>
+
+  <rect width="1240" height="1070" fill="#ffffff"/>
+
+  <text x="40" y="44" font-size="26" fill="#111111">Two sides, two crossings</text>
+  <text x="40" y="70" font-size="13.5" fill="#6b6b6b">Handover happens inside each side and never crosses. Only what is published, and what is asked, cross the line.</text>
+
+  <!-- ===== SYSTEM SIDE ===== -->
+  <rect x="40" y="100" width="1160" height="212" rx="12" fill="#f4f4f2" stroke="#c8c8c4"/>
+  <text x="64" y="130" font-size="14" font-weight="600" letter-spacing="0.6" fill="#111111">SYSTEM SIDE</text>
+  <text x="64" y="150" font-size="12" fill="#6b6b6b">Decides what the system contains, and builds it.</text>
+
+  <rect x="90" y="184" width="190" height="64" rx="10" fill="#ffffff" stroke="#8a8a8a"/>
+  <text x="110" y="212" font-size="13.5" font-weight="600" fill="#111111">DS designer</text>
+  <text x="110" y="232" font-size="11" fill="#6b6b6b">decides, visually</text>
+
+  <line x1="284" y1="216" x2="392" y2="216" stroke="#5a5a58" marker-end="url(#ar)"/>
+  <text x="296" y="208" font-size="10.5" fill="#6b6b6b">handover</text>
+  <rect x="286" y="224" width="104" height="20" rx="10" fill="#fdf3ef" stroke="#a34a2e"/><text x="298" y="238" font-size="9.5" fill="#a34a2e">gap check</text>
+
+  <rect x="400" y="184" width="190" height="64" rx="10" fill="#ffffff" stroke="#8a8a8a"/>
+  <text x="420" y="212" font-size="13.5" font-weight="600" fill="#111111">DS AI</text>
+  <text x="420" y="232" font-size="11" fill="#6b6b6b">builds the system</text>
+
+  <text x="672" y="176" font-size="10.5" letter-spacing="0.6" fill="#9a9a9a">PRODUCES</text>
+  <g font-size="12" fill="#1a1a1a">
+    <rect x="672" y="188" width="80" height="26" rx="13" fill="#e0e0dd"/><text x="688" y="206">tokens</text>
+    <rect x="762" y="188" width="112" height="26" rx="13" fill="#e0e0dd"/><text x="778" y="206">components</text>
+    <rect x="884" y="188" width="88" height="26" rx="13" fill="#e0e0dd"/><text x="900" y="206">recipes</text>
+    <rect x="672" y="222" width="80" height="26" rx="13" fill="#e0e0dd"/><text x="688" y="240">guides</text>
+    <rect x="762" y="222" width="136" height="26" rx="13" fill="#e0e0dd"/><text x="778" y="240">MD instructions</text>
+    <rect x="908" y="222" width="96" height="26" rx="13" fill="#e0e0dd"/><text x="924" y="240">decisions</text>
+    <rect x="1016" y="222" width="112" height="26" rx="13" fill="none" stroke="#a34a2e" stroke-dasharray="4 3"/><text x="1032" y="240" fill="#a34a2e">lint config</text>
+  </g>
+
+  <!-- ===== BOUNDARY ===== -->
+  <line x1="40" y1="336" x2="1200" y2="336" stroke="#111111" stroke-width="1.5" stroke-dasharray="8 5"/>
+  <line x1="40" y1="470" x2="1200" y2="470" stroke="#111111" stroke-width="1.5" stroke-dasharray="8 5"/>
+
+  <line x1="130" y1="352" x2="130" y2="456" stroke="#5a5a58" stroke-width="3" marker-end="url(#ar)"/>
+  <text x="158" y="372" font-size="13" font-weight="600" fill="#111111">DOWN · what the system publishes</text>
+  <text x="158" y="394" font-size="12" fill="#4a4a4a">The only thing the product side can ever see. There is no fallback,</text>
+  <text x="158" y="412" font-size="12" fill="#4a4a4a">no looking inside, no asking the author across the desk.</text>
+  <text x="158" y="438" font-size="11.5" fill="#8a8a8a">Everything they need is either published, or it does not exist.</text>
+
+  <line x1="800" y1="456" x2="800" y2="352" stroke="#a0a0a0" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arL)"/>
+  <text x="826" y="372" font-size="13" font-weight="600" fill="#4a4a4a">UP · requests</text>
+  <text x="826" y="394" font-size="12" fill="#4a4a4a">An opportunity the system may offer, not a duty. Not every</text>
+  <text x="826" y="412" font-size="12" fill="#4a4a4a">unmet need is the system's problem to solve.</text>
+  <text x="826" y="438" font-size="11.5" fill="#8a8a8a">Answer yes, no, or not now – and a no carries what to do instead.</text>
+
+  <!-- ===== PRODUCT SIDE ===== -->
+  <rect x="40" y="494" width="1160" height="248" rx="12" fill="#ffffff" stroke="#8a8a8a"/>
+  <text x="64" y="524" font-size="14" font-weight="600" letter-spacing="0.6" fill="#111111">PRODUCT SIDE</text>
+  <text x="64" y="544" font-size="12" fill="#6b6b6b">Consumes the system. Never builds it. Builds the product.</text>
+
+  <rect x="90" y="578" width="190" height="64" rx="10" fill="#ffffff" stroke="#8a8a8a"/>
+  <text x="110" y="606" font-size="13.5" font-weight="600" fill="#111111">Product designer</text>
+  <text x="110" y="626" font-size="11" fill="#6b6b6b">designs screens</text>
+
+  <line x1="284" y1="610" x2="392" y2="610" stroke="#5a5a58" marker-end="url(#ar)"/>
+  <text x="296" y="602" font-size="10.5" fill="#6b6b6b">handover</text>
+  <rect x="286" y="618" width="104" height="20" rx="10" fill="#fdf3ef" stroke="#a34a2e"/><text x="298" y="632" font-size="9.5" fill="#a34a2e">gap check</text>
+
+  <rect x="400" y="578" width="190" height="64" rx="10" fill="#ffffff" stroke="#8a8a8a"/>
+  <text x="420" y="606" font-size="13.5" font-weight="600" fill="#111111">Product AI</text>
+  <text x="420" y="626" font-size="11" fill="#6b6b6b">types the code</text>
+
+  <line x1="594" y1="610" x2="702" y2="610" stroke="#5a5a58" marker-end="url(#ar)"/>
+
+  <rect x="710" y="578" width="170" height="64" rx="10" fill="#e6e6e6"/>
+  <text x="730" y="606" font-size="13.5" font-weight="600" fill="#111111">The product</text>
+  <text x="730" y="626" font-size="11" fill="#6b6b6b">complex, shipped</text>
+
+  <rect x="400" y="664" width="230" height="52" rx="10" fill="none" stroke="#b4b4b4" stroke-dasharray="4 3"/>
+  <text x="420" y="686" font-size="12.5" fill="#6b6b6b">Product developer</text>
+  <text x="420" y="704" font-size="11" fill="#9a9a9a">reviews and decides, rarely types</text>
+  <line x1="515" y1="660" x2="515" y2="648" stroke="#b4b4b4" stroke-dasharray="4 3" marker-end="url(#arL)"/>
+
+  <text x="930" y="600" font-size="11.5" fill="#8a8a8a">Designers, developers and AI here</text>
+  <text x="930" y="617" font-size="11.5" fill="#8a8a8a">are all consumers. If they need</text>
+  <text x="930" y="634" font-size="11.5" fill="#8a8a8a">something the system lacks, they</text>
+  <text x="930" y="651" font-size="11.5" fill="#8a8a8a">request it. They do not build it.</text>
+
+  <!-- ===== AI ASYMMETRY + THE CHECK ===== -->
+  <rect x="40" y="766" width="1160" height="240" rx="12" fill="#fdf3ef" stroke="#a34a2e"/>
+  <text x="64" y="798" font-size="14.5" font-weight="600" fill="#a34a2e">The AI does not hit the boundary. It fills it.</text>
+  <text x="64" y="822" font-size="12.5" fill="#4a4a4a">A human who needs something the system lacks knows they have reached an edge. An AI fills the empty space and says nothing.</text>
+  <text x="64" y="846" font-size="12.5" font-weight="600" fill="#111111">But the gap does not have to be noticed. It can be detected – because the handover carries the evidence.</text>
+
+  <rect x="64" y="864" width="540" height="94" rx="8" fill="#ffffff" stroke="#dcc3b8"/>
+  <text x="84" y="888" font-size="11" font-weight="600" letter-spacing="0.6" fill="#a34a2e">AT HANDOVER · before a line of code</text>
+  <text x="84" y="910" font-size="12" fill="#1a1a1a">Is this node a library instance, or a local frame?</text>
+  <text x="84" y="928" font-size="12" fill="#1a1a1a">Is this value bound to a variable, or typed in?</text>
+  <text x="84" y="948" font-size="12" font-weight="600" fill="#111111">Report them. Do not fill them.</text>
+
+  <rect x="628" y="864" width="540" height="94" rx="8" fill="#ffffff" stroke="#dcc3b8"/>
+  <text x="648" y="888" font-size="11" font-weight="600" letter-spacing="0.6" fill="#a34a2e">IN CODE · the rules, shipped as config</text>
+  <text x="648" y="910" font-size="12" fill="#1a1a1a">A raw hex. A raw px. A component rebuilt locally.</text>
+  <text x="648" y="928" font-size="12" fill="#1a1a1a">The same signal, on the other side of the line.</text>
+  <text x="648" y="948" font-size="12" font-weight="600" fill="#111111">Today the rules never leave this repo.</text>
+
+  <text x="64" y="984" font-size="12.5" fill="#4a4a4a">Neither is a judgment call – both are lookups. They produce a list to triage, not a verdict, so the decision is surfaced instead of made by default.</text>
+
+  <text x="40" y="1044" font-size="11.5" fill="#8a8a8a">Handover is horizontal – it exists on both sides and never crosses. The two sides meet only at what is published, and what is asked.</text>
+</svg>
