@@ -5,6 +5,41 @@ can be picked up without re-litigating it. Started 2026-08-07.
 
 ## Open
 
+- [ ] **`counter` and `badge` exist in the Figma DS but not in the coded DS.**
+      Found 2026-08-26 by running the gap check over the Prep+Eat App file
+      (`nA8SLN8rhdBov97B1IYxnP`, node `121:11255`). Both are published components
+      in the Sebell Design System library - `counter` as a component, `badge` as
+      a component set - and neither is among the twenty components exported from
+      `packages/react/src/index.ts`. Confirmed by Thomas the same day: *"True
+      only in figma DS - waiting to be build in coded DS."*
+      **WHY IT IS WORTH RECORDING RATHER THAN JUST BUILDING.** Nothing in the
+      repo says which Figma components have a code counterpart and which do not.
+      The divergence was invisible until a product file was audited, and it was
+      found by accident while testing something else. Any future inventory of
+      "what the design system contains" has to answer *contains where*, because
+      the two media do not agree.
+      **NOTE:** `badge` is already referenced in `brand/core.design.md` - the
+      radius section cites "(Radio, Badge)" as shapes that must read as fully
+      round. So the core spec already describes a component the library does not
+      ship.
+
+- [ ] **Figma and code disagree on the tab bar's name, and names should be
+      consistent.** Found 2026-08-26, same audit. The published Figma library
+      exposes `tabMenuBar` and `tabMenuBarButton`; the React library exports
+      `TabBar` and `TabBarButton`. Thomas, same day: *"naming problem that should
+      not exists - naming should be consistent."*
+      **WHY THIS IS NOT COSMETIC.** It is the token-structure-review problem one
+      level up. A designer picking `tabMenuBarButton` in Figma and a developer or
+      agent importing `TabBarButton` in code have no way to know they are the
+      same thing, and no automated check compares the two inventories. The
+      cross-brand parity check enforces consistency *within* the token layer and
+      nothing enforces it *between* Figma and code.
+      **DO NOT RENAME EITHER SIDE IN ISOLATION.** A Figma rename ripples through
+      instances in consuming files; a code rename is a breaking change for a
+      published package. Decide the canonical name first, then sequence the two
+      renames deliberately. Related: the token structure review is holding naming
+      open, and this belongs to the same decision.
+
 - [ ] **TOKEN STRUCTURE REVIEW – in the problem space, deliberately.** Opened
       2026-08-18 by Thomas. Brief:
       [token-structure-review-brief.md](./token-structure-review-brief.md).

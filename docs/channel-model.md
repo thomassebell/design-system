@@ -1,6 +1,7 @@
 # The channel model – who the design system is for, and how it reaches them
 
-**Status: MODEL. Authored by Thomas, 2026-08-26.**
+**Status: MODEL. Authored by Thomas, 2026-08-26. Section 7 validated against a
+real handover the same day - see "Tested 2026-08-26".**
 
 This describes how the design system is organised around the people who meet it:
 which sides exist, what crosses between them, and in what form. It contains
@@ -214,9 +215,51 @@ ambition. The goal was never for the AI to know what is missing. It is that
 **the decision is surfaced instead of made by default** – which is the existing
 "flagging is not permission" rule, applied at the moment it can still matter.
 
-It also mostly dissolves the need for a manifest of what the system covers. The
-system does not have to declare its edges in the abstract if the handover
-reveals where they were crossed.
+### Tested 2026-08-26, and partly falsified
+
+Run once on a real handover: the `recipe - add recipe` section of the Prep+Eat
+App file, 593 nodes. **Three of five findings were correct, one was half wrong,
+and one was noise.**
+
+| Finding | Verdict |
+|---|---|
+| `select` and `tabs` are components built in the consuming project | **Half wrong.** `tabs` is local; `select` is in the Figma DS and the check missed it. |
+| `counter` and `badge` exist in the Figma DS but not in the coded DS | Correct |
+| Figma publishes `tabMenuBar` / `tabMenuBarButton`; the code calls them `TabBar` / `TabBarButton` | Correct |
+| `ingredient` exists as two differently-spelled components plus 22 raw frames | Correct, and useful - it lets a designer decide whether it should be a component |
+| Eleven screens are a copy-pasted template | **Noise.** They are ordinary content containers. |
+
+**What worked.** The check collapses 593 nodes into roughly 22 things needing a
+human decision, because it reports **distinct names, not nodes**. That
+deduplication is what separates useful from unusable, and it was not in this
+model as originally written.
+
+**What failed, and why it matters more.** The `select` miss came from using
+Figma's asset search as the "is this a DS component?" lookup. That search sees
+only *published* assets - a limitation already recorded in this project's own
+notes as *a miss is not absence*. The check therefore reported a component as
+missing when it exists.
+
+**This falsifies the paragraph that used to sit here**, which claimed the check
+mostly dissolves the need for a manifest of what the system covers. **It does
+not.** The check is only as good as the inventory it diffs against, and asset
+search is not one. Without an authoritative list of what the design system
+contains, it produces false positives and false negatives, and neither is visible
+unless a human already knows the answer - which is the exact failure the idea
+exists to prevent.
+
+**So the manifest is load-bearing, not optional.** The gap check is the thing
+that consumes it.
+
+**And the heuristic detector should be dropped.** Flagging repeated frame names
+as possible un-made components cannot distinguish a copy-pasted template from
+ordinary content containers without knowing the domain. It produced the one
+purely wrong finding. Demote to informational, or remove.
+
+**The pattern across all five is clean:** every finding derived from comparing
+two authoritative lists was right. The one from an unreliable lookup was half
+wrong. The one from a heuristic was wrong. The method works exactly to the extent
+that it has trustworthy inventories to diff.
 
 ---
 
@@ -253,8 +296,11 @@ model.
 2. **How a handover leaves its trace.** The proposal on the table is that the AI
    writes the component spec as a byproduct of building it, so the solo case pays
    nothing. Untested.
-3. **Whether the gap check produces a useful list or a noisy one.** This is the
-   only real risk in section 7, and it is cheap to test on a single real node.
+3. ~~Whether the gap check produces a useful list or a noisy one.~~ **Tested
+   2026-08-26 - see section 7.** Useful, but conditionally: it needs an
+   authoritative inventory to diff against. The question that replaces it is
+   **where that inventory comes from**, given that Figma asset search is not
+   reliable enough to serve as one.
 4. **Which needs deserve to become supported choices** rather than refusals.
    `Surface`'s background is the live example.
 5. **Everything the token structure review is holding open.** Naming is upstream
